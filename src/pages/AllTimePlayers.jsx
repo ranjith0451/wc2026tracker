@@ -66,7 +66,7 @@ export default function AllTimePlayers() {
     );
   }
 
-  const pool = (gender === "men" ? data.men : data.women) || [];
+  const pool = (gender === "men" ? data.men?.topScorers : data.women?.topScorers) || [];
 
   const filtered = search.trim()
     ? pool.filter(p =>

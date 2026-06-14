@@ -1,5 +1,24 @@
-import { lazy, Suspense, useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useState, Component } from "react";
 import { Routes, Route, NavLink, useLocation } from "react-router-dom";
+
+class PageErrorBoundary extends Component {
+  constructor(props) { super(props); this.state = { error: null }; }
+  static getDerivedStateFromError(e) { return { error: e }; }
+  render() {
+    if (this.state.error) return (
+      <div style={{ padding: 40, textAlign: "center", color: "var(--text-tertiary)" }}>
+        <div style={{ fontSize: 32, marginBottom: 12 }}>⚠️</div>
+        <div style={{ fontWeight: 700, marginBottom: 8, color: "var(--text)" }}>Page failed to load</div>
+        <div style={{ fontSize: 13, marginBottom: 20 }}>{this.state.error.message}</div>
+        <button onClick={() => this.setState({ error: null })}
+          style={{ padding: "8px 20px", background: "var(--blue)", border: "none", borderRadius: 8, color: "#fff", cursor: "pointer" }}>
+          Try again
+        </button>
+      </div>
+    );
+    return this.props.children;
+  }
+}
 import { useResults } from "./lib/useResults.js";
 import { loadOverrides, saveOverrides, mergeResults } from "./lib/overrides.js";
 import { useWCLive } from "./lib/useWC.js";
@@ -263,6 +282,7 @@ export default function App() {
       {/* Main content */}
       <main className="main">
         <PageWrap>
+          <PageErrorBoundary>
           <Suspense fallback={<PageLoader />}>
             <Routes>
               <Route path="/"         element={<Home results={results} />} />
@@ -286,6 +306,7 @@ export default function App() {
               } />
             </Routes>
           </Suspense>
+          </PageErrorBoundary>
         </PageWrap>
       </main>
 
