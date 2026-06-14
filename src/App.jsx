@@ -1,15 +1,28 @@
-import { useEffect, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { Routes, Route, NavLink, useLocation } from "react-router-dom";
 import { useResults } from "./lib/useResults.js";
 import { loadOverrides, saveOverrides, mergeResults } from "./lib/overrides.js";
-import Home from "./pages/Home.jsx";
-import Schedule from "./pages/Schedule.jsx";
-import Groups from "./pages/Groups.jsx";
-import Bracket from "./pages/Bracket.jsx";
-import Squads from "./pages/Squads.jsx";
-import SquadDetail from "./pages/SquadDetail.jsx";
-import TopScorers from "./pages/TopScorers.jsx";
-import Admin from "./pages/Admin.jsx";
+import { useWCLive } from "./lib/useWC.js";
+
+// Lazy-load all routes — cuts initial bundle from 550KB to ~150KB
+import Home from "./pages/Home.jsx"; // home loads immediately (above-the-fold)
+const Schedule   = lazy(() => import("./pages/Schedule.jsx"));
+const Groups     = lazy(() => import("./pages/Groups.jsx"));
+const Bracket    = lazy(() => import("./pages/Bracket.jsx"));
+const Squads     = lazy(() => import("./pages/Squads.jsx"));
+const SquadDetail= lazy(() => import("./pages/SquadDetail.jsx"));
+const TopScorers = lazy(() => import("./pages/TopScorers.jsx"));
+const Admin      = lazy(() => import("./pages/Admin.jsx"));
+const History    = lazy(() => import("./pages/History.jsx"));
+
+function PageLoader() {
+  return (
+    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: 200, color: "var(--text-tertiary)", gap: 10 }}>
+      <div className="flp-spinner" />
+      <span style={{ fontSize: 14 }}>Loading…</span>
+    </div>
+  );
+}
 
 /* ── SVG Icons ── */
 const HomeIcon = () => (
@@ -42,6 +55,11 @@ const BootIcon = () => (
     <circle cx="12" cy="12" r="10"/><path d="M12 8l2 4-4 2 4 2"/>
   </svg>
 );
+const HistoryIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <polyline points="12 8 12 12 14 14"/><path d="M3.05 11a9 9 0 1 1 .5 4M3 21v-4h4"/>
+  </svg>
+);
 const EditIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
@@ -55,53 +73,15 @@ const BallIcon = () => (
   </svg>
 );
 
-/* ── Particle canvas ── */
-function ParticleCanvas() {
-  const canvasRef = useRef(null);
-  const rafRef    = useRef(null);
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    let W, H, particles;
-    const COLORS = ["rgba(37,99,235,","rgba(6,182,212,","rgba(59,130,246,","rgba(99,102,241,","rgba(16,185,129,"];
-    function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
-    function mkP() {
-      const c = COLORS[Math.floor(Math.random() * COLORS.length)];
-      return { x:Math.random()*W, y:Math.random()*H, r:Math.random()*1.4+0.3, vx:(Math.random()-.5)*.28, vy:(Math.random()-.5)*.28, a:Math.random()*.45+.08, da:(Math.random()-.5)*.003, color:c };
-    }
-    function init() { resize(); const N=Math.min(Math.floor((W*H)/11000),130); particles=Array.from({length:N},mkP); }
-    function draw() {
-      ctx.clearRect(0,0,W,H);
-      for (const p of particles) {
-        p.x+=p.vx; p.y+=p.vy; p.a+=p.da;
-        if (p.a<=.05||p.a>=.6) p.da*=-1;
-        if (p.x<-5) p.x=W+5; if (p.x>W+5) p.x=-5;
-        if (p.y<-5) p.y=H+5; if (p.y>H+5) p.y=-5;
-        ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-        ctx.fillStyle=`${p.color}${p.a.toFixed(2)})`; ctx.fill();
-      }
-      for (let i=0;i<particles.length;i++) for (let j=i+1;j<particles.length;j++) {
-        const dx=particles[i].x-particles[j].x, dy=particles[i].y-particles[j].y, d=Math.sqrt(dx*dx+dy*dy);
-        if (d<90) { ctx.beginPath(); ctx.moveTo(particles[i].x,particles[i].y); ctx.lineTo(particles[j].x,particles[j].y); ctx.strokeStyle=`rgba(59,130,246,${((1-d/90)*.055).toFixed(3)})`; ctx.lineWidth=.5; ctx.stroke(); }
-      }
-      rafRef.current=requestAnimationFrame(draw);
-    }
-    init(); rafRef.current=requestAnimationFrame(draw);
-    window.addEventListener("resize",init);
-    return () => { cancelAnimationFrame(rafRef.current); window.removeEventListener("resize",init); };
-  }, []);
-  return <canvas ref={canvasRef} id="particle-canvas" />;
-}
-
 const NAV_ITEMS = [
-  { to: "/",        label: "Home",           Icon: HomeIcon,    end: true },
-  { to: "/schedule",label: "Schedule",       Icon: CalIcon },
-  { to: "/groups",  label: "Groups",         Icon: GroupIcon },
-  { to: "/bracket", label: "Bracket",        Icon: BracketIcon },
-  { to: "/squads",  label: "Squads",         Icon: SquadIcon },
-  { to: "/scorers", label: "Top Scorers",    Icon: BootIcon },
-  { to: "/admin",   label: "Update Results", Icon: EditIcon },
+  { to: "/",        label: "Home",        Icon: HomeIcon,    end: true },
+  { to: "/schedule",label: "Schedule",    Icon: CalIcon },
+  { to: "/groups",  label: "Groups",      Icon: GroupIcon },
+  { to: "/bracket", label: "Bracket",     Icon: BracketIcon },
+  { to: "/squads",  label: "Squads",      Icon: SquadIcon },
+  { to: "/scorers", label: "Top Scorers", Icon: BootIcon },
+  { to: "/history", label: "History",     Icon: HistoryIcon },
+  // Admin hidden from nav — accessible only via /admin URL with PIN
 ];
 
 function ISTClock() {
@@ -132,6 +112,54 @@ function PageWrap({ children }) {
   return <div key={pathname} className="page-enter">{children}</div>;
 }
 
+const ADMIN_PIN = "2026";
+
+function AdminGate({ children }) {
+  const [unlocked, setUnlocked] = useState(() => sessionStorage.getItem("admin_auth") === "ok");
+  const [pin, setPin] = useState("");
+  const [err, setErr] = useState(false);
+
+  if (unlocked) return children;
+
+  function attempt(e) {
+    e.preventDefault();
+    if (pin === ADMIN_PIN) {
+      sessionStorage.setItem("admin_auth", "ok");
+      setUnlocked(true);
+    } else {
+      setErr(true);
+      setPin("");
+      setTimeout(() => setErr(false), 1500);
+    }
+  }
+
+  return (
+    <div style={{ display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", minHeight:320, gap:16, padding:32 }}>
+      <div style={{ fontSize:32, marginBottom:4 }}>🔒</div>
+      <div style={{ fontFamily:"Barlow Condensed,sans-serif", fontSize:20, fontWeight:800, letterSpacing:".06em", color:"var(--text)" }}>Admin Access</div>
+      <p style={{ fontSize:13, color:"var(--text-tertiary)", margin:0 }}>Enter PIN to manage match results</p>
+      <form onSubmit={attempt} style={{ display:"flex", gap:8, marginTop:8 }}>
+        <input
+          type="password" maxLength={8} value={pin} onChange={e => setPin(e.target.value)}
+          placeholder="PIN" autoFocus
+          style={{
+            width:120, padding:"10px 14px", background:"var(--bg-secondary)",
+            border:`1.5px solid ${err ? "var(--red)" : "var(--border-medium)"}`,
+            borderRadius:8, color:"var(--text)", fontSize:18, textAlign:"center",
+            outline:"none", fontFamily:"monospace",
+            transition:"border-color .15s", boxShadow: err ? "0 0 0 3px rgba(255,59,48,.15)" : "none",
+          }}
+        />
+        <button type="submit" style={{
+          padding:"10px 20px", background:"var(--blue)", border:"none", borderRadius:8,
+          color:"#fff", fontFamily:"Barlow,sans-serif", fontSize:14, fontWeight:700, cursor:"pointer",
+        }}>Unlock</button>
+      </form>
+      {err && <p style={{ fontSize:12, color:"var(--red-bright)", margin:0 }}>Incorrect PIN</p>}
+    </div>
+  );
+}
+
 // Fire-and-forget POST to server — syncs results to Vercel KV so all visitors see them.
 function pushResults(data) {
   fetch('/api/results', {
@@ -142,9 +170,14 @@ function pushResults(data) {
 }
 
 export default function App() {
-  const { results: fetched, lastUpdated, error } = useResults();
+  const { results: fetched, lastUpdated: fetchedAt, error } = useResults();
+  const { results: liveResults, fixtureIdMap, liveCount, lastUpdated: liveAt } = useWCLive();
   const [overrides, setOverrides] = useState(() => loadOverrides());
-  const results = mergeResults(fetched, overrides);
+
+  // Priority: manual overrides > live API > cloud-synced results
+  const baseResults = { ...liveResults, ...fetched };
+  const results = mergeResults(baseResults, overrides);
+  const lastUpdated = liveAt || fetchedAt;
 
   function setOverride(id, v) {
     setOverrides(prev => {
@@ -165,8 +198,6 @@ export default function App() {
 
   return (
     <div className="app">
-      {/* background — hidden in Apple light theme via CSS */}
-      <div className="bg-canvas" aria-hidden="true" />
 
       {/* Header */}
       <header className="app-header">
@@ -204,20 +235,25 @@ export default function App() {
       {/* Main content */}
       <main className="main">
         <PageWrap>
-          <Routes>
-            <Route path="/"         element={<Home results={results} />} />
-            <Route path="/schedule" element={<Schedule results={results} />} />
-            <Route path="/groups"   element={<Groups results={results} />} />
-            <Route path="/bracket"  element={<Bracket results={results} />} />
-            <Route path="/squads"   element={<Squads results={results} />} />
-            <Route path="/squads/:team" element={<SquadDetail results={results} />} />
-            <Route path="/scorers"  element={<TopScorers results={results} />} />
-            <Route path="/admin"    element={
-              <Admin results={results} overrides={overrides}
-                setOverride={setOverride} clearOverride={clearOverride}
-                clearAllOverrides={clearAllOverrides} />
-            } />
-          </Routes>
+          <Suspense fallback={<PageLoader />}>
+            <Routes>
+              <Route path="/"         element={<Home results={results} />} />
+              <Route path="/schedule" element={<Schedule results={results} fixtureIdMap={fixtureIdMap} />} />
+              <Route path="/groups"   element={<Groups results={results} />} />
+              <Route path="/bracket"  element={<Bracket results={results} />} />
+              <Route path="/squads"   element={<Squads results={results} />} />
+              <Route path="/squads/:team" element={<SquadDetail results={results} />} />
+              <Route path="/scorers"  element={<TopScorers results={results} />} />
+              <Route path="/history"  element={<History />} />
+              <Route path="/admin"    element={
+                <AdminGate>
+                  <Admin results={results} overrides={overrides}
+                    setOverride={setOverride} clearOverride={clearOverride}
+                    clearAllOverrides={clearAllOverrides} liveCount={liveCount} />
+                </AdminGate>
+              } />
+            </Routes>
+          </Suspense>
         </PageWrap>
       </main>
 

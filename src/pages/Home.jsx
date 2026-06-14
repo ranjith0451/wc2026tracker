@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import { MATCHES } from "../data/matches.js";
+import { GROUPS } from "../data/teams.js";
 import MatchCard from "../components/MatchCard.jsx";
+import TeamFlag from "../components/TeamFlag.jsx";
 import { getMatchStatus } from "../lib/time.js";
 import { getTopScorers, getTeamGoalCounts } from "../lib/topscorers.js";
-import TeamFlag from "../components/TeamFlag.jsx";
+import { getGroupStandings } from "../lib/standings.js";
 
 const MEDALS = ["🥇","🥈","🥉"];
 
@@ -27,6 +29,33 @@ function StatCard({ num, lbl, color, icon, delay }) {
       </div>
       <div className="stat-num">{num}</div>
       <div className="stat-lbl">{lbl}</div>
+    </div>
+  );
+}
+
+/* Mini group standings — top 2 per group shown inline */
+function GroupStandingsWidget({ results }) {
+  const groupKeys = Object.keys(GROUPS).slice(0, 12);
+
+  return (
+    <div className="home-groups-grid">
+      {groupKeys.map(gk => {
+        const { rows } = getGroupStandings(gk, results);
+        if (rows.every(r => r.played === 0)) return null;
+        return (
+          <Link to="/groups" key={gk} className="home-group-card">
+            <div className="hgc-head">{gk}</div>
+            {rows.slice(0, 4).map((r, i) => (
+              <div key={r.team} className={`hgc-row${i < 2 ? " qualify" : ""}`}>
+                <span className="hgc-pos">{i + 1}</span>
+                <TeamFlag team={r.team} />
+                <span className="hgc-name">{r.team}</span>
+                <span className="hgc-pts">{r.pts}</span>
+              </div>
+            ))}
+          </Link>
+        );
+      })}
     </div>
   );
 }
@@ -150,6 +179,20 @@ export default function Home({ results }) {
               </div>
             ))}
           </div>
+        </>
+      )}
+
+      {/* ══════════ GROUP STANDINGS WIDGET ══════════ */}
+      {finished.length > 0 && (
+        <>
+          <div className="sec-head" style={{ marginTop: 36 }}>
+            <span className="sec-title">Group Standings</span>
+            <Link to="/groups" className="sec-count" style={{ color: "var(--blue-bright)", cursor: "pointer", fontWeight: 700 }}>
+              all groups →
+            </Link>
+            <div className="sec-line" />
+          </div>
+          <GroupStandingsWidget results={results} />
         </>
       )}
 

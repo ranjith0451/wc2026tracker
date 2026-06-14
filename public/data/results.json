@@ -1,1 +1,101 @@
-{}
+{
+  "1": {
+    "status": "finished",
+    "homeScore": 2,
+    "awayScore": 0,
+    "statusShort": "FT",
+    "halftime": { "home": 1, "away": 0 },
+    "scorers": [
+      { "team": "Mexico", "player": "Julián Quiñones", "minute": 9 },
+      { "team": "Mexico", "player": "Raúl Jiménez", "minute": 67 }
+    ],
+    "cards": []
+  },
+  "2": {
+    "status": "finished",
+    "homeScore": 2,
+    "awayScore": 1,
+    "statusShort": "FT",
+    "halftime": { "home": 0, "away": 0 },
+    "scorers": [
+      { "team": "Czechia", "player": "Ladislav Krejčí", "minute": 59 },
+      { "team": "South Korea", "player": "Hwang In-beom", "minute": 67 },
+      { "team": "South Korea", "player": "Oh Hyeon-gyu", "minute": 80 }
+    ],
+    "cards": []
+  },
+  "3": {
+    "status": "finished",
+    "homeScore": 1,
+    "awayScore": 1,
+    "statusShort": "FT",
+    "halftime": { "home": 0, "away": 1 },
+    "scorers": [
+      { "team": "Bosnia & Herzegovina", "player": "Jovo Lukić", "minute": 21 },
+      { "team": "Canada", "player": "Cyle Larin", "minute": 78 }
+    ],
+    "cards": []
+  },
+  "4": {
+    "status": "finished",
+    "homeScore": 4,
+    "awayScore": 1,
+    "statusShort": "FT",
+    "halftime": { "home": 2, "away": 0 },
+    "scorers": [
+      { "team": "USA", "player": "Bobadilla", "minute": 7, "ownGoal": true },
+      { "team": "USA", "player": "Folarin Balogun", "minute": 31 },
+      { "team": "USA", "player": "Folarin Balogun", "minute": 50 },
+      { "team": "Paraguay", "player": "Mauricio", "minute": 73 },
+      { "team": "USA", "player": "Gio Reyna", "minute": 98 }
+    ],
+    "cards": []
+  },
+  "5": {
+    "status": "finished",
+    "homeScore": 1,
+    "awayScore": 1,
+    "statusShort": "FT",
+    "halftime": { "home": 0, "away": 1 },
+    "scorers": [
+      { "team": "Switzerland", "player": "Breel Embolo", "minute": 17, "penalty": true },
+      { "team": "Qatar", "player": "Miro Muheim", "minute": 94, "ownGoal": true }
+    ],
+    "cards": []
+  },
+  "6": {
+    "status": "finished",
+    "homeScore": 1,
+    "awayScore": 1,
+    "statusShort": "FT",
+    "halftime": { "home": 1, "away": 1 },
+    "scorers": [
+      { "team": "Morocco", "player": "Ismael Saibari", "minute": 21 },
+      { "team": "Brazil", "player": "Vinícius Júnior", "minute": 32 }
+    ],
+    "cards": []
+  },
+  "7": {
+    "status": "finished",
+    "homeScore": 0,
+    "awayScore": 1,
+    "statusShort": "FT",
+    "halftime": { "home": 0, "away": 1 },
+    "scorers": [
+      { "team": "Scotland", "player": "John McGinn", "minute": 28 }
+    ],
+    "cards": []
+  },
+  "8": {
+    "status": "finished",
+    "homeScore": 2,
+    "awayScore": 0,
+    "statusShort": "FT",
+    "halftime": { "home": 1, "away": 0 },
+    "scorers": [
+      { "team": "Australia", "player": "Nestory Irankunda", "minute": 27 },
+      { "team": "Australia", "player": "Connor Metcalfe", "minute": 75 }
+    ],
+    "cards": []
+  }
+}
