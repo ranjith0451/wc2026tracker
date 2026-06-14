@@ -1,0 +1,1455 @@
+{
+  "generated": "2026-06-14T17:39:56.480Z",
+  "men": {
+    "topScorers": [
+      {
+        "player_id": "41f73bc6-c52c-5f4b-8e71-8137daa777d3",
+        "name": "Miroslav Klose",
+        "family": "Klose",
+        "given": "Miroslav",
+        "goals": 16,
+        "nonPenGoals": 16,
+        "ownGoals": 0,
+        "penGoals": 0,
+        "tournaments": [
+          2002,
+          2006,
+          2010,
+          2014
+        ]
+      },
+      {
+        "player_id": "c6d7a149-4d7b-59f8-8b38-6acaa67f72f5",
+        "name": "Ronaldo",
+        "family": "Ronaldo",
+        "given": "",
+        "goals": 15,
+        "nonPenGoals": 14,
+        "ownGoals": 0,
+        "penGoals": 1,
+        "tournaments": [
+          1998,
+          2002,
+          2006
+        ]
+      },
+      {
+        "player_id": "cc40fa15-a4e1-53ff-8b63-30280ac05f5f",
+        "name": "Gerd Müller",
+        "family": "Müller",
+        "given": "Gerd",
+        "goals": 14,
+        "nonPenGoals": 13,
+        "ownGoals": 0,
+        "penGoals": 1,
+        "tournaments": [
+          1970,
+          1974
+        ]
+      },
+      {
+        "player_id": "815f9a08-b302-5959-bf1a-759cf2a34a56",
+        "name": "Lionel Messi",
+        "family": "Messi",
+        "given": "Lionel",
+        "goals": 13,
+        "nonPenGoals": 9,
+        "ownGoals": 0,
+        "penGoals": 4,
+        "tournaments": [
+          2006,
+          2014,
+          2018,
+          2022
+        ]
+      },
+      {
+        "player_id": "e611498a-cd22-5e71-9f6a-16706cc6f3ca",
+        "name": "Just Fontaine",
+        "family": "Fontaine",
+        "given": "Just",
+        "goals": 13,
+        "nonPenGoals": 13,
+        "ownGoals": 0,
+        "penGoals": 0,
+        "tournaments": [
+          1958
+        ]
+      },
+      {
+        "player_id": "706445cd-23b9-56b6-8d64-0d9a3f6e8125",
+        "name": "Pelé",
+        "family": "Pelé",
+        "given": "",
+        "goals": 12,
+        "nonPenGoals": 12,
+        "ownGoals": 0,
+        "penGoals": 0,
+        "tournaments": [
+          1958,
+          1962,
+          1966,
+          1970
+        ]
+      },
+      {
+        "player_id": "3ea58353-474b-5011-a28c-af53e448cfc5",
+        "name": "Kylian Mbappé",
+        "family": "Mbappé",
+        "given": "Kylian",
+        "goals": 12,
+        "nonPenGoals": 10,
+        "ownGoals": 0,
+        "penGoals": 2,
+        "tournaments": [
+          2018,
+          2022
+        ]
+      },
+      {
+        "player_id": "16f008ae-0efe-5c24-b0c3-c3a8d461f3b4",
+        "name": "Sándor Kocsis",
+        "family": "Kocsis",
+        "given": "Sándor",
+        "goals": 11,
+        "nonPenGoals": 11,
+        "ownGoals": 0,
+        "penGoals": 0,
+        "tournaments": [
+          1954
+        ]
+      },
+      {
+        "player_id": "9c3f4876-4e13-5142-bfd2-7b15191d853e",
+        "name": "Teófilo Cubillas",
+        "family": "Cubillas",
+        "given": "Teófilo",
+        "goals": 10,
+        "nonPenGoals": 8,
+        "ownGoals": 0,
+        "penGoals": 2,
+        "tournaments": [
+          1970,
+          1978
+        ]
+      },
+      {
+        "player_id": "36594778-f2f8-5d20-99b1-2d245483f4ac",
+        "name": "Helmut Rahn",
+        "family": "Rahn",
+        "given": "Helmut",
+        "goals": 10,
+        "nonPenGoals": 10,
+        "ownGoals": 0,
+        "penGoals": 0,
+        "tournaments": [
+          1954,
+          1958
+        ]
+      },
+      {
+        "player_id": "ac2e565e-7c12-57d2-8f3a-1315d9fe7a15",
+        "name": "Thomas Müller",
+        "family": "Müller",
+        "given": "Thomas",
+        "goals": 10,
+        "nonPenGoals": 9,
+        "ownGoals": 0,
+        "penGoals": 1,
+        "tournaments": [
+          2010,
+          2014
+        ]
+      },
+      {
+        "player_id": "91ee4735-acc4-5e2a-bf5f-3876d20190dd",
+        "name": "Grzegorz Lato",
+        "family": "Lato",
+        "given": "Grzegorz",
+        "goals": 10,
+        "nonPenGoals": 10,
+        "ownGoals": 0,
+        "penGoals": 0,
+        "tournaments": [
+          1974,
+          1978,
+          1982
+        ]
+      },
+      {
+        "player_id": "b9ee0af3-0bc4-5d1d-aa2a-0ede858b5147",
+        "name": "Gabriel Batistuta",
+        "family": "Batistuta",
+        "given": "Gabriel",
+        "goals": 10,
+        "nonPenGoals": 6,
+        "ownGoals": 0,
+        "penGoals": 4,
+        "tournaments": [
+          1994,
+          1998,
+          2002
+        ]
+      },
+      {
+        "player_id": "44c21d1a-7232-5642-8d8d-1607e5c0f026",
+        "name": "Gary Lineker",
+        "family": "Lineker",
+        "given": "Gary",
+        "goals": 10,
+        "nonPenGoals": 8,
+        "ownGoals": 0,
+        "penGoals": 2,
+        "tournaments": [
+          1986,
+          1990
+        ]
+      },
+      {
+        "player_id": "489edf7d-e5bf-53ce-9aff-68cbc2f67e99",
+        "name": "Vavá",
+        "family": "Vavá",
+        "given": "",
+        "goals": 9,
+        "nonPenGoals": 9,
+        "ownGoals": 0,
+        "penGoals": 0,
+        "tournaments": [
+          1958,
+          1962
+        ]
+      },
+      {
+        "player_id": "cf05a9b9-1ccf-5c78-b51e-a685a5a6a6b9",
+        "name": "Roberto Baggio",
+        "family": "Baggio",
+        "given": "Roberto",
+        "goals": 9,
+        "nonPenGoals": 7,
+        "ownGoals": 0,
+        "penGoals": 2,
+        "tournaments": [
+          1990,
+          1994,
+          1998
+        ]
+      },
+      {
+        "player_id": "33864d66-d8d9-524b-a228-8e6849104a8d",
+        "name": "Uwe Seeler",
+        "family": "Seeler",
+        "given": "Uwe",
+        "goals": 9,
+        "nonPenGoals": 9,
+        "ownGoals": 0,
+        "penGoals": 0,
+        "tournaments": [
+          1958,
+          1962,
+          1966,
+          1970
+        ]
+      },
+      {
+        "player_id": "8b08b945-5e20-5acc-8c9c-966a53f587ab",
+        "name": "Ademir",
+        "family": "Ademir",
+        "given": "",
+        "goals": 9,
+        "nonPenGoals": 9,
+        "ownGoals": 0,
+        "penGoals": 0,
+        "tournaments": [
+          1950
+        ]
+      },
+      {
+        "player_id": "df7e95f2-669e-5d66-a9d7-99afeae3c90a",
+        "name": "Jairzinho",
+        "family": "Jairzinho",
+        "given": "",
+        "goals": 9,
+        "nonPenGoals": 9,
+        "ownGoals": 0,
+        "penGoals": 0,
+        "tournaments": [
+          1970,
+          1974
+        ]
+      },
+      {
+        "player_id": "2b9ca28d-1a77-58e2-b9c9-bed97e2a8233",
+        "name": "David Villa",
+        "family": "Villa",
+        "given": "David",
+        "goals": 9,
+        "nonPenGoals": 7,
+        "ownGoals": 0,
+        "penGoals": 2,
+        "tournaments": [
+          2006,
+          2010,
+          2014
+        ]
+      },
+      {
+        "player_id": "b779ca86-8ac7-568e-af16-5c00f4f48422",
+        "name": "Karl-Heinz Rummenigge",
+        "family": "Rummenigge",
+        "given": "Karl-Heinz",
+        "goals": 9,
+        "nonPenGoals": 9,
+        "ownGoals": 0,
+        "penGoals": 0,
+        "tournaments": [
+          1978,
+          1982,
+          1986
+        ]
+      },
+      {
+        "player_id": "89c7528b-4e1b-5141-97ed-746c280e9a4a",
+        "name": "Paolo Rossi",
+        "family": "Rossi",
+        "given": "Paolo",
+        "goals": 9,
+        "nonPenGoals": 9,
+        "ownGoals": 0,
+        "penGoals": 0,
+        "tournaments": [
+          1978,
+          1982
+        ]
+      },
+      {
+        "player_id": "348022e6-d570-5426-8c84-59a7656e69f8",
+        "name": "Eusébio",
+        "family": "Eusébio",
+        "given": "",
+        "goals": 9,
+        "nonPenGoals": 5,
+        "ownGoals": 0,
+        "penGoals": 4,
+        "tournaments": [
+          1966
+        ]
+      },
+      {
+        "player_id": "b4454bbe-c865-5356-9f54-4a7722deeea4",
+        "name": "Christian Vieri",
+        "family": "Vieri",
+        "given": "Christian",
+        "goals": 9,
+        "nonPenGoals": 9,
+        "ownGoals": 0,
+        "penGoals": 0,
+        "tournaments": [
+          1998,
+          2002
+        ]
+      },
+      {
+        "player_id": "3bf52051-d43a-5b2b-9dbc-281ba13f5969",
+        "name": "Rivaldo",
+        "family": "Rivaldo",
+        "given": "",
+        "goals": 8,
+        "nonPenGoals": 7,
+        "ownGoals": 0,
+        "penGoals": 1,
+        "tournaments": [
+          1998,
+          2002
+        ]
+      },
+      {
+        "player_id": "f6c4e5f2-079c-5b10-a65b-20cc9f1b74a6",
+        "name": "Guillermo Stábile",
+        "family": "Stábile",
+        "given": "Guillermo",
+        "goals": 8,
+        "nonPenGoals": 8,
+        "ownGoals": 0,
+        "penGoals": 0,
+        "tournaments": [
+          1930
+        ]
+      },
+      {
+        "player_id": "13fe3534-a2ea-5345-a87a-50403a8fc539",
+        "name": "Leônidas",
+        "family": "Leônidas",
+        "given": "",
+        "goals": 8,
+        "nonPenGoals": 8,
+        "ownGoals": 0,
+        "penGoals": 0,
+        "tournaments": [
+          1934,
+          1938
+        ]
+      },
+      {
+        "player_id": "d3c07451-e83b-55e6-a734-7ec19f9e1083",
+        "name": "Cristiano Ronaldo",
+        "family": "Ronaldo",
+        "given": "Cristiano",
+        "goals": 8,
+        "nonPenGoals": 5,
+        "ownGoals": 0,
+        "penGoals": 3,
+        "tournaments": [
+          2006,
+          2010,
+          2014,
+          2018,
+          2022
+        ]
+      },
+      {
+        "player_id": "573decc0-ca0e-555d-a8c6-accd4bdffa4a",
+        "name": "Oscar Míguez",
+        "family": "Míguez",
+        "given": "Oscar",
+        "goals": 8,
+        "nonPenGoals": 8,
+        "ownGoals": 0,
+        "penGoals": 0,
+        "tournaments": [
+          1950,
+          1954
+        ]
+      },
+      {
+        "player_id": "67013912-938f-51c7-b4c6-8e1058400553",
+        "name": "Jürgen Klinsmann",
+        "family": "Klinsmann",
+        "given": "Jürgen",
+        "goals": 8,
+        "nonPenGoals": 8,
+        "ownGoals": 0,
+        "penGoals": 0,
+        "tournaments": [
+          1994,
+          1998
+        ]
+      },
+      {
+        "player_id": "3f00458e-da43-502e-ad10-2318ba2694df",
+        "name": "Diego Maradona",
+        "family": "Maradona",
+        "given": "Diego",
+        "goals": 8,
+        "nonPenGoals": 8,
+        "ownGoals": 0,
+        "penGoals": 0,
+        "tournaments": [
+          1982,
+          1986,
+          1994
+        ]
+      },
+      {
+        "player_id": "9cf6c4fd-8cf5-5ba2-b963-ee29be578f7d",
+        "name": "Harry Kane",
+        "family": "Kane",
+        "given": "Harry",
+        "goals": 8,
+        "nonPenGoals": 4,
+        "ownGoals": 0,
+        "penGoals": 4,
+        "tournaments": [
+          2018,
+          2022
+        ]
+      },
+      {
+        "player_id": "71a6d293-a0d3-545f-83d4-4cb64d16d4c8",
+        "name": "Neymar",
+        "family": "Neymar",
+        "given": "",
+        "goals": 8,
+        "nonPenGoals": 6,
+        "ownGoals": 0,
+        "penGoals": 2,
+        "tournaments": [
+          2014,
+          2018,
+          2022
+        ]
+      },
+      {
+        "player_id": "f35407ce-69f9-5252-9bdf-0d3e842402fe",
+        "name": "Oldřich Nejedlý",
+        "family": "Nejedlý",
+        "given": "Oldřich",
+        "goals": 7,
+        "nonPenGoals": 6,
+        "ownGoals": 0,
+        "penGoals": 1,
+        "tournaments": [
+          1934,
+          1938
+        ]
+      },
+      {
+        "player_id": "fb3e0212-9f4a-52b3-b12c-9b2fb55e48eb",
+        "name": "Andrzej Szarmach",
+        "family": "Szarmach",
+        "given": "Andrzej",
+        "goals": 7,
+        "nonPenGoals": 7,
+        "ownGoals": 0,
+        "penGoals": 0,
+        "tournaments": [
+          1974,
+          1978,
+          1982
+        ]
+      },
+      {
+        "player_id": "e5ec2cba-2a38-5a44-ba9d-0ca9a219e723",
+        "name": "Luis Suárez",
+        "family": "Suárez",
+        "given": "Luis",
+        "goals": 7,
+        "nonPenGoals": 7,
+        "ownGoals": 0,
+        "penGoals": 0,
+        "tournaments": [
+          2010,
+          2014,
+          2018
+        ]
+      },
+      {
+        "player_id": "3892ad77-2e0e-5527-ad84-b886c4d2d9da",
+        "name": "Careca",
+        "family": "Careca",
+        "given": "",
+        "goals": 7,
+        "nonPenGoals": 6,
+        "ownGoals": 0,
+        "penGoals": 1,
+        "tournaments": [
+          1986,
+          1990
+        ]
+      },
+      {
+        "player_id": "33d90396-f213-5c12-9bd4-156c9856a628",
+        "name": "Hans Schäfer",
+        "family": "Schäfer",
+        "given": "Hans",
+        "goals": 7,
+        "nonPenGoals": 7,
+        "ownGoals": 0,
+        "penGoals": 0,
+        "tournaments": [
+          1954,
+          1958
+        ]
+      },
+      {
+        "player_id": "9fa9f10e-2f0b-58ec-9327-5c10bdd4bb01",
+        "name": "Johnny Rep",
+        "family": "Rep",
+        "given": "Johnny",
+        "goals": 7,
+        "nonPenGoals": 7,
+        "ownGoals": 0,
+        "penGoals": 0,
+        "tournaments": [
+          1974,
+          1978
+        ]
+      },
+      {
+        "player_id": "f01a3f99-edea-5c4e-aa7a-9a814b141f3f",
+        "name": "Lajos Tichy",
+        "family": "Tichy",
+        "given": "Lajos",
+        "goals": 7,
+        "nonPenGoals": 7,
+        "ownGoals": 0,
+        "penGoals": 0,
+        "tournaments": [
+          1958,
+          1962
+        ]
+      },
+      {
+        "player_id": "32d47330-a4da-51a8-ada9-d0fa53bcb6c4",
+        "name": "Zbigniew Boniek",
+        "family": "Boniek",
+        "given": "Zbigniew",
+        "goals": 6,
+        "nonPenGoals": 6,
+        "ownGoals": 0,
+        "penGoals": 0,
+        "tournaments": [
+          1978,
+          1982
+        ]
+      },
+      {
+        "player_id": "d92fe933-854a-52df-9015-5bc93142cc02",
+        "name": "Rudi Völler",
+        "family": "Völler",
+        "given": "Rudi",
+        "goals": 6,
+        "nonPenGoals": 6,
+        "ownGoals": 0,
+        "penGoals": 0,
+        "tournaments": [
+          1986,
+          1990
+        ]
+      },
+      {
+        "player_id": "9bfb3cf2-2b39-56fe-80fa-00555f10c249",
+        "name": "Oleg Salenko",
+        "family": "Salenko",
+        "given": "Oleg",
+        "goals": 6,
+        "nonPenGoals": 4,
+        "ownGoals": 0,
+        "penGoals": 2,
+        "tournaments": [
+          1994
+        ]
+      },
+      {
+        "player_id": "3d429cd6-3d00-5163-a90f-a858f6f900c1",
+        "name": "Hristo Stoichkov",
+        "family": "Stoichkov",
+        "given": "Hristo",
+        "goals": 6,
+        "nonPenGoals": 3,
+        "ownGoals": 0,
+        "penGoals": 3,
+        "tournaments": [
+          1994
+        ]
+      },
+      {
+        "player_id": "bb23b5b6-c2de-5d14-88fe-f67a7755e02c",
+        "name": "Wesley Sneijder",
+        "family": "Sneijder",
+        "given": "Wesley",
+        "goals": 6,
+        "nonPenGoals": 6,
+        "ownGoals": 0,
+        "penGoals": 0,
+        "tournaments": [
+          2010,
+          2014
+        ]
+      },
+      {
+        "player_id": "a4223689-acbc-5480-9194-b61c9ac4ed11",
+        "name": "Diego Forlán",
+        "family": "Forlán",
+        "given": "Diego",
+        "goals": 6,
+        "nonPenGoals": 5,
+        "ownGoals": 0,
+        "penGoals": 1,
+        "tournaments": [
+          2002,
+          2010
+        ]
+      },
+      {
+        "player_id": "c97e904c-bb91-5d91-a795-34212acc0762",
+        "name": "Salvatore Schillaci",
+        "family": "Schillaci",
+        "given": "Salvatore",
+        "goals": 6,
+        "nonPenGoals": 5,
+        "ownGoals": 0,
+        "penGoals": 1,
+        "tournaments": [
+          1990
+        ]
+      },
+      {
+        "player_id": "4c936157-4d63-517d-bdc0-4b594567d23a",
+        "name": "James Rodríguez",
+        "family": "Rodríguez",
+        "given": "James",
+        "goals": 6,
+        "nonPenGoals": 5,
+        "ownGoals": 0,
+        "penGoals": 1,
+        "tournaments": [
+          2014
+        ]
+      },
+      {
+        "player_id": "24f32533-bea2-57d3-806f-f01120e3d751",
+        "name": "Mario Kempes",
+        "family": "Kempes",
+        "given": "Mario",
+        "goals": 6,
+        "nonPenGoals": 6,
+        "ownGoals": 0,
+        "penGoals": 0,
+        "tournaments": [
+          1978
+        ]
+      },
+      {
+        "player_id": "3e48e77f-d637-5a57-a13e-0b28d358ce7e",
+        "name": "Davor Šuker",
+        "family": "Šuker",
+        "given": "Davor",
+        "goals": 6,
+        "nonPenGoals": 5,
+        "ownGoals": 0,
+        "penGoals": 1,
+        "tournaments": [
+          1998
+        ]
+      }
+    ],
+    "totalGoals": 2666,
+    "totalMatches": 964
+  },
+  "women": {
+    "topScorers": [
+      {
+        "player_id": "08b1c0bd-3a74-503f-b0f2-10eb4553061f",
+        "name": "Marta",
+        "family": "Marta",
+        "given": "",
+        "goals": 17,
+        "nonPenGoals": 10,
+        "ownGoals": 0,
+        "penGoals": 7,
+        "tournaments": [
+          2003,
+          2007,
+          2011,
+          2015,
+          2019
+        ]
+      },
+      {
+        "player_id": "7d72f96a-b5f0-5c5c-b215-4fdd60d4c816",
+        "name": "Birgit Prinz",
+        "family": "Prinz",
+        "given": "Birgit",
+        "goals": 14,
+        "nonPenGoals": 14,
+        "ownGoals": 0,
+        "penGoals": 0,
+        "tournaments": [
+          1995,
+          1999,
+          2003,
+          2007
+        ]
+      },
+      {
+        "player_id": "158e646a-4668-566e-8280-d03b63290640",
+        "name": "Abby Wambach",
+        "family": "Wambach",
+        "given": "Abby",
+        "goals": 14,
+        "nonPenGoals": 12,
+        "ownGoals": 0,
+        "penGoals": 2,
+        "tournaments": [
+          2003,
+          2007,
+          2011,
+          2015
+        ]
+      },
+      {
+        "player_id": "f391f2ac-4261-57a6-88dd-be7bf840f44f",
+        "name": "Michelle Akers",
+        "family": "Akers",
+        "given": "Michelle",
+        "goals": 12,
+        "nonPenGoals": 10,
+        "ownGoals": 0,
+        "penGoals": 2,
+        "tournaments": [
+          1991,
+          1999
+        ]
+      },
+      {
+        "player_id": "4fddcd29-cae6-50ea-9665-6fb444559012",
+        "name": "Bettina Wiegmann",
+        "family": "Wiegmann",
+        "given": "Bettina",
+        "goals": 11,
+        "nonPenGoals": 3,
+        "ownGoals": 0,
+        "penGoals": 8,
+        "tournaments": [
+          1991,
+          1995,
+          1999,
+          2003
+        ]
+      },
+      {
+        "player_id": "0eb58918-09eb-566d-835f-76c3877c264d",
+        "name": "Cristiane",
+        "family": "Cristiane",
+        "given": "",
+        "goals": 11,
+        "nonPenGoals": 10,
+        "ownGoals": 0,
+        "penGoals": 1,
+        "tournaments": [
+          2007,
+          2011,
+          2019
+        ]
+      },
+      {
+        "player_id": "c60b27c9-3f90-5261-8750-4c5f377b295a",
+        "name": "Wen Sun",
+        "family": "Sun",
+        "given": "Wen",
+        "goals": 11,
+        "nonPenGoals": 10,
+        "ownGoals": 0,
+        "penGoals": 1,
+        "tournaments": [
+          1991,
+          1995,
+          1999,
+          2003
+        ]
+      },
+      {
+        "player_id": "fed9938a-eeac-599e-ad8f-03d456de0420",
+        "name": "Ann Kristin Aarønes",
+        "family": "Aarønes",
+        "given": "Ann Kristin",
+        "goals": 10,
+        "nonPenGoals": 10,
+        "ownGoals": 0,
+        "penGoals": 0,
+        "tournaments": [
+          1995,
+          1999
+        ]
+      },
+      {
+        "player_id": "74d45393-de34-50fd-af07-f4cce0896655",
+        "name": "Christine Sinclair",
+        "family": "Sinclair",
+        "given": "Christine",
+        "goals": 10,
+        "nonPenGoals": 9,
+        "ownGoals": 0,
+        "penGoals": 1,
+        "tournaments": [
+          2003,
+          2007,
+          2011,
+          2015,
+          2019
+        ]
+      },
+      {
+        "player_id": "deac22d1-515b-5076-b3d2-5c248fa1521f",
+        "name": "Carli Lloyd",
+        "family": "Lloyd",
+        "given": "Carli",
+        "goals": 10,
+        "nonPenGoals": 8,
+        "ownGoals": 0,
+        "penGoals": 2,
+        "tournaments": [
+          2011,
+          2015,
+          2019
+        ]
+      },
+      {
+        "player_id": "aca38003-5577-5d7c-9a40-2b8f34083761",
+        "name": "Heidi Mohr",
+        "family": "Mohr",
+        "given": "Heidi",
+        "goals": 10,
+        "nonPenGoals": 10,
+        "ownGoals": 0,
+        "penGoals": 0,
+        "tournaments": [
+          1991,
+          1995
+        ]
+      },
+      {
+        "player_id": "7fca7ac4-783e-58c9-ab5a-4b9739ece8dc",
+        "name": "Hege Riise",
+        "family": "Riise",
+        "given": "Hege",
+        "goals": 9,
+        "nonPenGoals": 7,
+        "ownGoals": 0,
+        "penGoals": 2,
+        "tournaments": [
+          1991,
+          1995,
+          1999
+        ]
+      },
+      {
+        "player_id": "f65e511a-5d23-53be-a3d1-fdae6194096e",
+        "name": "Linda Medalen",
+        "family": "Medalen",
+        "given": "Linda",
+        "goals": 9,
+        "nonPenGoals": 9,
+        "ownGoals": 0,
+        "penGoals": 0,
+        "tournaments": [
+          1991,
+          1995,
+          1999
+        ]
+      },
+      {
+        "player_id": "a2b5f03d-c569-5a33-bd83-3cd6defb880b",
+        "name": "Megan Rapinoe",
+        "family": "Rapinoe",
+        "given": "Megan",
+        "goals": 9,
+        "nonPenGoals": 6,
+        "ownGoals": 0,
+        "penGoals": 3,
+        "tournaments": [
+          2011,
+          2015,
+          2019
+        ]
+      },
+      {
+        "player_id": "cf14c8ea-cb09-5a37-8eed-2c9771a71d95",
+        "name": "Alex Morgan",
+        "family": "Morgan",
+        "given": "Alex",
+        "goals": 9,
+        "nonPenGoals": 9,
+        "ownGoals": 0,
+        "penGoals": 0,
+        "tournaments": [
+          2011,
+          2015,
+          2019
+        ]
+      },
+      {
+        "player_id": "7acaa8e9-88ac-51de-b8e6-d34469bf6097",
+        "name": "Marianne Pettersen",
+        "family": "Pettersen",
+        "given": "Marianne",
+        "goals": 8,
+        "nonPenGoals": 8,
+        "ownGoals": 0,
+        "penGoals": 0,
+        "tournaments": [
+          1995,
+          1999,
+          2003
+        ]
+      },
+      {
+        "player_id": "4fb6e5fd-5ae5-5dfe-8a15-354a673556f1",
+        "name": "Eugénie Le Sommer",
+        "family": "Le Sommer",
+        "given": "Eugénie",
+        "goals": 8,
+        "nonPenGoals": 7,
+        "ownGoals": 0,
+        "penGoals": 1,
+        "tournaments": [
+          2015,
+          2019,
+          2023
+        ]
+      },
+      {
+        "player_id": "2edb07f2-c4c7-5eee-853e-d90d99fb39ac",
+        "name": "Kerstin Garefrekes",
+        "family": "Garefrekes",
+        "given": "Kerstin",
+        "goals": 8,
+        "nonPenGoals": 8,
+        "ownGoals": 0,
+        "penGoals": 0,
+        "tournaments": [
+          2003,
+          2007,
+          2011
+        ]
+      },
+      {
+        "player_id": "8580e1f2-d64b-569e-adaf-fb617663d150",
+        "name": "Kristine Lilly",
+        "family": "Lilly",
+        "given": "Kristine",
+        "goals": 8,
+        "nonPenGoals": 8,
+        "ownGoals": 0,
+        "penGoals": 0,
+        "tournaments": [
+          1995,
+          1999,
+          2003,
+          2007
+        ]
+      },
+      {
+        "player_id": "d8f150dd-362c-50cd-a342-7ccde821eda3",
+        "name": "Ailing Liu",
+        "family": "Liu",
+        "given": "Ailing",
+        "goals": 8,
+        "nonPenGoals": 8,
+        "ownGoals": 0,
+        "penGoals": 0,
+        "tournaments": [
+          1991,
+          1995,
+          1999
+        ]
+      },
+      {
+        "player_id": "d4368802-35bf-57e9-988e-3aa5cf54f028",
+        "name": "Célia Šašić",
+        "family": "Šašić",
+        "given": "Célia",
+        "goals": 8,
+        "nonPenGoals": 6,
+        "ownGoals": 0,
+        "penGoals": 2,
+        "tournaments": [
+          2011,
+          2015
+        ]
+      },
+      {
+        "player_id": "2be14a68-e3b7-5726-8851-deccd314875d",
+        "name": "Mia Hamm",
+        "family": "Hamm",
+        "given": "Mia",
+        "goals": 8,
+        "nonPenGoals": 7,
+        "ownGoals": 0,
+        "penGoals": 1,
+        "tournaments": [
+          1991,
+          1995,
+          1999,
+          2003
+        ]
+      },
+      {
+        "player_id": "004bca73-cb6a-5bca-8dd8-88726a61b1a5",
+        "name": "Homare Sawa",
+        "family": "Sawa",
+        "given": "Homare",
+        "goals": 8,
+        "nonPenGoals": 8,
+        "ownGoals": 0,
+        "penGoals": 0,
+        "tournaments": [
+          2003,
+          2011
+        ]
+      },
+      {
+        "player_id": "20cabb1e-4a69-5208-956d-ba293f66ebbc",
+        "name": "Alexandra Popp",
+        "family": "Popp",
+        "given": "Alexandra",
+        "goals": 7,
+        "nonPenGoals": 6,
+        "ownGoals": 0,
+        "penGoals": 1,
+        "tournaments": [
+          2015,
+          2019,
+          2023
+        ]
+      },
+      {
+        "player_id": "af97e4e0-af80-5ca0-8263-cb4c1b08ae0a",
+        "name": "Tiffeny Milbrett",
+        "family": "Milbrett",
+        "given": "Tiffeny",
+        "goals": 7,
+        "nonPenGoals": 7,
+        "ownGoals": 0,
+        "penGoals": 0,
+        "tournaments": [
+          1995,
+          1999,
+          2003
+        ]
+      },
+      {
+        "player_id": "82c69037-f3dc-5129-9b21-2c4c0cfc4174",
+        "name": "Lisa De Vanna",
+        "family": "De Vanna",
+        "given": "Lisa",
+        "goals": 7,
+        "nonPenGoals": 7,
+        "ownGoals": 0,
+        "penGoals": 0,
+        "tournaments": [
+          2007,
+          2011,
+          2015
+        ]
+      },
+      {
+        "player_id": "8004e53f-a1d6-53fd-a009-9a092911d29b",
+        "name": "Ellen White",
+        "family": "White",
+        "given": "Ellen",
+        "goals": 7,
+        "nonPenGoals": 7,
+        "ownGoals": 0,
+        "penGoals": 0,
+        "tournaments": [
+          2011,
+          2019
+        ]
+      },
+      {
+        "player_id": "cf2023da-2602-5243-8b49-f2542957fdec",
+        "name": "Sissi",
+        "family": "Sissi",
+        "given": "",
+        "goals": 7,
+        "nonPenGoals": 7,
+        "ownGoals": 0,
+        "penGoals": 0,
+        "tournaments": [
+          1999
+        ]
+      },
+      {
+        "player_id": "1bf4d45b-97ca-5585-8283-9875ec7a3827",
+        "name": "Victoria Svensson",
+        "family": "Svensson",
+        "given": "Victoria",
+        "goals": 6,
+        "nonPenGoals": 6,
+        "ownGoals": 0,
+        "penGoals": 0,
+        "tournaments": [
+          1999,
+          2003,
+          2007
+        ]
+      },
+      {
+        "player_id": "352fb9a2-a28c-5e97-a99c-40b29193d440",
+        "name": "Kátia",
+        "family": "Kátia",
+        "given": "",
+        "goals": 6,
+        "nonPenGoals": 5,
+        "ownGoals": 0,
+        "penGoals": 1,
+        "tournaments": [
+          1999,
+          2003
+        ]
+      },
+      {
+        "player_id": "783b097f-8b3d-52cd-a841-5a577686422c",
+        "name": "Maren Meinert",
+        "family": "Meinert",
+        "given": "Maren",
+        "goals": 6,
+        "nonPenGoals": 6,
+        "ownGoals": 0,
+        "penGoals": 0,
+        "tournaments": [
+          1995,
+          2003
+        ]
+      },
+      {
+        "player_id": "040d3c9c-6583-5ec1-8110-2ac94ec3e593",
+        "name": "Isabell Herlovsen",
+        "family": "Herlovsen",
+        "given": "Isabell",
+        "goals": 6,
+        "nonPenGoals": 5,
+        "ownGoals": 0,
+        "penGoals": 1,
+        "tournaments": [
+          2007,
+          2015,
+          2019
+        ]
+      },
+      {
+        "player_id": "0153ae33-c0e3-58d5-a11e-f233f56ab4b4",
+        "name": "Jennifer Hermoso",
+        "family": "Hermoso",
+        "given": "Jennifer",
+        "goals": 6,
+        "nonPenGoals": 4,
+        "ownGoals": 0,
+        "penGoals": 2,
+        "tournaments": [
+          2019,
+          2023
+        ]
+      },
+      {
+        "player_id": "600ee0ab-462e-53cd-b664-4bacfafa3438",
+        "name": "Aya Miyama",
+        "family": "Miyama",
+        "given": "Aya",
+        "goals": 6,
+        "nonPenGoals": 4,
+        "ownGoals": 0,
+        "penGoals": 2,
+        "tournaments": [
+          2007,
+          2011,
+          2015
+        ]
+      },
+      {
+        "player_id": "8dc494a3-3c1d-574e-907f-2fafc82ac367",
+        "name": "Ragnhild Gulbrandsen",
+        "family": "Gulbrandsen",
+        "given": "Ragnhild",
+        "goals": 6,
+        "nonPenGoals": 6,
+        "ownGoals": 0,
+        "penGoals": 0,
+        "tournaments": [
+          2007
+        ]
+      },
+      {
+        "player_id": "824f51ed-d5f2-597d-a823-124d034a8681",
+        "name": "Lena Videkull",
+        "family": "Videkull",
+        "given": "Lena",
+        "goals": 6,
+        "nonPenGoals": 6,
+        "ownGoals": 0,
+        "penGoals": 0,
+        "tournaments": [
+          1991,
+          1995
+        ]
+      },
+      {
+        "player_id": "e9cf2007-cf4c-59c8-94a5-02339f2d6a4b",
+        "name": "Carin Jennings-Gabarra",
+        "family": "Jennings-Gabarra",
+        "given": "Carin",
+        "goals": 6,
+        "nonPenGoals": 6,
+        "ownGoals": 0,
+        "penGoals": 0,
+        "tournaments": [
+          1991
+        ]
+      },
+      {
+        "player_id": "2d785410-2307-5042-ab2a-ab25e7c051c3",
+        "name": "Sam Kerr",
+        "family": "Kerr",
+        "given": "Sam",
+        "goals": 6,
+        "nonPenGoals": 6,
+        "ownGoals": 0,
+        "penGoals": 0,
+        "tournaments": [
+          2019,
+          2023
+        ]
+      },
+      {
+        "player_id": "3823a86f-f303-508b-91ab-e9ab2f6a3e80",
+        "name": "Wendie Renard",
+        "family": "Renard",
+        "given": "Wendie",
+        "goals": 5,
+        "nonPenGoals": 4,
+        "ownGoals": 1,
+        "penGoals": 1,
+        "tournaments": [
+          2019,
+          2023
+        ]
+      },
+      {
+        "player_id": "41c20c3b-ec71-5e3e-8797-1b96d928e037",
+        "name": "Kyah Simon",
+        "family": "Simon",
+        "given": "Kyah",
+        "goals": 5,
+        "nonPenGoals": 5,
+        "ownGoals": 0,
+        "penGoals": 0,
+        "tournaments": [
+          2011,
+          2015
+        ]
+      },
+      {
+        "player_id": "baecc96f-e3b2-5904-bb25-55d9555d8edb",
+        "name": "Sara Däbritz",
+        "family": "Däbritz",
+        "given": "Sara",
+        "goals": 5,
+        "nonPenGoals": 4,
+        "ownGoals": 0,
+        "penGoals": 1,
+        "tournaments": [
+          2015,
+          2019
+        ]
+      },
+      {
+        "player_id": "c403607d-a8ed-51d3-b6aa-70c753f2faaf",
+        "name": "Tisha Venturini",
+        "family": "Venturini",
+        "given": "Tisha",
+        "goals": 5,
+        "nonPenGoals": 5,
+        "ownGoals": 0,
+        "penGoals": 0,
+        "tournaments": [
+          1995,
+          1999
+        ]
+      },
+      {
+        "player_id": "f8b61cf2-4e5f-56e4-af2d-80f3d971d06f",
+        "name": "Hinata Miyazawa",
+        "family": "Miyazawa",
+        "given": "Hinata",
+        "goals": 5,
+        "nonPenGoals": 5,
+        "ownGoals": 0,
+        "penGoals": 0,
+        "tournaments": [
+          2023
+        ]
+      },
+      {
+        "player_id": "0033c37b-177a-5e79-ab8e-82a9feb41482",
+        "name": "Fara Williams",
+        "family": "Williams",
+        "given": "Fara",
+        "goals": 5,
+        "nonPenGoals": 1,
+        "ownGoals": 0,
+        "penGoals": 4,
+        "tournaments": [
+          2007,
+          2011,
+          2015
+        ]
+      },
+      {
+        "player_id": "5dc26edc-c4ca-582d-b64e-330171d4adc2",
+        "name": "Marie-Laure Delie",
+        "family": "Delie",
+        "given": "Marie-Laure",
+        "goals": 5,
+        "nonPenGoals": 5,
+        "ownGoals": 0,
+        "penGoals": 0,
+        "tournaments": [
+          2011,
+          2015
+        ]
+      },
+      {
+        "player_id": "125d74d7-7859-50f0-b3a5-1178f9705a4a",
+        "name": "Renate Lingor",
+        "family": "Lingor",
+        "given": "Renate",
+        "goals": 5,
+        "nonPenGoals": 4,
+        "ownGoals": 0,
+        "penGoals": 1,
+        "tournaments": [
+          1999,
+          2007
+        ]
+      },
+      {
+        "player_id": "3bd53b3e-ec7a-5daa-89bc-99fada5d7918",
+        "name": "Inka Grings",
+        "family": "Grings",
+        "given": "Inka",
+        "goals": 5,
+        "nonPenGoals": 4,
+        "ownGoals": 0,
+        "penGoals": 1,
+        "tournaments": [
+          1999,
+          2011
+        ]
+      },
+      {
+        "player_id": "fba60221-511a-5bb6-9e5b-6cadc07df930",
+        "name": "Anja Mittag",
+        "family": "Mittag",
+        "given": "Anja",
+        "goals": 5,
+        "nonPenGoals": 5,
+        "ownGoals": 0,
+        "penGoals": 0,
+        "tournaments": [
+          2015
+        ]
+      },
+      {
+        "player_id": "d6d8bf3d-7b71-5a50-af37-6f977b0990a3",
+        "name": "Jill Roord",
+        "family": "Roord",
+        "given": "Jill",
+        "goals": 5,
+        "nonPenGoals": 5,
+        "ownGoals": 0,
+        "penGoals": 0,
+        "tournaments": [
+          2019,
+          2023
+        ]
+      },
+      {
+        "player_id": "47baada4-5591-5cb9-9eea-0df08c533541",
+        "name": "Hanna Ljungberg",
+        "family": "Ljungberg",
+        "given": "Hanna",
+        "goals": 5,
+        "nonPenGoals": 5,
+        "ownGoals": 0,
+        "penGoals": 0,
+        "tournaments": [
+          1999,
+          2003
+        ]
+      }
+    ],
+    "totalGoals": 1048,
+    "totalMatches": 348
+  }
+}
