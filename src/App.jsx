@@ -225,8 +225,13 @@ export default function App() {
   const liveResults = scheduleData?.results || {};
   const liveCount = scheduleData?.liveCount || 0;
 
-  // Priority: manual overrides > TheStatsAPI results > cloud-synced results
-  const baseResults = { ...liveResults, ...fetched };
+  // Priority: manual overrides > cloud-synced results > TheStatsAPI results
+  // Deep merge per-match so statsMatchId from liveResults is preserved
+  const allIds = new Set([...Object.keys(liveResults), ...Object.keys(fetched)]);
+  const baseResults = {};
+  for (const id of allIds) {
+    baseResults[id] = { ...liveResults[id], ...fetched[id] };
+  }
   const results = mergeResults(baseResults, overrides);
   const lastUpdated = fetchedAt;
 
