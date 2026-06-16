@@ -199,15 +199,17 @@ export default async function handler(req, res) {
         const d = await statsFetch(`/matches/${id}/shotmap`);
         // Normalize shotmap shots
         const shots = (d?.data || []).map(s => ({
-          x: s.x_coordinate ?? s.x ?? 50,
-          y: s.y_coordinate ?? s.y ?? 50,
-          xG: s.expected_goal ?? s.xg ?? s.xG ?? 0,
-          goal: s.shot_type === 'goal' || s.outcome === 'goal' || s.goal === true,
-          onTarget: s.on_target ?? (s.shot_type === 'goal' || s.shot_type === 'save'),
-          playerName: s.player?.name || s.player_name || '',
-          team: s.team?.name || s.team_name || '',
-          teamId: s.team?.id || s.team_id || '',
-          minute: s.minute || s.time || null,
+          x: s.x ?? s.x_coordinate ?? 50,
+          y: s.y ?? s.y_coordinate ?? 50,
+          xG: s.expected_goals ?? s.expected_goal ?? s.xg ?? 0,
+          goal: s.is_goal === true || s.result === 'goal',
+          onTarget: s.is_on_target === true || s.result === 'goal' || s.result === 'save',
+          playerName: s.player_name || s.player?.name || '',
+          team: s.team_name || s.team?.name || '',
+          teamId: s.team_id || s.team?.id || '',
+          minute: s.minute ?? s.time ?? null,
+          situation: s.situation || null,
+          bodyPart: s.body_part || null,
         }));
         return { shots };
       });
