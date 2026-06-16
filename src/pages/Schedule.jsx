@@ -141,7 +141,7 @@ export default function Schedule({ results, statsMatchIdMap = {} }) {
             </div>
             {list.map(m => {
               const { home, away } = resolveMatchTeams(m, results);
-              const statsMatchId = statsMatchIdMap[`${home.name}|${away.name}`];
+              const statsMatchId = results[m.id]?.statsMatchId || statsMatchIdMap[`${home.name}|${away.name}`];
               return <MatchCard key={m.id} match={m} results={results} statsMatchId={statsMatchId} />;
             })}
           </div>
