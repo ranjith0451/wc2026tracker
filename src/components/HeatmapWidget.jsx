@@ -57,86 +57,13 @@ function HeatPitch({ points }) {
 }
 
 export default function HeatmapWidget({ statsMatchId, lineups }) {
-  const [playerId, setPlayerId] = useState('');
-  const [triggered, setTriggered] = useState(false);
-
-  const { data, isLoading, error } = usePlayerHeatmap(
-    triggered ? statsMatchId : null,
-    triggered ? playerId : null
-  );
-
-  // Build player list from lineups
-  const allPlayers = [];
-  for (const side of lineups || []) {
-    for (const p of side?.startXI || []) {
-      if (p.name && p.id) allPlayers.push({ id: p.id, name: p.name, team: side.team });
-    }
-    for (const p of side?.substitutes || []) {
-      if (p.name && p.id) allPlayers.push({ id: p.id, name: p.name, team: side.team });
-    }
-  }
-
-  if (!statsMatchId) return (
-    <div className="hm-gate">
-      <p>Heatmap requires TheStatsAPI match ID</p>
-    </div>
-  );
-
   return (
-    <div className="hm-wrap">
-      <div className="hm-controls">
-        <select
-          className="hm-select"
-          value={playerId}
-          onChange={e => { setPlayerId(e.target.value); setTriggered(false); }}
-        >
-          <option value="">— Select a player —</option>
-          {allPlayers.map(p => (
-            <option key={p.id} value={p.id}>{p.name} ({p.team})</option>
-          ))}
-          {allPlayers.length === 0 && (
-            <option disabled>No lineup data — enter player ID manually</option>
-          )}
-        </select>
-        {allPlayers.length === 0 && (
-          <input
-            className="hm-id-input"
-            placeholder="Player ID (e.g. p_abc123)"
-            value={playerId}
-            onChange={e => { setPlayerId(e.target.value); setTriggered(false); }}
-          />
-        )}
-        <button
-          className="hm-load-btn"
-          disabled={!playerId || isLoading}
-          onClick={() => setTriggered(true)}
-        >
-          {isLoading ? 'Loading…' : 'Load Heatmap'}
-        </button>
-      </div>
-
-      {!triggered && (
-        <div className="hm-hint">
-          Select a player and click Load Heatmap to see their positional density on the pitch.
-        </div>
-      )}
-
-      {triggered && error && (
-        <div className="hm-error">Heatmap unavailable: {error.message}</div>
-      )}
-
-      {triggered && !isLoading && data && (
-        <>
-          {data.playerName && (
-            <div className="hm-player-label">{data.playerName}</div>
-          )}
-          <HeatPitch points={data.points || []} />
-          <div className="hm-legend">
-            <span className="hm-dot low" />Low activity
-            <span className="hm-dot high" style={{ marginLeft: 16 }} />High activity
-          </div>
-        </>
-      )}
+    <div className="hm-gate">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.3)" strokeWidth="1.5">
+        <circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/>
+      </svg>
+      <p style={{ color: 'var(--text-secondary)', marginTop: 8 }}>Heatmap not available on trial plan</p>
+      <span style={{ fontSize: 12, color: 'var(--text-tertiary)' }}>TheStatsAPI heatmap endpoint requires a paid plan</span>
     </div>
   );
 }
