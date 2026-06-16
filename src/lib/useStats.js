@@ -60,7 +60,8 @@ export function usePlayerRatings(statsMatchId, events, matchResult) {
     queryKey: ['stats-player-ratings', statsMatchId],
     queryFn: async () => {
       const data = await statsFetch('player-stats', { id: statsMatchId });
-      const players = data?.players || data?.response || data || [];
+      // Server normalizes player stats — returns { players: [...normalized] }
+      const players = data?.players || [];
       return computePlayerRatings(players, events || [], matchResult || {});
     },
     enabled: !!statsMatchId,
@@ -92,7 +93,12 @@ export function usePlayerHeatmap(statsMatchId, playerId) {
 export function useMatchReferee(statsMatchId) {
   return useQuery({
     queryKey: ['stats-referee', statsMatchId],
-    queryFn: () => statsFetch('referee', { id: statsMatchId }),
+    queryFn: async () => {
+      const d = await statsFetch('referee', { id: statsMatchId });
+      // Normalize: API returns { name, nationality } or wrapped
+      const ref = d?.referee || d?.data || d;
+      return { name: ref?.name || ref?.referee_name || null, nationality: ref?.nationality || null };
+    },
     enabled: !!statsMatchId,
     staleTime: 24 * 60 * 60_000,
   });
@@ -117,37 +123,23 @@ function utcDateStr(offsetDays = 0) {
 }
 
 export function useStatsMatchIdMap() {
-  const WC_START = '2026-06-11';
-  const dates = [];
-  for (let d = new Date(WC_START); d <= new Date(utcDateStr(1)); d.setUTCDate(d.getUTCDate() + 1)) {
-    dates.push(d.toISOString().slice(0, 10));
-  }
-
   return useQuery({
-    queryKey: ['stats-match-id-map', dates.slice(-2).join(',')],
+    queryKey: ['stats-match-id-map'],
     queryFn: async () => {
-      // Only fetch last 2 days + tomorrow to minimize requests
-      const window = [utcDateStr(-1), utcDateStr(0), utcDateStr(1)];
-      const results = await Promise.allSettled(
-        window.map((d) => statsFetch('matches', { date: d }))
-      );
+      // Single call fetches all 104 WC matches — cached 5min server-side
+      const data = await statsFetch('all-matches');
+      const matches = data?.matches || [];
       const idMap = {};
-      for (const r of results) {
-        if (r.status !== 'fulfilled') continue;
-        const matches = r.value?.matches || r.value?.data || r.value?.response || [];
-        for (const m of matches) {
-          const homeTeam = m.homeTeam?.name || m.home?.name || m.homeTeamName || '';
-          const awayTeam = m.awayTeam?.name || m.away?.name || m.awayTeamName || '';
-          const matchId = m.id || m.matchId || m.fixture?.id;
-          if (homeTeam && awayTeam && matchId) {
-            idMap[`${homeTeam}|${awayTeam}`] = String(matchId);
-          }
+      for (const m of matches) {
+        const home = m.home_team?.name || '';
+        const away = m.away_team?.name || '';
+        if (home && away && m.id) {
+          idMap[`${home}|${away}`] = m.id;
         }
       }
       return idMap;
     },
-    // Refetch every 5 minutes — low priority, just needs to catch new fixtures
-    refetchInterval: 5 * 60_000,
-    staleTime: 4 * 60_000,
+    refetchInterval: 10 * 60_000,
+    staleTime: 9 * 60_000,
   });
 }
