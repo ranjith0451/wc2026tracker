@@ -102,7 +102,10 @@ export default function HeatmapWidget({ statsMatchId, lineups }) {
       </div>
       {!triggered && <div className="hm-hint">Select a player and click Load Heatmap to see their positional density on the pitch.</div>}
       {triggered && error && <div className="hm-error">Heatmap unavailable: {error.message}</div>}
-      {triggered && !isLoading && data && (
+      {triggered && !isLoading && data?.unavailable && (
+        <div className="hm-error">No heatmap data for this player in this match.</div>
+      )}
+      {triggered && !isLoading && data && !data.unavailable && (
         <>
           {data.playerName && <div className="hm-player-label">{data.playerName}</div>}
           <HeatPitch points={data.points || []} />

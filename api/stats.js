@@ -322,25 +322,32 @@ export default async function handler(req, res) {
     // ── Player heatmap ────────────────────────────────────────────────────────
     if (action === 'heatmap') {
       const cacheKey = pid ? `stats_heatmap_${id}_${pid}` : `stats_heatmap_${id}`;
-      const { data: payload, cached: hit } = await cached(redis, cacheKey, 86400 * 7, async () => {
-        const path = pid
-          ? `/matches/${id}/players/${pid}/heatmap`
-          : `/matches/${id}/heatmap`;
-        const d = await statsFetch(path);
-        // Normalize heatmap points
-        const points = (d?.data || d?.heatmap || []).map(p => ({
-          x: p.x ?? p.x_coordinate ?? 50,
-          y: p.y ?? p.y_coordinate ?? 50,
-          value: p.value ?? p.count ?? p.density ?? 1,
-        }));
-        return {
-          points,
-          playerName: d?.player_name || d?.player?.name || null,
-          teamName: d?.team_name || d?.team?.name || null,
-        };
-      });
-      res.setHeader('X-Cache', hit ? 'HIT' : 'MISS');
-      return res.status(200).json(payload || { points: [] });
+      try {
+        const { data: payload, cached: hit } = await cached(redis, cacheKey, 86400 * 7, async () => {
+          const path = pid
+            ? `/matches/${id}/players/${pid}/heatmap`
+            : `/matches/${id}/heatmap`;
+          const d = await statsFetch(path);
+          const points = (d?.data || d?.heatmap || []).map(p => ({
+            x: p.x ?? p.x_coordinate ?? 50,
+            y: p.y ?? p.y_coordinate ?? 50,
+            value: p.value ?? p.count ?? p.density ?? 1,
+          }));
+          return {
+            points,
+            playerName: d?.player_name || d?.player?.name || null,
+            teamName: d?.team_name || d?.team?.name || null,
+          };
+        });
+        res.setHeader('X-Cache', hit ? 'HIT' : 'MISS');
+        return res.status(200).json(payload || { points: [] });
+      } catch (heatmapErr) {
+        // 404 = no heatmap data for this player — return empty gracefully
+        if (heatmapErr.message.includes('404')) {
+          return res.status(200).json({ points: [], unavailable: true });
+        }
+        throw heatmapErr;
+      }
     }
 
     // ── Lineups ───────────────────────────────────────────────────────────────
@@ -372,6 +379,6 @@ export default async function handler(req, res) {
     console.error('[stats api]', err.message);
     return res.status(502).json({ error: err.message });
   } finally {
-    if (redis) redis.disconnect().catch(() => {});
+    if (redis) { try { redis.disconnect(); } catch (_) {} }
   }
 }
