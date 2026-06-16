@@ -1,9 +1,11 @@
 /**
- * FIFA Match Centre — exact design match
- * Center-diverging comparison bars, grouped stat sections, tabbed navigation.
+ * FIFA Match Centre — center-diverging bars, tabs, player ratings, shotmap.
  */
 import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
+import { usePlayerRatings, useShotmap, useMatchReferee } from "../lib/useStats.js";
+import PlayerRatingChip, { PlayerRatingRow } from "./PlayerRatingChip.jsx";
+import ShotmapWidget from "./ShotmapWidget.jsx";
 
 // ─────────────────────────────────────────────────────────────────
 // FIFA-style center-diverging stat bar
@@ -451,12 +453,103 @@ function LineupsTab({ lineups, homeTeam, awayTeam }) {
 }
 
 // ─────────────────────────────────────────────────────────────────
+// Player Ratings Tab
+// ─────────────────────────────────────────────────────────────────
+function RatingsTab({ statsMatchId, events, matchResult }) {
+  const { data: ratings, isLoading, error } = usePlayerRatings(statsMatchId, events, matchResult);
+  const [activeTeam, setActiveTeam] = useState('all');
+
+  if (!statsMatchId) {
+    return (
+      <div className="fef-empty">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" width="32" height="32">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+        </svg>
+        <p>Player ratings require TheStatsAPI match ID</p>
+        <span>Ratings are auto-computed after full time</span>
+      </div>
+    );
+  }
+
+  if (isLoading) return (
+    <div className="flp-loading"><div className="flp-spinner"/><span>Computing ratings…</span></div>
+  );
+
+  if (error || !ratings?.length) return (
+    <div className="fef-empty">
+      <p>Ratings unavailable</p>
+      <span>{error?.message || 'Player statistics not yet released'}</span>
+    </div>
+  );
+
+  const teams = [...new Set(ratings.map(p => p.team).filter(Boolean))];
+  const filtered = activeTeam === 'all' ? ratings : ratings.filter(p => p.team === activeTeam);
+
+  return (
+    <div className="ratings-tab">
+      <div className="ratings-legend">
+        <span className="rating-chip rating-chip--green rating-chip--sm">7.5+</span> Excellent
+        <span className="rating-chip rating-chip--yellow rating-chip--sm" style={{marginLeft:12}}>6.0–7.4</span> Average
+        <span className="rating-chip rating-chip--red rating-chip--sm" style={{marginLeft:12}}>&lt;6.0</span> Poor
+      </div>
+      {teams.length > 1 && (
+        <div className="ratings-filter">
+          <button className={`ratings-filter-btn${activeTeam === 'all' ? ' active' : ''}`} onClick={() => setActiveTeam('all')}>All</button>
+          {teams.map(t => (
+            <button key={t} className={`ratings-filter-btn${activeTeam === t ? ' active' : ''}`} onClick={() => setActiveTeam(t)}>{t}</button>
+          ))}
+        </div>
+      )}
+      <div className="ratings-list">
+        {filtered.map((p, i) => (
+          <PlayerRatingRow key={p.id || i} player={p} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────
+// Real Shotmap Tab (from TheStatsAPI)
+// ─────────────────────────────────────────────────────────────────
+function RealShotmapTab({ statsMatchId, homeTeam, awayTeam }) {
+  const [enabled, setEnabled] = useState(false);
+  const { data, isLoading, error } = useShotmap(statsMatchId, enabled);
+
+  if (!statsMatchId) return (
+    <div className="fef-empty"><p>Shotmap requires TheStatsAPI match ID</p></div>
+  );
+
+  if (!enabled) return (
+    <div className="fef-empty">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" width="32" height="32">
+        <circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-5"/>
+      </svg>
+      <p>Load shot map</p>
+      <span>Fetches xG coordinates for every shot in this match</span>
+      <button className="fst-gate-retry" style={{marginTop:12}} onClick={() => setEnabled(true)}>Load Shotmap</button>
+    </div>
+  );
+
+  if (isLoading) return (
+    <div className="flp-loading"><div className="flp-spinner"/><span>Loading shotmap…</span></div>
+  );
+
+  if (error) return (
+    <div className="fef-empty"><p>Shotmap unavailable</p><span>{error.message}</span></div>
+  );
+
+  return <ShotmapWidget data={data} homeTeam={homeTeam} awayTeam={awayTeam} />;
+}
+
+// ─────────────────────────────────────────────────────────────────
 // Main panel
 // ─────────────────────────────────────────────────────────────────
 export default function LiveMatchPanel({
   result, homeTeam, awayTeam, matchId, apiFixtureId,
   events, stats, lineups, loading, onRetry,
   homeLogo, awayLogo,
+  statsMatchId,
 }) {
   const [tab, setTab] = useState("summary");
   const manualStats = result?.stats || {};
@@ -466,11 +559,19 @@ export default function LiveMatchPanel({
   const cards   = ev.cards   || result?.cards   || [];
   const subs    = ev.subs    || [];
   const isLive  = result?.status === "live";
+  const isFT    = result?.statusShort === 'FT' || result?.statusShort === 'AET' || result?.statusShort === 'PEN';
+
+  const { data: referee } = useMatchReferee(statsMatchId);
+  const refName = referee?.referee?.name || referee?.name || null;
 
   const TABS = [
     { id: "summary",  label: "Summary" },
     { id: "stats",    label: "Statistics" },
     { id: "lineups",  label: "Line-Ups" },
+    ...(isFT ? [
+      { id: "ratings",  label: "Ratings" },
+      { id: "shotmap",  label: "Shot Map" },
+    ] : []),
   ];
 
   return (
@@ -517,6 +618,16 @@ export default function LiveMatchPanel({
         ))}
       </div>
 
+      {/* Referee */}
+      {refName && (
+        <div className="flp-referee">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/>
+          </svg>
+          Referee: {refName}
+        </div>
+      )}
+
       {/* Content */}
       <div className="flp-body">
         {loading ? (
@@ -529,6 +640,8 @@ export default function LiveMatchPanel({
             {tab === "summary"  && <EventFeed scorers={scorers} cards={cards} subs={subs} homeTeam={homeTeam} awayTeam={awayTeam}/>}
             {tab === "stats"    && <StatisticsTab s={s} result={result} homeTeam={homeTeam} awayTeam={awayTeam} matchId={matchId} onRetry={onRetry}/>}
             {tab === "lineups"  && <LineupsTab lineups={lineups} homeTeam={homeTeam} awayTeam={awayTeam}/>}
+            {tab === "ratings"  && <RatingsTab statsMatchId={statsMatchId} events={ev.scorers ? [...scorers, ...cards] : []} matchResult={{ homeTeam, awayTeam, homeScore: result?.homeScore, awayScore: result?.awayScore }}/>}
+            {tab === "shotmap"  && <RealShotmapTab statsMatchId={statsMatchId} homeTeam={homeTeam} awayTeam={awayTeam}/>}
           </>
         )}
       </div>

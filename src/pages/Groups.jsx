@@ -13,7 +13,7 @@ export default function Groups({ results }) {
       <p style={{ fontSize:12, color:"var(--text-dim)", marginBottom:20, lineHeight:1.6 }}>
         Top 2 per group <span style={{ color:"var(--green-bright)", fontWeight:700 }}>■</span> advance to Round of 32.
         Best 8 third-placed teams <span style={{ color:"var(--gold)", fontWeight:700 }}>■</span> also qualify.
-        Tiebreakers: pts → GD → GF.
+        Tiebreakers: Pts → GD → GF → Fair-play (🟨 −1pt, 🟥 −3pts).
       </p>
 
       <div className="groups-grid">
@@ -32,6 +32,8 @@ export default function Groups({ results }) {
                   <tr>
                     <th style={{ textAlign:"left", paddingLeft:14 }}>Team</th>
                     <th>P</th><th>W</th><th>D</th><th>L</th><th>GD</th>
+                    <th title="Yellow Cards">🟨</th>
+                    <th title="Red Cards">🟥</th>
                     <th style={{ paddingRight:14 }}>Pts</th>
                   </tr>
                 </thead>
@@ -49,6 +51,8 @@ export default function Groups({ results }) {
                       <td style={{ color: r.gd > 0 ? "var(--green-bright)" : r.gd < 0 ? "var(--red-bright)" : "var(--text-dim)" }}>
                         {r.gd > 0 ? `+${r.gd}` : r.gd}
                       </td>
+                      <td style={{ color: r.yc > 0 ? "#c8a000" : "var(--text-dim)" }}>{r.yc || "—"}</td>
+                      <td style={{ color: r.rc > 0 ? "var(--red-bright)" : "var(--text-dim)" }}>{r.rc || "—"}</td>
                       <td className="tc-pts" style={{ paddingRight:14 }}>{r.pts}</td>
                     </tr>
                   ))}

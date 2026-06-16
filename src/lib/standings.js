@@ -1,10 +1,20 @@
 import { MATCHES } from "../data/matches.js";
 import { GROUPS } from "../data/teams.js";
 
+// FIFA fair-play points: Yellow = -1, Red = -3 (higher = fewer cards = better rank)
+function fairPlayPoints(cards, teamName) {
+  if (!cards) return 0;
+  let fp = 0;
+  cards.forEach((c) => {
+    if (c.team !== teamName) return;
+    if (c.cardType === "yellow") fp -= 1;
+    else if (c.cardType === "red") fp -= 3;
+  });
+  return fp;
+}
+
 // Build a standings table for one group from finished group-stage matches.
-// Tiebreaker order used: Points -> Goal Difference -> Goals For -> Alphabetical.
-// NOTE: this is a simplified tiebreaker. Official FIFA rules also use head-to-head
-// results and disciplinary (fair-play) points, which aren't modeled here.
+// Tiebreaker order: Points → GD → GF → Fair-play (fewer cards) → Alphabetical.
 export function getGroupStandings(groupKey, results) {
   const teams = GROUPS[groupKey] || [];
   const table = {};
@@ -19,6 +29,9 @@ export function getGroupStandings(groupKey, results) {
       ga: 0,
       gd: 0,
       pts: 0,
+      yc: 0,
+      rc: 0,
+      fp: 0,
     };
   });
 
@@ -56,14 +69,29 @@ export function getGroupStandings(groupKey, results) {
       table[home].pts += 1;
       table[away].pts += 1;
     }
+
+    // Tally cards
+    if (res.cards) {
+      res.cards.forEach((c) => {
+        const t = table[c.team];
+        if (!t) return;
+        if (c.cardType === "yellow") t.yc += 1;
+        else if (c.cardType === "red") t.rc += 1;
+      });
+    }
   });
 
-  const rows = Object.values(table).map((r) => ({ ...r, gd: r.gf - r.ga }));
+  const rows = Object.values(table).map((r) => ({
+    ...r,
+    gd: r.gf - r.ga,
+    fp: -(r.yc + 3 * r.rc), // negative = more cards = worse
+  }));
   rows.sort(
     (a, b) =>
       b.pts - a.pts ||
       b.gd - a.gd ||
       b.gf - a.gf ||
+      b.fp - a.fp ||    // higher fp = fewer cards = better
       a.team.localeCompare(b.team)
   );
 
@@ -103,6 +131,7 @@ export function getThirdPlacedTeams(results) {
       b.pts - a.pts ||
       b.gd - a.gd ||
       b.gf - a.gf ||
+      b.fp - a.fp ||
       a.team.localeCompare(b.team)
   );
   return thirds;

@@ -10,7 +10,7 @@ export default function TopScorers({ results }) {
     <div>
       <div className="sec-head">
         <span className="sec-title">Golden Boot</span>
-        <span className="sec-count">· top scorers · live</span>
+        <span className="sec-count">· top scorers · from live API events</span>
         <div className="sec-line" />
       </div>
 

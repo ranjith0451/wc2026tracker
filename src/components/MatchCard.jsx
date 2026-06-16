@@ -72,7 +72,7 @@ function ShareButton({ match, home, away, result, status }) {
   );
 }
 
-export default function MatchCard({ match, results, apiFixtureId }) {
+export default function MatchCard({ match, results, apiFixtureId, statsMatchId }) {
   const [open, setOpen] = useState(false);
 
   const { home, away } = resolveMatchTeams(match, results);
@@ -167,6 +167,7 @@ export default function MatchCard({ match, results, apiFixtureId }) {
             awayTeam={away.name}
             matchId={match.id}
             apiFixtureId={apiFixtureId}
+            statsMatchId={statsMatchId}
             events={events}
             stats={stats}
             lineups={lineups}

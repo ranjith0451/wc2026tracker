@@ -22,6 +22,7 @@ class PageErrorBoundary extends Component {
 import { useResults } from "./lib/useResults.js";
 import { loadOverrides, saveOverrides, mergeResults } from "./lib/overrides.js";
 import { useWCLive } from "./lib/useWC.js";
+import { useStatsMatchIdMap } from "./lib/useStats.js";
 
 // Lazy-load all routes — cuts initial bundle from 550KB to ~150KB
 import Home from "./pages/Home.jsx"; // home loads immediately (above-the-fold)
@@ -219,6 +220,7 @@ function pushResults(data) {
 export default function App() {
   const { results: fetched, lastUpdated: fetchedAt, error } = useResults();
   const { results: liveResults, fixtureIdMap, liveCount, lastUpdated: liveAt } = useWCLive();
+  const { data: statsMatchIdMap = {} } = useStatsMatchIdMap();
   const [overrides, setOverrides] = useState(() => loadOverrides());
 
   // Priority: manual overrides > live API > cloud-synced results
@@ -286,7 +288,7 @@ export default function App() {
           <Suspense fallback={<PageLoader />}>
             <Routes>
               <Route path="/"         element={<Home results={results} />} />
-              <Route path="/schedule" element={<Schedule results={results} fixtureIdMap={fixtureIdMap} />} />
+              <Route path="/schedule" element={<Schedule results={results} fixtureIdMap={fixtureIdMap} statsMatchIdMap={statsMatchIdMap} />} />
               <Route path="/groups"   element={<Groups results={results} />} />
               <Route path="/bracket"  element={<Bracket results={results} />} />
               <Route path="/squads"   element={<Squads results={results} />} />

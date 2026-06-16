@@ -1,9 +1,38 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { MATCHES } from "../data/matches.js";
 import { resolveMatchTeams } from "../lib/bracket.js";
 import { formatISTDate, formatISTTime, getMatchStatus } from "../lib/time.js";
 import MatchResultForm from "../components/MatchResultForm.jsx";
 import TeamFlag from "../components/TeamFlag.jsx";
+
+function ApiUsageBar() {
+  const [usage, setUsage] = useState(null);
+  useEffect(() => {
+    fetch('/api/wc?action=usage').then(r => r.json()).then(setUsage).catch(() => {});
+    const id = setInterval(() => {
+      fetch('/api/wc?action=usage').then(r => r.json()).then(setUsage).catch(() => {});
+    }, 30000);
+    return () => clearInterval(id);
+  }, []);
+  if (!usage) return null;
+  const pct = (usage.used / usage.limit) * 100;
+  const color = pct > 80 ? 'var(--red)' : pct > 60 ? '#f59e0b' : 'var(--green-bright)';
+  return (
+    <div className="api-usage-box">
+      <div className="api-usage-head">
+        <span>◉ API-Football Daily Budget</span>
+        <span style={{color}}>{usage.used} / {usage.limit} requests used</span>
+      </div>
+      <div className="api-usage-track">
+        <div className="api-usage-fill" style={{ width:`${pct}%`, background: color }}/>
+      </div>
+      <div className="api-usage-foot">
+        <span>{usage.remaining} requests remaining today</span>
+        <span style={{color:'var(--text-dim)',fontSize:10}}>Resets midnight UTC</span>
+      </div>
+    </div>
+  );
+}
 
 const DownloadIcon = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
@@ -24,7 +53,7 @@ const STATUS_COLOR = {
   scheduled:{ bg: "var(--blue-bg)",  color: "var(--blue)", border: "rgba(0,113,227,.2)" },
 };
 
-export default function Admin({ results, overrides, setOverride, clearOverride, clearAllOverrides }) {
+export default function Admin({ results, overrides, setOverride, clearOverride, clearAllOverrides, liveCount = 0 }) {
   const [search, setSearch] = useState("");
   const [selectedId, setSelectedId] = useState(null);
   const [toast, setToast] = useState(null);
@@ -68,12 +97,16 @@ export default function Admin({ results, overrides, setOverride, clearOverride, 
 
   return (
     <div>
+      {/* ── API usage ── */}
+      <ApiUsageBar />
+
       {/* ── Page header ── */}
       <div className="admin-header">
         <div className="admin-header-text">
           <div className="sec-head" style={{ marginBottom: 4 }}>
             <span className="sec-title">Update Results</span>
-            <span className="sec-count">· manual entry after every match</span>
+            <span className="sec-count">· scores auto-sync from API · manual override available</span>
+            {liveCount > 0 && <span className="admin-live-badge">{liveCount} live</span>}
             <div className="sec-line" />
           </div>
           <p className="admin-desc">

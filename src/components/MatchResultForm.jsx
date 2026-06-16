@@ -19,7 +19,7 @@ export default function MatchResultForm({ match, homeName, awayName, initial, on
   const [pkHome, setPkHome]         = useState(initial?.penalties?.home ?? 0);
   const [pkAway, setPkAway]         = useState(initial?.penalties?.away ?? 0);
   const [scorers, setScorers]       = useState(initial?.scorers ? initial.scorers.map((s) => ({ ...s })) : []);
-
+  const [cards, setCards]           = useState(initial?.cards ? initial.cards.map((c) => ({ ...c })) : []);
   useEffect(() => {
     setStatus(initial?.status || "finished");
     setHomeScore(initial?.homeScore ?? 0);
@@ -28,6 +28,7 @@ export default function MatchResultForm({ match, homeName, awayName, initial, on
     setPkHome(initial?.penalties?.home ?? 0);
     setPkAway(initial?.penalties?.away ?? 0);
     setScorers(initial?.scorers ? initial.scorers.map((s) => ({ ...s })) : []);
+    setCards(initial?.cards ? initial.cards.map((c) => ({ ...c })) : []);
   }, [match.id]);
 
   const isKnockout = KNOCKOUT_STAGES.includes(match.stage);
@@ -35,6 +36,10 @@ export default function MatchResultForm({ match, homeName, awayName, initial, on
   function addScorer() { setScorers((s) => [...s, { team: homeName, player: "", minute: 1, penalty: false, ownGoal: false }]); }
   function updateScorer(i, field, value) { setScorers((s) => s.map((row, idx) => idx === i ? { ...row, [field]: value } : row)); }
   function removeScorer(i) { setScorers((s) => s.filter((_, idx) => idx !== i)); }
+
+  function addCard() { setCards((c) => [...c, { team: homeName, player: "", minute: 1, cardType: "yellow" }]); }
+  function updateCard(i, field, value) { setCards((c) => c.map((row, idx) => idx === i ? { ...row, [field]: value } : row)); }
+  function removeCard(i) { setCards((c) => c.filter((_, idx) => idx !== i)); }
 
   function handleSave() {
     if (status === "scheduled") { onClear(match.id); return; }
@@ -52,6 +57,13 @@ export default function MatchResultForm({ match, homeName, awayName, initial, on
         }),
     };
     if (hasPenalties) result.penalties = { home: Number(pkHome) || 0, away: Number(pkAway) || 0 };
+    const filteredCards = cards.filter((c) => c.player.trim() && c.player !== "__custom__").map((c) => ({
+      team: c.team,
+      player: c.player.trim(),
+      minute: Number(c.minute) || 0,
+      cardType: c.cardType,
+    }));
+    if (filteredCards.length > 0) result.cards = filteredCards;
     onSave(match.id, result);
   }
 
@@ -178,6 +190,46 @@ export default function MatchResultForm({ match, homeName, awayName, initial, on
             <button type="button" className="rf-add-scorer-btn" onClick={addScorer}>
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
               Add scorer
+            </button>
+          </div>
+
+          {/* Cards */}
+          <div className="rf-field">
+            <div className="rf-field-label">Cards (Yellow / Red)</div>
+            {cards.length === 0 && <div className="rf-no-scorers">No cards added yet</div>}
+            {cards.map((c, i) => {
+              const players = playersForTeam(c.team);
+              const isCustom = c.player !== "" && !players.includes(c.player);
+              const selectValue = c.player === "" ? "" : isCustom ? "__custom__" : c.player;
+              return (
+                <div className="rf-scorer-row" key={i}>
+                  <select className="rf-select" value={c.team} onChange={(e) => updateCard(i, "team", e.target.value)}>
+                    <option value={homeName}>{homeName}</option>
+                    <option value={awayName}>{awayName}</option>
+                  </select>
+                  <select className="rf-select" value={selectValue} onChange={(e) => updateCard(i, "player", e.target.value)}>
+                    <option value="">Select player…</option>
+                    {players.map((name) => <option key={name} value={name}>{name}</option>)}
+                    <option value="__custom__">Other / type manually…</option>
+                  </select>
+                  {selectValue === "__custom__" && (
+                    <input className="rf-text-input" type="text" placeholder="Player name"
+                      value={c.player === "__custom__" ? "" : c.player}
+                      onChange={(e) => updateCard(i, "player", e.target.value)} />
+                  )}
+                  <input className="rf-minute-input" type="number" min="1" max="120" title="Minute" value={c.minute} onChange={(e) => updateCard(i, "minute", e.target.value)} />
+                  <span className="rf-min-label">min</span>
+                  <button type="button" className={`rf-card-type-btn yellow${c.cardType === "yellow" ? " active" : ""}`} onClick={() => updateCard(i, "cardType", "yellow")}>YC</button>
+                  <button type="button" className={`rf-card-type-btn red${c.cardType === "red" ? " active" : ""}`} onClick={() => updateCard(i, "cardType", "red")}>RC</button>
+                  <button type="button" className="rf-remove-btn" onClick={() => removeCard(i)} title="Remove">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                  </button>
+                </div>
+              );
+            })}
+            <button type="button" className="rf-add-scorer-btn" onClick={addCard}>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Add card
             </button>
           </div>
         </>

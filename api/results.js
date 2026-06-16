@@ -1,10 +1,20 @@
-// Vercel serverless function — GET reads from KV, POST writes to KV.
-// Requires: Vercel KV store connected to this project (sets KV_REST_API_URL +
-// KV_REST_API_TOKEN automatically). See README or Admin page for setup steps.
+// Vercel serverless function — reads/writes results via Upstash Redis.
+// REDIS_URL is set automatically when you connect the Redis store in Vercel.
 
-import { kv } from '@vercel/kv';
+import Redis from 'ioredis';
 
 const KEY = 'wc2026_results';
+
+function getRedis() {
+  const url = process.env.REDIS_URL;
+  if (!url) return null;
+  return new Redis(url, {
+    tls: url.startsWith('rediss://') ? {} : undefined,
+    lazyConnect: false,
+    connectTimeout: 5000,
+    maxRetriesPerRequest: 1,
+  });
+}
 
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -12,20 +22,17 @@ export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   if (req.method === 'OPTIONS') return res.status(200).end();
 
-  // Graceful fallback when KV is not yet configured (local dev or unconfigured)
-  if (!process.env.KV_REST_API_URL || !process.env.KV_REST_API_TOKEN) {
-    if (req.method === 'GET') {
-      res.setHeader('Cache-Control', 'no-store');
-      return res.status(200).json({});
-    }
-    return res.status(503).json({ error: 'KV not configured — add Vercel KV store to this project' });
+  const redis = getRedis();
+  if (!redis) {
+    res.setHeader('Cache-Control', 'no-store');
+    return res.status(200).json({});
   }
 
   try {
     if (req.method === 'GET') {
-      const data = await kv.get(KEY);
+      const raw = await redis.get(KEY);
       res.setHeader('Cache-Control', 'no-store');
-      return res.status(200).json(data ?? {});
+      return res.status(200).json(raw ? JSON.parse(raw) : {});
     }
 
     if (req.method === 'POST') {
@@ -33,14 +40,16 @@ export default async function handler(req, res) {
       if (typeof body !== 'object' || body === null) {
         return res.status(400).json({ error: 'Body must be a JSON object' });
       }
-      await kv.set(KEY, body);
+      await redis.set(KEY, JSON.stringify(body));
       return res.status(200).json({ ok: true });
     }
 
     res.status(405).end();
   } catch (e) {
-    console.error('[/api/results]', e);
+    console.error('[/api/results]', e.message);
     if (req.method === 'GET') return res.status(200).json({});
-    return res.status(500).json({ error: 'Storage error' });
+    return res.status(500).json({ error: e.message });
+  } finally {
+    redis.disconnect();
   }
 }
