@@ -8,27 +8,43 @@ import TeamFlag from "../components/TeamFlag.jsx";
 function ApiUsageBar() {
   const [usage, setUsage] = useState(null);
   useEffect(() => {
-    fetch('/api/wc?action=usage').then(r => r.json()).then(setUsage).catch(() => {});
+    fetch('/api/stats?action=usage').then(r => r.json()).then(setUsage).catch(() => {});
     const id = setInterval(() => {
-      fetch('/api/wc?action=usage').then(r => r.json()).then(setUsage).catch(() => {});
+      fetch('/api/stats?action=usage').then(r => r.json()).then(setUsage).catch(() => {});
     }, 30000);
     return () => clearInterval(id);
   }, []);
-  if (!usage) return null;
-  const pct = (usage.used / usage.limit) * 100;
+
+  const trialEnd = new Date('2026-06-23T09:00:00+05:30');
+  const now = new Date();
+  const daysLeft = Math.max(0, Math.ceil((trialEnd - now) / (1000 * 60 * 60 * 24)));
+
+  if (!usage) return (
+    <div className="api-usage-box">
+      <div className="api-usage-head">
+        <span>◉ TheStatsAPI Trial Budget</span>
+        <span style={{color:'var(--text-tertiary)'}}>Loading…</span>
+      </div>
+    </div>
+  );
+
+  const limit = usage.limit || 10000;
+  const used = usage.used || 0;
+  const pct = Math.min(100, (used / limit) * 100);
   const color = pct > 80 ? 'var(--red)' : pct > 60 ? '#f59e0b' : 'var(--green-bright)';
+
   return (
     <div className="api-usage-box">
       <div className="api-usage-head">
-        <span>◉ API-Football Daily Budget</span>
-        <span style={{color}}>{usage.used} / {usage.limit} requests used</span>
+        <span>◉ TheStatsAPI Trial — {daysLeft} day{daysLeft !== 1 ? 's' : ''} left</span>
+        <span style={{color}}>{used.toLocaleString()} / {limit.toLocaleString()} requests</span>
       </div>
       <div className="api-usage-track">
         <div className="api-usage-fill" style={{ width:`${pct}%`, background: color }}/>
       </div>
       <div className="api-usage-foot">
-        <span>{usage.remaining} requests remaining today</span>
-        <span style={{color:'var(--text-dim)',fontSize:10}}>Resets midnight UTC</span>
+        <span>{(limit - used).toLocaleString()} requests remaining</span>
+        <span style={{color:'var(--text-dim)',fontSize:10}}>Trial expires June 23, 09:00 IST</span>
       </div>
     </div>
   );

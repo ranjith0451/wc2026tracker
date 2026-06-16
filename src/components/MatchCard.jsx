@@ -2,7 +2,6 @@ import { useState, useCallback } from "react";
 import { FLAG_URL, FLAGS } from "../data/teams.js";
 import { resolveMatchTeams } from "../lib/bracket.js";
 import { formatISTTime, formatISTDate, getMatchStatus, timeUntil } from "../lib/time.js";
-import { useMatchDetail } from "../lib/useWC.js";
 import LiveMatchPanel from "./LiveMatchPanel.jsx";
 
 function TeamSide({ side, align }) {
@@ -72,7 +71,7 @@ function ShareButton({ match, home, away, result, status }) {
   );
 }
 
-export default function MatchCard({ match, results, apiFixtureId, statsMatchId }) {
+export default function MatchCard({ match, results, statsMatchId }) {
   const [open, setOpen] = useState(false);
 
   const { home, away } = resolveMatchTeams(match, results);
@@ -85,11 +84,6 @@ export default function MatchCard({ match, results, apiFixtureId, statsMatchId }
   const elapsed   = result?.elapsed;
   const statusShort = result?.statusShort;
   const hasData   = (isFT || isLive) && result;
-
-  // React Query auto-fetches when apiFixtureId is set — no manual load() call needed
-  const { events, stats, lineups, loading: detailLoading, load } = useMatchDetail(
-    open ? apiFixtureId : null
-  );
 
   function handleToggle() {
     if (!hasData) return;
@@ -152,8 +146,8 @@ export default function MatchCard({ match, results, apiFixtureId, statsMatchId }
             {open ? "Hide" : "Stats & Events"}
           </span>
         )}
-        {apiFixtureId && (
-          <span className="mc-tag api-badge" title="Live data from API-Football">◉ Live</span>
+        {statsMatchId && (
+          <span className="mc-tag api-badge" title="Live data from TheStatsAPI">◉ Live Data</span>
         )}
         <ShareButton match={match} home={home} away={away} result={result} status={status} />
       </div>
@@ -166,15 +160,9 @@ export default function MatchCard({ match, results, apiFixtureId, statsMatchId }
             homeTeam={home.name}
             awayTeam={away.name}
             matchId={match.id}
-            apiFixtureId={apiFixtureId}
             statsMatchId={statsMatchId}
-            events={events}
-            stats={stats}
-            lineups={lineups}
-            loading={detailLoading}
             homeLogo={result.homeLogo || (FLAGS[home.name] ? FLAG_URL(home.name) : null)}
             awayLogo={result.awayLogo || (FLAGS[away.name] ? FLAG_URL(away.name) : null)}
-            onRetry={() => load(true)}
           />
         </div>
       )}

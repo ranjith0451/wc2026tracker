@@ -4,12 +4,95 @@
  */
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { computePlayerRatings } from './playerRating.js';
+import { MATCHES } from '../data/matches.js';
 
 async function statsFetch(action, params = {}) {
   const qs = new URLSearchParams({ action, ...params }).toString();
   const res = await fetch(`/api/stats?${qs}`);
   if (!res.ok) throw new Error(`Stats API HTTP ${res.status}`);
   return res.json();
+}
+
+// Team name aliases — keep in sync with transform.ts
+const NAME_ALIASES = {
+  'Turkey': 'Türkiye',
+  'Türkei': 'Türkiye',
+  'Czech Republic': 'Czechia',
+  'Bosnia-Herzegovina': 'Bosnia & Herzegovina',
+  'Bosnia and Herzegovina': 'Bosnia & Herzegovina',
+  "Côte d'Ivoire": 'Ivory Coast',
+  'Democratic Republic of Congo': 'DR Congo',
+  'Cabo Verde': 'Cape Verde',
+};
+const normName = (n) => NAME_ALIASES[n] ?? n;
+
+const LIVE_STATUSES = new Set(['1H', 'HT', '2H', 'ET', 'BT', 'P', 'LIVE', 'live', 'in_progress', '1h', '2h', 'ht']);
+const DONE_STATUSES = new Set(['FT', 'AET', 'PEN', 'AWD', 'WO', 'ft', 'aet', 'pen', 'finished', 'completed', 'full_time']);
+
+// ── Schedule (replaces TheSportsDB useWCLive) ─────────────────────────────────
+export function useSchedule() {
+  return useQuery({
+    queryKey: ['stats-schedule'],
+    queryFn: async () => {
+      const data = await statsFetch('all-matches');
+      const apiMatches = data?.matches || [];
+
+      // Build "home|away" → api match lookup
+      const apiMap = {};
+      for (const m of apiMatches) {
+        const h = normName(m.home_team?.name || '');
+        const a = normName(m.away_team?.name || '');
+        if (h && a) apiMap[`${h}|${a}`] = m;
+      }
+
+      const results = {};
+      let liveCount = 0;
+
+      for (const m of MATCHES) {
+        if (!m.home?.name || !m.away?.name) continue;
+        const key = `${m.home.name}|${m.away.name}`;
+        const apiM = apiMap[key];
+        if (!apiM) continue;
+
+        const rawStatus = apiM.status || apiM.match_status || '';
+        const statusUp = rawStatus.toUpperCase();
+
+        let localStatus, statusShort;
+        if (DONE_STATUSES.has(rawStatus) || DONE_STATUSES.has(statusUp)) {
+          localStatus = 'finished';
+          statusShort = statusUp === 'AET' ? 'AET' : statusUp === 'PEN' ? 'PEN' : 'FT';
+        } else if (LIVE_STATUSES.has(rawStatus) || LIVE_STATUSES.has(statusUp)) {
+          localStatus = 'live';
+          statusShort = statusUp || '1H';
+          liveCount++;
+        } else {
+          continue; // scheduled — no result to store
+        }
+
+        const homeScore = apiM.home_score ?? apiM.score?.home ?? apiM.goals?.home ?? null;
+        const awayScore = apiM.away_score ?? apiM.score?.away ?? apiM.goals?.away ?? null;
+        if (homeScore === null || awayScore === null) continue;
+
+        results[m.id] = {
+          status: localStatus,
+          homeScore: Number(homeScore),
+          awayScore: Number(awayScore),
+          statusShort,
+          elapsed: apiM.elapsed || apiM.minute || null,
+          halftime: apiM.halftime || apiM.half_time || null,
+          statsMatchId: apiM.id,
+        };
+      }
+
+      return { results, liveCount };
+    },
+    refetchInterval: (query) => {
+      const liveCount = query.state.data?.liveCount || 0;
+      return liveCount > 0 ? 60_000 : 5 * 60_000;
+    },
+    refetchIntervalInBackground: false,
+    staleTime: 55_000,
+  });
 }
 
 // ── Match details (venue, weather, managers, attendance) ──────────────────────
@@ -28,8 +111,8 @@ export function useMatchEvents(statsMatchId, { live = false } = {}) {
     queryKey: ['stats-events', statsMatchId],
     queryFn: () => statsFetch('events', { id: statsMatchId }),
     enabled: !!statsMatchId,
-    refetchInterval: live ? 30_000 : false,
-    staleTime: live ? 20_000 : 10 * 60_000,
+    refetchInterval: live ? 60_000 : false,
+    staleTime: live ? 50_000 : 10 * 60_000,
   });
 }
 
@@ -40,7 +123,7 @@ export function useMatchStats(statsMatchId, { live = false } = {}) {
     queryFn: () => statsFetch('stats', { id: statsMatchId }),
     enabled: !!statsMatchId,
     refetchInterval: live ? 60_000 : false,
-    staleTime: live ? 45_000 : 10 * 60_000,
+    staleTime: live ? 50_000 : 10 * 60_000,
   });
 }
 
@@ -48,9 +131,12 @@ export function useMatchStats(statsMatchId, { live = false } = {}) {
 export function useMatchLineups(statsMatchId) {
   return useQuery({
     queryKey: ['stats-lineups', statsMatchId],
-    queryFn: () => statsFetch('lineups', { id: statsMatchId }),
+    queryFn: async () => {
+      const data = await statsFetch('lineups', { id: statsMatchId });
+      return data?.lineups || [];
+    },
     enabled: !!statsMatchId,
-    staleTime: 30 * 60_000,
+    staleTime: 60 * 60_000,
   });
 }
 
@@ -60,7 +146,6 @@ export function usePlayerRatings(statsMatchId, events, matchResult) {
     queryKey: ['stats-player-ratings', statsMatchId],
     queryFn: async () => {
       const data = await statsFetch('player-stats', { id: statsMatchId });
-      // Server normalizes player stats — returns { players: [...normalized] }
       const players = data?.players || [];
       return computePlayerRatings(players, events || [], matchResult || {});
     },
@@ -75,7 +160,7 @@ export function useShotmap(statsMatchId, enabled = false) {
     queryKey: ['stats-shotmap', statsMatchId],
     queryFn: () => statsFetch('shotmap', { id: statsMatchId }),
     enabled: !!statsMatchId && enabled,
-    staleTime: 60 * 60_000,
+    staleTime: 7 * 24 * 60 * 60_000,
   });
 }
 
@@ -85,7 +170,7 @@ export function usePlayerHeatmap(statsMatchId, playerId) {
     queryKey: ['stats-heatmap', statsMatchId, playerId],
     queryFn: () => statsFetch('heatmap', { id: statsMatchId, pid: playerId }),
     enabled: !!statsMatchId && !!playerId,
-    staleTime: 60 * 60_000,
+    staleTime: 7 * 24 * 60 * 60_000,
   });
 }
 
@@ -95,7 +180,6 @@ export function useMatchReferee(statsMatchId) {
     queryKey: ['stats-referee', statsMatchId],
     queryFn: async () => {
       const d = await statsFetch('referee', { id: statsMatchId });
-      // Normalize: API returns { name, nationality } or wrapped
       const ref = d?.referee || d?.data || d;
       return { name: ref?.name || ref?.referee_name || null, nationality: ref?.nationality || null };
     },
@@ -115,24 +199,16 @@ export function useStatsRefresh(statsMatchId) {
 }
 
 // ── Build statsMatchId map (home|away → statsMatchId) ─────────────────────────
-// Fetches TheStatsAPI match list for a rolling 2-day window to build ID map
-function utcDateStr(offsetDays = 0) {
-  const d = new Date();
-  d.setUTCDate(d.getUTCDate() + offsetDays);
-  return d.toISOString().slice(0, 10);
-}
-
 export function useStatsMatchIdMap() {
   return useQuery({
     queryKey: ['stats-match-id-map'],
     queryFn: async () => {
-      // Single call fetches all 104 WC matches — cached 5min server-side
       const data = await statsFetch('all-matches');
       const matches = data?.matches || [];
       const idMap = {};
       for (const m of matches) {
-        const home = m.home_team?.name || '';
-        const away = m.away_team?.name || '';
+        const home = normName(m.home_team?.name || '');
+        const away = normName(m.away_team?.name || '');
         if (home && away && m.id) {
           idMap[`${home}|${away}`] = m.id;
         }

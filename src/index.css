@@ -4072,10 +4072,58 @@ img { display: block; }
 .stats-api-status .dot-red    { width: 6px; height: 6px; background: var(--red);   border-radius: 50%; }
 
 /* ═══════════════════════════════════════════════════════════════
-   RESPONSIVE — ratings + shotmap mobile
+   HEATMAP WIDGET
+═══════════════════════════════════════════════════════════════ */
+.hm-wrap { padding: 12px 0; }
+.hm-gate { padding: 24px; text-align: center; color: var(--text-tertiary); font-size: 13px; }
+.hm-controls {
+  display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; padding: 0 4px;
+}
+.hm-select {
+  flex: 1; min-width: 160px; padding: 8px 10px;
+  background: var(--bg-secondary); border: 1px solid var(--border-medium);
+  border-radius: 8px; color: var(--text); font-size: 13px;
+  font-family: Barlow, sans-serif; cursor: pointer; outline: none;
+}
+.hm-id-input {
+  flex: 1; min-width: 140px; padding: 8px 10px;
+  background: var(--bg-secondary); border: 1px solid var(--border-medium);
+  border-radius: 8px; color: var(--text); font-size: 13px;
+  font-family: Barlow, sans-serif; outline: none;
+}
+.hm-load-btn {
+  padding: 8px 16px; background: var(--blue); color: #fff; border: none;
+  border-radius: 8px; font-family: Barlow, sans-serif; font-size: 13px;
+  font-weight: 600; cursor: pointer; white-space: nowrap; transition: opacity .15s;
+}
+.hm-load-btn:disabled { opacity: .45; cursor: not-allowed; }
+.hm-hint { font-size: 12px; color: var(--text-tertiary); padding: 8px 4px 0; }
+.hm-error { font-size: 12px; color: var(--red); padding: 8px 4px; }
+.hm-player-label {
+  font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 8px; padding: 0 4px;
+}
+.hm-svg { width: 100%; height: auto; border-radius: 6px; display: block; }
+.hm-empty {
+  display: flex; align-items: center; gap: 8px; padding: 24px;
+  color: var(--text-tertiary); font-size: 13px; justify-content: center;
+}
+.hm-legend {
+  display: flex; align-items: center; gap: 6px; padding: 8px 4px 0;
+  font-size: 11px; color: var(--text-tertiary);
+}
+.hm-dot {
+  width: 10px; height: 10px; border-radius: 50%; display: inline-block; flex-shrink: 0;
+}
+.hm-dot.low  { background: rgba(250,204,21,.3); }
+.hm-dot.high { background: rgba(250,204,21,.9); }
+
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE — ratings + shotmap + heatmap mobile
 ═══════════════════════════════════════════════════════════════ */
 @media (max-width: 480px) {
   .shotmap-xg-val { font-size: 18px; }
   .ratings-legend { font-size: 11px; gap: 4px; }
   .pr-row__name { font-size: 12px; }
+  .hm-controls { flex-direction: column; }
+  .hm-select, .hm-load-btn { width: 100%; }
 }

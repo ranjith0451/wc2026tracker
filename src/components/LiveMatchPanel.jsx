@@ -3,9 +3,10 @@
  */
 import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
-import { usePlayerRatings, useShotmap, useMatchReferee } from "../lib/useStats.js";
+import { usePlayerRatings, useShotmap, useMatchReferee, useMatchLineups, useMatchEvents, useMatchStats } from "../lib/useStats.js";
 import PlayerRatingChip, { PlayerRatingRow } from "./PlayerRatingChip.jsx";
 import ShotmapWidget from "./ShotmapWidget.jsx";
+import HeatmapWidget from "./HeatmapWidget.jsx";
 
 // ─────────────────────────────────────────────────────────────────
 // FIFA-style center-diverging stat bar
@@ -543,23 +544,56 @@ function RealShotmapTab({ statsMatchId, homeTeam, awayTeam }) {
 }
 
 // ─────────────────────────────────────────────────────────────────
+// Heatmap Tab
+// ─────────────────────────────────────────────────────────────────
+function HeatmapTab({ statsMatchId, lineups }) {
+  return <HeatmapWidget statsMatchId={statsMatchId} lineups={lineups} />;
+}
+
+// ─────────────────────────────────────────────────────────────────
 // Main panel
 // ─────────────────────────────────────────────────────────────────
 export default function LiveMatchPanel({
-  result, homeTeam, awayTeam, matchId, apiFixtureId,
-  events, stats, lineups, loading, onRetry,
+  result, homeTeam, awayTeam, matchId,
   homeLogo, awayLogo,
   statsMatchId,
 }) {
   const [tab, setTab] = useState("summary");
   const manualStats = result?.stats || {};
-  const s = (stats && Object.keys(stats).length > 0) ? stats : manualStats;
-  const ev = events || {};
+  const isLive  = result?.status === "live";
+  const isFT    = result?.statusShort === 'FT' || result?.statusShort === 'AET' || result?.statusShort === 'PEN';
+
+  // Fetch all data from TheStatsAPI directly
+  const { data: statsLineups } = useMatchLineups(statsMatchId);
+  const effectiveLineups = statsLineups?.length > 0 ? statsLineups : null;
+
+  // TheStatsAPI team statistics (normalized server-side)
+  const { data: apiStats } = useMatchStats(statsMatchId, { live: isLive });
+  const s = (apiStats && Object.keys(apiStats).length > 0) ? apiStats : manualStats;
+
+  // TheStatsAPI timeline events (richer source — goals, cards from real data)
+  const { data: statsEvents } = useMatchEvents(statsMatchId, { live: isLive });
+  const statsEvNormalized = useMemo(() => {
+    const evList = statsEvents?.events || statsEvents?.data?.events;
+    if (!evList?.length) return null;
+    const scorers = [], cards = [], subs = [];
+    for (const ev of evList) {
+      const min = (ev.minute || 0) + (ev.extra_time || 0);
+      if (ev.type === 'goal')         scorers.push({ team: ev.team?.name, player: ev.player?.name, minute: min });
+      else if (ev.type === 'own_goal')    scorers.push({ team: ev.team?.name, player: ev.player?.name, minute: min, ownGoal: true });
+      else if (ev.type === 'penalty_goal') scorers.push({ team: ev.team?.name, player: ev.player?.name, minute: min, penalty: true });
+      else if (ev.type === 'yellow_card')  cards.push({ team: ev.team?.name, player: ev.player?.name, minute: min, cardType: 'yellow' });
+      else if (ev.type === 'red_card' || ev.type === 'double_yellow') cards.push({ team: ev.team?.name, player: ev.player?.name, minute: min, cardType: 'red' });
+    }
+    if (!scorers.length && !cards.length) return null;
+    return { scorers, cards, subs };
+  }, [statsEvents]);
+
+  // Prefer TheStatsAPI events > WC API events > manual result entries
+  const ev = statsEvNormalized || events || {};
   const scorers = ev.scorers || result?.scorers || [];
   const cards   = ev.cards   || result?.cards   || [];
   const subs    = ev.subs    || [];
-  const isLive  = result?.status === "live";
-  const isFT    = result?.statusShort === 'FT' || result?.statusShort === 'AET' || result?.statusShort === 'PEN';
 
   const { data: referee } = useMatchReferee(statsMatchId);
   const refName = referee?.referee?.name || referee?.name || null;
@@ -568,9 +602,12 @@ export default function LiveMatchPanel({
     { id: "summary",  label: "Summary" },
     { id: "stats",    label: "Statistics" },
     { id: "lineups",  label: "Line-Ups" },
-    ...(isFT ? [
+    ...(isFT || isLive ? [
       { id: "ratings",  label: "Ratings" },
+    ] : []),
+    ...(isFT ? [
       { id: "shotmap",  label: "Shot Map" },
+      { id: "heatmap",  label: "Heatmap" },
     ] : []),
   ];
 
@@ -600,7 +637,7 @@ export default function LiveMatchPanel({
             </div>
             <span className="flp-score">{result.awayScore}</span>
           </div>
-          {apiFixtureId && <div className="flp-api-tag">◉ Live Data</div>}
+          {statsMatchId && <div className="flp-api-tag">◉ Live Data</div>}
         </div>
         <div className="flp-team away">
           <span className="flp-tname">{awayTeam}</span>
@@ -630,20 +667,14 @@ export default function LiveMatchPanel({
 
       {/* Content */}
       <div className="flp-body">
-        {loading ? (
-          <div className="flp-loading">
-            <div className="flp-spinner"/>
-            <span>Loading match data…</span>
-          </div>
-        ) : (
-          <>
-            {tab === "summary"  && <EventFeed scorers={scorers} cards={cards} subs={subs} homeTeam={homeTeam} awayTeam={awayTeam}/>}
-            {tab === "stats"    && <StatisticsTab s={s} result={result} homeTeam={homeTeam} awayTeam={awayTeam} matchId={matchId} onRetry={onRetry}/>}
-            {tab === "lineups"  && <LineupsTab lineups={lineups} homeTeam={homeTeam} awayTeam={awayTeam}/>}
-            {tab === "ratings"  && <RatingsTab statsMatchId={statsMatchId} events={ev.scorers ? [...scorers, ...cards] : []} matchResult={{ homeTeam, awayTeam, homeScore: result?.homeScore, awayScore: result?.awayScore }}/>}
-            {tab === "shotmap"  && <RealShotmapTab statsMatchId={statsMatchId} homeTeam={homeTeam} awayTeam={awayTeam}/>}
-          </>
-        )}
+        <>
+          {tab === "summary"  && <EventFeed scorers={scorers} cards={cards} subs={subs} homeTeam={homeTeam} awayTeam={awayTeam}/>}
+          {tab === "stats"    && <StatisticsTab s={s} result={result} homeTeam={homeTeam} awayTeam={awayTeam} matchId={matchId} onRetry={null}/>}
+          {tab === "lineups"  && <LineupsTab lineups={effectiveLineups} homeTeam={homeTeam} awayTeam={awayTeam}/>}
+          {tab === "ratings"  && <RatingsTab statsMatchId={statsMatchId} events={ev.scorers ? [...scorers, ...cards] : []} matchResult={{ homeTeam, awayTeam, homeScore: result?.homeScore, awayScore: result?.awayScore }}/>}
+          {tab === "shotmap"  && <RealShotmapTab statsMatchId={statsMatchId} homeTeam={homeTeam} awayTeam={awayTeam}/>}
+          {tab === "heatmap"  && <HeatmapTab statsMatchId={statsMatchId} lineups={effectiveLineups}/>}
+        </>
       </div>
     </div>
   );

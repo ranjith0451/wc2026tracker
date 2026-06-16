@@ -33,7 +33,7 @@ function buildDateChips(matches) {
   return chips;
 }
 
-export default function Schedule({ results, fixtureIdMap = {}, statsMatchIdMap = {} }) {
+export default function Schedule({ results, statsMatchIdMap = {} }) {
   const [stage, setStage]  = useState("all");
   const [status, setStatus] = useState("all");
   const [search, setSearch] = useState("");
@@ -142,7 +142,7 @@ export default function Schedule({ results, fixtureIdMap = {}, statsMatchIdMap =
             {list.map(m => {
               const { home, away } = resolveMatchTeams(m, results);
               const statsMatchId = statsMatchIdMap[`${home.name}|${away.name}`];
-              return <MatchCard key={m.id} match={m} results={results} apiFixtureId={fixtureIdMap[m.id]} statsMatchId={statsMatchId} />;
+              return <MatchCard key={m.id} match={m} results={results} statsMatchId={statsMatchId} />;
             })}
           </div>
         ))
