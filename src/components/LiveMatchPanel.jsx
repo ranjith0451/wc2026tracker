@@ -561,7 +561,7 @@ export default function LiveMatchPanel({
   const [tab, setTab] = useState("summary");
   const manualStats = result?.stats || {};
   const isLive  = result?.status === "live";
-  const isFT    = result?.statusShort === 'FT' || result?.statusShort === 'AET' || result?.statusShort === 'PEN';
+  const isFT    = result?.status === 'finished' || result?.statusShort === 'FT' || result?.statusShort === 'AET' || result?.statusShort === 'PEN';
 
   // Fetch all data from TheStatsAPI directly
   const { data: statsLineups } = useMatchLineups(statsMatchId);

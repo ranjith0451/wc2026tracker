@@ -324,7 +324,7 @@ export default async function handler(req, res) {
       const cacheKey = pid ? `stats_heatmap_${id}_${pid}` : `stats_heatmap_${id}`;
       const { data: payload, cached: hit } = await cached(redis, cacheKey, 86400 * 7, async () => {
         const path = pid
-          ? `/matches/${id}/heatmap?player_id=${pid}`
+          ? `/matches/${id}/players/${pid}/heatmap`
           : `/matches/${id}/heatmap`;
         const d = await statsFetch(path);
         // Normalize heatmap points
