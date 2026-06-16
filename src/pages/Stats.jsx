@@ -95,21 +95,14 @@ export default function Stats() {
   const computedRecords = useMemo(() => {
     if (!histData?.men?.tournaments) return null;
     const tournaments = histData.men.tournaments;
-    let highestGoalGame = null;
     let highestGoalTournament = { year: null, goals: 0 };
     tournaments.forEach(t => {
-      const goals = t.goals || t.totalGoals || 0;
+      const goals = t.goals || 0;
       if (goals > highestGoalTournament.goals) {
         highestGoalTournament = { year: t.year, host: t.host, goals };
       }
-      (t.matches || []).forEach(m => {
-        const total = (m.homeScore || 0) + (m.awayScore || 0);
-        if (!highestGoalGame || total > highestGoalGame.total) {
-          highestGoalGame = { teams: `${m.home} vs ${m.away}`, score: `${m.homeScore}–${m.awayScore}`, year: t.year, total };
-        }
-      });
     });
-    return { highestGoalGame, highestGoalTournament };
+    return { highestGoalTournament };
   }, [histData]);
 
   const TABS = [
