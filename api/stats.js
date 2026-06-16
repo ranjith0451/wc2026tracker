@@ -139,86 +139,52 @@ function normalizePlayerStats(p) {
 }
 
 // Normalize team statistics from TheStatsAPI → our MatchStats shape
+// API shape: { data: { overview: { ball_possession: { all: { home, away } }, ... } } }
 function normalizeTeamStats(raw) {
   if (!raw) return null;
   const d = raw?.data || raw;
 
-  let homeRaw, awayRaw;
-
-  if (Array.isArray(d)) {
-    // [{ team_name, stats: {...} }, ...]
-    homeRaw = d[0]?.statistics || d[0]?.stats || d[0];
-    awayRaw = d[1]?.statistics || d[1]?.stats || d[1];
-  } else if (d?.home !== undefined || d?.teams?.home !== undefined) {
-    const src = d.teams || d;
-    homeRaw = src.home?.statistics || src.home;
-    awayRaw = src.away?.statistics || src.away;
-  } else {
-    return null;
+  // Primary shape: data.overview.{stat}.all.{home|away}
+  const ov = d?.overview;
+  if (ov) {
+    const g = (key) => ({ home: ov[key]?.all?.home ?? null, away: ov[key]?.all?.away ?? null });
+    const poss = g('ball_possession');
+    const shots = g('total_shots');
+    const sot = g('shots_on_target');
+    const saves = g('goalkeeper_saves');
+    const corners = g('corner_kicks');
+    const fouls = g('fouls');
+    const yc = g('yellow_cards');
+    const rc = g('red_cards');
+    const passes = g('passes');
+    const accPasses = g('accurate_passes');
+    const tackles = g('tackles');
+    const xg = g('expected_goals');
+    const offsides = g('offsides');
+    return {
+      homePoss: poss.home, awayPoss: poss.away,
+      homeShots: shots.home, awayShots: shots.away,
+      homeShotsOT: sot.home, awayShotsOT: sot.away,
+      homeSaves: saves.home, awaySaves: saves.away,
+      homeCorners: corners.home, awayCorners: corners.away,
+      homeFouls: fouls.home, awayFouls: fouls.away,
+      homeYC: yc.home, awayYC: yc.away,
+      homeRC: rc.home, awayRC: rc.away,
+      homePasses: passes.home, awayPasses: passes.away,
+      homePassesAcc: accPasses.home, awayPassesAcc: accPasses.away,
+      homePassAcc: passes.home ? Math.round((accPasses.home / passes.home) * 100) : null,
+      awayPassAcc: passes.away ? Math.round((accPasses.away / passes.away) * 100) : null,
+      homeTackles: tackles.home, awayTackles: tackles.away,
+      homeXG: xg.home, awayXG: xg.away,
+      homeOffsides: offsides.home, awayOffsides: offsides.away,
+      homeShotsOff: d?.shots?.shots_off_target?.all?.home ?? null,
+      awayShotsOff: d?.shots?.shots_off_target?.all?.away ?? null,
+      homeShotsBlocked: d?.shots?.blocked_shots?.all?.home ?? null,
+      awayShotsBlocked: d?.shots?.blocked_shots?.all?.away ?? null,
+    };
   }
 
-  const toObj = (stats) => {
-    if (!stats) return {};
-    if (Array.isArray(stats)) {
-      const o = {};
-      for (const s of stats) {
-        const k = s.type || s.name || s.key;
-        if (k) o[k] = s.value ?? s.stat ?? s.count;
-      }
-      return o;
-    }
-    return stats;
-  };
-
-  const h = toObj(homeRaw);
-  const a = toObj(awayRaw);
-
-  const pv = (v) => {
-    if (v == null || v === '') return null;
-    if (typeof v === 'string' && v.endsWith('%')) return parseFloat(v);
-    const n = Number(v);
-    return isNaN(n) ? null : n;
-  };
-
-  const get = (obj, ...keys) => {
-    for (const k of keys) { const v = pv(obj[k]); if (v != null) return v; }
-    return null;
-  };
-
-  return {
-    homePoss:         get(h, 'possession', 'Ball Possession', 'ball_possession'),
-    awayPoss:         get(a, 'possession', 'Ball Possession', 'ball_possession'),
-    homeShots:        get(h, 'total_shots', 'Total Shots', 'shots'),
-    awayShots:        get(a, 'total_shots', 'Total Shots', 'shots'),
-    homeShotsOT:      get(h, 'shots_on_target', 'Shots on Goal', 'Shots on Target'),
-    awayShotsOT:      get(a, 'shots_on_target', 'Shots on Goal', 'Shots on Target'),
-    homeShotsOff:     get(h, 'shots_off_target', 'Shots off Goal'),
-    awayShotsOff:     get(a, 'shots_off_target', 'Shots off Goal'),
-    homeShotsBlocked: get(h, 'blocked_shots', 'Blocked Shots'),
-    awayShotsBlocked: get(a, 'blocked_shots', 'Blocked Shots'),
-    homePasses:       get(h, 'total_passes', 'Total passes'),
-    awayPasses:       get(a, 'total_passes', 'Total passes'),
-    homePassesAcc:    get(h, 'accurate_passes', 'Passes accurate'),
-    awayPassesAcc:    get(a, 'accurate_passes', 'Passes accurate'),
-    homePassAcc:      get(h, 'pass_accuracy', 'Passes %', 'passing_accuracy'),
-    awayPassAcc:      get(a, 'pass_accuracy', 'Passes %', 'passing_accuracy'),
-    homeCorners:      get(h, 'corner_kicks', 'Corner Kicks', 'corners'),
-    awayCorners:      get(a, 'corner_kicks', 'Corner Kicks', 'corners'),
-    homeFouls:        get(h, 'fouls', 'Fouls'),
-    awayFouls:        get(a, 'fouls', 'Fouls'),
-    homeOffsides:     get(h, 'offsides', 'Offsides'),
-    awayOffsides:     get(a, 'offsides', 'Offsides'),
-    homeYC:           get(h, 'yellow_cards', 'Yellow Cards'),
-    awayYC:           get(a, 'yellow_cards', 'Yellow Cards'),
-    homeRC:           get(h, 'red_cards', 'Red Cards'),
-    awayRC:           get(a, 'red_cards', 'Red Cards'),
-    homeSaves:        get(h, 'goalkeeper_saves', 'Goalkeeper Saves', 'saves'),
-    awaySaves:        get(a, 'goalkeeper_saves', 'Goalkeeper Saves', 'saves'),
-    homeXG:           get(h, 'expected_goals', 'xg', 'xG'),
-    awayXG:           get(a, 'expected_goals', 'xg', 'xG'),
-    homeTackles:      get(h, 'tackles', 'Total Tackles', 'total_tackles'),
-    awayTackles:      get(a, 'tackles', 'Total Tackles', 'total_tackles'),
-  };
+  return null;
 }
 
 export default async function handler(req, res) {
