@@ -224,6 +224,7 @@ export default function App() {
 
   const liveResults = scheduleData?.results || {};
   const liveCount = scheduleData?.liveCount || 0;
+  const statsIdMap = scheduleData?.idMap || {};
 
   // Priority: manual overrides > cloud-synced results > TheStatsAPI results
   // Deep merge per-match so statsMatchId from liveResults is preserved
@@ -295,7 +296,7 @@ export default function App() {
           <Suspense fallback={<PageLoader />}>
             <Routes>
               <Route path="/"         element={<Home results={results} />} />
-              <Route path="/schedule" element={<Schedule results={results} statsMatchIdMap={statsMatchIdMap} />} />
+              <Route path="/schedule" element={<Schedule results={results} statsMatchIdMap={statsIdMap} />} />
               <Route path="/groups"   element={<Groups results={results} />} />
               <Route path="/bracket"  element={<Bracket results={results} />} />
               <Route path="/squads"   element={<Squads results={results} />} />

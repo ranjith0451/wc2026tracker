@@ -84,7 +84,16 @@ export function useSchedule() {
         };
       }
 
-      return { results, liveCount };
+      // Also export idMap keyed by "home|away" (bypasses KV/override merge)
+      const idMap = {};
+      for (const m of MATCHES) {
+        if (!m.home?.name || !m.away?.name) continue;
+        const key = `${m.home.name}|${m.away.name}`;
+        const apiM = apiMap[key];
+        if (apiM?.id) idMap[key] = apiM.id;
+      }
+
+      return { results, liveCount, idMap };
     },
     refetchInterval: (query) => {
       const liveCount = query.state.data?.liveCount || 0;
@@ -123,7 +132,7 @@ export function useMatchStats(statsMatchId, { live = false } = {}) {
     queryFn: () => statsFetch('stats', { id: statsMatchId }),
     enabled: !!statsMatchId,
     refetchInterval: live ? 60_000 : false,
-    staleTime: live ? 50_000 : 10 * 60_000,
+    staleTime: live ? 50_000 : 90_000,
   });
 }
 
