@@ -590,7 +590,7 @@ export default function LiveMatchPanel({
   }, [statsEvents]);
 
   // Prefer TheStatsAPI events > WC API events > manual result entries
-  const ev = statsEvNormalized || events || {};
+  const ev = statsEvNormalized || {};
   const scorers = ev.scorers || result?.scorers || [];
   const cards   = ev.cards   || result?.cards   || [];
   const subs    = ev.subs    || [];
