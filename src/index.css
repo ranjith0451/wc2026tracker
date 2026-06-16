@@ -1868,6 +1868,7 @@ img { display: block; }
   cursor: pointer;
   transition: background .15s, color .15s;
   z-index: 10;
+  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
 }
 .pm-close:hover { background: rgba(255,255,255,.2); color: #fff; }
@@ -1976,6 +1977,7 @@ img { display: block; }
   border: 1px solid rgba(255,255,255,.09);
   border-radius: 14px;
   padding: 14px 0;
+  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
 }
 .pm-qs-item { flex: 1; text-align: center; }
@@ -3837,4 +3839,28 @@ img { display: block; }
   .sts-tabs { width: 100%; overflow-x: auto; }
   .sts-records-grid { grid-template-columns: 1fr; }
   .sts-timeline-full .sts-attendance { display: none; }
+}
+
+/* ── Mobile responsive helpers ─────────────────────────────────── */
+.atp-hide-xs { display: table-cell; }
+.atp-hide-sm { display: table-cell; }
+.atp-show-xs { display: none; }
+.atp-country-mobile { display: block; font-size: 11px; color: var(--text-tertiary); margin-top: 2px; }
+.atp-pen-inline { font-size: 11px; color: var(--text-tertiary); }
+
+@media (max-width: 480px) {
+  .atp-hide-xs { display: none !important; }
+  .atp-show-xs { display: inline !important; }
+  .atp-country-mobile { display: block !important; }
+  .atp-table { font-size: 13px; }
+  .atp-td-name { max-width: 140px; }
+  .atp-player-name { font-size: 13px; }
+  .atp-th-rank, .atp-td-rank { width: 32px; padding: 8px 4px; }
+}
+
+@media (max-width: 640px) {
+  .atp-hide-sm { display: none !important; }
+  .atp-stats-bar { flex-wrap: wrap; gap: 8px; }
+  .atp-stat-divider { display: none; }
+  .atp-stat { min-width: 80px; flex: 1; }
 }

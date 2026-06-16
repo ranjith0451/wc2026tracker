@@ -98,7 +98,7 @@ export default function Stats() {
     let highestGoalGame = null;
     let highestGoalTournament = { year: null, goals: 0 };
     tournaments.forEach(t => {
-      const goals = t.totalGoals || (t.matches || []).reduce((s, m) => s + (m.homeScore || 0) + (m.awayScore || 0), 0);
+      const goals = t.goals || t.totalGoals || 0;
       if (goals > highestGoalTournament.goals) {
         highestGoalTournament = { year: t.year, host: t.host, goals };
       }
