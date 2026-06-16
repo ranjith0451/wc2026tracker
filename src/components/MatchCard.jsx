@@ -1,4 +1,5 @@
 import { useState, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import { FLAG_URL, FLAGS } from "../data/teams.js";
 import { resolveMatchTeams } from "../lib/bracket.js";
 import { formatISTTime, formatISTDate, getMatchStatus, timeUntil } from "../lib/time.js";
@@ -73,6 +74,7 @@ function ShareButton({ match, home, away, result, status }) {
 
 export default function MatchCard({ match, results, statsMatchId }) {
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
 
   const { home, away } = resolveMatchTeams(match, results);
   const status    = getMatchStatus(match, results);
@@ -87,6 +89,10 @@ export default function MatchCard({ match, results, statsMatchId }) {
 
   function handleToggle() {
     if (!hasData) return;
+    if (isFT) {
+      navigate(`/match/${match.id}`);
+      return;
+    }
     setOpen((prev) => !prev);
   }
 

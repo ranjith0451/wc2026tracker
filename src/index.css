@@ -4127,3 +4127,87 @@ img { display: block; }
   .hm-controls { flex-direction: column; }
   .hm-select, .hm-load-btn { width: 100%; }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   MATCH DETAIL PAGE
+═══════════════════════════════════════════════════════════════ */
+.md-wrap {
+  max-width: 860px; margin: 0 auto; padding: 0 0 60px;
+}
+.md-back-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: none; border: none; color: var(--text-secondary);
+  font-family: "Barlow", sans-serif; font-size: 14px; font-weight: 600;
+  cursor: pointer; padding: 10px 0 18px; transition: color .15s;
+}
+.md-back-btn:hover { color: var(--text); }
+
+.md-header {
+  background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: 16px; padding: 20px 16px 24px; margin-bottom: 20px;
+  text-align: center;
+}
+.md-meta {
+  font-size: 11px; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--text-tertiary); margin-bottom: 18px;
+}
+.md-teams {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+}
+.md-team {
+  display: flex; flex-direction: column; align-items: center; gap: 8px; flex: 1;
+}
+.md-team-away { flex-direction: column-reverse; }
+.md-flag {
+  width: 52px; height: 36px; object-fit: cover; border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0,0,0,.35);
+}
+.md-team-name {
+  font-family: "Barlow Condensed", sans-serif; font-size: 15px;
+  font-weight: 800; text-transform: uppercase; letter-spacing: .04em;
+  color: var(--text); text-align: center; line-height: 1.2;
+}
+.md-score-block { flex-shrink: 0; text-align: center; min-width: 100px; }
+.md-score {
+  font-family: "Barlow Condensed", sans-serif; font-size: 48px;
+  font-weight: 900; color: var(--text); line-height: 1; letter-spacing: .02em;
+  font-variant-numeric: tabular-nums;
+}
+.md-status-badge {
+  display: inline-block; margin-top: 6px; padding: 3px 10px;
+  border-radius: 20px; font-size: 11px; font-weight: 700; letter-spacing: .08em;
+  text-transform: uppercase; background: var(--bg-secondary); color: var(--text-tertiary);
+}
+.md-status-badge.live {
+  background: rgba(52,199,89,.15); color: #34c759; animation: pulse 1.5s ease-in-out infinite;
+}
+.md-vs {
+  font-family: "Barlow Condensed", sans-serif; font-size: 28px; font-weight: 900;
+  color: var(--text-tertiary); letter-spacing: .1em;
+}
+.md-kickoff { font-size: 12px; color: var(--text-secondary); margin-top: 4px; font-weight: 600; }
+
+.md-panel { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+
+.md-empty {
+  text-align: center; padding: 60px 20px;
+  color: var(--text-secondary); font-size: 15px; font-weight: 600;
+}
+.md-empty-sub { margin-top: 8px; font-size: 13px; color: var(--text-tertiary); font-weight: 400; }
+
+.md-not-found {
+  text-align: center; padding: 80px 20px;
+}
+.md-nf-icon { font-size: 48px; margin-bottom: 16px; }
+.md-nf-text { font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 20px; }
+
+/* Mobile */
+@media (max-width: 480px) {
+  .md-wrap { padding: 0 0 40px; }
+  .md-flag { width: 40px; height: 28px; }
+  .md-team-name { font-size: 12px; }
+  .md-score { font-size: 36px; }
+  .md-score-block { min-width: 80px; }
+  .md-teams { gap: 6px; }
+  .md-header { padding: 16px 12px 20px; }
+}

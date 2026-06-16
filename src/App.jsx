@@ -37,6 +37,7 @@ const Women      = lazy(() => import("./pages/Women.jsx"));
 const AllTimePlayers = lazy(() => import("./pages/AllTimePlayers.jsx"));
 const Rankings       = lazy(() => import("./pages/Rankings.jsx"));
 const Stats          = lazy(() => import("./pages/Stats.jsx"));
+const MatchDetail    = lazy(() => import("./pages/MatchDetail.jsx"));
 
 function PageLoader() {
   return (
@@ -307,6 +308,7 @@ export default function App() {
               <Route path="/all-time"  element={<AllTimePlayers />} />
               <Route path="/rankings" element={<Rankings />} />
               <Route path="/stats"    element={<Stats />} />
+              <Route path="/match/:id" element={<MatchDetail results={results} statsMatchIdMap={statsIdMap} />} />
               <Route path="/admin"    element={
                 <AdminGate>
                   <Admin results={results} overrides={overrides}
