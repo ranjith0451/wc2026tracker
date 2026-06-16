@@ -310,7 +310,7 @@ export default async function handler(req, res) {
     // ── Team statistics ───────────────────────────────────────────────────────
     if (action === 'stats') {
       const { data: payload, cached: hit } = await cached(redis, `stats_teamstats_${id}`, 120, async () => {
-        const d = await statsFetch(`/matches/${id}/statistics`);
+        const d = await statsFetch(`/matches/${id}/stats`);
         const normalized = normalizeTeamStats(d);
         return normalized;
       });
