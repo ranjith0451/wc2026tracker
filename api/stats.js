@@ -90,9 +90,10 @@ function normalizeLineupSide(side) {
     const pos = p.position || 'M';
     const row = posToRow[pos] || 3;
     rowCounts[row] = (rowCounts[row] || 0) + 1;
-    return { name: p.name, number: p.jersey_number, pos, grid: `${row}:${rowCounts[row]}` };
+    return { id: p.id, name: p.name, number: p.jersey_number, pos, grid: `${row}:${rowCounts[row]}` };
   });
   const substitutes = (side.substitutes || []).map(p => ({
+    id: p.id,
     name: p.name,
     number: p.jersey_number,
     pos: p.position || null,
@@ -344,7 +345,7 @@ export default async function handler(req, res) {
 
     // ── Lineups ───────────────────────────────────────────────────────────────
     if (action === 'lineups') {
-      const { data: payload, cached: hit } = await cached(redis, `stats_lineups_${id}`, 3600, async () => {
+      const { data: payload, cached: hit } = await cached(redis, `stats_lineups_v2_${id}`, 3600, async () => {
         const d = await statsFetch(`/matches/${id}/lineups`);
         const raw = d?.data;
         const home = normalizeLineupSide(raw?.home);
