@@ -19,7 +19,7 @@ export default function MatchDetail({ results, statsMatchIdMap = {} }) {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const match = MATCHES.find(m => m.id === id);
+  const match = MATCHES.find(m => String(m.id) === id);
   if (!match) {
     return (
       <div className="md-not-found">

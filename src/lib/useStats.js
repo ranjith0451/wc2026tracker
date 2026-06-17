@@ -99,7 +99,8 @@ export function useSchedule() {
       const liveCount = query.state.data?.liveCount || 0;
       return liveCount > 0 ? 60_000 : 5 * 60_000;
     },
-    refetchIntervalInBackground: false,
+    refetchIntervalInBackground: true,
+    refetchOnWindowFocus: true,
     staleTime: 55_000,
   });
 }
