@@ -3,7 +3,7 @@
  */
 import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
-import { usePlayerRatings, useShotmap, useMatchReferee, useMatchLineups, useMatchEvents, useMatchStats } from "../lib/useStats.js";
+import { usePlayerRatings, useShotmap, useMatchReferee, useMatchLineups, useMatchEvents, useMatchStats, useLiveStats } from "../lib/useStats.js";
 import PlayerRatingChip, { PlayerRatingRow } from "./PlayerRatingChip.jsx";
 import ShotmapWidget from "./ShotmapWidget.jsx";
 import HeatmapWidget from "./HeatmapWidget.jsx";
@@ -563,6 +563,13 @@ export default function LiveMatchPanel({
   const isLive  = result?.status === "live";
   const isFT    = result?.status === 'finished' || result?.statusShort === 'FT' || result?.statusShort === 'AET' || result?.statusShort === 'PEN';
 
+  // Live-stats: real-time elapsed + stats during in-play (30s refresh)
+  const { data: liveStatsData } = useLiveStats(statsMatchId, isLive);
+  const liveElapsed = liveStatsData?.elapsed ?? liveStatsData?.raw?.elapsed ?? null;
+  const liveStatusShort = liveStatsData?.statusShort ?? liveStatsData?.raw?.status ?? null;
+  const displayElapsed = liveElapsed ?? result?.elapsed;
+  const displayStatusShort = liveStatusShort ?? result?.statusShort;
+
   // Fetch all data from TheStatsAPI directly
   const { data: statsLineups } = useMatchLineups(statsMatchId);
   const effectiveLineups = statsLineups?.length > 0 ? statsLineups : null;
@@ -625,8 +632,8 @@ export default function LiveMatchPanel({
             <div className="flp-score-mid">
               <span className={`flp-status ${isLive ? "live" : ""}`}>
                 {isLive
-                  ? <><span className="flp-dot"/>{result.statusShort === "HT" ? "HT" : `${result.elapsed}'`}</>
-                  : result.statusShort === "AET" ? "AET" : result.statusShort === "PEN" ? "Pens" : "FT"}
+                  ? <><span className="flp-dot"/>{displayStatusShort === "HT" ? "HT" : `${displayElapsed ?? '?'}'`}</>
+                  : displayStatusShort === "AET" ? "AET" : displayStatusShort === "PEN" ? "Pens" : "FT"}
               </span>
               {result.halftime && !isLive && (
                 <span className="flp-ht">HT {result.halftime.home}–{result.halftime.away}</span>

@@ -140,6 +140,18 @@ export function useMatchStats(statsMatchId, { live = false } = {}) {
   });
 }
 
+// ── Live match stats (in-play elapsed + real-time stats) ─────────────────────
+export function useLiveStats(statsMatchId, enabled = false) {
+  return useQuery({
+    queryKey: ['stats-livestats', statsMatchId],
+    queryFn: () => statsFetch('live-stats', { id: statsMatchId }),
+    enabled: !!statsMatchId && enabled,
+    refetchInterval: 30_000,
+    refetchIntervalInBackground: true,
+    staleTime: 25_000,
+  });
+}
+
 // ── Lineups ───────────────────────────────────────────────────────────────────
 export function useMatchLineups(statsMatchId) {
   return useQuery({

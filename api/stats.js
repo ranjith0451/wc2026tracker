@@ -285,6 +285,25 @@ export default async function handler(req, res) {
       return res.status(200).json(payload || {});
     }
 
+    // ── Live match stats (in-play only) ──────────────────────────────────────
+    if (action === 'live-stats') {
+      const { data: payload, cached: hit } = await cached(redis, `stats_livestats_${id}`, 30, async () => {
+        const d = await statsFetch(`/matches/${id}/live-stats`);
+        const raw = d?.data || d || {};
+        // Normalize: merge live-stats shape into same structure as /stats
+        const normalized = normalizeTeamStats(d) || {};
+        // Also expose raw elapsed/minute from live-stats
+        return {
+          ...normalized,
+          elapsed: raw.elapsed ?? raw.minute ?? raw.current_time ?? raw.match_time ?? raw.time ?? null,
+          statusShort: raw.status ?? raw.match_status ?? raw.period ?? null,
+          raw,
+        };
+      });
+      res.setHeader('X-Cache', hit ? 'HIT' : 'MISS');
+      return res.status(200).json(payload || {});
+    }
+
     // ── Per-player statistics (rating algorithm input) ────────────────────────
     if (action === 'player-stats') {
       const { data: payload, cached: hit } = await cached(redis, `stats_playerstats_${id}`, 3600, async () => {
