@@ -218,19 +218,28 @@ export default async function handler(req, res) {
 
     // ── All WC matches (builds statsMatchIdMap) ───────────────────────────────
     if (action === 'all-matches') {
-      const { data: payload, cached: hit } = await cached(redis, 'stats_all_wc', 21600, async () => {
+      // Fetch static match list (long cache) + live matches (short cache), merge
+      const { data: bulk } = await cached(redis, 'stats_all_wc', 3600, async () => {
         const [page1, page2] = await Promise.all([
           statsFetch(`/matches?competition_id=${WC_COMP}&per_page=100&page=1`),
           statsFetch(`/matches?competition_id=${WC_COMP}&per_page=100&page=2`),
         ]);
-        const matches = [
-          ...(page1?.data || []),
-          ...(page2?.data || []),
-        ];
-        return { matches };
+        return { matches: [...(page1?.data || []), ...(page2?.data || [])] };
       });
-      res.setHeader('X-Cache', hit ? 'HIT' : 'MISS');
-      return res.status(200).json(payload);
+
+      // Always fetch live matches fresh (30s cache) to get real-time elapsed
+      const { data: liveData } = await cached(redis, 'stats_live_wc', 30, async () => {
+        const d = await statsFetch(`/matches?competition_id=${WC_COMP}&status=live&per_page=50`);
+        return { matches: d?.data || [] };
+      });
+
+      // Merge: live entries override bulk entries by id
+      const matchMap = {};
+      for (const m of (bulk?.matches || [])) matchMap[m.id] = m;
+      for (const m of (liveData?.matches || [])) matchMap[m.id] = { ...matchMap[m.id], ...m };
+
+      res.setHeader('X-Cache', liveData?.matches?.length > 0 ? 'LIVE' : 'BULK');
+      return res.status(200).json({ matches: Object.values(matchMap) });
     }
 
     // ── Matches by date ───────────────────────────────────────────────────────

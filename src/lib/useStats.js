@@ -78,8 +78,10 @@ export function useSchedule() {
           homeScore: Number(homeScore),
           awayScore: Number(awayScore),
           statusShort,
-          elapsed: apiM.elapsed ?? apiM.minute ?? apiM.current_time ?? apiM.match_time ?? apiM.time_elapsed ?? null,
-          halftime: apiM.halftime ?? apiM.half_time ?? apiM.ht_score ?? null,
+          elapsed: apiM.elapsed ?? apiM.minute ?? apiM.current_time ?? apiM.match_time ?? apiM.time_elapsed ?? apiM.time ?? null,
+          halftime: (apiM.score?.half_time_home != null)
+            ? { home: apiM.score.half_time_home, away: apiM.score.half_time_away }
+            : (apiM.halftime ?? apiM.half_time ?? null),
           statsMatchId: apiM.id,
         };
       }
