@@ -218,10 +218,9 @@ export default async function handler(req, res) {
 
     // ── All WC matches (builds statsMatchIdMap) ───────────────────────────────
     if (action === 'all-matches') {
-      // Fetch all matches with aggressive cache busting
-      // When live matches exist, use 30s cache. Otherwise 5min.
-      // Previous live data cached → check current status of those matches
-      const { data: allData, cached: hit } = await cached(redis, 'stats_all_wc', 30, async () => {
+      // Fetch all matches with balanced cache
+      // 60s cache balances freshness vs server load
+      const { data: allData, cached: hit } = await cached(redis, 'stats_all_wc', 60, async () => {
         const [page1, page2] = await Promise.all([
           statsFetch(`/matches?competition_id=${WC_COMP}&per_page=100&page=1`),
           statsFetch(`/matches?competition_id=${WC_COMP}&per_page=100&page=2`),
