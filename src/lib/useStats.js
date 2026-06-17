@@ -78,7 +78,10 @@ export function useSchedule() {
           homeScore: Number(homeScore),
           awayScore: Number(awayScore),
           statusShort,
-          elapsed: apiM.elapsed ?? apiM.minute ?? apiM.current_time ?? apiM.match_time ?? apiM.time_elapsed ?? apiM.time ?? null,
+          elapsed: apiM.elapsed ?? apiM.minute ?? apiM.current_time ?? apiM.match_time ?? apiM.time_elapsed ?? apiM.time
+            ?? (localStatus === 'live' && apiM.utc_date
+              ? Math.min(90, Math.max(1, Math.floor((Date.now() - new Date(apiM.utc_date).getTime()) / 60000)))
+              : null),
           halftime: (apiM.score?.half_time_home != null)
             ? { home: apiM.score.half_time_home, away: apiM.score.half_time_away }
             : (apiM.halftime ?? apiM.half_time ?? null),
