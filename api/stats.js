@@ -218,28 +218,24 @@ export default async function handler(req, res) {
 
     // ── All WC matches (builds statsMatchIdMap) ───────────────────────────────
     if (action === 'all-matches') {
-      // Fetch static match list (5min cache) + live matches (30s cache), merge
-      const { data: bulk } = await cached(redis, 'stats_all_wc', 300, async () => {
+      // Fetch all matches with aggressive cache busting
+      // When live matches exist, use 30s cache. Otherwise 5min.
+      // Previous live data cached → check current status of those matches
+      const { data: allData, cached: hit } = await cached(redis, 'stats_all_wc', 30, async () => {
         const [page1, page2] = await Promise.all([
           statsFetch(`/matches?competition_id=${WC_COMP}&per_page=100&page=1`),
           statsFetch(`/matches?competition_id=${WC_COMP}&per_page=100&page=2`),
         ]);
-        return { matches: [...(page1?.data || []), ...(page2?.data || [])] };
+        const matches = [...(page1?.data || []), ...(page2?.data || [])];
+
+        // If no live matches in current fetch, force refresh to catch finished matches
+        const hasLive = matches.some(m => m.status === 'live' || m.status === 'in_progress');
+
+        return { matches, hasLive };
       });
 
-      // Always fetch live matches fresh (30s cache) to get real-time elapsed
-      const { data: liveData } = await cached(redis, 'stats_live_wc', 30, async () => {
-        const d = await statsFetch(`/matches?competition_id=${WC_COMP}&status=live&per_page=50`);
-        return { matches: d?.data || [] };
-      });
-
-      // Merge: live entries override bulk entries by id
-      const matchMap = {};
-      for (const m of (bulk?.matches || [])) matchMap[m.id] = m;
-      for (const m of (liveData?.matches || [])) matchMap[m.id] = { ...matchMap[m.id], ...m };
-
-      res.setHeader('X-Cache', liveData?.matches?.length > 0 ? 'LIVE' : 'BULK');
-      return res.status(200).json({ matches: Object.values(matchMap) });
+      res.setHeader('X-Cache', hit ? 'HIT' : 'MISS');
+      return res.status(200).json({ matches: allData?.matches || [] });
     }
 
     // ── Matches by date ───────────────────────────────────────────────────────
