@@ -78,8 +78,8 @@ export function useSchedule() {
           homeScore: Number(homeScore),
           awayScore: Number(awayScore),
           statusShort,
-          elapsed: apiM.elapsed || apiM.minute || null,
-          halftime: apiM.halftime || apiM.half_time || null,
+          elapsed: apiM.elapsed ?? apiM.minute ?? apiM.current_time ?? apiM.match_time ?? apiM.time_elapsed ?? null,
+          halftime: apiM.halftime ?? apiM.half_time ?? apiM.ht_score ?? null,
           statsMatchId: apiM.id,
         };
       }
@@ -97,7 +97,8 @@ export function useSchedule() {
     },
     refetchInterval: (query) => {
       const liveCount = query.state.data?.liveCount || 0;
-      return liveCount > 0 ? 60_000 : 5 * 60_000;
+      // Poll every 60s always — detects match going live even when currently no live matches
+      return liveCount > 0 ? 30_000 : 60_000;
     },
     refetchIntervalInBackground: true,
     refetchOnWindowFocus: true,
@@ -122,6 +123,7 @@ export function useMatchEvents(statsMatchId, { live = false } = {}) {
     queryFn: () => statsFetch('events', { id: statsMatchId }),
     enabled: !!statsMatchId,
     refetchInterval: live ? 60_000 : false,
+    refetchIntervalInBackground: true,
     staleTime: live ? 50_000 : 10 * 60_000,
   });
 }
@@ -133,6 +135,7 @@ export function useMatchStats(statsMatchId, { live = false } = {}) {
     queryFn: () => statsFetch('stats', { id: statsMatchId }),
     enabled: !!statsMatchId,
     refetchInterval: live ? 60_000 : false,
+    refetchIntervalInBackground: true,
     staleTime: live ? 50_000 : 90_000,
   });
 }
