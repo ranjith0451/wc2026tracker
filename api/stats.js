@@ -218,8 +218,8 @@ export default async function handler(req, res) {
 
     // ── All WC matches (builds statsMatchIdMap) ───────────────────────────────
     if (action === 'all-matches') {
-      // Fetch static match list (long cache) + live matches (short cache), merge
-      const { data: bulk } = await cached(redis, 'stats_all_wc', 3600, async () => {
+      // Fetch static match list (5min cache) + live matches (30s cache), merge
+      const { data: bulk } = await cached(redis, 'stats_all_wc', 300, async () => {
         const [page1, page2] = await Promise.all([
           statsFetch(`/matches?competition_id=${WC_COMP}&per_page=100&page=1`),
           statsFetch(`/matches?competition_id=${WC_COMP}&per_page=100&page=2`),
