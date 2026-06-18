@@ -82,17 +82,19 @@ function MatchPredCard({ match, preds, onPick, results, matchById }) {
         >
           <TeamFlag team={!home.isPlaceholder ? home.name : ""} />
           <span className="pred-team-name">{home.name}</span>
+          {pick === "home" && !isFinished && <span className="pred-pick-dot" />}
+          {isFinished && pick === "home" && (
+            <span className={`pred-result-badge ${isCorrect ? "correct" : "wrong"}`}>
+              {isCorrect ? "✓" : "✗"}
+            </span>
+          )}
         </button>
 
-        {/* Draw / VS */}
+        {/* VS divider */}
         <div className="pred-vs-divider">
-          {isFinished ? (
-            <span className={`pred-result-badge ${isCorrect ? "correct" : pick ? "wrong" : ""}`}>
-              {isCorrect ? "✓" : pick ? "✗" : ""}
-            </span>
-          ) : (
-            <span className="pred-vs-text">VS</span>
-          )}
+          <span className="pred-vs-text">
+            {isFinished && result ? `${result.homeScore} – ${result.awayScore}` : "VS"}
+          </span>
         </div>
 
         {/* Away */}
@@ -103,15 +105,17 @@ function MatchPredCard({ match, preds, onPick, results, matchById }) {
         >
           <TeamFlag team={!away.isPlaceholder ? away.name : ""} />
           <span className="pred-team-name">{away.name}</span>
+          {pick === "away" && !isFinished && <span className="pred-pick-dot" />}
+          {isFinished && pick === "away" && (
+            <span className={`pred-result-badge ${isCorrect ? "correct" : "wrong"}`}>
+              {isCorrect ? "✓" : "✗"}
+            </span>
+          )}
         </button>
       </div>
       <div className="pred-match-meta">
-        <span>{formatISTDate(match.isoIST)} {formatISTTime(match.isoIST)}</span>
-        {isFinished && (
-          <span className="pred-actual-score">
-            Result: {result.homeScore} – {result.awayScore}
-          </span>
-        )}
+        <span>{formatISTDate(match.isoIST)} · {formatISTTime(match.isoIST)}</span>
+        {isFinished && <span className="pred-actual-score">FT</span>}
       </div>
     </div>
   );
