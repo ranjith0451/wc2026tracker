@@ -4533,3 +4533,137 @@ img { display: block; }
   .pred-groups { grid-template-columns: 1fr 1fr; gap: 8px; }
   .pred-stage-matches { grid-template-columns: 1fr; gap: 8px; }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   COMPREHENSIVE MOBILE RESPONSIVE
+═══════════════════════════════════════════════════════════════ */
+
+/* ── 640px ─────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  /* Stat cards — shrink numbers in 2-col layout */
+  .stat-num { font-size: 34px; }
+  .stat-card { padding: 16px 12px; }
+  .stat-icon { width: 32px; height: 32px; margin-bottom: 8px; }
+
+  /* Hero */
+  .hero-desc { font-size: 14px; max-width: 100%; }
+  .hero-actions { gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+  .live-pill { font-size: 11px; padding: 5px 12px; }
+
+  /* Quick links bar */
+  .quick-links { gap: 8px; flex-wrap: wrap; }
+  .quick-link { font-size: 11px; padding: 7px 14px; }
+
+  /* Section headings */
+  .sec-title { font-size: 18px; }
+
+  /* Pre-match venue card */
+  .pmv-stats { gap: 14px; }
+  .pmv-stat-value { font-size: 14px; }
+
+  /* Pre-match weather — allow wrap */
+  .pmv-weather { flex-wrap: wrap; row-gap: 6px; }
+  .pmv-wx-desc { flex: 1 1 100%; order: 3; margin-top: 0; }
+  .pmv-wx-extras { order: 2; text-align: right; }
+
+  /* Predictor */
+  .pred-title { font-size: 26px; }
+  .pred-hero { padding-top: 16px; padding-bottom: 14px; }
+  .pred-tab { font-size: 12px; padding: 8px 14px; }
+
+  /* Match detail pre-match */
+  .prematch-wrap { gap: 16px; }
+  .prematch-venue-card { padding: 14px 16px; gap: 12px; }
+
+  /* Bracket page — horizontal scroll hint */
+  .bk-stage { min-width: 0; }
+  .bk-card { min-width: 160px; }
+}
+
+/* ── 480px ─────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  /* Hide live clock in header to save space */
+  .header-clock { display: none !important; }
+
+  /* Stat cards */
+  .stat-num { font-size: 28px; }
+  .stat-lbl { font-size: 10px; }
+  .stat-card { padding: 14px 10px; border-radius: 10px; }
+
+  /* Hero title year — slightly smaller ghost text */
+  .hero-title-year { font-size: 52px; }
+  .hero h1 { margin-bottom: 10px; }
+
+  /* Home group standings — 2-col min 150px */
+  .home-groups-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; }
+  .home-group-card { border-radius: 10px; }
+
+  /* Match detail teams — allow long names to wrap */
+  .md-team-name { font-size: 11px; max-width: 80px; white-space: normal; word-break: break-word; line-height: 1.2; }
+  .md-flag { width: 36px; height: 25px; }
+  .md-vs { font-size: 22px; }
+  .md-score { font-size: 32px; }
+  .md-score-block { min-width: 72px; }
+
+  /* Pre-match weather — full stack */
+  .pmv-weather { flex-direction: column; align-items: flex-start; gap: 6px; padding: 10px 12px; }
+  .pmv-wx-icon { font-size: 24px; }
+  .pmv-wx-temp { font-size: 18px; }
+  .pmv-wx-extras { flex-direction: row; gap: 12px; text-align: left; }
+
+  /* Pre-match section head */
+  .prematch-section-head { font-size: 11px; margin-bottom: 8px; }
+
+  /* Predictor groups — single column */
+  .pred-groups { grid-template-columns: 1fr !important; }
+  .pred-match-card { border-radius: 10px; }
+
+  /* Scorers card */
+  .scorers-card { border-radius: 10px; }
+  .scorer-name { font-size: 13px; }
+
+  /* Section head */
+  .sec-head { gap: 6px; margin-bottom: 14px; }
+  .sec-title { font-size: 16px; }
+
+  /* Quick links — 2 per row */
+  .quick-links { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .quick-link { justify-content: center; }
+}
+
+/* ── 400px: very small phones (iPhone SE, etc.) ────────────── */
+@media (max-width: 400px) {
+  /* Even less padding */
+  .main { padding: 10px 12px 80px !important; }
+  .header-inner { padding: 0 12px; }
+
+  /* Hero compact */
+  .hero { padding: 20px 14px; border-radius: 12px; }
+  .hero-eyebrow { font-size: 10px; letter-spacing: .12em; }
+  .hero-desc { font-size: 13px; }
+
+  /* Nav — icon-only to save space */
+  .nav-inner { padding: 0 6px; }
+  .nav-link { font-size: 0; padding: 5px 9px; gap: 0; min-width: 36px; justify-content: center; }
+  .nav-link svg { width: 16px; height: 16px; opacity: .8; }
+  .nav-link.active svg { opacity: 1; }
+
+  /* Pre-match: compact venue header */
+  .pmv-icon { font-size: 24px; }
+  .pmv-name { font-size: 15px; }
+  .pmv-stats { gap: 12px; }
+
+  /* Lineup cards stacked, smaller text */
+  .pmq-name { font-size: 12px; }
+  .pmq-player { padding: 5px 8px; }
+  .prematch-team-header { font-size: 13px; }
+
+  /* Stats grid — tighter */
+  .stats-grid { gap: 8px; }
+  .stat-num { font-size: 26px; }
+
+  /* Match detail */
+  .md-header { padding: 12px 10px 16px; border-radius: 12px; }
+  .md-meta { font-size: 10px; margin-bottom: 12px; }
+  .md-team-name { font-size: 10px; max-width: 70px; }
+}
