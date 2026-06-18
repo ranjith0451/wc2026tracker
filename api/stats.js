@@ -315,6 +315,28 @@ export default async function handler(req, res) {
       return res.status(200).json({ scorers: payload || [] });
     }
 
+    // ── Debug: inspect raw timeline for one finished match ───────────────────
+    if (action === 'debug-scorers') {
+      const [p1] = await Promise.all([
+        statsFetch(`/matches?competition_id=${WC_COMP}&per_page=100&page=1`),
+      ]);
+      const allMatches = p1?.data || [];
+      const DONE = new Set(['ft', 'aet', 'pen', 'finished', 'completed', 'full_time', 'awarded', 'walkover']);
+      const finished = allMatches.filter(m => DONE.has((m.status || '').toLowerCase()));
+      if (finished.length === 0) return res.status(200).json({ error: 'no finished matches', allMatches: allMatches.slice(0, 3) });
+      const sample = finished[0];
+      const rawTimeline = await statsFetch(`/matches/${sample.id}/timeline`);
+      return res.status(200).json({
+        matchId: sample.id,
+        matchStatus: sample.status,
+        home: sample.home_team?.name,
+        away: sample.away_team?.name,
+        timelineTopLevelKeys: Object.keys(rawTimeline || {}),
+        rawTimelineSample: rawTimeline,
+        finishedCount: finished.length,
+      });
+    }
+
     if (!id) return res.status(400).json({ error: 'id required' });
 
     // ── Match details ─────────────────────────────────────────────────────────
