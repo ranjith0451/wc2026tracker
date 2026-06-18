@@ -253,6 +253,64 @@ export default async function handler(req, res) {
       return res.status(200).json(payload);
     }
 
+    // ── Competition top scorers (derived from per-match event timelines) ────────
+    if (action === 'top-scorers') {
+      const { data: payload, cached: hit } = await cached(redis, 'stats_topscorers', 300, async () => {
+        // Step 1: get all WC matches, pick finished ones
+        const [p1, p2] = await Promise.all([
+          statsFetch(`/matches?competition_id=${WC_COMP}&per_page=100&page=1`),
+          statsFetch(`/matches?competition_id=${WC_COMP}&per_page=100&page=2`),
+        ]);
+        const allMatches = [...(p1?.data || []), ...(p2?.data || [])];
+        const DONE = new Set(['ft', 'aet', 'pen', 'finished', 'completed', 'full_time', 'awarded', 'walkover']);
+        const finished = allMatches.filter(m => DONE.has((m.status || '').toLowerCase()));
+
+        // Step 2: fetch timeline for each finished match (re-use cached events where possible)
+        const GOAL_TYPES = new Set(['goal', 'penalty_goal', 'freekick_goal', 'own_goal']);
+        const tally = {};
+
+        await Promise.allSettled(finished.map(async m => {
+          let events;
+          if (redis) {
+            try {
+              const cached_hit = await redis.get(`stats_events_${m.id}`);
+              if (cached_hit) { events = JSON.parse(cached_hit); }
+            } catch {}
+          }
+          if (!events) {
+            try {
+              const d = await statsFetch(`/matches/${m.id}/timeline`);
+              events = d?.data || [];
+              if (redis) {
+                try { await redis.setex(`stats_events_${m.id}`, 86400, JSON.stringify(events)); } catch {}
+              }
+            } catch { return; }
+          }
+
+          for (const ev of (Array.isArray(events) ? events : [])) {
+            const type = (ev.type || ev.event_type || '').toLowerCase();
+            if (!GOAL_TYPES.has(type)) continue;
+            if (type === 'own_goal') continue;
+            const player = ev.player_name || ev.player?.name || '';
+            const team   = ev.team_name   || ev.team?.name   || '';
+            if (!player) continue;
+            const key = `${player}||${team}`;
+            if (!tally[key]) tally[key] = { player, team, goals: 0, penalties: 0, matchIds: new Set() };
+            tally[key].goals++;
+            if (type === 'penalty_goal') tally[key].penalties++;
+            tally[key].matchIds.add(m.id);
+          }
+        }));
+
+        return Object.values(tally)
+          .map(t => ({ player: t.player, team: t.team, goals: t.goals, penalties: t.penalties, matches: t.matchIds.size }))
+          .sort((a, b) => b.goals - a.goals || a.player.localeCompare(b.player));
+      }, false);
+
+      res.setHeader('X-Cache', hit ? 'HIT' : 'MISS');
+      return res.status(200).json({ scorers: payload || [] });
+    }
+
     if (!id) return res.status(400).json({ error: 'id required' });
 
     // ── Match details ─────────────────────────────────────────────────────────
@@ -394,65 +452,6 @@ export default async function handler(req, res) {
       });
       res.setHeader('X-Cache', hit ? 'HIT' : 'MISS');
       return res.status(200).json(payload);
-    }
-
-    // ── Competition top scorers (derived from per-match event timelines) ────────
-    if (action === 'top-scorers') {
-      const { data: payload, cached: hit } = await cached(redis, 'stats_topscorers', 300, async () => {
-        // Step 1: get all WC matches, pick finished ones
-        const [p1, p2] = await Promise.all([
-          statsFetch(`/matches?competition_id=${WC_COMP}&per_page=100&page=1`),
-          statsFetch(`/matches?competition_id=${WC_COMP}&per_page=100&page=2`),
-        ]);
-        const allMatches = [...(p1?.data || []), ...(p2?.data || [])];
-        const DONE = new Set(['ft', 'aet', 'pen', 'finished', 'completed', 'full_time', 'awarded', 'walkover']);
-        const finished = allMatches.filter(m => DONE.has((m.status || '').toLowerCase()));
-
-        // Step 2: fetch timeline for each finished match (re-use cached events where possible)
-        const GOAL_TYPES = new Set(['goal', 'penalty_goal', 'freekick_goal', 'own_goal']);
-        const tally = {};
-
-        await Promise.allSettled(finished.map(async m => {
-          let events;
-          // Try to read from existing per-match cache key
-          if (redis) {
-            try {
-              const hit = await redis.get(`stats_events_${m.id}`);
-              if (hit) { events = JSON.parse(hit); }
-            } catch {}
-          }
-          if (!events) {
-            try {
-              const d = await statsFetch(`/matches/${m.id}/timeline`);
-              events = d?.data || [];
-              if (redis) {
-                try { await redis.setex(`stats_events_${m.id}`, 86400, JSON.stringify(events)); } catch {}
-              }
-            } catch { return; }
-          }
-
-          for (const ev of (Array.isArray(events) ? events : [])) {
-            const type = (ev.type || ev.event_type || '').toLowerCase();
-            if (!GOAL_TYPES.has(type)) continue;
-            if (type === 'own_goal') continue; // own goals don't count for scorer
-            const player = ev.player_name || ev.player?.name || '';
-            const team   = ev.team_name   || ev.team?.name   || '';
-            if (!player) continue;
-            const key = `${player}||${team}`;
-            if (!tally[key]) tally[key] = { player, team, goals: 0, penalties: 0, matchIds: new Set() };
-            tally[key].goals++;
-            if (type === 'penalty_goal') tally[key].penalties++;
-            tally[key].matchIds.add(m.id);
-          }
-        }));
-
-        return Object.values(tally)
-          .map(t => ({ player: t.player, team: t.team, goals: t.goals, penalties: t.penalties, matches: t.matchIds.size }))
-          .sort((a, b) => b.goals - a.goals || a.player.localeCompare(b.player));
-      }, false); // false = don't count top-scorers aggregation as extra API usage
-
-      res.setHeader('X-Cache', hit ? 'HIT' : 'MISS');
-      return res.status(200).json({ scorers: payload || [] });
     }
 
     return res.status(400).json({ error: `Unknown action: ${action}` });
