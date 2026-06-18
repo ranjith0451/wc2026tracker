@@ -2,12 +2,11 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { MATCHES } from '../data/matches.js';
 import { TEAMS } from '../data/squads.js';
+import { FLAG_URL, FLAGS } from '../data/teams.js';
 import { getVenue } from '../data/venues.js';
 import { resolveMatchTeams } from '../lib/bracket.js';
 import { getMatchStatus } from '../lib/time.js';
 import LiveMatchPanel from '../components/LiveMatchPanel.jsx';
-
-const FLAG_URL = (name) => `https://flagcdn.com/w40/${name?.toLowerCase().replace(/ /g, '-')}.png`;
 
 const WMO_LABELS = {
   0:'Clear sky',1:'Mainly clear',2:'Partly cloudy',3:'Overcast',
