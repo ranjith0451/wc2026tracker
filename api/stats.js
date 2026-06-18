@@ -396,6 +396,25 @@ export default async function handler(req, res) {
       return res.status(200).json(payload);
     }
 
+    // ── Competition top scorers ───────────────────────────────────────────────
+    if (action === 'top-scorers') {
+      const { data: payload, cached: hit } = await cached(redis, `stats_topscorers`, 300, async () => {
+        const d = await statsFetch(`/competitions/${WC_COMP}/top-scorers`);
+        const raw = d?.data || d?.scorers || d || [];
+        const list = Array.isArray(raw) ? raw : [];
+        return list.map(p => ({
+          player:   p.player_name  || p.player?.name  || p.name  || 'Unknown',
+          team:     p.team_name    || p.team?.name     || '',
+          goals:    p.goals        ?? p.goal_count     ?? 0,
+          assists:  p.assists      ?? p.assist_count   ?? 0,
+          penalties:p.penalty_goals ?? p.penalties     ?? 0,
+          matches:  p.matches_played ?? p.appearances  ?? p.apps ?? 0,
+        })).sort((a, b) => b.goals - a.goals);
+      });
+      res.setHeader('X-Cache', hit ? 'HIT' : 'MISS');
+      return res.status(200).json({ scorers: payload || [] });
+    }
+
     return res.status(400).json({ error: `Unknown action: ${action}` });
 
   } catch (err) {

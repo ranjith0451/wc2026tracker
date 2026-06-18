@@ -4,8 +4,9 @@ import { GROUPS } from "../data/teams.js";
 import MatchCard from "../components/MatchCard.jsx";
 import TeamFlag from "../components/TeamFlag.jsx";
 import { getMatchStatus } from "../lib/time.js";
-import { getTopScorers, getTeamGoalCounts } from "../lib/topscorers.js";
+import { getTeamGoalCounts } from "../lib/topscorers.js";
 import { getGroupStandings } from "../lib/standings.js";
+import { useTopScorers } from "../lib/useStats.js";
 
 const MEDALS = ["🥇","🥈","🥉"];
 
@@ -70,7 +71,8 @@ export default function Home({ results }) {
     .slice(0, 5);
 
   const totalGoals = Object.values(getTeamGoalCounts(results)).reduce((a, b) => a + b, 0);
-  const topScorers = getTopScorers(results).slice(0, 3);
+  const { data: liveScorers = [] } = useTopScorers();
+  const topScorers = liveScorers.slice(0, 3);
 
   return (
     <div>

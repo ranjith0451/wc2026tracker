@@ -218,6 +218,19 @@ export function useMatchReferee(statsMatchId) {
   });
 }
 
+// ── Competition top scorers ───────────────────────────────────────────────────
+export function useTopScorers() {
+  return useQuery({
+    queryKey: ['stats-top-scorers'],
+    queryFn: async () => {
+      const data = await statsFetch('top-scorers');
+      return data?.scorers || [];
+    },
+    refetchInterval: 5 * 60_000,
+    staleTime: 4 * 60_000,
+  });
+}
+
 // ── Invalidate all stats for a match (retry) ──────────────────────────────────
 export function useStatsRefresh(statsMatchId) {
   const qc = useQueryClient();
