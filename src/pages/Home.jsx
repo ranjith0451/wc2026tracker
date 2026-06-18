@@ -102,10 +102,10 @@ export default function Home({ results }) {
 
           <div className="hero-actions">
             {live.length > 0 ? (
-              <span className="live-pill">
+              <Link to={`/match/${live[0].m.id}`} className="live-pill" style={{ textDecoration:"none", cursor:"pointer" }}>
                 <span className="live-dot" />
                 {live.length} match{live.length > 1 ? "es" : ""} live now
-              </span>
+              </Link>
             ) : upcoming.length > 0 ? (
               <Link to={`/match/${upcoming[0].m.id}`} className="live-pill" style={{ background:"rgba(37,99,235,.1)", borderColor:"rgba(37,99,235,.3)", color:"var(--blue-bright)", boxShadow:"none", animation:"none", textDecoration:"none", cursor:"pointer" }}>
                 <span style={{ width:6, height:6, background:"var(--blue-bright)", borderRadius:"50%", boxShadow:"0 0 6px var(--blue-bright)" }} />
