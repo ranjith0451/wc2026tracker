@@ -104,10 +104,15 @@ export default function Home({ results }) {
                 <span className="live-dot" />
                 {live.length} match{live.length > 1 ? "es" : ""} live now
               </span>
+            ) : upcoming.length > 0 ? (
+              <Link to={`/match/${upcoming[0].m.id}`} className="live-pill" style={{ background:"rgba(37,99,235,.1)", borderColor:"rgba(37,99,235,.3)", color:"var(--blue-bright)", boxShadow:"none", animation:"none", textDecoration:"none", cursor:"pointer" }}>
+                <span style={{ width:6, height:6, background:"var(--blue-bright)", borderRadius:"50%", boxShadow:"0 0 6px var(--blue-bright)" }} />
+                Next match coming up
+              </Link>
             ) : (
               <span className="live-pill" style={{ background:"rgba(37,99,235,.1)", borderColor:"rgba(37,99,235,.3)", color:"var(--blue-bright)", boxShadow:"none", animation:"none" }}>
                 <span style={{ width:6, height:6, background:"var(--blue-bright)", borderRadius:"50%", boxShadow:"0 0 6px var(--blue-bright)" }} />
-                {upcoming.length > 0 ? "Next match coming up" : "Tournament ongoing"}
+                Tournament ongoing
               </span>
             )}
             <Link to="/schedule" className="quick-link" style={{ borderRadius:999, fontSize:11, padding:"6px 16px" }}>

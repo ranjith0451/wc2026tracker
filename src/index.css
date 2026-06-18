@@ -4232,6 +4232,70 @@ img { display: block; }
 }
 .md-empty-sub { margin-top: 8px; font-size: 13px; color: var(--text-tertiary); font-weight: 400; }
 
+/* ── Pre-match panels (scheduled matches) ────────────────────────────── */
+.prematch-wrap { display: flex; flex-direction: column; gap: 20px; padding-top: 4px; }
+
+.prematch-section-head {
+  font-family: var(--font-display); font-size: 13px; font-weight: 700;
+  letter-spacing: .06em; text-transform: uppercase;
+  color: var(--text-tertiary); padding: 4px 0 2px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Stadium card */
+.prematch-venue-card {
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px;
+  padding: 18px 20px; display: flex; flex-direction: column; gap: 14px;
+}
+.pmv-header { display: flex; align-items: center; gap: 14px; }
+.pmv-icon { font-size: 32px; line-height: 1; }
+.pmv-name { font-family: var(--font-display); font-size: 17px; font-weight: 700; color: var(--text-primary); }
+.pmv-location { font-size: 13px; color: var(--text-secondary); margin-top: 2px; }
+.pmv-stats { display: flex; gap: 20px; flex-wrap: wrap; }
+.pmv-stat { display: flex; flex-direction: column; gap: 2px; }
+.pmv-stat-label { font-size: 11px; text-transform: uppercase; letter-spacing: .05em; color: var(--text-tertiary); }
+.pmv-stat-value { font-size: 15px; font-weight: 700; color: var(--text-primary); }
+
+/* Weather section inside stadium card */
+.pmv-weather {
+  display: flex; align-items: center; gap: 12px;
+  background: rgba(255,255,255,.04); border: 1px solid var(--border);
+  border-radius: 10px; padding: 12px 16px;
+}
+.pmv-wx-icon { font-size: 28px; line-height: 1; }
+.pmv-wx-temp { font-family: var(--font-display); font-size: 22px; font-weight: 700; color: var(--text-primary); }
+.pmv-wx-desc { font-size: 13px; color: var(--text-secondary); flex: 1; }
+.pmv-wx-extras { display: flex; flex-direction: column; gap: 3px; font-size: 12px; color: var(--text-tertiary); text-align: right; }
+
+/* Lineups */
+.prematch-lineups { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 600px) { .prematch-lineups { grid-template-columns: 1fr; } }
+
+.prematch-team-squad {
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px;
+  padding: 16px; display: flex; flex-direction: column; gap: 14px;
+}
+.prematch-team-header {
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--font-display); font-size: 15px; font-weight: 700; color: var(--text-primary);
+}
+.pmq-flag { width: 28px; height: 20px; object-fit: cover; border-radius: 3px; }
+.pmq-empty { font-size: 13px; color: var(--text-tertiary); padding: 8px 0; }
+.pmq-squad { display: flex; flex-direction: column; gap: 12px; }
+.pmq-pos-group { display: flex; flex-direction: column; gap: 6px; }
+.pmq-pos-label { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--text-tertiary); font-weight: 700; }
+.pmq-players { display: flex; flex-direction: column; gap: 4px; }
+.pmq-player {
+  display: flex; align-items: center; gap: 8px;
+  padding: 6px 10px; border-radius: 8px;
+  background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.06);
+}
+.pmq-pos-badge {
+  font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 4px;
+  background: rgba(96,165,250,.15); color: var(--blue-bright); letter-spacing: .04em;
+}
+.pmq-name { font-size: 13px; color: var(--text-primary); font-weight: 500; }
+
 .md-not-found {
   text-align: center; padding: 80px 20px;
 }
