@@ -280,14 +280,18 @@ export default async function handler(req, res) {
           if (!events) {
             try {
               const d = await statsFetch(`/matches/${m.id}/timeline`);
-              events = d?.data || [];
+              // Store the raw data object (same shape as the regular events action)
+              events = d?.data || d || {};
               if (redis) {
                 try { await redis.setex(`stats_events_${m.id}`, 86400, JSON.stringify(events)); } catch {}
               }
             } catch { return; }
           }
 
-          for (const ev of (Array.isArray(events) ? events : [])) {
+          // Events are nested: { events: [...] } or a plain array
+          const evArray = events?.events || events?.data?.events || (Array.isArray(events) ? events : []);
+
+          for (const ev of evArray) {
             const type = (ev.type || ev.event_type || '').toLowerCase();
             if (!GOAL_TYPES.has(type)) continue;
             if (type === 'own_goal') continue;
