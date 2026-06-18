@@ -37,6 +37,7 @@ const Women      = lazy(() => import("./pages/Women.jsx"));
 const AllTimePlayers = lazy(() => import("./pages/AllTimePlayers.jsx"));
 const Rankings       = lazy(() => import("./pages/Rankings.jsx"));
 const Stats          = lazy(() => import("./pages/Stats.jsx"));
+const Predictor      = lazy(() => import("./pages/Predictor.jsx"));
 const MatchDetail    = lazy(() => import("./pages/MatchDetail.jsx"));
 
 function PageLoader() {
@@ -101,7 +102,17 @@ const GlobeIcon = () => (
 );
 const ChartIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/>
+    <line x1="18" y1="20" x2="18" y2="10"/>
+    <line x1="12" y1="20" x2="12" y2="4"/>
+    <line x1="6" y1="20" x2="6" y2="14"/>
+    <line x1="2" y1="20" x2="22" y2="20"/>
+  </svg>
+);
+const PredictorIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>
+    <line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/>
+    <line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/>
   </svg>
 );
 const EditIcon = () => (
@@ -128,7 +139,8 @@ const NAV_ITEMS = [
   { to: "/women",   label: "Women's",     Icon: FemaleIcon },
   { to: "/all-time",label: "All-Time",    Icon: StatIcon },
   { to: "/rankings", label: "Rankings",   Icon: GlobeIcon },
-  { to: "/stats",    label: "Records",    Icon: ChartIcon },
+  { to: "/stats",     label: "Records",   Icon: ChartIcon },
+  { to: "/predictor", label: "Predictor", Icon: PredictorIcon },
   // Admin hidden from nav — accessible only via /admin URL with PIN
 ];
 
@@ -308,6 +320,7 @@ export default function App() {
               <Route path="/all-time"  element={<AllTimePlayers />} />
               <Route path="/rankings" element={<Rankings />} />
               <Route path="/stats"    element={<Stats />} />
+              <Route path="/predictor" element={<Predictor results={results} />} />
               <Route path="/match/:id" element={<MatchDetail results={results} statsMatchIdMap={statsIdMap} />} />
               <Route path="/admin"    element={
                 <AdminGate>
