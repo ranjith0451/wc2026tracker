@@ -133,6 +133,7 @@ const NAV_ITEMS = [
   { to: "/schedule",label: "Schedule",    Icon: CalIcon },
   { to: "/groups",  label: "Groups",      Icon: GroupIcon },
   { to: "/bracket", label: "Bracket",     Icon: BracketIcon },
+  { to: "/predictor", label: "Predictor", Icon: PredictorIcon },
   { to: "/squads",  label: "Squads",      Icon: SquadIcon },
   { to: "/scorers", label: "Top Scorers", Icon: BootIcon },
   { to: "/history", label: "History",     Icon: HistoryIcon },
@@ -140,7 +141,6 @@ const NAV_ITEMS = [
   { to: "/all-time",label: "All-Time",    Icon: StatIcon },
   { to: "/rankings", label: "Rankings",   Icon: GlobeIcon },
   { to: "/stats",     label: "Records",   Icon: ChartIcon },
-  { to: "/predictor", label: "Predictor", Icon: PredictorIcon },
   // Admin hidden from nav — accessible only via /admin URL with PIN
 ];
 
