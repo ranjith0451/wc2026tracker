@@ -179,6 +179,22 @@ Requested missing features:
   - mobile checks at 390px/360px show correct scrolling and route navigation
   - active tab animation computed style confirms `none`.
 
+## Latest regression-safe fix (Preview: live summary visibility + trophy reliability)
+- Addressed preview-only complaints where:
+  - Live Match Summary section appeared missing
+  - World Cup trophy image intermittently failed
+- Implemented resilience:
+  - Home now always renders a **Live Match Summary** section:
+    - if live matches exist → shows cards
+    - if no live match → shows clear empty-state placeholder (section still visible)
+  - Trophy image loader now uses multi-source fallback:
+    - primary: `/trophy.png`
+    - fallback: `/trophy.jpeg`
+    - final fallback: themed trophy placeholder visual if both fail
+- Local verification confirms:
+  - `[data-testid='trophy-3d']` visible
+  - `[data-testid='home-live-summary-grid']` or `[data-testid='home-live-summary-empty']` always present
+
 ### Files touched for this scope
 - `src/pages/Home.jsx`
 - `src/components/MatchCard.jsx`
