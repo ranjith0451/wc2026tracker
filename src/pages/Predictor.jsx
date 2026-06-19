@@ -133,6 +133,7 @@ export default function Predictor({ results }) {
   const [importBanner, setImportBanner] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const captureRef = useRef(null);
+  const didParseSharedRef = useRef(false);
 
   // Group standings predictions: { groupKey: [team1, team2, team3, team4] }
   const [groupPicks, setGroupPicks] = useState(() => {
@@ -148,6 +149,9 @@ export default function Predictor({ results }) {
 
   // ── Import shared bracket from URL on mount ───────────────────────
   useEffect(() => {
+    if (didParseSharedRef.current) return;
+    didParseSharedRef.current = true;
+
     const encoded = searchParams.get("bracket");
     if (!encoded) return;
     const decoded = decodeBracket(encoded);
@@ -159,7 +163,7 @@ export default function Predictor({ results }) {
     const next = new URLSearchParams(searchParams);
     next.delete("bracket");
     setSearchParams(next, { replace: true });
-  }, []);
+  }, [searchParams, setSearchParams]);
 
   function acceptImport() {
     if (!importBanner) return;

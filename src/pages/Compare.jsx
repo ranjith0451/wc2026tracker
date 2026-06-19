@@ -165,8 +165,20 @@ export default function Compare({ results = {} }) {
       .catch(() => setRankings({}));
   }, []);
 
+  // Keep local state in sync if URL is opened/shared externally
+  useEffect(() => {
+    const nextA = searchParams.get("a") || "";
+    const nextB = searchParams.get("b") || "";
+    if (nextA !== teamA) setTeamA(nextA);
+    if (nextB !== teamB) setTeamB(nextB);
+  }, [searchParams]);
+
   // Persist team selection to URL (shareable)
   useEffect(() => {
+    const currentA = searchParams.get("a") || "";
+    const currentB = searchParams.get("b") || "";
+    if (currentA === teamA && currentB === teamB) return;
+
     const p = {};
     if (teamA) p.a = teamA;
     if (teamB) p.b = teamB;

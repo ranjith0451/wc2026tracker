@@ -1,7 +1,5 @@
 import { lazy, Suspense, useEffect, useState, Component } from "react";
-import { Routes, Route, NavLink, useLocation } from "react-router-dom";
-import { AnimatePresence, motion } from "framer-motion";
-import { pageVariants } from "./lib/motion.js";
+import { Routes, Route, NavLink } from "react-router-dom";
 
 class PageErrorBoundary extends Component {
   constructor(props) { super(props); this.state = { error: null }; }
@@ -179,22 +177,6 @@ function ISTClock() {
   );
 }
 
-function PageWrap({ children }) {
-  const { pathname } = useLocation();
-  return (
-    <motion.div
-      key={pathname}
-      variants={pageVariants}
-      initial="initial"
-      animate="enter"
-      exit="exit"
-      className="page-motion"
-    >
-      {children}
-    </motion.div>
-  );
-}
-
 const ADMIN_PIN = "2026";
 
 function AdminGate({ children }) {
@@ -253,7 +235,6 @@ function pushResults(data) {
 }
 
 export default function App() {
-  const location = useLocation();
   const { results: fetched, lastUpdated: fetchedAt, error } = useResults();
   const { data: scheduleData } = useSchedule();
   const { data: statsMatchIdMap = {} } = useStatsMatchIdMap();
@@ -331,11 +312,9 @@ export default function App() {
 
       {/* Main content */}
       <main className="main">
-        <AnimatePresence mode="wait" initial={false}>
-          <PageWrap key={location.pathname}>
-            <PageErrorBoundary>
-            <Suspense fallback={<PageLoader />}>
-              <Routes location={location}>
+        <PageErrorBoundary>
+          <Suspense fallback={<PageLoader />}>
+            <Routes>
               <Route path="/"         element={<Home results={results} />} />
               <Route path="/schedule" element={<Schedule results={results} statsMatchIdMap={statsIdMap} />} />
               <Route path="/groups"   element={<Groups results={results} />} />
@@ -360,9 +339,7 @@ export default function App() {
               } />
             </Routes>
           </Suspense>
-          </PageErrorBoundary>
-        </PageWrap>
-        </AnimatePresence>
+        </PageErrorBoundary>
       </main>
 
       {/* Footer */}
