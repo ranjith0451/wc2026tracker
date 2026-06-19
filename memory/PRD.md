@@ -158,6 +158,14 @@ Requested missing features:
 - `src/pages/ScorerGoalDetails.jsx` (new)
 - `src/App.jsx`
 
+## Reliability hardening (Top Scorers outage protection)
+- Added frontend scorer snapshot fallback in `src/lib/useStats.js`:
+  - stores last successful scorer payload in `localStorage` (`wc2026_scorers_snapshot_v1`)
+  - uses snapshot as initial data and fallback on API 429/502/transient failures
+  - exposes metadata: `stale`, `source`, `fetchedAt`
+- Updated scorer UIs (`TopScorers`, Home Golden Boot widget) to consume the new payload shape.
+- Added stale-data indicator on Top Scorers page so users know when snapshot is being shown.
+
 ### Files touched for this scope
 - `src/pages/Home.jsx`
 - `src/components/MatchCard.jsx`
