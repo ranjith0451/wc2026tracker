@@ -111,6 +111,20 @@ Requested missing features:
   - Player clicks now go to player profile (not country/squad profile).
 - Data behavior:
   - `useMatchEvents` now supports configurable/no auto polling (`intervalMs`), enabling manual refresh-only behavior where required.
+  - `useMatchStats` now supports configurable/no auto polling (`intervalMs`) and explicit `enabled` flag.
+
+## Latest enhancement (manual live summary metrics)
+- Added requested metrics into Home live summary card, fetched only on manual trigger:
+  - Corners
+  - Goal Kicks
+  - Substitutions
+  - Yellow Cards
+  - Red Cards
+  - Half Time
+  - Full Time / Live score
+- Manual mode implementation:
+  - Both timeline events and stats queries are `enabled: false` by default for Home live summary.
+  - Clicking Refresh triggers both fetches via `Promise.all([refetchEvents(), refetchStats()])`.
 
 ### Files touched for this scope
 - `src/pages/Home.jsx`
