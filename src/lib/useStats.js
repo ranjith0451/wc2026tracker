@@ -122,14 +122,20 @@ export function useMatchDetails(statsMatchId) {
 }
 
 // ── Event timeline ────────────────────────────────────────────────────────────
-export function useMatchEvents(statsMatchId, { live = false } = {}) {
+export function useMatchEvents(statsMatchId, { live = false, intervalMs } = {}) {
+  const polling = intervalMs === false
+    ? false
+    : typeof intervalMs === 'number'
+      ? intervalMs
+      : (live ? 60_000 : false);
+
   return useQuery({
     queryKey: ['stats-events', statsMatchId],
     queryFn: () => statsFetch('events', { id: statsMatchId }),
     enabled: !!statsMatchId,
-    refetchInterval: live ? 60_000 : false,
+    refetchInterval: polling,
     refetchIntervalInBackground: true,
-    staleTime: live ? 50_000 : 10 * 60_000,
+    staleTime: polling ? Math.max(20_000, Math.floor((typeof polling === 'number' ? polling : 60_000) * 0.85)) : 10 * 60_000,
   });
 }
 

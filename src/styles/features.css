@@ -484,6 +484,131 @@
   }
 }
 
+/* ═══════════════════════════════════════════════════════════════════════════
+   HOME — Live Summary blocks
+═══════════════════════════════════════════════════════════════════════════ */
+.home-live-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 12px;
+  margin: 12px 0 8px;
+}
+
+.home-live-summary-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 12px 14px;
+}
+
+.home-live-summary-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.home-live-summary-title {
+  color: var(--text);
+  font-weight: 800;
+  text-decoration: none;
+  border-bottom: 1px dashed rgba(255,255,255,.25);
+}
+
+.home-live-summary-title:hover {
+  color: var(--blue-bright);
+  border-color: var(--blue-bright);
+}
+
+.home-live-summary-status {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  color: var(--red-bright);
+  text-transform: uppercase;
+}
+
+.home-live-summary-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.home-live-refresh-btn {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-medium);
+  color: var(--text-secondary);
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+.home-live-refresh-btn:hover {
+  border-color: var(--blue-bright);
+  color: var(--blue-bright);
+}
+
+.home-live-refresh-btn:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+}
+
+.home-live-summary-body {
+  display: grid;
+  gap: 8px;
+}
+
+.home-live-summary-block {
+  background: var(--bg-inset);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 8px 10px;
+}
+
+.home-live-summary-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--text-tertiary);
+  margin-bottom: 6px;
+  font-weight: 700;
+}
+
+.home-live-summary-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 13px;
+  padding: 3px 0;
+}
+
+.home-live-summary-meta {
+  color: var(--text-tertiary);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.home-live-player-link {
+  color: var(--text);
+  text-decoration: none;
+  border-bottom: 1px dotted rgba(255,255,255,.25);
+}
+
+.home-live-player-link:hover {
+  color: var(--blue-bright);
+  border-color: var(--blue-bright);
+}
+
+.home-live-summary-empty {
+  color: var(--text-tertiary);
+  font-size: 12px;
+}
+
 .compare-form {
   max-width: 980px;
   margin: 32px auto 0;

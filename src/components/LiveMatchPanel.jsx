@@ -168,9 +168,16 @@ function ShotMap({ hs, hso, as_, aso, homeTeam, awayTeam, matchId }) {
 const PlayerLink = ({ name, team }) => {
   if (!name) return null;
   if (!team) return <span className="fef-player">{name}</span>;
-  const slug = encodeURIComponent(team);
+  const teamSlug = encodeURIComponent(team);
+  const playerSlug = encodeURIComponent(name);
   return (
-    <Link to={`/squads/${slug}`} className="fef-player fef-player-link" title={`View ${team} squad`}>
+    <Link
+      to={`/player/${teamSlug}/${playerSlug}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="fef-player fef-player-link"
+      title={`View ${name} profile`}
+    >
       {name}
     </Link>
   );

@@ -26,6 +26,7 @@ import ThemePicker from "./components/ThemePicker.jsx";
 
 // Lazy-load all routes — cuts initial bundle from 550KB to ~150KB
 import Home from "./pages/Home.jsx"; // home loads immediately (above-the-fold)
+import PlayerProfile from "./pages/PlayerProfile.jsx";
 const Schedule   = lazy(() => import("./pages/Schedule.jsx"));
 const Groups     = lazy(() => import("./pages/Groups.jsx"));
 const Bracket    = lazy(() => import("./pages/Bracket.jsx"));
@@ -315,7 +316,7 @@ export default function App() {
         <PageErrorBoundary>
           <Suspense fallback={<PageLoader />}>
             <Routes>
-              <Route path="/"         element={<Home results={results} />} />
+              <Route path="/"         element={<Home results={results} statsMatchIdMap={statsIdMap} />} />
               <Route path="/schedule" element={<Schedule results={results} statsMatchIdMap={statsIdMap} />} />
               <Route path="/groups"   element={<Groups results={results} />} />
               <Route path="/bracket"  element={<Bracket results={results} />} />
@@ -329,6 +330,7 @@ export default function App() {
               <Route path="/stats"    element={<Stats />} />
               <Route path="/predictor" element={<Predictor results={results} />} />
               <Route path="/compare"   element={<Compare results={results} />} />
+              <Route path="/player/:team/:player" element={<PlayerProfile />} />
               <Route path="/match/:id" element={<MatchDetail results={results} statsMatchIdMap={statsIdMap} />} />
               <Route path="/admin"    element={
                 <AdminGate>

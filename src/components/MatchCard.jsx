@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { FLAG_URL, FLAGS } from "../data/teams.js";
 import { resolveMatchTeams } from "../lib/bracket.js";
 import { formatISTTime, formatISTDate, getMatchStatus, timeUntil } from "../lib/time.js";
@@ -154,6 +154,19 @@ export default function MatchCard({ match, results, statsMatchId }) {
         )}
         {statsMatchId && (
           <span className="mc-tag api-badge" title="Live data from TheStatsAPI">◉ Live Data</span>
+        )}
+        {isLive && (
+          <Link
+            to={`/match/${match.id}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mc-tag api-badge"
+            onClick={(e) => e.stopPropagation()}
+            data-testid={`matchcard-live-summary-link-${match.id}`}
+            title="Open live summary in new tab"
+          >
+            Open Live Summary
+          </Link>
         )}
         <ShareButton match={match} home={home} away={away} result={result} status={status} />
       </div>
