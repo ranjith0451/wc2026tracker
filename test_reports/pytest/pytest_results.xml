@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="5" skipped="0" tests="5" time="0.434" timestamp="2026-06-19T00:32:45.845265+00:00" hostname="agent-env-93727221-5c37-4d66-aca0-e52ae3d42a23"><testcase classname="backend.tests.test_production_endpoints" name="test_health_returns_ok_true" time="0.153"><failure message="assert 404 == 200&#10; +  where 404 = &lt;Response [404]&gt;.status_code">backend/tests/test_production_endpoints.py:27: in test_health_returns_ok_true
+    assert response.status_code == 200
+E   assert 404 == 200
+E    +  where 404 = &lt;Response [404]&gt;.status_code</failure></testcase><testcase classname="backend.tests.test_production_endpoints" name="test_stats_usage_returns_expected_shape" time="0.043"><failure message="assert 404 == 200&#10; +  where 404 = &lt;Response [404]&gt;.status_code">backend/tests/test_production_endpoints.py:37: in test_stats_usage_returns_expected_shape
+    assert response.status_code == 200
+E   assert 404 == 200
+E    +  where 404 = &lt;Response [404]&gt;.status_code</failure></testcase><testcase classname="backend.tests.test_production_endpoints" name="test_results_get_returns_json_object" time="0.051"><failure message="assert 404 == 200&#10; +  where 404 = &lt;Response [404]&gt;.status_code">backend/tests/test_production_endpoints.py:49: in test_results_get_returns_json_object
+    assert response.status_code == 200
+E   assert 404 == 200
+E    +  where 404 = &lt;Response [404]&gt;.status_code</failure></testcase><testcase classname="backend.tests.test_production_endpoints" name="test_results_post_persists_and_visible_on_subsequent_get" time="0.047"><failure message="assert 404 == 200&#10; +  where 404 = &lt;Response [404]&gt;.status_code">backend/tests/test_production_endpoints.py:58: in test_results_post_persists_and_visible_on_subsequent_get
+    assert get_before.status_code == 200
+E   assert 404 == 200
+E    +  where 404 = &lt;Response [404]&gt;.status_code</failure></testcase><testcase classname="backend.tests.test_production_endpoints" name="test_stats_usage_rejects_unsupported_method" time="0.048"><failure message="assert 404 == 405&#10; +  where 404 = &lt;Response [404]&gt;.status_code">backend/tests/test_production_endpoints.py:84: in test_stats_usage_rejects_unsupported_method
+    assert response.status_code == 405
+E   assert 404 == 405
+E    +  where 404 = &lt;Response [404]&gt;.status_code</failure></testcase></testsuite></testsuites>
