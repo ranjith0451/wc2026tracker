@@ -31,6 +31,7 @@ export default function Trophy3D() {
   const accent = useCssColor("--accent", "#2563eb");
   const reduced = useReducedMotion();
   const wrapRef = useRef(null);
+  const [imgMissing, setImgMissing] = useState(false);
 
   // Cursor parallax — raw cursor offset (-1 to +1 from center of stage)
   const mx = useMotionValue(0);
@@ -85,6 +86,18 @@ export default function Trophy3D() {
 
   const trophyFilter = `drop-shadow(0 20px 24px rgba(0,0,0,0.55)) drop-shadow(0 0 36px ${accent}66)`;
 
+  if (imgMissing) {
+    return (
+      <div ref={wrapRef} className="trophy-3d-wrap trophy-fallback-wrap" data-testid="trophy-3d" style={{ perspective: 1100 }}>
+        <div className="trophy-halo" style={{ background: `radial-gradient(circle, ${accent}66 0%, transparent 66%)` }} />
+        <div className="trophy-fallback-core" style={{ borderColor: `${accent}66`, boxShadow: `0 0 24px ${accent}66` }}>
+          <span className="trophy-fallback-icon">🏆</span>
+        </div>
+        <div className="trophy-floor" style={{ background: `radial-gradient(ellipse at center, ${accent}66 0%, transparent 66%)` }} />
+      </div>
+    );
+  }
+
   return (
     <div ref={wrapRef} className="trophy-3d-wrap" data-testid="trophy-3d" style={{ perspective: 1100 }}>
       {/* Breathing halo */}
@@ -119,6 +132,7 @@ export default function Trophy3D() {
             rotateZ: { duration: 6, repeat: Infinity, ease: "easeInOut" },
           }}
           style={{ filter: trophyFilter }}
+          onError={() => setImgMissing(true)}
         />
 
         {/* Mirror reflection underneath */}

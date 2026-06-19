@@ -6,6 +6,29 @@ import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { computePlayerRatings } from './playerRating.js';
 import { MATCHES } from '../data/matches.js';
 
+const SCORERS_SNAPSHOT_KEY = 'wc2026_scorers_snapshot_v1';
+
+function readScorersSnapshot() {
+  try {
+    const raw = localStorage.getItem(SCORERS_SNAPSHOT_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    if (!parsed || !Array.isArray(parsed.scorers)) return null;
+    return parsed;
+  } catch {
+    return null;
+  }
+}
+
+function writeScorersSnapshot(scorers) {
+  try {
+    localStorage.setItem(SCORERS_SNAPSHOT_KEY, JSON.stringify({
+      scorers,
+      fetchedAt: Date.now(),
+    }));
+  } catch {}
+}
+
 async function statsFetch(action, params = {}) {
   const qs = new URLSearchParams({ action, ...params }).toString();
   const res = await fetch(`/api/stats?${qs}`);
@@ -122,7 +145,7 @@ export function useMatchDetails(statsMatchId) {
 }
 
 // ── Event timeline ────────────────────────────────────────────────────────────
-export function useMatchEvents(statsMatchId, { live = false, intervalMs } = {}) {
+export function useMatchEvents(statsMatchId, { live = false, intervalMs, enabled = true } = {}) {
   const polling = intervalMs === false
     ? false
     : typeof intervalMs === 'number'
@@ -132,7 +155,7 @@ export function useMatchEvents(statsMatchId, { live = false, intervalMs } = {}) 
   return useQuery({
     queryKey: ['stats-events', statsMatchId],
     queryFn: () => statsFetch('events', { id: statsMatchId }),
-    enabled: !!statsMatchId,
+    enabled: !!statsMatchId && enabled,
     refetchInterval: polling,
     refetchIntervalInBackground: true,
     staleTime: polling ? Math.max(20_000, Math.floor((typeof polling === 'number' ? polling : 60_000) * 0.85)) : 10 * 60_000,
@@ -140,14 +163,20 @@ export function useMatchEvents(statsMatchId, { live = false, intervalMs } = {}) 
 }
 
 // ── Team statistics ───────────────────────────────────────────────────────────
-export function useMatchStats(statsMatchId, { live = false } = {}) {
+export function useMatchStats(statsMatchId, { live = false, intervalMs, enabled = true } = {}) {
+  const polling = intervalMs === false
+    ? false
+    : typeof intervalMs === 'number'
+      ? intervalMs
+      : (live ? 60_000 : false);
+
   return useQuery({
     queryKey: ['stats-teamstats', statsMatchId],
     queryFn: () => statsFetch('stats', { id: statsMatchId }),
-    enabled: !!statsMatchId,
-    refetchInterval: live ? 60_000 : false,
+    enabled: !!statsMatchId && enabled,
+    refetchInterval: polling,
     refetchIntervalInBackground: true,
-    staleTime: live ? 50_000 : 90_000,
+    staleTime: polling ? Math.max(20_000, Math.floor((typeof polling === 'number' ? polling : 60_000) * 0.85)) : 90_000,
   });
 }
 
@@ -229,11 +258,60 @@ export function useTopScorers() {
   return useQuery({
     queryKey: ['stats-top-scorers'],
     queryFn: async () => {
-      const data = await statsFetch('top-scorers');
-      return data?.scorers || [];
+      try {
+        const data = await statsFetch('top-scorers');
+        const scorers = data?.scorers || [];
+        if (scorers.length > 0) writeScorersSnapshot(scorers);
+        return {
+          scorers,
+          stale: false,
+          source: 'live',
+          fetchedAt: Date.now(),
+        };
+      } catch (err) {
+        const snap = readScorersSnapshot();
+        if (snap?.scorers?.length) {
+          return {
+            scorers: snap.scorers,
+            stale: true,
+            source: 'snapshot',
+            fetchedAt: snap.fetchedAt || null,
+          };
+        }
+        return {
+          scorers: [],
+          stale: true,
+          source: 'unavailable',
+          fetchedAt: null,
+        };
+      }
     },
     refetchInterval: 5 * 60_000,
     staleTime: 4 * 60_000,
+    retry: 1,
+    retryDelay: 1200,
+    initialData: () => {
+      const snap = readScorersSnapshot();
+      if (snap?.scorers?.length) {
+        return {
+          scorers: snap.scorers,
+          stale: true,
+          source: 'snapshot',
+          fetchedAt: snap.fetchedAt || null,
+        };
+      }
+      return undefined;
+    },
+  });
+}
+
+export function useScorerGoalDetails(scorer, team) {
+  return useQuery({
+    queryKey: ['stats-scorer-details', scorer, team],
+    queryFn: () => statsFetch('scorer-details', { scorer, team }),
+    enabled: Boolean(scorer && team),
+    refetchInterval: false,
+    staleTime: 10 * 60_000,
   });
 }
 

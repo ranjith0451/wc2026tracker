@@ -1,4 +1,4 @@
-import { lazy, Suspense, useMemo } from "react";
+import { useMemo } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { MATCHES } from "../data/matches.js";
@@ -13,11 +13,9 @@ import { getMatchStatus } from "../lib/time.js";
 import { getTeamGoalCounts } from "../lib/topscorers.js";
 import { getGroupStandings } from "../lib/standings.js";
 import { useTopScorers } from "../lib/useStats.js";
-import { useMatchEvents } from "../lib/useStats.js";
+import { useMatchEvents, useMatchStats } from "../lib/useStats.js";
 import { staggerContainer, revealUp, revealLeft, inViewOnce } from "../lib/motion.js";
-
-// Lazy-load Trophy3D so the ~250KB three.js chunk doesn't bloat first paint
-const Trophy3D = lazy(() => import("../components/Trophy3D.jsx"));
+import Trophy3D from "../components/Trophy3D.jsx";
 
 const MEDALS = ["🥇","🥈","🥉"];
 
@@ -73,15 +71,32 @@ function GroupStandingsWidget({ results }) {
 }
 
 function LiveSummaryCard({ match, result, statsMatchId }) {
-  const { data: eventsData, refetch, isFetching } = useMatchEvents(statsMatchId, { live: false, intervalMs: false });
+  const { data: eventsData, refetch: refetchEvents, isFetching: eventsFetching } = useMatchEvents(statsMatchId, {
+    live: false,
+    intervalMs: false,
+    enabled: false,
+  });
+  const { data: statsData, refetch: refetchStats, isFetching: statsFetching } = useMatchStats(statsMatchId, {
+    live: false,
+    intervalMs: false,
+    enabled: false,
+  });
+
+  const isFetching = eventsFetching || statsFetching;
+
+  async function refreshSummary() {
+    await Promise.all([refetchEvents(), refetchStats()]);
+  }
 
   const summary = useMemo(() => {
     const evList = eventsData?.events || eventsData?.data?.events || [];
     if (!Array.isArray(evList) || evList.length === 0) {
-      return { goals: [], cards: [] };
+      return { goals: [], cards: [], subsHome: 0, subsAway: 0 };
     }
     const goals = [];
     const cards = [];
+    let summarySubsHome = 0;
+    let summarySubsAway = 0;
     for (const ev of evList) {
       const minute = (ev.minute || 0) + (ev.extra_time || 0);
       const name = ev.player?.name || ev.player_name || "Unknown";
@@ -94,12 +109,47 @@ function LiveSummaryCard({ match, result, statsMatchId }) {
       if (et === "yellow_card" || et === "red_card" || et === "double_yellow") {
         cards.push({ name, team, minute, pid, red: et !== "yellow_card" });
       }
+      if (et === "substitution" || et === "sub") {
+        const t = team || "";
+        if (t && t === match.home.name) summarySubsHome++;
+        else if (t && t === match.away.name) summarySubsAway++;
+      }
     }
     return {
       goals: goals.slice(-4).reverse(),
       cards: cards.slice(-3).reverse(),
+      subsHome: summarySubsHome,
+      subsAway: summarySubsAway,
     };
-  }, [eventsData]);
+  }, [eventsData, match.home.name, match.away.name]);
+
+  const statSummary = useMemo(() => {
+    const s = statsData || {};
+    return {
+      corners: { home: s.homeCorners ?? null, away: s.awayCorners ?? null },
+      goalKicks: { home: s.homeGoalKicks ?? null, away: s.awayGoalKicks ?? null },
+      yellowCards: { home: s.homeYC ?? null, away: s.awayYC ?? null },
+      redCards: { home: s.homeRC ?? null, away: s.awayRC ?? null },
+      substitutions: {
+        home: summary.subsHome ?? null,
+        away: summary.subsAway ?? null,
+      },
+      halftime: result?.halftime
+        ? `${result.halftime.home}-${result.halftime.away}`
+        : "—",
+      fulltime: `${result?.homeScore ?? 0}-${result?.awayScore ?? 0}`,
+    };
+  }, [statsData, summary, result]);
+
+  const metricRows = [
+    { key: "corners", label: "Corners", value: `${statSummary.corners.home ?? "—"} - ${statSummary.corners.away ?? "—"}`, tone: "blue" },
+    { key: "goal-kicks", label: "Goal Kicks", value: `${statSummary.goalKicks.home ?? "—"} - ${statSummary.goalKicks.away ?? "—"}`, tone: "cyan" },
+    { key: "subs", label: "Substitutions", value: `${statSummary.substitutions.home ?? "—"} - ${statSummary.substitutions.away ?? "—"}`, tone: "green" },
+    { key: "yellow", label: "Yellow Cards", value: `${statSummary.yellowCards.home ?? "—"} - ${statSummary.yellowCards.away ?? "—"}`, tone: "yellow" },
+    { key: "red", label: "Red Cards", value: `${statSummary.redCards.home ?? "—"} - ${statSummary.redCards.away ?? "—"}`, tone: "red" },
+    { key: "ht", label: "Half Time", value: statSummary.halftime, tone: "purple" },
+    { key: "ft", label: "Full Time / Live", value: statSummary.fulltime, tone: "orange" },
+  ];
 
   return (
     <div className="home-live-summary-card" data-testid={`home-live-summary-${match.id}`}>
@@ -118,7 +168,7 @@ function LiveSummaryCard({ match, result, statsMatchId }) {
           <button
             className="home-live-refresh-btn"
             type="button"
-            onClick={() => refetch()}
+            onClick={refreshSummary}
             disabled={isFetching}
             data-testid={`home-live-summary-refresh-${match.id}`}
           >
@@ -173,6 +223,18 @@ function LiveSummaryCard({ match, result, statsMatchId }) {
             ))}
           </div>
         )}
+
+        <div className="home-live-summary-block" data-testid={`home-live-metrics-${match.id}`}>
+          <div className="home-live-summary-label">Live Match Metrics</div>
+          <div className="home-live-metrics-grid">
+            {metricRows.map((m) => (
+              <div className={`home-live-metric-item tone-${m.tone}`} key={m.key} data-testid={`home-live-metric-${match.id}-${m.key}`}>
+                <span>{m.label}</span>
+                <b>{m.value}</b>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -194,8 +256,8 @@ export default function Home({ results, statsMatchIdMap = {} }) {
     }
     return sum;
   }, 0);
-  const { data: liveScorers = [] } = useTopScorers();
-  const topScorers = liveScorers.slice(0, 3);
+  const { data: liveScorersData } = useTopScorers();
+  const topScorers = (liveScorersData?.scorers || []).slice(0, 3);
 
   return (
     <div>
@@ -207,11 +269,9 @@ export default function Home({ results, statsMatchIdMap = {} }) {
         </div>
         <div className="hero-ring hero-ring-2" />
 
-        {/* 3D Floating World Cup Trophy (lazy-loaded) */}
+        {/* 3D Floating World Cup Trophy */}
         <div className="hero-trophy-stage" aria-hidden>
-          <Suspense fallback={<div className="trophy-3d-loading">Loading trophy…</div>}>
-            <Trophy3D />
-          </Suspense>
+          <Trophy3D />
         </div>
 
         <motion.div
@@ -340,7 +400,14 @@ export default function Home({ results, statsMatchIdMap = {} }) {
                     {s.penalties > 0 && ` · ${s.penalties} pen.`}
                   </div>
                 </div>
-                <div className="scorer-goals">{s.goals}</div>
+                <Link
+                  to={`/scorers/${encodeURIComponent(s.team)}/${encodeURIComponent(s.player)}`}
+                  className="scorer-goals"
+                  data-testid={`home-scorer-goals-link-${i}`}
+                  title="Open goal-by-goal breakdown"
+                >
+                  {s.goals}
+                </Link>
               </div>
             ))}
           </div>

@@ -27,6 +27,7 @@ import ThemePicker from "./components/ThemePicker.jsx";
 // Lazy-load all routes — cuts initial bundle from 550KB to ~150KB
 import Home from "./pages/Home.jsx"; // home loads immediately (above-the-fold)
 import PlayerProfile from "./pages/PlayerProfile.jsx";
+import PlayerProfileById from "./pages/PlayerProfileById.jsx";
 const Schedule   = lazy(() => import("./pages/Schedule.jsx"));
 const Groups     = lazy(() => import("./pages/Groups.jsx"));
 const Bracket    = lazy(() => import("./pages/Bracket.jsx"));
@@ -42,6 +43,7 @@ const Stats          = lazy(() => import("./pages/Stats.jsx"));
 const Predictor      = lazy(() => import("./pages/Predictor.jsx"));
 const MatchDetail    = lazy(() => import("./pages/MatchDetail.jsx"));
 const Compare        = lazy(() => import("./pages/Compare.jsx"));
+const ScorerGoalDetails = lazy(() => import("./pages/ScorerGoalDetails.jsx"));
 
 function PageLoader() {
   return (
@@ -323,6 +325,7 @@ export default function App() {
               <Route path="/squads"   element={<Squads results={results} />} />
               <Route path="/squads/:team" element={<SquadDetail results={results} />} />
               <Route path="/scorers"  element={<TopScorers results={results} />} />
+              <Route path="/scorers/:team/:player"  element={<ScorerGoalDetails />} />
               <Route path="/history"  element={<History />} />
               <Route path="/women"   element={<Women />} />
               <Route path="/all-time"  element={<AllTimePlayers />} />
@@ -331,6 +334,7 @@ export default function App() {
               <Route path="/predictor" element={<Predictor results={results} />} />
               <Route path="/compare"   element={<Compare results={results} />} />
               <Route path="/player/:team/:player" element={<PlayerProfile />} />
+              <Route path="/player-id/:id" element={<PlayerProfileById />} />
               <Route path="/match/:id" element={<MatchDetail results={results} statsMatchIdMap={statsIdMap} />} />
               <Route path="/admin"    element={
                 <AdminGate>
