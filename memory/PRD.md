@@ -126,6 +126,13 @@ Requested missing features:
   - Both timeline events and stats queries are `enabled: false` by default for Home live summary.
   - Clicking Refresh triggers both fetches via `Promise.all([refetchEvents(), refetchStats()])`.
 
+## UI refinement (compact live metrics)
+- Redesigned live-summary metrics into compact responsive cards for better readability:
+  - desktop: auto-fit multi-column mini cards
+  - tablet: 2 columns
+  - mobile: 1 column fallback
+- Added clear hierarchy (label + bold value) and stronger spacing/contrast in each metric tile.
+
 ### Files touched for this scope
 - `src/pages/Home.jsx`
 - `src/components/MatchCard.jsx`
