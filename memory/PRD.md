@@ -133,6 +133,31 @@ Requested missing features:
   - mobile: 1 column fallback
 - Added clear hierarchy (label + bold value) and stronger spacing/contrast in each metric tile.
 
+## Latest feature set (Player ID routing + Scorer goal drilldown)
+- Added player-ID-first routing for event-feed player links:
+  - Event player links now prefer `/player-id/:id?team=...&name=...`
+  - Fallback remains `/player/:team/:player` if ID is unavailable
+- Added new page and route:
+  - `src/pages/PlayerProfileById.jsx`
+  - route: `/player-id/:id`
+- Added scorer goal breakdown experience:
+  - Top Scorers goal number is now clickable
+  - New route/page: `/scorers/:team/:player` via `src/pages/ScorerGoalDetails.jsx`
+  - Shows: opponent country, minute, match date/time, and goal type
+- Added backend API for goal drilldown:
+  - `GET /api/stats?action=scorer-details&scorer=<name>&team=<team>`
+  - Stabilized scorer-related caching by using a single bundled scorer cache (`scorers + detailsByKey`) to reduce repeated timeline calls and regressions under rate limits.
+
+### Files touched in this scope
+- `api/stats.js`
+- `src/lib/useStats.js`
+- `src/components/LiveMatchPanel.jsx`
+- `src/pages/TopScorers.jsx`
+- `src/pages/Home.jsx`
+- `src/pages/PlayerProfileById.jsx` (new)
+- `src/pages/ScorerGoalDetails.jsx` (new)
+- `src/App.jsx`
+
 ### Files touched for this scope
 - `src/pages/Home.jsx`
 - `src/components/MatchCard.jsx`
