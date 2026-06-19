@@ -272,14 +272,17 @@ img { display: block; }
   -webkit-backdrop-filter: saturate(180%) blur(20px);
   border-bottom: 1px solid var(--border-medium);
   position: sticky; top: 0; z-index: 100;
+  overflow: hidden;
 }
 .nav-inner {
   max-width: 1180px;
   margin: 0 auto;
   padding: 0 28px;
   display: flex;
+  flex-wrap: nowrap;
   gap: 2px;
   overflow-x: auto;
+  overflow-y: hidden;
   scrollbar-width: none;
   height: 44px;
   align-items: center;
@@ -302,6 +305,7 @@ img { display: block; }
   letter-spacing: .06em;
   text-transform: uppercase;
   position: relative;
+  border: 1px solid transparent;
 }
 .nav-link svg { width: 13px; height: 13px; opacity: .55; transition: opacity .2s; stroke: currentColor; fill: none; flex-shrink: 0; }
 .nav-link:hover { color: var(--text); background: rgba(255,255,255,.06); }
