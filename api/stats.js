@@ -22,10 +22,23 @@
  */
 
 import Redis from 'ioredis';
+import { MATCHES } from '../src/data/matches.js';
 
 const BASE = 'https://api.thestatsapi.com/api/football';
 const WC_COMP = 'comp_6107';
 const API_KEY = process.env.STATS_API_KEY;
+
+const DAY_MS = 24 * 60 * 60 * 1000;
+const ALL_MATCH_DATES = MATCHES.map(m => new Date(m.isoIST).getTime()).filter(Number.isFinite);
+const TOURNAMENT_START = new Date(Math.min(...ALL_MATCH_DATES) - DAY_MS);
+const TOURNAMENT_END = new Date(Math.max(...ALL_MATCH_DATES) + DAY_MS);
+
+function inTournamentWindow(utcDate) {
+  if (!utcDate) return false;
+  const ts = new Date(utcDate).getTime();
+  if (!Number.isFinite(ts)) return false;
+  return ts >= TOURNAMENT_START.getTime() && ts <= TOURNAMENT_END.getTime();
+}
 
 function getRedis() {
   const url = process.env.REDIS_URL;
@@ -283,7 +296,11 @@ export default async function handler(req, res) {
         ]);
         const allMatches = [...(p1?.data || []), ...(p2?.data || [])];
         const DONE = new Set(['ft', 'aet', 'pen', 'finished', 'completed', 'full_time', 'awarded', 'walkover']);
-        const finished = allMatches.filter(m => DONE.has((m.status || '').toLowerCase()));
+        const finished = allMatches.filter(m => {
+          const done = DONE.has((m.status || '').toLowerCase());
+          const inWindow = inTournamentWindow(m.utc_date || m.date || m.match_date);
+          return done && inWindow;
+        });
 
         // Step 2: fetch timeline for each finished match (re-use cached events where possible)
         const GOAL_TYPES = new Set(['goal', 'penalty_goal', 'freekick_goal', 'own_goal']);

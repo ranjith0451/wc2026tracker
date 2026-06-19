@@ -463,11 +463,26 @@
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 18px;
-  padding: 22px;
+  padding: 24px 20px 28px;
   display: flex;
   justify-content: center;
+  overflow: hidden;
 }
-.radar-svg { max-width: 420px; }
+.radar-svg {
+  width: min(100%, 520px);
+  max-width: 520px;
+  height: auto;
+  display: block;
+}
+
+@media (max-width: 700px) {
+  .compare-radar-card {
+    padding: 16px 10px 22px;
+  }
+  .radar-svg {
+    width: min(100%, 440px);
+  }
+}
 
 .compare-form {
   max-width: 980px;

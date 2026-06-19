@@ -8,9 +8,13 @@
  */
 import { useId } from "react";
 
-const SIZE = 320;
+const SIZE = 432;
 const CENTER = SIZE / 2;
-const RADIUS = 110;
+const RADIUS = 126;
+
+function shortTeam(name = "") {
+  return name.length > 12 ? `${name.slice(0, 11)}…` : name;
+}
 
 function polarToXY(angleDeg, r) {
   const a = (angleDeg - 90) * (Math.PI / 180);
@@ -41,7 +45,8 @@ export default function RadarChart({ axes, teamA, teamB }) {
   // Axis lines + labels
   const axisLines = axes.map((ax, i) => {
     const [x2, y2] = polarToXY(i * angleStep, RADIUS);
-    const [lx, ly] = polarToXY(i * angleStep, RADIUS + 26);
+    const labelRadius = i === Math.floor(n / 2) ? RADIUS + 24 : RADIUS + 40;
+    const [lx, ly] = polarToXY(i * angleStep, labelRadius);
     return { x2, y2, lx, ly, label: ax.label, key: ax.key, i };
   });
 
@@ -128,7 +133,7 @@ export default function RadarChart({ axes, teamA, teamB }) {
             x={a.lx} y={a.ly}
             textAnchor={anchor}
             dominantBaseline="middle"
-            fontSize="11"
+            fontSize="12"
             fontWeight="700"
             fill="var(--text-secondary)"
             style={{ textTransform: "uppercase", letterSpacing: ".06em" }}
@@ -139,11 +144,13 @@ export default function RadarChart({ axes, teamA, teamB }) {
       })}
 
       {/* Legend */}
-      <g transform={`translate(${CENTER - 80}, ${SIZE - 18})`}>
+      <g transform={`translate(${CENTER - 120}, ${SIZE - 18})`}>
         <circle cx="0" cy="0" r="5" fill={teamA.color} />
-        <text x="10" y="0" dominantBaseline="middle" fontSize="11" fontWeight="700" fill="var(--text)">{teamA.name}</text>
-        <circle cx="80" cy="0" r="5" fill={teamB.color} />
-        <text x="90" y="0" dominantBaseline="middle" fontSize="11" fontWeight="700" fill="var(--text)">{teamB.name}</text>
+        <text x="10" y="0" dominantBaseline="middle" fontSize="12" fontWeight="700" fill="var(--text)">{shortTeam(teamA.name)}</text>
+      </g>
+      <g transform={`translate(${CENTER + 18}, ${SIZE - 18})`}>
+        <circle cx="0" cy="0" r="5" fill={teamB.color} />
+        <text x="10" y="0" dominantBaseline="middle" fontSize="12" fontWeight="700" fill="var(--text)">{shortTeam(teamB.name)}</text>
       </g>
     </svg>
   );
