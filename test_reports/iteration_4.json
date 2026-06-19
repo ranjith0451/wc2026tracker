@@ -1,0 +1,44 @@
+{
+  "summary": "Backend-only regression executed for restored wc2026tracker features. Local build succeeded and restored feature files/routes are present in source and build output. Public API validation on preview URL shows partial contract failure: /api/stats?action=usage and /api/results pass, but /api/health still returns 404.",
+  "backend_issues": {
+    "critical": [
+      {
+        "endpoint": "GET https://wc2026-nine-sepia.vercel.app/api/health",
+        "issue": "Returns 404 instead of expected health JSON contract (200 with ok=true when production keys are configured, or 503 JSON if unhealthy).",
+        "priority": "HIGH"
+      }
+    ],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/backend/tests/test_wc2026tracker_vercel_endpoints.py",
+    "/app/test_reports/pytest/pytest_results.xml"
+  ],
+  "action_items": [
+    "Fix deployment route/artifact mismatch so /api/health is deployed on the same preview where /api/stats and /api/results already work.",
+    "Re-deploy current branch and re-run backend endpoint suite against the exact preview URL.",
+    "Keep REDIS_URL and STATS_API_KEY configured in that same Vercel environment; then verify /api/health, /api/stats?action=usage, and /api/results together."
+  ],
+  "critical_code_review_comments": [
+    "Feature restoration requested by user is present in source: Compare route/page, ThemePicker, favorites components/hook, Trophy3D, MatchDayToday, MyTeams, ShareBracketModal.",
+    "Build artifact confirms restored chunks are compiled (Compare and Trophy3D present in dist assets).",
+    "API handlers exist in repo (/api/health.js, /api/stats.js, /api/results.js); failure pattern indicates deployment-level partial route exposure, not missing source code."
+  ],
+  "updated_files": [
+    "/app/test_reports/iteration_4.json"
+  ],
+  "success_rate": {
+    "backend": "80%",
+    "frontend": "N/A"
+  },
+  "seed_data_creation": "Temporary key TEST_T1_<uuid> was written to /api/results during persistence test and restored to original payload in cleanup.",
+  "retest_needed": true,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "This run executed pytest with REACT_APP_BACKEND_URL=https://wc2026-nine-sepia.vercel.app. Results: 4 passed, 1 failed (only /api/health 404). Local build succeeded and feature files/wiring were verified via code scan and dist output.",
+  "rca of the issue": "Reproduction: run test_wc2026tracker_vercel_endpoints against wc2026-nine-sepia.vercel.app. /api/stats?action=usage and /api/results return 200 with valid payloads, but /api/health returns 404 on same host. Root cause is likely deployment routing/artifact mismatch for this single function path. Mitigation: redeploy same commit/branch to same Vercel project and validate health function registration; then rerun regression suite. MOCKED APIs: NONE."
+}
