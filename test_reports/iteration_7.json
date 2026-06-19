@@ -1,0 +1,64 @@
+{
+  "summary": "Backend + frontend regression testing completed for Home MatchCard behavior and top-scorers stability on public preview. Top-scorers API contract is valid and non-empty; FT card navigation to /match/:id works. Critical regression remains: Home upcoming scheduled cards do not open match detail when clicked in deployed app.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [
+      {
+        "component": "Home MatchCard (scheduled/upcoming)",
+        "issue": "Clicking scheduled card body on Home does not navigate to /match/:id (URL remains #/).",
+        "selector": ".mc-wrap .mc-body (Home Up Next cards)",
+        "priority": "CRITICAL"
+      },
+      {
+        "component": "MatchCard testability attributes",
+        "issue": "Deployed DOM does not include expected data-testid attributes (e.g., matchcard-body-*, matchcard-footer-*, matchcard-prematch-tag-*), reducing selector reliability and indicating source/deploy mismatch.",
+        "selector": "[data-testid^='matchcard-body-'], [data-testid^='matchcard-footer-'], [data-testid^='matchcard-prematch-tag-']",
+        "priority": "HIGH"
+      }
+    ],
+    "integration_issues": [
+      {
+        "flow": "Live match card drawer behavior",
+        "issue": "Could not runtime-verify live card click opens stats/events drawer because no live cards were present in this test window.",
+        "affected_selectors": [
+          ".mc-wrap:has(.mc-tag.live) .mc-footer",
+          ".mc-stats-drawer"
+        ]
+      }
+    ],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/wc2026tracker/backend/tests/test_home_matchcard_topscorers_regression.py",
+    "/app/test_reports/pytest/pytest_results_iteration_7_backend.xml",
+    "/root/.emergent/automation_output/20260619_034431/console_20260619_034431.log",
+    "/root/.emergent/automation_output/20260619_034601/console_20260619_034601.log"
+  ],
+  "action_items": [
+    "Fix deployed Home scheduled MatchCard click path so upcoming cards route to #/match/:id (parity with source behavior in MatchCard handleToggle).",
+    "Ensure deployment includes current MatchCard data-testid attributes and scheduled pre-match tag attributes for reliable regression testing.",
+    "Retest during a live-match window to validate live card click toggles stats/events drawer while FT cards still route to match detail."
+  ],
+  "critical_code_review_comments": [
+    "Source code in /app/wc2026tracker/src/components/MatchCard.jsx correctly routes scheduled and finished cards to /match/:id and should render matchcard-* data-testid attributes.",
+    "Runtime behavior on public preview does not fully match source (missing data-testid attributes + scheduled click not navigating), indicating likely deployment artifact/version mismatch.",
+    "Top-scorers backend contract is stable (non-empty scorers list with expected field types), so previous scorers regression is not reproduced in this run."
+  ],
+  "updated_files": [
+    "/app/wc2026tracker/backend/tests/test_home_matchcard_topscorers_regression.py",
+    "/app/test_reports/iteration_7.json",
+    "/app/test_reports/pytest/pytest_results_iteration_7_backend.xml"
+  ],
+  "success_rate": {
+    "backend": "100%",
+    "frontend": "62%"
+  },
+  "seed_data_creation": "None",
+  "retest_needed": true,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Public URL tested: https://wc2026-nine-sepia.vercel.app. Verified with DOM-level checks that Home has 5 upcoming-style cards (.mc-wrap/.mc-body with .mc-time/.mc-date), but clicking first Home card kept URL at #/. On Schedule, FT cards do navigate to #/match/:id (confirmed with match/1). No live cards were available in tested window, so live drawer behavior remains pending runtime availability.",
+  "rca of the issue": "Repro: open Home on public preview, click first upcoming card body (.mc-body). Expected navigation to #/match/:id; observed URL unchanged (#/). In same run, Schedule FT card click correctly navigates to #/match/1, proving routing itself works. Additional signal: deployed DOM lacks expected matchcard data-testid attributes present in current source. Most likely RCA is deployment/version mismatch or stale bundle serving older MatchCard behavior for Home cards. Mitigation: redeploy latest commit and verify rendered DOM includes matchcard testids and scheduled click handler navigation. MOCKED APIs: NONE."
+}
