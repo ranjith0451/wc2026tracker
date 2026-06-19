@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { Link } from "react-router-dom";
 import { MATCHES } from "../data/matches.js";
 import { GROUPS } from "../data/teams.js";
@@ -6,7 +7,7 @@ import TeamFlag from "../components/TeamFlag.jsx";
 import { getMatchStatus } from "../lib/time.js";
 import { getTeamGoalCounts } from "../lib/topscorers.js";
 import { getGroupStandings } from "../lib/standings.js";
-import { useTopScorers } from "../lib/useStats.js";
+import { useTopScorers, useMatchEvents, useMatchStats } from "../lib/useStats.js";
 
 const MEDALS = ["🥇","🥈","🥉"];
 
@@ -61,7 +62,164 @@ function GroupStandingsWidget({ results }) {
   );
 }
 
-export default function Home({ results }) {
+
+/* ═══════ Live Match Summary Card ═══════ */
+function LiveSummaryCard({ match, result, statsMatchId }) {
+  const { data: eventsData, refetch: refetchEvents, isFetching: eventsFetching } = useMatchEvents(statsMatchId, { live: true });
+  const { data: statsData, refetch: refetchStats, isFetching: statsFetching } = useMatchStats(statsMatchId, { live: true });
+
+  const isFetching = eventsFetching || statsFetching;
+
+  async function refreshSummary() {
+    await Promise.all([refetchEvents(), refetchStats()]);
+  }
+
+  const summary = useMemo(() => {
+    const evList = eventsData?.events || eventsData?.data?.events || [];
+    if (!Array.isArray(evList) || evList.length === 0) {
+      return { goals: [], cards: [], subsHome: 0, subsAway: 0 };
+    }
+    const goals = [];
+    const cards = [];
+    let summarySubsHome = 0;
+    let summarySubsAway = 0;
+    for (const ev of evList) {
+      const minute = (ev.minute || 0) + (ev.extra_time || 0);
+      const name = ev.player?.name || ev.player_name || "Unknown";
+      const team = ev.team?.name || ev.team_name || "";
+      const pid = ev.player?.id || ev.player_id || null;
+      const et = (ev.type || ev.event_type || "").toLowerCase();
+      if (et === "goal" || et === "penalty_goal" || et === "own_goal") {
+        goals.push({ name, team, minute, pid, penalty: et === "penalty_goal", ownGoal: et === "own_goal" });
+      }
+      if (et === "yellow_card" || et === "red_card" || et === "double_yellow") {
+        cards.push({ name, team, minute, pid, red: et !== "yellow_card" });
+      }
+      if (et === "substitution" || et === "sub") {
+        if (team === match.home.name) summarySubsHome++;
+        else if (team === match.away.name) summarySubsAway++;
+      }
+    }
+    return {
+      goals: goals.slice(-4).reverse(),
+      cards: cards.slice(-3).reverse(),
+      subsHome: summarySubsHome,
+      subsAway: summarySubsAway,
+    };
+  }, [eventsData, match.home.name, match.away.name]);
+
+  const statSummary = useMemo(() => {
+    const s = statsData || {};
+    return {
+      corners: { home: s.homeCorners ?? null, away: s.awayCorners ?? null },
+      goalKicks: { home: s.homeGoalKicks ?? null, away: s.awayGoalKicks ?? null },
+      yellowCards: { home: s.homeYC ?? null, away: s.awayYC ?? null },
+      redCards: { home: s.homeRC ?? null, away: s.awayRC ?? null },
+      substitutions: {
+        home: summary.subsHome ?? null,
+        away: summary.subsAway ?? null,
+      },
+      halftime: result?.halftime
+        ? `${result.halftime.home}-${result.halftime.away}`
+        : "\u2014",
+      fulltime: `${result?.homeScore ?? 0}-${result?.awayScore ?? 0}`,
+    };
+  }, [statsData, summary, result]);
+
+  const metricRows = [
+    { key: "corners", label: "Corners", value: `${statSummary.corners.home ?? "\u2014"} - ${statSummary.corners.away ?? "\u2014"}`, tone: "blue" },
+    { key: "goal-kicks", label: "Goal Kicks", value: `${statSummary.goalKicks.home ?? "\u2014"} - ${statSummary.goalKicks.away ?? "\u2014"}`, tone: "cyan" },
+    { key: "subs", label: "Substitutions", value: `${statSummary.substitutions.home ?? "\u2014"} - ${statSummary.substitutions.away ?? "\u2014"}`, tone: "green" },
+    { key: "yellow", label: "Yellow Cards", value: `${statSummary.yellowCards.home ?? "\u2014"} - ${statSummary.yellowCards.away ?? "\u2014"}`, tone: "yellow" },
+    { key: "red", label: "Red Cards", value: `${statSummary.redCards.home ?? "\u2014"} - ${statSummary.redCards.away ?? "\u2014"}`, tone: "red" },
+    { key: "ht", label: "Half Time", value: statSummary.halftime, tone: "purple" },
+    { key: "ft", label: "Full Time / Live", value: statSummary.fulltime, tone: "orange" },
+  ];
+
+  return (
+    <div className="home-live-summary-card" data-testid={`home-live-summary-${match.id}`}>
+      <div className="home-live-summary-head">
+        <Link
+          to={`/match/${match.id}`}
+          className="home-live-summary-title"
+          data-testid={`home-live-summary-match-link-${match.id}`}
+        >
+          {match.home.name} {result?.homeScore ?? 0} \u2013 {result?.awayScore ?? 0} {match.away.name}
+        </Link>
+        <div className="home-live-summary-actions">
+          <span className="home-live-summary-status">{result?.statusShort || "LIVE"}</span>
+          <button
+            className="home-live-refresh-btn"
+            type="button"
+            onClick={refreshSummary}
+            disabled={isFetching}
+            data-testid={`home-live-summary-refresh-${match.id}`}
+          >
+            {isFetching ? "Refreshing\u2026" : "Refresh"}
+          </button>
+        </div>
+      </div>
+
+      <div className="home-live-summary-body">
+        {summary.goals.length > 0 ? (
+          <div className="home-live-summary-block">
+            <div className="home-live-summary-label">Goals</div>
+            {summary.goals.map((g, i) => (
+              <div key={`g-${i}`} className="home-live-summary-row">
+                <Link
+                  to={`/squads/${encodeURIComponent(g.team)}`}
+                  className="home-live-player-link"
+                  data-testid={`home-live-player-link-goal-${match.id}-${i}`}
+                >
+                  {g.name}
+                </Link>
+                <span className="home-live-summary-meta">
+                  {g.minute}\u2019 {g.penalty ? "\u00b7 Pen" : g.ownGoal ? "\u00b7 OG" : ""}
+                </span>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="home-live-summary-empty">No goals yet.</div>
+        )}
+
+        {summary.cards.length > 0 && (
+          <div className="home-live-summary-block">
+            <div className="home-live-summary-label">Cards</div>
+            {summary.cards.map((c, i) => (
+              <div key={`c-${i}`} className="home-live-summary-row">
+                <Link
+                  to={`/squads/${encodeURIComponent(c.team)}`}
+                  className="home-live-player-link"
+                  data-testid={`home-live-player-link-card-${match.id}-${i}`}
+                >
+                  {c.name}
+                </Link>
+                <span className="home-live-summary-meta">
+                  {c.minute}\u2019 {c.red ? "\u00b7 Red" : "\u00b7 Yellow"}
+                </span>
+              </div>
+            ))}
+          </div>
+        )}
+
+        <div className="home-live-summary-block" data-testid={`home-live-metrics-${match.id}`}>
+          <div className="home-live-summary-label">Live Match Metrics</div>
+          <div className="home-live-metrics-grid">
+            {metricRows.map((m) => (
+              <div className={`home-live-metric-item tone-${m.tone}`} key={m.key} data-testid={`home-live-metric-${match.id}-${m.key}`}>
+                <span>{m.label}</span>
+                <b>{m.value}</b>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function Home({ results, statsMatchIdMap = {} }) {
   const withStatus = MATCHES.map(m => ({ m, status: getMatchStatus(m, results) }));
   const live     = withStatus.filter(x => x.status === "live");
   const finished = withStatus.filter(x => x.status === "finished");
@@ -143,6 +301,17 @@ export default function Home({ results }) {
             <div className="sec-line" style={{ background:"linear-gradient(90deg,rgba(239,68,68,.4),transparent)" }} />
           </div>
           {live.map(({ m }) => <MatchCard key={m.id} match={m} results={results} />)}
+
+          <div className="home-live-summary-grid" data-testid="home-live-summary-grid">
+            {live.map(({ m }) => (
+              <LiveSummaryCard
+                key={`summary-${m.id}`}
+                match={m}
+                result={results[m.id]}
+                statsMatchId={results[m.id]?.statsMatchId || statsMatchIdMap[`${m.home.name}|${m.away.name}`]}
+              />
+            ))}
+          </div>
         </>
       )}
 

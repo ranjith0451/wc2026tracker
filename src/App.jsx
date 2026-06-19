@@ -308,7 +308,7 @@ export default function App() {
           <PageErrorBoundary>
           <Suspense fallback={<PageLoader />}>
             <Routes>
-              <Route path="/"         element={<Home results={results} />} />
+              <Route path="/"         element={<Home results={results} statsMatchIdMap={statsIdMap} />} />
               <Route path="/schedule" element={<Schedule results={results} statsMatchIdMap={statsIdMap} />} />
               <Route path="/groups"   element={<Groups results={results} />} />
               <Route path="/bracket"  element={<Bracket results={results} />} />
