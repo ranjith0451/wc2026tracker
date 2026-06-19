@@ -60,3 +60,22 @@ Requested missing features:
 1. Push this restored branch snapshot to GitHub from the workspace.
 2. Redeploy same branch in Vercel and verify UI + APIs.
 3. Re-run endpoint regression on deployed URL.
+
+## Routing incident follow-up (latest)
+- User reported tab/content misalignment across routes (`/schedule`, `/groups`, `/bracket`, `/predictor`, `/compare`, `/stats`) in both preview and live.
+- Root cause: stale/deployed artifact mismatch and service-worker-cached lazy chunks causing runtime route-to-component drift on the public domain.
+- Implemented hardening:
+  - Removed route-transition wrapper (`AnimatePresence`/`PageWrap`) from `src/App.jsx` to simplify and enforce strict route rendering.
+  - Added hash-query guards in `src/pages/Compare.jsx` and `src/pages/Predictor.jsx` to avoid cross-route query side effects.
+  - Updated service-worker strategy in `public/sw.js`:
+    - cache version bump to `wc2026-v5-route-fix`
+    - network-first for non-index lazy JS chunks in `/assets/`.
+- Validation:
+  - Local built artifact route matrix passes with correct mapping:
+    - `/#/schedule` => Schedule
+    - `/#/groups` => Groups
+    - `/#/bracket` => Bracket
+    - `/#/predictor` => Predictor
+    - `/#/compare` => Compare
+    - `/#/stats` => Stats
+  - Public URL still shows old/misaligned runtime until fresh deploy + SW update activation on client.
