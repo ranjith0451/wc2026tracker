@@ -1,44 +1,62 @@
+# WC2026 Tracker — Feature Restoration PRD
+
 ## Original problem statement
-User asked to check and fix deployment failure for branch `conflict_190626_0326` in repo `ranjith0451/wc2026tracker`, after moving from mock flow to production Redis + SportsAPI.
+User reported that new features disappeared from preview/live after branch overwrite and asked to restore everything to production on branch `conflict_190626_0326`.
+
+Requested missing features:
+- Compare page
+- Theme switcher
+- Favorites system
+- 3D UI feature set
+- Admin/live results flow
 
 ## Architecture decisions
-- Keep existing repo structure (`frontend/` + `backend/`) intact.
-- Harden Vercel serverless handlers in `frontend/api/*` for production error visibility and robust request parsing.
-- Add root-level Vercel deployment support (`vercel.json`, root `package.json`, root `/api` wrappers) to reduce branch deployment mismatch risk.
+- Keep current branch structure (root `src`, root `api`, Vite root app).
+- Restore lost feature layer from earlier known-good commit snapshot into current branch.
+- Re-apply production API hardening for Redis/SportsAPI handlers.
+- Bump service worker cache key to force clients onto latest restored bundle.
 
-## What was implemented
-- Updated `frontend/api/results.js`:
-  - Robust JSON body parsing for POST
-  - Proper error responses when `REDIS_URL` is missing or Redis fails
-- Updated `frontend/api/stats.js`:
-  - Accepts GET/POST and validates methods
-  - Robust body parsing for POST calls
-- Added `frontend/api/health.js` for production env diagnostics (`REDIS_URL`, `STATS_API_KEY`, Redis connectivity)
-- Added root deployment glue:
-  - `/api/{health,results,stats}.js` wrappers
-  - root `vercel.json` build + output config for nested `frontend/`
-  - root `package.json` scripts for monorepo-style deployment compatibility
-- Verified locally with provided keys:
-  - Health endpoint returns `ok: true`
-  - Stats usage endpoint returns valid payload
-  - Results POST/GET round-trip persists in Redis
+## What has been implemented
+- Restored feature files and wiring:
+  - `src/pages/Compare.jsx`
+  - `src/components/{ThemePicker,FavoriteButton,MatchDayToday,MyTeams,Trophy3D,Tilt3D,CountUp,RadarChart,ShareBracketModal,Confetti}.jsx`
+  - `src/lib/{theme,favorites,motion,bracketShare}.js/.jsx`
+  - `src/styles/{themes,features,motion,trophy3d,favorites}.css`
+  - Trophy assets in `public/trophy.jpeg` and `public/trophy.png`
+- Restored route/header integration in app shell:
+  - Compare route in `src/App.jsx`
+  - ThemePicker in header
+  - Home page includes MatchDayToday + MyTeams + Trophy3D
+  - Predictor page includes ShareBracketModal
+- Reapplied production API resilience:
+  - `api/results.js` robust JSON body handling and explicit Redis config errors
+  - `api/stats.js` GET/POST handling with method guard + body parsing
+  - Added `api/health.js` for env/connectivity diagnostics
+- Cache invalidation fix:
+  - `public/sw.js` cache version bumped to `wc2026-v4-livefix`
 
-## Current blocker (external)
-- Public domain routing currently redirects to a target where `/api/*` returns 404.
-- This is a deployment/domain mapping issue, not a handler code issue.
+## Validation summary
+- Local production build succeeds.
+- Restored feature routes/components confirmed in source and build output.
+- Local API checks with provided keys succeed:
+  - `/api/health` returns `ok: true`
+  - `/api/stats?action=usage` returns valid payload
+  - `/api/results` POST/GET round-trip persists in Redis
+- External preview URL still shows one deployment-level mismatch:
+  - `/api/health` returns 404 while `/api/stats` and `/api/results` work.
 
 ## Prioritized backlog
 ### P0
-- Fix Vercel project-domain mapping so production domain serves this repo deployment where `/api/*` handlers exist.
-- Ensure `REDIS_URL` and `STATS_API_KEY` are set in the exact active Vercel project/environment.
+- Deploy this restored branch snapshot to the exact Vercel project serving `wc2026-nine-sepia.vercel.app`.
+- Verify `/api/health` is included in deployment artifact and publicly routable.
 
 ### P1
-- Add a small deployment checklist page/script for one-click post-deploy verification (`/api/health`, `/api/stats?action=usage`, `/api/results`).
+- Add a lightweight in-app diagnostics panel (health + API status) for faster incident checks.
 
 ### P2
-- Add rate-limit/error telemetry for StatsAPI failures to improve production observability.
+- Add release guard checks (bundle hash + feature route smoke tests) before live promotion.
 
 ## Next tasks
-1. Trigger redeploy from this branch after verifying Vercel domain points to correct project.
-2. Run endpoint contract retest on deployed URL.
-3. Confirm Admin save flow persists and is visible after refresh in production.
+1. Push this restored branch snapshot to GitHub from the workspace.
+2. Redeploy same branch in Vercel and verify UI + APIs.
+3. Re-run endpoint regression on deployed URL.
