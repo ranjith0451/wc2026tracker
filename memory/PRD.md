@@ -166,6 +166,19 @@ Requested missing features:
 - Updated scorer UIs (`TopScorers`, Home Golden Boot widget) to consume the new payload shape.
 - Added stale-data indicator on Top Scorers page so users know when snapshot is being shown.
 
+## Latest UI/UX fix (Mobile top tabs navigation)
+- Reworked mobile top-tab behavior for easier navigation:
+  - kept labels visible on small screens (removed icon-only tab collapse)
+  - increased tap targets and spacing
+  - enabled smooth horizontal scroll with snap and touch containment
+  - prevented vertical overflow/jitter on tab strip
+- Motion stability fix:
+  - disabled active-tab glow animation (`animation: none !important`) to avoid X/Y jitter during route switching
+  - added reduced-motion-safe nav handling
+- Verification:
+  - mobile checks at 390px/360px show correct scrolling and route navigation
+  - active tab animation computed style confirms `none`.
+
 ### Files touched for this scope
 - `src/pages/Home.jsx`
 - `src/components/MatchCard.jsx`
