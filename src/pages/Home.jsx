@@ -1,12 +1,22 @@
+import { lazy, Suspense } from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import { MATCHES } from "../data/matches.js";
 import { GROUPS } from "../data/teams.js";
 import MatchCard from "../components/MatchCard.jsx";
+import MatchDayToday from "../components/MatchDayToday.jsx";
+import MyTeams from "../components/MyTeams.jsx";
 import TeamFlag from "../components/TeamFlag.jsx";
+import Tilt3D from "../components/Tilt3D.jsx";
+import CountUp from "../components/CountUp.jsx";
 import { getMatchStatus } from "../lib/time.js";
 import { getTeamGoalCounts } from "../lib/topscorers.js";
 import { getGroupStandings } from "../lib/standings.js";
 import { useTopScorers } from "../lib/useStats.js";
+import { staggerContainer, revealUp, revealLeft, inViewOnce } from "../lib/motion.js";
+
+// Lazy-load Trophy3D so the ~250KB three.js chunk doesn't bloat first paint
+const Trophy3D = lazy(() => import("../components/Trophy3D.jsx"));
 
 const MEDALS = ["🥇","🥈","🥉"];
 
@@ -18,19 +28,19 @@ function SvgIcon({ d, size=13 }) {
   );
 }
 
-/* Stat card with icon + color variant */
+/* Stat card with icon + color variant + 3D tilt + count-up */
 function StatCard({ num, lbl, color, icon, delay }) {
   return (
-    <div className={`stat-card ${color} s${delay}`}>
+    <Tilt3D max={10} scale={1.04} className={`stat-card ${color} s${delay}`} data-tilt-3d>
       <div className="stat-card-beam" />
       <div className="stat-icon">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
           <path d={icon} />
         </svg>
       </div>
-      <div className="stat-num">{num}</div>
+      <div className="stat-num number-anim"><CountUp to={Number(num) || 0} /></div>
       <div className="stat-lbl">{lbl}</div>
-    </div>
+    </Tilt3D>
   );
 }
 
@@ -84,23 +94,35 @@ export default function Home({ results }) {
         </div>
         <div className="hero-ring hero-ring-2" />
 
-        <div className="hero-content">
-          <div className="hero-eyebrow">
+        {/* 3D Floating World Cup Trophy (lazy-loaded) */}
+        <div className="hero-trophy-stage" aria-hidden>
+          <Suspense fallback={<div className="trophy-3d-loading">Loading trophy…</div>}>
+            <Trophy3D />
+          </Suspense>
+        </div>
+
+        <motion.div
+          className="hero-content"
+          variants={staggerContainer}
+          initial="hidden"
+          animate="show"
+        >
+          <motion.div variants={revealUp} className="hero-eyebrow">
             <span className="hero-eyebrow-dot" />
             Live Tracker · IST
-          </div>
+          </motion.div>
 
-          <h1>
+          <motion.h1 variants={revealUp}>
             <span className="hero-title-wc">FIFA World Cup</span>
             <span className="hero-title-year">2026</span>
-          </h1>
+          </motion.h1>
 
-          <p className="hero-desc">
+          <motion.p variants={revealUp} className="hero-desc">
             <strong>48 nations</strong> · 12 groups · <strong>104 matches</strong> across
             USA, Mexico &amp; Canada. Every kickoff shown in <strong>IST</strong>.
-          </p>
+          </motion.p>
 
-          <div className="hero-actions">
+          <motion.div variants={revealUp} className="hero-actions">
             {live.length > 0 ? (
               <Link to={`/match/${live[0].m.id}`} className="live-pill" style={{ textDecoration:"none", cursor:"pointer" }}>
                 <span className="live-dot" />
@@ -121,17 +143,29 @@ export default function Home({ results }) {
               <SvgIcon d="M8 2v3m8-3v3M3 8h18M5 3h14a2 2 0 012 2v15a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2z" />
               Full Schedule
             </Link>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
 
+      {/* ══════════ MATCH DAY TODAY WIDGET ══════════ */}
+      <MatchDayToday results={results} />
+
+      {/* ══════════ MY TEAMS (followed) ══════════ */}
+      <MyTeams results={results} />
+
       {/* ══════════ STATS GRID ══════════ */}
-      <div className="stats-grid">
-        <StatCard delay={1} color="blue"  num={MATCHES.length}  lbl="Total Matches" icon="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-        <StatCard delay={2} color="green" num={finished.length} lbl="Matches Played" icon="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-        <StatCard delay={3} color="red"   num={live.length}     lbl="Live Now"       icon="M5.636 18.364a9 9 0 010-12.728m12.728 0a9 9 0 010 12.728M9 10a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1v-4z" />
-        <StatCard delay={4} color="gold"  num={totalGoals}      lbl="Goals Scored"  icon="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" />
-      </div>
+      <motion.div
+        className="stats-grid"
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="show"
+        viewport={inViewOnce}
+      >
+        <motion.div variants={revealUp}><StatCard delay={1} color="blue"  num={MATCHES.length}  lbl="Total Matches" icon="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" /></motion.div>
+        <motion.div variants={revealUp}><StatCard delay={2} color="green" num={finished.length} lbl="Matches Played" icon="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></motion.div>
+        <motion.div variants={revealUp}><StatCard delay={3} color="red"   num={live.length}     lbl="Live Now"       icon="M5.636 18.364a9 9 0 010-12.728m12.728 0a9 9 0 010 12.728M9 10a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1v-4z" /></motion.div>
+        <motion.div variants={revealUp}><StatCard delay={4} color="gold"  num={totalGoals}      lbl="Goals Scored"  icon="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" /></motion.div>
+      </motion.div>
 
       {/* ══════════ LIVE NOW ══════════ */}
       {live.length > 0 && (

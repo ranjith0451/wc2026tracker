@@ -1,4 +1,5 @@
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback, useEffect, useRef } from "react";
+import { useSearchParams } from "react-router-dom";
 import { MATCHES } from "../data/matches.js";
 import { GROUPS } from "../data/teams.js";
 import { getGroupStandings } from "../lib/standings.js";
@@ -9,6 +10,9 @@ import {
   resolvePredictedMatchTeams,
   calculateAccuracy,
 } from "../lib/predictor.js";
+import { decodeBracket, buildShareUrl } from "../lib/bracketShare.js";
+import ShareBracketModal from "../components/ShareBracketModal.jsx";
+import Confetti from "../components/Confetti.jsx";
 import TeamFlag from "../components/TeamFlag.jsx";
 import { formatISTDate, formatISTTime } from "../lib/time.js";
 
@@ -125,6 +129,10 @@ function MatchPredCard({ match, preds, onPick, results, matchById }) {
 export default function Predictor({ results }) {
   const [preds, setPreds] = useState(() => loadPredictions());
   const [activeTab, setActiveTab] = useState("knockout");
+  const [shareOpen, setShareOpen] = useState(false);
+  const [importBanner, setImportBanner] = useState(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const captureRef = useRef(null);
 
   // Group standings predictions: { groupKey: [team1, team2, team3, team4] }
   const [groupPicks, setGroupPicks] = useState(() => {
@@ -137,6 +145,31 @@ export default function Predictor({ results }) {
     });
     return initial;
   });
+
+  // ── Import shared bracket from URL on mount ───────────────────────
+  useEffect(() => {
+    const encoded = searchParams.get("bracket");
+    if (!encoded) return;
+    const decoded = decodeBracket(encoded);
+    if (!decoded) return;
+
+    // Show banner so user can choose to import (don't overwrite silently)
+    setImportBanner({ preds: decoded.preds, groupPicks: decoded.groupPicks });
+    // strip query string so refresh doesn't loop
+    const next = new URLSearchParams(searchParams);
+    next.delete("bracket");
+    setSearchParams(next, { replace: true });
+  }, []);
+
+  function acceptImport() {
+    if (!importBanner) return;
+    savePredictions(importBanner.preds);
+    setPreds(importBanner.preds);
+    localStorage.setItem("wc2026_group_picks", JSON.stringify(importBanner.groupPicks));
+    setGroupPicks(importBanner.groupPicks);
+    setImportBanner(null);
+  }
+  function rejectImport() { setImportBanner(null); }
 
   const handlePick = useCallback(
     (matchId, value) => {
@@ -167,6 +200,33 @@ export default function Predictor({ results }) {
 
   const hasPredictions = Object.keys(preds).length > 0;
 
+  // Predicted champion = home of Final match (id=104) winner pick → resolves recursively
+  const predictedChampion = useMemo(() => {
+    const finalMatch = MATCHES.find(m => m.stage === "Final");
+    if (!finalMatch) return null;
+    const finalPick = preds[finalMatch.id];
+    if (!finalPick || finalPick === "draw") return null;
+    const { home, away } = resolvePredictedMatchTeams(finalMatch, preds, MATCHES);
+    const winner = finalPick === "home" ? home : away;
+    if (!winner || winner.isPlaceholder) return null;
+    return winner.name;
+  }, [preds]);
+
+  const shareUrl = useMemo(() => buildShareUrl(preds, groupPicks), [preds, groupPicks]);
+
+  // Confetti burst when champion changes (not on initial mount)
+  const [burstKey, setBurstKey] = useState(0);
+  const prevChampionRef = useRef(predictedChampion);
+  useEffect(() => {
+    // Only fire if there was a previous champion AND the new one is different/new
+    if (predictedChampion && prevChampionRef.current !== predictedChampion) {
+      if (prevChampionRef.current !== undefined) {
+        setBurstKey(k => k + 1);
+      }
+    }
+    prevChampionRef.current = predictedChampion;
+  }, [predictedChampion]);
+
   // Knockout matches only
   const koMatches = useMemo(
     () => MATCHES.filter((m) => m.stage !== "Group Stage"),
@@ -190,6 +250,22 @@ export default function Predictor({ results }) {
 
   return (
     <div className="pred-page">
+      {/* Import banner — appears when a shared URL contains a bracket */}
+      {importBanner && (
+        <div className="pred-import-banner" data-testid="pred-import-banner">
+          <div className="pib-icon">📥</div>
+          <div className="pib-text">
+            <div className="pib-title">Someone shared a bracket with you</div>
+            <div className="pib-sub">Import their picks? This will replace your current predictions.</div>
+          </div>
+          <div className="pib-actions">
+            <button data-testid="pib-accept" className="pib-btn primary" onClick={acceptImport}>Import</button>
+            <button data-testid="pib-reject" className="pib-btn" onClick={rejectImport}>Keep mine</button>
+          </div>
+        </div>
+      )}
+
+      <div ref={captureRef} className="pred-capture-wrap">
       {/* Header */}
       <div className="pred-hero">
         <h1 className="pred-title">Bracket Predictor</h1>
@@ -208,6 +284,13 @@ export default function Predictor({ results }) {
             <span className="pred-accuracy-value">
               {accuracy.correct} / {accuracy.total} ({accuracy.percentage}%)
             </span>
+          </div>
+        )}
+        {predictedChampion && (
+          <div className="pred-champion-badge" data-testid="pred-champion-badge">
+            <span className="pcb-trophy">🏆</span>
+            <span>Your champion: <strong>{predictedChampion}</strong></span>
+            {burstKey > 0 && <Confetti key={burstKey} count={42} duration={1.6} />}
           </div>
         )}
       </div>
@@ -232,6 +315,18 @@ export default function Predictor({ results }) {
       {hasPredictions && activeTab === "knockout" && (
         <div className="pred-actions">
           <button
+            data-testid="pred-share-btn"
+            className="pred-share-btn"
+            onClick={() => setShareOpen(true)}
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+            </svg>
+            Share Bracket
+          </button>
+          <button
+            data-testid="pred-reset-btn"
             className="pred-reset-btn"
             onClick={() => {
               if (confirm("Clear all predictions?")) {
@@ -241,6 +336,23 @@ export default function Predictor({ results }) {
             }}
           >
             Reset All
+          </button>
+        </div>
+      )}
+      {!hasPredictions && activeTab === "knockout" && (
+        <div className="pred-actions">
+          <button
+            data-testid="pred-share-btn-empty"
+            className="pred-share-btn"
+            onClick={() => setShareOpen(true)}
+            style={{ opacity: 0.6 }}
+            title="Make picks first to share a meaningful bracket"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+            </svg>
+            Share Bracket
           </button>
         </div>
       )}
@@ -308,6 +420,15 @@ export default function Predictor({ results }) {
           })}
         </div>
       )}
+      </div>{/* /pred-capture-wrap */}
+
+      <ShareBracketModal
+        open={shareOpen}
+        onClose={() => setShareOpen(false)}
+        shareUrl={shareUrl}
+        captureRef={captureRef}
+        winnerName={predictedChampion}
+      />
     </div>
   );
 }

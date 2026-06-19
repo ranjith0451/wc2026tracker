@@ -1,5 +1,7 @@
 import { lazy, Suspense, useEffect, useState, Component } from "react";
 import { Routes, Route, NavLink, useLocation } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
+import { pageVariants } from "./lib/motion.js";
 
 class PageErrorBoundary extends Component {
   constructor(props) { super(props); this.state = { error: null }; }
@@ -22,6 +24,7 @@ class PageErrorBoundary extends Component {
 import { useResults } from "./lib/useResults.js";
 import { loadOverrides, saveOverrides, mergeResults } from "./lib/overrides.js";
 import { useStatsMatchIdMap, useSchedule } from "./lib/useStats.js";
+import ThemePicker from "./components/ThemePicker.jsx";
 
 // Lazy-load all routes — cuts initial bundle from 550KB to ~150KB
 import Home from "./pages/Home.jsx"; // home loads immediately (above-the-fold)
@@ -39,6 +42,7 @@ const Rankings       = lazy(() => import("./pages/Rankings.jsx"));
 const Stats          = lazy(() => import("./pages/Stats.jsx"));
 const Predictor      = lazy(() => import("./pages/Predictor.jsx"));
 const MatchDetail    = lazy(() => import("./pages/MatchDetail.jsx"));
+const Compare        = lazy(() => import("./pages/Compare.jsx"));
 
 function PageLoader() {
   return (
@@ -120,6 +124,13 @@ const EditIcon = () => (
     <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
   </svg>
 );
+const CompareIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <line x1="12" y1="3" x2="12" y2="21"/>
+    <path d="M5 8l-3 3 3 3"/><path d="M2 11h8"/>
+    <path d="M19 16l3-3-3-3"/><path d="M14 13h8"/>
+  </svg>
+);
 const BallIcon = () => (
   <svg viewBox="0 0 24 24" fill="currentColor">
     <circle cx="12" cy="12" r="10" fill="#fff" stroke="#ddd" strokeWidth=".5"/>
@@ -134,6 +145,7 @@ const NAV_ITEMS = [
   { to: "/groups",  label: "Groups",      Icon: GroupIcon },
   { to: "/bracket", label: "Bracket",     Icon: BracketIcon },
   { to: "/predictor", label: "Predictor", Icon: PredictorIcon },
+  { to: "/compare", label: "Compare",   Icon: CompareIcon },
   { to: "/squads",  label: "Squads",      Icon: SquadIcon },
   { to: "/scorers", label: "Top Scorers", Icon: BootIcon },
   { to: "/history", label: "History",     Icon: HistoryIcon },
@@ -169,7 +181,18 @@ function ISTClock() {
 
 function PageWrap({ children }) {
   const { pathname } = useLocation();
-  return <div key={pathname} className="page-enter">{children}</div>;
+  return (
+    <motion.div
+      key={pathname}
+      variants={pageVariants}
+      initial="initial"
+      animate="enter"
+      exit="exit"
+      className="page-motion"
+    >
+      {children}
+    </motion.div>
+  );
 }
 
 const ADMIN_PIN = "2026";
@@ -230,6 +253,7 @@ function pushResults(data) {
 }
 
 export default function App() {
+  const location = useLocation();
   const { results: fetched, lastUpdated: fetchedAt, error } = useResults();
   const { data: scheduleData } = useSchedule();
   const { data: statsMatchIdMap = {} } = useStatsMatchIdMap();
@@ -281,7 +305,10 @@ export default function App() {
               <div className="header-sub">Canada · Mexico · USA</div>
             </div>
           </div>
-          <ISTClock />
+          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+            <ThemePicker />
+            <ISTClock />
+          </div>
         </div>
       </header>
 
@@ -304,10 +331,11 @@ export default function App() {
 
       {/* Main content */}
       <main className="main">
-        <PageWrap>
-          <PageErrorBoundary>
-          <Suspense fallback={<PageLoader />}>
-            <Routes>
+        <AnimatePresence mode="wait" initial={false}>
+          <PageWrap key={location.pathname}>
+            <PageErrorBoundary>
+            <Suspense fallback={<PageLoader />}>
+              <Routes location={location}>
               <Route path="/"         element={<Home results={results} />} />
               <Route path="/schedule" element={<Schedule results={results} statsMatchIdMap={statsIdMap} />} />
               <Route path="/groups"   element={<Groups results={results} />} />
@@ -321,6 +349,7 @@ export default function App() {
               <Route path="/rankings" element={<Rankings />} />
               <Route path="/stats"    element={<Stats />} />
               <Route path="/predictor" element={<Predictor results={results} />} />
+              <Route path="/compare"   element={<Compare results={results} />} />
               <Route path="/match/:id" element={<MatchDetail results={results} statsMatchIdMap={statsIdMap} />} />
               <Route path="/admin"    element={
                 <AdminGate>
@@ -333,6 +362,7 @@ export default function App() {
           </Suspense>
           </PageErrorBoundary>
         </PageWrap>
+        </AnimatePresence>
       </main>
 
       {/* Footer */}
