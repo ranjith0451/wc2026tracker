@@ -96,3 +96,27 @@ Requested missing features:
 - Validation:
   - Build succeeds after changes.
   - Screenshot verification confirms no overlapping radar text at desktop and tablet widths.
+
+## Latest fixes (Home goals + Live summary + Player profile navigation)
+- Home goals metric corrected:
+  - `src/pages/Home.jsx` now computes **Goals Scored** from both `finished` and `live` matches using current scorelines.
+- Live summary on Home and match context:
+  - Added live summary cards under Home Live section with event-based goals/cards snippets from TheStatsAPI timeline.
+  - Added manual refresh button per live summary card (user chose manual refresh mode).
+  - Added “Open Live Summary” link on live `MatchCard` footer that opens match detail in a **new tab**.
+- Player profile route implemented:
+  - New route: `/player/:team/:player`
+  - New page: `src/pages/PlayerProfile.jsx`
+  - Updated player links in `LiveMatchPanel` and Home summary to open player profile in **new tab**.
+  - Player clicks now go to player profile (not country/squad profile).
+- Data behavior:
+  - `useMatchEvents` now supports configurable/no auto polling (`intervalMs`), enabling manual refresh-only behavior where required.
+
+### Files touched for this scope
+- `src/pages/Home.jsx`
+- `src/components/MatchCard.jsx`
+- `src/components/LiveMatchPanel.jsx`
+- `src/pages/PlayerProfile.jsx`
+- `src/lib/useStats.js`
+- `src/App.jsx`
+- `src/styles/features.css`
