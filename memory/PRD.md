@@ -79,3 +79,20 @@ Requested missing features:
     - `/#/compare` => Compare
     - `/#/stats` => Stats
   - Public URL still shows old/misaligned runtime until fresh deploy + SW update activation on client.
+
+## Latest fixes (Top Scorers + Compare UI)
+- Top Scorers data correction:
+  - Updated `api/stats.js` `top-scorers` action to filter finished matches to the tournament date window derived from `src/data/matches.js`.
+  - This prevents historical/out-of-scope scorer pollution (e.g., prior tournaments) and keeps the feed aligned to WC2026 tracker scope.
+- Compare Visual Snapshot overlap fix:
+  - Updated `src/components/RadarChart.jsx` sizing/layout:
+    - chart canvas increased (`SIZE 432`, `RADIUS 126`)
+    - axis labels pushed outward and balanced by axis
+    - legend split into left/right anchors with team-name truncation safeguard
+  - Updated `src/styles/features.css` compare radar card styles:
+    - increased internal spacing
+    - responsive `radar-svg` width control
+    - overflow-safe card container
+- Validation:
+  - Build succeeds after changes.
+  - Screenshot verification confirms no overlapping radar text at desktop and tablet widths.
