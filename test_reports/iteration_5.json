@@ -1,0 +1,90 @@
+{
+  "summary": "Frontend-only route regression testing completed on https://wc2026-nine-sepia.vercel.app. Hash-route navigation is still functionally shifted/misaligned in deployed app (active tab changes, but main content shows previous/incorrect page). Requested route fix is not validated as fixed on live preview.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [
+      {
+        "component": "HashRouter route rendering",
+        "issue": "Route/component mismatch: #/schedule renders Home content while Schedule tab is active.",
+        "selector": "main.main",
+        "priority": "CRITICAL"
+      },
+      {
+        "component": "HashRouter route rendering",
+        "issue": "Route/component mismatch: #/groups renders Schedule content while Groups tab is active.",
+        "selector": "main.main",
+        "priority": "CRITICAL"
+      },
+      {
+        "component": "HashRouter route rendering",
+        "issue": "Route/component mismatch: #/bracket renders Groups content while Bracket tab is active.",
+        "selector": "main.main",
+        "priority": "CRITICAL"
+      },
+      {
+        "component": "HashRouter route rendering",
+        "issue": "Route/component mismatch: #/predictor renders Bracket content while Predictor tab is active.",
+        "selector": "main.main",
+        "priority": "CRITICAL"
+      },
+      {
+        "component": "HashRouter route rendering",
+        "issue": "Route/component mismatch: #/compare renders Predictor content while Compare tab is active.",
+        "selector": "main.main",
+        "priority": "CRITICAL"
+      }
+    ],
+    "integration_issues": [
+      {
+        "flow": "Compare vs Predictor state isolation",
+        "issue": "Could not validate route/query isolation because Compare/Predictor pages are not consistently mounted on their own routes due route-shift bug.",
+        "affected_selectors": [
+          "[data-testid='compare-page']",
+          "[data-testid='compare-select-a']",
+          "[data-testid='compare-select-b']"
+        ]
+      },
+      {
+        "flow": "Direct hash URL sequence",
+        "issue": "No-route-shift requirement fails: sequential direct navigation causes active nav to move correctly but displayed page content remains mismatched/lagged.",
+        "affected_selectors": [
+          "a.nav-link.active",
+          "main.main"
+        ]
+      }
+    ],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/wc2026tracker/src/App.jsx",
+    "/app/wc2026tracker/src/pages/Compare.jsx",
+    "/app/wc2026tracker/src/pages/Predictor.jsx",
+    "/app/wc2026tracker/public/sw.js",
+    "/root/.emergent/automation_output/20260619_023906/console_20260619_023906.log"
+  ],
+  "action_items": [
+    "Validate deployed artifact/preview URL is serving the latest commit that removed route transition wrapper and updated route wiring.",
+    "Hard-verify service-worker/chunk invalidation on preview deployment (stale lazy chunks can map wrong components to routes).",
+    "After redeploy/cache-bust, re-run direct hash-route matrix: /#/schedule, /#/groups, /#/bracket, /#/predictor, /#/compare, /#/stats and confirm each page-specific marker.",
+    "Re-test Compare/Predictor query isolation only after route mapping is corrected."
+  ],
+  "critical_code_review_comments": [
+    "Current source in workspace shows correct route declarations in App.jsx; observed failures indicate deployment/runtime artifact mismatch rather than obvious source mapping bug in reviewed files.",
+    "Nav hrefs are correctly hash-based (#/schedule etc.) and active tab state updates, but main route content does not align—this strongly suggests stale or wrong bundle/chunk behavior on live preview."
+  ],
+  "updated_files": [
+    "/app/wc2026tracker/test_reports/iteration_5.json"
+  ],
+  "success_rate": {
+    "backend": "N/A",
+    "frontend": "20%"
+  },
+  "seed_data_creation": "None",
+  "retest_needed": true,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Used public preview URL https://wc2026-nine-sepia.vercel.app. Repro is deterministic: active nav matches requested hash route, but rendered main content corresponds to wrong/previous tab (schedule->home, groups->schedule, bracket->groups, predictor->bracket, compare->predictor). /#/stats probe also behaved inconsistently in sequence and ended on compare content in one run.",
+  "rca of the issue": "Reproduction: open hash routes directly on preview in sequence and inspect both active nav and main content text. Active link changes correctly but displayed page markers are shifted/mismatched. Probable RCA is deployment/runtime artifact mismatch (stale lazy chunks/service worker cache invalidation issue) rather than current workspace route-source mapping, because App.jsx route declarations appear correct. Mitigation: ensure latest commit is actually deployed at tested URL, invalidate SW/caches/chunks for preview, then re-run hash-route matrix and compare/predictor isolation checks. MOCKED APIs: NONE."
+}

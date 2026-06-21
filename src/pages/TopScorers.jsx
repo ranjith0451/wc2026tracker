@@ -1,5 +1,6 @@
 import { useTopScorers } from "../lib/useStats.js";
 import TeamFlag from "../components/TeamFlag.jsx";
+import { Link } from "react-router-dom";
 
 const MEDALS = ["🥇", "🥈", "🥉"];
 
@@ -17,7 +18,10 @@ function SkeletonRow() {
 }
 
 export default function TopScorers() {
-  const { data: scorers = [], isLoading, error } = useTopScorers();
+  const { data, isLoading } = useTopScorers();
+  const scorers = data?.scorers || [];
+  const isStale = Boolean(data?.stale);
+  const fetchedAt = data?.fetchedAt ? new Date(data.fetchedAt) : null;
 
   return (
     <div>
@@ -27,21 +31,22 @@ export default function TopScorers() {
         <div className="sec-line" />
       </div>
 
-      {error ? (
-        <div className="empty-state">
-          <div className="es-icon">⚽</div>
-          <div className="es-text">Couldn't load scorers</div>
-          <div className="es-sub">{error.message || "API error — check back shortly."}</div>
+      {isStale && (
+        <div className="sec-count" style={{ marginBottom: 10, display: 'block' }} data-testid="scorers-stale-indicator">
+          Showing last successful scorer snapshot
+          {fetchedAt ? ` · ${fetchedAt.toLocaleTimeString('en-IN', { timeZone: 'Asia/Kolkata' })} IST` : ''}
         </div>
-      ) : isLoading ? (
+      )}
+
+      {isLoading ? (
         <div className="scorers-card">
           {Array.from({ length: 5 }).map((_, i) => <SkeletonRow key={i} />)}
         </div>
       ) : scorers.length === 0 ? (
         <div className="empty-state">
           <div className="es-icon">⚽</div>
-          <div className="es-text">No goals yet</div>
-          <div className="es-sub">Scorers will appear here once matches begin.</div>
+          <div className="es-text">Scorer feed temporarily unavailable</div>
+          <div className="es-sub">Live scorer service is retrying. Please refresh shortly.</div>
         </div>
       ) : (
         <div className="scorers-card">
@@ -60,7 +65,14 @@ export default function TopScorers() {
                   {s.assists > 0 && ` · ${s.assists} ast.`}
                 </div>
               </div>
-              <div className="scorer-goals">{s.goals}</div>
+              <Link
+                className="scorer-goals"
+                to={`/scorers/${encodeURIComponent(s.team)}/${encodeURIComponent(s.player)}`}
+                data-testid={`scorer-goals-link-${i}`}
+                title="Open goal-by-goal breakdown"
+              >
+                {s.goals}
+              </Link>
             </div>
           ))}
         </div>

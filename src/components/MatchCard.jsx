@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { FLAG_URL, FLAGS } from "../data/teams.js";
 import { resolveMatchTeams } from "../lib/bracket.js";
 import { formatISTTime, formatISTDate, getMatchStatus, timeUntil } from "../lib/time.js";
@@ -86,9 +86,14 @@ export default function MatchCard({ match, results, statsMatchId }) {
   const elapsed   = result?.elapsed;
   const statusShort = result?.statusShort;
   const hasData   = (isFT || isLive) && result;
+  const canOpenDetail = hasData || status === "scheduled";
 
   function handleToggle() {
-    if (!hasData) return;
+    if (!canOpenDetail) return;
+    if (status === "scheduled") {
+      navigate(`/match/${match.id}`);
+      return;
+    }
     if (isFT) {
       navigate(`/match/${match.id}`);
       return;
@@ -99,7 +104,7 @@ export default function MatchCard({ match, results, statsMatchId }) {
   return (
     <div className={`mc-wrap${isLive ? " is-live" : ""}${open ? " mc-expanded" : ""}`}>
       {/* ── Main row ── */}
-      <div className="mc-body" onClick={handleToggle} style={hasData ? { cursor: "pointer" } : {}}>
+      <div className="mc-body" onClick={handleToggle} style={canOpenDetail ? { cursor: "pointer" } : {}} data-testid={`matchcard-body-${match.id}`}>
         <TeamSide side={home} align="left" />
 
         {/* Center */}
@@ -135,7 +140,7 @@ export default function MatchCard({ match, results, statsMatchId }) {
       </div>
 
       {/* ── Footer ── */}
-      <div className="mc-footer" onClick={handleToggle} style={hasData ? { cursor: "pointer" } : {}}>
+      <div className="mc-footer" onClick={handleToggle} style={canOpenDetail ? { cursor: "pointer" } : {}} data-testid={`matchcard-footer-${match.id}`}>
         {match.group && <span className="mc-tag group">{match.group}</span>}
         {isLive && (
           <span className="mc-tag live">
@@ -146,6 +151,11 @@ export default function MatchCard({ match, results, statsMatchId }) {
         {isFT  && <span className="mc-tag ft">FT</span>}
         {match.special && <span className="mc-tag special">{match.special}</span>}
         <span className="mc-tag venue">{match.venue}</span>
+        {status === "scheduled" && (
+          <span className="mc-tag api-badge" data-testid={`matchcard-prematch-tag-${match.id}`} title="Open full pre-match details">
+            Pre-match details
+          </span>
+        )}
         {hasData && (
           <span className="mc-tag stats-toggle">
             <ChevronIcon open={open} />
@@ -154,6 +164,19 @@ export default function MatchCard({ match, results, statsMatchId }) {
         )}
         {statsMatchId && (
           <span className="mc-tag api-badge" title="Live data from TheStatsAPI">◉ Live Data</span>
+        )}
+        {isLive && (
+          <Link
+            to={`/match/${match.id}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mc-tag api-badge"
+            onClick={(e) => e.stopPropagation()}
+            data-testid={`matchcard-live-summary-link-${match.id}`}
+            title="Open live summary in new tab"
+          >
+            Open Live Summary
+          </Link>
         )}
         <ShareButton match={match} home={home} away={away} result={result} status={status} />
       </div>

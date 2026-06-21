@@ -1,0 +1,80 @@
+{
+  "summary": "Tested backend + frontend for player-id/scorer-details routing on public URL. Critical backend regression found for scorer-details API; frontend shows route/render mismatch and deployed build appears out-of-sync with referenced source selectors.",
+  "backend_issues": {
+    "critical": [
+      {
+        "endpoint": "/api/stats?action=scorer-details&scorer=...&team=...",
+        "issue": "Returns 400 with {\"error\":\"id required\"} instead of scorer detail payload; breaks scorer goal details contract.",
+        "priority": "CRITICAL"
+      }
+    ],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [
+      {
+        "component": "TopScorers",
+        "issue": "Expected clickable goal-count links with data-testid/a.scorer-goals were not discoverable in automation despite visible scorer list; deployed DOM does not match referenced source contract.",
+        "selector": "[data-testid^='scorer-goals-link-'], a.scorer-goals",
+        "priority": "HIGH"
+      },
+      {
+        "component": "Route rendering",
+        "issue": "Hash route to /#/scorers intermittently coexists with Home markers, indicating route/content mismatch or stale bundle behavior in deployment.",
+        "selector": "main.main",
+        "priority": "HIGH"
+      }
+    ],
+    "integration_issues": [
+      {
+        "flow": "Top scorers goals click -> /scorers/:team/:player -> scorer details fields",
+        "issue": "Could not complete end-to-end verification due scorer-goals link contract mismatch in deployed UI plus backend scorer-details API returning id-required error.",
+        "affected_selectors": [
+          "[data-testid^='scorer-goals-link-']",
+          "a.scorer-goals",
+          "[data-testid='scorer-goals-page']"
+        ]
+      },
+      {
+        "flow": "Finished match event player click -> /player-id/:id with fallback query params",
+        "issue": "No .fef-player-link rendered on tested finished-match paths at runtime, so new player-id click flow could not be validated on public deployment.",
+        "affected_selectors": [
+          ".fef-player-link",
+          "[data-testid='player-id-profile-page']"
+        ]
+      }
+    ],
+    "design_issues": []
+  },
+  "test_report_links": [
+    "/app/wc2026tracker/backend/tests/test_scorer_details_contract.py",
+    "/app/wc2026tracker/test_reports/pytest/pytest_results_iteration_8_backend.xml",
+    "/root/.emergent/automation_output/20260619_041526/console_20260619_041526.log",
+    "/root/.emergent/automation_output/20260619_041552/console_20260619_041552.log",
+    "/root/.emergent/automation_output/20260619_041608/console_20260619_041608.log"
+  ],
+  "action_items": [
+    "Fix deployment/runtime backend handler so /api/stats?action=scorer-details&scorer=&team= returns scorer payload (not id-required).",
+    "Verify deployed frontend artifact matches current source (TopScorers Link + data-testid contract) and invalidate stale bundles/service worker if needed.",
+    "Re-test finished match pages with known event-rich match IDs and confirm .fef-player-link routes to /player-id/:id?team=&name= with /player fallback.",
+    "After fixes, run full e2e: /scorers click goals count -> detail rows include opponent, minute, match date, goal type; and regress /player/:team/:player + /match/:id."
+  ],
+  "critical_code_review_comments": [
+    "Source code in /app/wc2026tracker/api/stats.js contains scorer-details branch before generic id check, but deployed endpoint behavior contradicts this; likely stale/incorrect deployed backend artifact.",
+    "Source code in TopScorers.jsx defines Link with data-testid scorer-goals-link-*, but deployed runtime selector contract did not match consistently.",
+    "Given repeated route/content mismatch symptoms, deployment validation (latest commit/chunk map/SW cache) is required before further UI selector debugging."
+  ],
+  "updated_files": [
+    "/app/wc2026tracker/backend/tests/test_scorer_details_contract.py",
+    "/app/wc2026tracker/test_reports/iteration_7.json"
+  ],
+  "success_rate": {
+    "backend": "50%",
+    "frontend": "35%"
+  },
+  "seed_data_creation": "None",
+  "retest_needed": true,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "Public URL tested: https://wc2026-nine-sepia.vercel.app. Reproduced backend scorer-details failure via curl and pytest. UI automation showed inconsistent route/render state and selector contract mismatch versus repository source; use deployed-build verification first, then rerun e2e route checks.",
+  "rca of the issue": "RCA-1 (backend): scorer-details request returns id-required, indicating deployed API code path is not matching expected scorer-details branch (likely stale deploy or wrong handler version). Repro: GET /api/stats?action=scorer-details&scorer=Harry%20Kane&team=England -> 400 {error:id required}. RCA-2 (frontend): route and selector inconsistencies suggest deployed bundle mismatch/stale chunking; repro: open /#/scorers, scorer list visible but expected link selectors not consistently present and Home markers remain in DOM. Mitigation: redeploy latest commit, invalidate SW/cache, then retest all requested flows. MOCKED APIs: NONE."
+}
