@@ -16,6 +16,13 @@ function getRedis() {
   });
 }
 
+function parseBody(req) {
+  if (typeof req.body === 'string') {
+    try { return JSON.parse(req.body); } catch { return null; }
+  }
+  return req.body;
+}
+
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
@@ -25,7 +32,7 @@ export default async function handler(req, res) {
   const redis = getRedis();
   if (!redis) {
     res.setHeader('Cache-Control', 'no-store');
-    return res.status(200).json({});
+    return res.status(500).json({ error: 'REDIS_URL not configured' });
   }
 
   try {
@@ -36,7 +43,7 @@ export default async function handler(req, res) {
     }
 
     if (req.method === 'POST') {
-      const body = req.body;
+      const body = parseBody(req);
       if (typeof body !== 'object' || body === null) {
         return res.status(400).json({ error: 'Body must be a JSON object' });
       }
@@ -47,7 +54,7 @@ export default async function handler(req, res) {
     res.status(405).end();
   } catch (e) {
     console.error('[/api/results]', e.message);
-    if (req.method === 'GET') return res.status(200).json({});
+    if (req.method === 'GET') return res.status(502).json({ error: e.message });
     return res.status(500).json({ error: e.message });
   } finally {
     redis.disconnect();

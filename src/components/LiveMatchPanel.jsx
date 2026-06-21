@@ -165,12 +165,20 @@ function ShotMap({ hs, hso, as_, aso, homeTeam, awayTeam, matchId }) {
   );
 }
 
-const PlayerLink = ({ name, team }) => {
+const PlayerLink = ({ name, team, playerId }) => {
   if (!name) return null;
   if (!team) return <span className="fef-player">{name}</span>;
-  const slug = encodeURIComponent(team);
+  const teamSlug = encodeURIComponent(team);
+  const playerSlug = encodeURIComponent(name);
+  const idSlug = playerId ? encodeURIComponent(playerId) : null;
   return (
-    <Link to={`/squads/${slug}`} className="fef-player fef-player-link" title={`View ${team} squad`}>
+    <Link
+      to={idSlug ? `/player-id/${idSlug}?team=${teamSlug}&name=${playerSlug}` : `/player/${teamSlug}/${playerSlug}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="fef-player fef-player-link"
+      title={`View ${name} profile`}
+    >
       {name}
     </Link>
   );
@@ -215,7 +223,7 @@ function EventFeed({ scorers, cards, subs, homeTeam, awayTeam }) {
             {isHome ? (
               <>
                 <div className="fef-info home">
-                  <PlayerLink name={ev.player || ev.playerIn} team={ev.team} />
+                  <PlayerLink name={ev.player || ev.playerIn} team={ev.team} playerId={ev.playerId || ev.playerInId} />
                   {ev._type === "goal" && (ev.ownGoal ? <span className="fef-badge og">OG</span> : ev.penalty ? <span className="fef-badge pen">Pen</span> : null)}
                   {ev._type === "goal" && ev.assist && <span className="fef-assist">↗ {ev.assist}</span>}
                   {ev._type === "sub" && <span className="fef-out">↓ {ev.playerOut}</span>}
@@ -228,7 +236,7 @@ function EventFeed({ scorers, cards, subs, homeTeam, awayTeam }) {
                 <div className="fef-spacer"/>
                 <div className="fef-mid">{icon}<span className="fef-min">{ev.minute}'</span></div>
                 <div className="fef-info away">
-                  <PlayerLink name={ev.player || ev.playerIn} team={ev.team} />
+                  <PlayerLink name={ev.player || ev.playerIn} team={ev.team} playerId={ev.playerId || ev.playerInId} />
                   {ev._type === "goal" && (ev.ownGoal ? <span className="fef-badge og">OG</span> : ev.penalty ? <span className="fef-badge pen">Pen</span> : null)}
                   {ev._type === "goal" && ev.assist && <span className="fef-assist">↗ {ev.assist}</span>}
                   {ev._type === "sub" && <span className="fef-out">↓ {ev.playerOut}</span>}
@@ -586,11 +594,11 @@ export default function LiveMatchPanel({
     const scorers = [], cards = [], subs = [];
     for (const ev of evList) {
       const min = (ev.minute || 0) + (ev.extra_time || 0);
-      if (ev.type === 'goal')         scorers.push({ team: ev.team?.name, player: ev.player?.name, minute: min });
-      else if (ev.type === 'own_goal')    scorers.push({ team: ev.team?.name, player: ev.player?.name, minute: min, ownGoal: true });
-      else if (ev.type === 'penalty_goal') scorers.push({ team: ev.team?.name, player: ev.player?.name, minute: min, penalty: true });
-      else if (ev.type === 'yellow_card')  cards.push({ team: ev.team?.name, player: ev.player?.name, minute: min, cardType: 'yellow' });
-      else if (ev.type === 'red_card' || ev.type === 'double_yellow') cards.push({ team: ev.team?.name, player: ev.player?.name, minute: min, cardType: 'red' });
+      if (ev.type === 'goal')         scorers.push({ team: ev.team?.name, player: ev.player?.name, playerId: ev.player?.id, minute: min });
+      else if (ev.type === 'own_goal')    scorers.push({ team: ev.team?.name, player: ev.player?.name, playerId: ev.player?.id, minute: min, ownGoal: true });
+      else if (ev.type === 'penalty_goal') scorers.push({ team: ev.team?.name, player: ev.player?.name, playerId: ev.player?.id, minute: min, penalty: true });
+      else if (ev.type === 'yellow_card')  cards.push({ team: ev.team?.name, player: ev.player?.name, playerId: ev.player?.id, minute: min, cardType: 'yellow' });
+      else if (ev.type === 'red_card' || ev.type === 'double_yellow') cards.push({ team: ev.team?.name, player: ev.player?.name, playerId: ev.player?.id, minute: min, cardType: 'red' });
     }
     if (!scorers.length && !cards.length) return null;
     return { scorers, cards, subs };

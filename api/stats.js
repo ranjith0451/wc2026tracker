@@ -22,10 +22,121 @@
  */
 
 import Redis from 'ioredis';
+import { MATCHES } from '../src/data/matches.js';
 
 const BASE = 'https://api.thestatsapi.com/api/football';
 const WC_COMP = 'comp_6107';
 const API_KEY = process.env.STATS_API_KEY;
+
+const DAY_MS = 24 * 60 * 60 * 1000;
+const ALL_MATCH_DATES = MATCHES.map(m => new Date(m.isoIST).getTime()).filter(Number.isFinite);
+const TOURNAMENT_START = new Date(Math.min(...ALL_MATCH_DATES) - DAY_MS);
+const TOURNAMENT_END = new Date(Math.max(...ALL_MATCH_DATES) + DAY_MS);
+const TOURNAMENT_TEAMS = new Set(
+  MATCHES.flatMap(m => [m?.home, m?.away])
+    .filter(t => t?.type === 'team' && t?.name)
+    .map(t => t.name)
+);
+const TOURNAMENT_TOKEN = `${TOURNAMENT_START.toISOString().slice(0, 10)}_${TOURNAMENT_END.toISOString().slice(0, 10)}`;
+const SCORERS_CACHE_KEY = `stats_topscorers_${WC_COMP}_${TOURNAMENT_TOKEN}_v4`;
+const SCORERS_EVENTS_CACHE_PREFIX = `stats_events_${WC_COMP}_${TOURNAMENT_TOKEN}`;
+
+function goalTypeLabel(type) {
+  const t = (type || '').toLowerCase();
+  if (t === 'penalty_goal') return 'penalty';
+  if (t === 'own_goal') return 'own-goal';
+  if (t === 'freekick_goal') return 'free-kick';
+  return 'open-play';
+}
+
+async function buildTopScorersBundle(redis) {
+  const [p1, p2] = await Promise.all([
+    statsFetch(`/matches?competition_id=${WC_COMP}&per_page=100&page=1`),
+    statsFetch(`/matches?competition_id=${WC_COMP}&per_page=100&page=2`),
+  ]);
+  const allMatches = [...(p1?.data || []), ...(p2?.data || [])];
+  const DONE = new Set(['ft', 'aet', 'pen', 'finished', 'completed', 'full_time', 'awarded', 'walkover']);
+  const finished = allMatches.filter(m => {
+    const done = DONE.has((m.status || '').toLowerCase());
+    const inWindow = inTournamentWindow(m.utc_date || m.date || m.match_date);
+    return done && inWindow;
+  });
+
+  const GOAL_TYPES = new Set(['goal', 'penalty_goal', 'freekick_goal', 'own_goal']);
+  const tally = {};
+  const detailsByKey = {};
+
+  await Promise.allSettled(finished.map(async (m) => {
+    const scopedEventCacheKey = `${SCORERS_EVENTS_CACHE_PREFIX}_${m.id}`;
+    let events;
+    if (redis) {
+      try {
+        const cachedHit = await redis.get(scopedEventCacheKey);
+        if (cachedHit) events = JSON.parse(cachedHit);
+      } catch {}
+    }
+    if (!events) {
+      const d = await statsFetch(`/matches/${m.id}/timeline`);
+      events = d?.data || d || {};
+      if (redis) {
+        try { await redis.setex(scopedEventCacheKey, 86400, JSON.stringify(events)); } catch {}
+      }
+    }
+
+    const evArray = events?.events || events?.data?.events || (Array.isArray(events) ? events : []);
+    for (const ev of evArray) {
+      const type = (ev.type || ev.event_type || '').toLowerCase();
+      if (!GOAL_TYPES.has(type)) continue;
+      if (type === 'own_goal') continue;
+      const player = (ev.player_name || ev.player?.name || '').trim();
+      const team = (ev.team_name || ev.team?.name || '').trim();
+      if (!player || !team) continue;
+
+      const scoreKey = `${player}||${team}`;
+      if (!tally[scoreKey]) tally[scoreKey] = { player, team, goals: 0, penalties: 0, matchIds: new Set() };
+      tally[scoreKey].goals++;
+      if (type === 'penalty_goal') tally[scoreKey].penalties++;
+      tally[scoreKey].matchIds.add(m.id);
+
+      const detailKey = `${player.toLowerCase()}||${team.toLowerCase()}`;
+      if (!detailsByKey[detailKey]) detailsByKey[detailKey] = [];
+      const home = m.home_team?.name || '';
+      const away = m.away_team?.name || '';
+      const opponent = home === team ? away : home;
+      detailsByKey[detailKey].push({
+        matchId: m.id,
+        matchDate: m.utc_date || m.date || null,
+        opponent,
+        minute: (ev.minute || 0) + (ev.extra_time || 0),
+        goalType: goalTypeLabel(type),
+        playerId: ev.player?.id || ev.player_id || null,
+      });
+    }
+  }));
+
+  for (const k of Object.keys(detailsByKey)) {
+    detailsByKey[k].sort((a, b) => {
+      const ta = new Date(a.matchDate || 0).getTime();
+      const tb = new Date(b.matchDate || 0).getTime();
+      if (ta !== tb) return ta - tb;
+      return (a.minute || 0) - (b.minute || 0);
+    });
+  }
+
+  const scorers = Object.values(tally)
+    .map(t => ({ player: t.player, team: t.team, goals: t.goals, penalties: t.penalties, matches: t.matchIds.size }))
+    .filter(t => TOURNAMENT_TEAMS.has(t.team))
+    .sort((a, b) => b.goals - a.goals || a.player.localeCompare(b.player));
+
+  return { scorers, detailsByKey };
+}
+
+function inTournamentWindow(utcDate) {
+  if (!utcDate) return false;
+  const ts = new Date(utcDate).getTime();
+  if (!Number.isFinite(ts)) return false;
+  return ts >= TOURNAMENT_START.getTime() && ts <= TOURNAMENT_END.getTime();
+}
 
 function getRedis() {
   const url = process.env.REDIS_URL;
@@ -34,6 +145,13 @@ function getRedis() {
     tls: url.startsWith('rediss://') ? {} : undefined,
     lazyConnect: false, connectTimeout: 5000, maxRetriesPerRequest: 1,
   });
+}
+
+function parseBody(req) {
+  if (typeof req.body === 'string') {
+    try { return JSON.parse(req.body); } catch { return null; }
+  }
+  return req.body;
 }
 
 async function statsFetch(path) {
@@ -190,9 +308,22 @@ function normalizeTeamStats(raw) {
 
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   if (req.method === 'OPTIONS') return res.status(200).end();
+
+  if (req.method === 'POST') {
+    const body = parseBody(req);
+    if (!body || typeof body !== 'object') {
+      return res.status(400).json({ error: 'Body must be a JSON object' });
+    }
+    const { action: bodyAction, ...bodyParams } = body;
+    req.query = { ...(req.query || {}), ...(bodyAction ? { action: bodyAction } : {}), ...bodyParams };
+  }
+
+  if (req.method !== 'GET' && req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
 
   const { action, id, date, pid } = req.query;
   const redis = getRedis();
@@ -255,64 +386,29 @@ export default async function handler(req, res) {
 
     // ── Competition top scorers (derived from per-match event timelines) ────────
     if (action === 'top-scorers') {
-      const { data: payload, cached: hit } = await cached(redis, 'stats_topscorers', 300, async () => {
-        // Step 1: get all WC matches, pick finished ones
-        const [p1, p2] = await Promise.all([
-          statsFetch(`/matches?competition_id=${WC_COMP}&per_page=100&page=1`),
-          statsFetch(`/matches?competition_id=${WC_COMP}&per_page=100&page=2`),
-        ]);
-        const allMatches = [...(p1?.data || []), ...(p2?.data || [])];
-        const DONE = new Set(['ft', 'aet', 'pen', 'finished', 'completed', 'full_time', 'awarded', 'walkover']);
-        const finished = allMatches.filter(m => DONE.has((m.status || '').toLowerCase()));
+      const { data: payload, cached: hit } = await cached(redis, SCORERS_CACHE_KEY, 300, async () => buildTopScorersBundle(redis), false);
 
-        // Step 2: fetch timeline for each finished match (re-use cached events where possible)
-        const GOAL_TYPES = new Set(['goal', 'penalty_goal', 'freekick_goal', 'own_goal']);
-        const tally = {};
-
-        await Promise.allSettled(finished.map(async m => {
-          let events;
-          if (redis) {
-            try {
-              const cached_hit = await redis.get(`stats_events_${m.id}`);
-              if (cached_hit) { events = JSON.parse(cached_hit); }
-            } catch {}
-          }
-          if (!events) {
-            try {
-              const d = await statsFetch(`/matches/${m.id}/timeline`);
-              // Store the raw data object (same shape as the regular events action)
-              events = d?.data || d || {};
-              if (redis) {
-                try { await redis.setex(`stats_events_${m.id}`, 86400, JSON.stringify(events)); } catch {}
-              }
-            } catch { return; }
-          }
-
-          // Events are nested: { events: [...] } or a plain array
-          const evArray = events?.events || events?.data?.events || (Array.isArray(events) ? events : []);
-
-          for (const ev of evArray) {
-            const type = (ev.type || ev.event_type || '').toLowerCase();
-            if (!GOAL_TYPES.has(type)) continue;
-            if (type === 'own_goal') continue;
-            const player = ev.player_name || ev.player?.name || '';
-            const team   = ev.team_name   || ev.team?.name   || '';
-            if (!player) continue;
-            const key = `${player}||${team}`;
-            if (!tally[key]) tally[key] = { player, team, goals: 0, penalties: 0, matchIds: new Set() };
-            tally[key].goals++;
-            if (type === 'penalty_goal') tally[key].penalties++;
-            tally[key].matchIds.add(m.id);
-          }
-        }));
-
-        return Object.values(tally)
-          .map(t => ({ player: t.player, team: t.team, goals: t.goals, penalties: t.penalties, matches: t.matchIds.size }))
-          .sort((a, b) => b.goals - a.goals || a.player.localeCompare(b.player));
-      }, false);
+      const scorers = Array.isArray(payload) ? payload : (payload?.scorers || []);
 
       res.setHeader('X-Cache', hit ? 'HIT' : 'MISS');
-      return res.status(200).json({ scorers: payload || [] });
+      return res.status(200).json({ scorers });
+    }
+
+    // ── Goal details for a scorer (opponent + minute + date + type) ───────────
+    if (action === 'scorer-details') {
+      const scorer = (req.query?.scorer || '').toString().trim();
+      const team = (req.query?.team || '').toString().trim();
+      if (!scorer || !team) {
+        return res.status(400).json({ error: 'scorer and team are required' });
+      }
+
+      const { data: payload, cached: hit } = await cached(redis, SCORERS_CACHE_KEY, 300, async () => buildTopScorersBundle(redis), false);
+      const detailsByKey = Array.isArray(payload) ? {} : (payload?.detailsByKey || {});
+      const dk = `${scorer.toLowerCase()}||${team.toLowerCase()}`;
+      const goals = detailsByKey[dk] || [];
+
+      res.setHeader('X-Cache', hit ? 'HIT' : 'MISS');
+      return res.status(200).json({ scorer, team, totalGoals: goals.length, goals });
     }
 
     // ── Debug: inspect raw timeline for one finished match ───────────────────

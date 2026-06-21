@@ -1,13 +1,20 @@
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import { MATCHES } from "../data/matches.js";
 import { GROUPS } from "../data/teams.js";
 import MatchCard from "../components/MatchCard.jsx";
+import MatchDayToday from "../components/MatchDayToday.jsx";
+import MyTeams from "../components/MyTeams.jsx";
 import TeamFlag from "../components/TeamFlag.jsx";
+import Tilt3D from "../components/Tilt3D.jsx";
+import CountUp from "../components/CountUp.jsx";
 import { getMatchStatus } from "../lib/time.js";
 import { getTeamGoalCounts } from "../lib/topscorers.js";
 import { getGroupStandings } from "../lib/standings.js";
 import { useTopScorers, useMatchEvents, useMatchStats } from "../lib/useStats.js";
+import { staggerContainer, revealUp, inViewOnce } from "../lib/motion.js";
+import Trophy3D from "../components/Trophy3D.jsx";
 
 const MEDALS = ["🥇","🥈","🥉"];
 
@@ -19,19 +26,19 @@ function SvgIcon({ d, size=13 }) {
   );
 }
 
-/* Stat card with icon + color variant */
+/* Stat card with icon + color variant + 3D tilt + count-up */
 function StatCard({ num, lbl, color, icon, delay }) {
   return (
-    <div className={`stat-card ${color} s${delay}`}>
+    <Tilt3D max={10} scale={1.04} className={`stat-card ${color} s${delay}`} data-tilt-3d>
       <div className="stat-card-beam" />
       <div className="stat-icon">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
           <path d={icon} />
         </svg>
       </div>
-      <div className="stat-num">{num}</div>
+      <div className="stat-num number-anim"><CountUp to={Number(num) || 0} /></div>
       <div className="stat-lbl">{lbl}</div>
-    </div>
+    </Tilt3D>
   );
 }
 
@@ -96,8 +103,9 @@ function LiveSummaryCard({ match, result, statsMatchId }) {
         cards.push({ name, team, minute, pid, red: et !== "yellow_card" });
       }
       if (et === "substitution" || et === "sub") {
-        if (team === match.home.name) summarySubsHome++;
-        else if (team === match.away.name) summarySubsAway++;
+        const t = team || "";
+        if (t && t === match.home.name) summarySubsHome++;
+        else if (t && t === match.away.name) summarySubsAway++;
       }
     }
     return {
@@ -121,17 +129,17 @@ function LiveSummaryCard({ match, result, statsMatchId }) {
       },
       halftime: result?.halftime
         ? `${result.halftime.home}-${result.halftime.away}`
-        : "\u2014",
+        : "—",
       fulltime: `${result?.homeScore ?? 0}-${result?.awayScore ?? 0}`,
     };
   }, [statsData, summary, result]);
 
   const metricRows = [
-    { key: "corners", label: "Corners", value: `${statSummary.corners.home ?? "\u2014"} - ${statSummary.corners.away ?? "\u2014"}`, tone: "blue" },
-    { key: "goal-kicks", label: "Goal Kicks", value: `${statSummary.goalKicks.home ?? "\u2014"} - ${statSummary.goalKicks.away ?? "\u2014"}`, tone: "cyan" },
-    { key: "subs", label: "Substitutions", value: `${statSummary.substitutions.home ?? "\u2014"} - ${statSummary.substitutions.away ?? "\u2014"}`, tone: "green" },
-    { key: "yellow", label: "Yellow Cards", value: `${statSummary.yellowCards.home ?? "\u2014"} - ${statSummary.yellowCards.away ?? "\u2014"}`, tone: "yellow" },
-    { key: "red", label: "Red Cards", value: `${statSummary.redCards.home ?? "\u2014"} - ${statSummary.redCards.away ?? "\u2014"}`, tone: "red" },
+    { key: "corners", label: "Corners", value: `${statSummary.corners.home ?? "—"} - ${statSummary.corners.away ?? "—"}`, tone: "blue" },
+    { key: "goal-kicks", label: "Goal Kicks", value: `${statSummary.goalKicks.home ?? "—"} - ${statSummary.goalKicks.away ?? "—"}`, tone: "cyan" },
+    { key: "subs", label: "Substitutions", value: `${statSummary.substitutions.home ?? "—"} - ${statSummary.substitutions.away ?? "—"}`, tone: "green" },
+    { key: "yellow", label: "Yellow Cards", value: `${statSummary.yellowCards.home ?? "—"} - ${statSummary.yellowCards.away ?? "—"}`, tone: "yellow" },
+    { key: "red", label: "Red Cards", value: `${statSummary.redCards.home ?? "—"} - ${statSummary.redCards.away ?? "—"}`, tone: "red" },
     { key: "ht", label: "Half Time", value: statSummary.halftime, tone: "purple" },
     { key: "ft", label: "Full Time / Live", value: statSummary.fulltime, tone: "orange" },
   ];
@@ -141,10 +149,12 @@ function LiveSummaryCard({ match, result, statsMatchId }) {
       <div className="home-live-summary-head">
         <Link
           to={`/match/${match.id}`}
+          target="_blank"
+          rel="noopener noreferrer"
           className="home-live-summary-title"
           data-testid={`home-live-summary-match-link-${match.id}`}
         >
-          {match.home.name} {result?.homeScore ?? 0} \u2013 {result?.awayScore ?? 0} {match.away.name}
+          {match.home.name} {result?.homeScore ?? 0} – {result?.awayScore ?? 0} {match.away.name}
         </Link>
         <div className="home-live-summary-actions">
           <span className="home-live-summary-status">{result?.statusShort || "LIVE"}</span>
@@ -155,7 +165,7 @@ function LiveSummaryCard({ match, result, statsMatchId }) {
             disabled={isFetching}
             data-testid={`home-live-summary-refresh-${match.id}`}
           >
-            {isFetching ? "Refreshing\u2026" : "Refresh"}
+            {isFetching ? "Refreshing…" : "Refresh"}
           </button>
         </div>
       </div>
@@ -167,14 +177,16 @@ function LiveSummaryCard({ match, result, statsMatchId }) {
             {summary.goals.map((g, i) => (
               <div key={`g-${i}`} className="home-live-summary-row">
                 <Link
-                  to={`/squads/${encodeURIComponent(g.team)}`}
+                  to={`/player/${encodeURIComponent(g.team)}/${encodeURIComponent(g.name)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="home-live-player-link"
                   data-testid={`home-live-player-link-goal-${match.id}-${i}`}
                 >
                   {g.name}
                 </Link>
                 <span className="home-live-summary-meta">
-                  {g.minute}\u2019 {g.penalty ? "\u00b7 Pen" : g.ownGoal ? "\u00b7 OG" : ""}
+                  {g.minute}' {g.penalty ? "· Pen" : g.ownGoal ? "· OG" : ""}
                 </span>
               </div>
             ))}
@@ -189,14 +201,16 @@ function LiveSummaryCard({ match, result, statsMatchId }) {
             {summary.cards.map((c, i) => (
               <div key={`c-${i}`} className="home-live-summary-row">
                 <Link
-                  to={`/squads/${encodeURIComponent(c.team)}`}
+                  to={`/player/${encodeURIComponent(c.team)}/${encodeURIComponent(c.name)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="home-live-player-link"
                   data-testid={`home-live-player-link-card-${match.id}-${i}`}
                 >
                   {c.name}
                 </Link>
                 <span className="home-live-summary-meta">
-                  {c.minute}\u2019 {c.red ? "\u00b7 Red" : "\u00b7 Yellow"}
+                  {c.minute}' {c.red ? "· Red" : "· Yellow"}
                 </span>
               </div>
             ))}
@@ -228,9 +242,15 @@ export default function Home({ results, statsMatchIdMap = {} }) {
     .sort((a, b) => new Date(a.m.isoIST) - new Date(b.m.isoIST))
     .slice(0, 5);
 
-  const totalGoals = Object.values(getTeamGoalCounts(results)).reduce((a, b) => a + b, 0);
-  const { data: liveScorers = [] } = useTopScorers();
-  const topScorers = liveScorers.slice(0, 3);
+  const totalGoals = withStatus.reduce((sum, x) => {
+    if ((x.status === "finished" || x.status === "live") && x.m.home?.type === "team" && x.m.away?.type === "team") {
+      const r = results[x.m.id];
+      return sum + (Number(r?.homeScore) || 0) + (Number(r?.awayScore) || 0);
+    }
+    return sum;
+  }, 0);
+  const { data: liveScorersData } = useTopScorers();
+  const topScorers = (liveScorersData?.scorers || []).slice(0, 3);
 
   return (
     <div>
@@ -242,23 +262,33 @@ export default function Home({ results, statsMatchIdMap = {} }) {
         </div>
         <div className="hero-ring hero-ring-2" />
 
-        <div className="hero-content">
-          <div className="hero-eyebrow">
+        {/* 3D Floating World Cup Trophy */}
+        <div className="hero-trophy-stage" aria-hidden>
+          <Trophy3D />
+        </div>
+
+        <motion.div
+          className="hero-content"
+          variants={staggerContainer}
+          initial="hidden"
+          animate="show"
+        >
+          <motion.div variants={revealUp} className="hero-eyebrow">
             <span className="hero-eyebrow-dot" />
             Live Tracker · IST
-          </div>
+          </motion.div>
 
-          <h1>
+          <motion.h1 variants={revealUp}>
             <span className="hero-title-wc">FIFA World Cup</span>
             <span className="hero-title-year">2026</span>
-          </h1>
+          </motion.h1>
 
-          <p className="hero-desc">
+          <motion.p variants={revealUp} className="hero-desc">
             <strong>48 nations</strong> · 12 groups · <strong>104 matches</strong> across
             USA, Mexico &amp; Canada. Every kickoff shown in <strong>IST</strong>.
-          </p>
+          </motion.p>
 
-          <div className="hero-actions">
+          <motion.div variants={revealUp} className="hero-actions">
             {live.length > 0 ? (
               <Link to={`/match/${live[0].m.id}`} className="live-pill" style={{ textDecoration:"none", cursor:"pointer" }}>
                 <span className="live-dot" />
@@ -279,17 +309,29 @@ export default function Home({ results, statsMatchIdMap = {} }) {
               <SvgIcon d="M8 2v3m8-3v3M3 8h18M5 3h14a2 2 0 012 2v15a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2z" />
               Full Schedule
             </Link>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
 
+      {/* ══════════ MATCH DAY TODAY WIDGET ══════════ */}
+      <MatchDayToday results={results} />
+
+      {/* ══════════ MY TEAMS (followed) ══════════ */}
+      <MyTeams results={results} />
+
       {/* ══════════ STATS GRID ══════════ */}
-      <div className="stats-grid">
-        <StatCard delay={1} color="blue"  num={MATCHES.length}  lbl="Total Matches" icon="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-        <StatCard delay={2} color="green" num={finished.length} lbl="Matches Played" icon="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-        <StatCard delay={3} color="red"   num={live.length}     lbl="Live Now"       icon="M5.636 18.364a9 9 0 010-12.728m12.728 0a9 9 0 010 12.728M9 10a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1v-4z" />
-        <StatCard delay={4} color="gold"  num={totalGoals}      lbl="Goals Scored"  icon="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" />
-      </div>
+      <motion.div
+        className="stats-grid"
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="show"
+        viewport={inViewOnce}
+      >
+        <motion.div variants={revealUp}><StatCard delay={1} color="blue"  num={MATCHES.length}  lbl="Total Matches" icon="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" /></motion.div>
+        <motion.div variants={revealUp}><StatCard delay={2} color="green" num={finished.length} lbl="Matches Played" icon="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></motion.div>
+        <motion.div variants={revealUp}><StatCard delay={3} color="red"   num={live.length}     lbl="Live Now"       icon="M5.636 18.364a9 9 0 010-12.728m12.728 0a9 9 0 010 12.728M9 10a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1v-4z" /></motion.div>
+        <motion.div variants={revealUp}><StatCard delay={4} color="gold"  num={totalGoals}      lbl="Goals Scored"  icon="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" /></motion.div>
+      </motion.div>
 
       {/* ══════════ LIVE NOW ══════════ */}
       {live.length > 0 && (
@@ -351,7 +393,14 @@ export default function Home({ results, statsMatchIdMap = {} }) {
                     {s.penalties > 0 && ` · ${s.penalties} pen.`}
                   </div>
                 </div>
-                <div className="scorer-goals">{s.goals}</div>
+                <Link
+                  to={`/scorers/${encodeURIComponent(s.team)}/${encodeURIComponent(s.player)}`}
+                  className="scorer-goals"
+                  data-testid={`home-scorer-goals-link-${i}`}
+                  title="Open goal-by-goal breakdown"
+                >
+                  {s.goals}
+                </Link>
               </div>
             ))}
           </div>

@@ -1,4 +1,4 @@
-const CACHE = 'wc2026-v3';
+const CACHE = 'wc2026-v5-route-fix';
 const PRECACHE = ['/', '/index.html'];
 
 self.addEventListener('install', e => {
@@ -36,6 +36,21 @@ self.addEventListener('fetch', e => {
 
   // Network-first for HTML — ensures fresh index.html on every deploy
   if (url.pathname === '/' || url.pathname.endsWith('.html')) {
+    e.respondWith(
+      fetch(e.request).then(res => {
+        if (res.ok) {
+          const clone = res.clone();
+          caches.open(CACHE).then(c => c.put(e.request, clone));
+        }
+        return res;
+      }).catch(() => caches.match(e.request))
+    );
+    return;
+  }
+
+  // Network-first for lazy-loaded route chunks to avoid stale route/component mismatches
+  // Example: /assets/Schedule-abc123.js, /assets/Compare-xyz987.js
+  if (url.pathname.startsWith('/assets/') && url.pathname.endsWith('.js') && !url.pathname.includes('index-')) {
     e.respondWith(
       fetch(e.request).then(res => {
         if (res.ok) {
