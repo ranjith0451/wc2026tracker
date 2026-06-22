@@ -300,32 +300,151 @@ export default function TeamComparison({ results = {} }) {
               borderRadius: 12,
             }}>
               <h3 style={{ fontSize: 16, fontWeight: 700, marginBottom: 16, color: "var(--text)" }}>
-                Head-to-Head Records
+                Last 5 Head-to-Head Meetings
               </h3>
               <div style={{
                 display: "flex",
                 flexDirection: "column",
                 gap: 12,
               }}>
-                {headToHead.map((match, i) => (
-                  <div
-                    key={i}
-                    style={{
-                      padding: "12px 14px",
-                      background: "var(--bg)",
-                      border: "1px solid var(--border-subtle)",
-                      borderRadius: 8,
-                      fontSize: 13,
-                    }}
-                  >
-                    <div style={{ fontWeight: 600, color: "var(--text)", marginBottom: 4 }}>
-                      {match.result}
+                {headToHead.map((match, i) => {
+                  const isTeam1 = match.team1 === team1;
+                  const team1Score = isTeam1 ? match.score.split('-')[0] : match.score.split('-')[1];
+                  const team2Score = isTeam1 ? match.score.split('-')[1] : match.score.split('-')[0];
+                  const team1Goals = isTeam1 ? match.goals[team1] : match.goals[team2];
+                  const team2Goals = isTeam1 ? match.goals[team2] : match.goals[team1];
+
+                  return (
+                    <div
+                      key={i}
+                      style={{
+                        padding: "14px 16px",
+                        background: "var(--bg)",
+                        border: "1px solid var(--border-subtle)",
+                        borderRadius: 8,
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: 10,
+                      }}
+                    >
+                      {/* Match Result */}
+                      <div style={{
+                        display: "grid",
+                        gridTemplateColumns: "1fr 80px 1fr",
+                        gap: 12,
+                        alignItems: "center",
+                      }}>
+                        <div style={{ textAlign: "right" }}>
+                          <div style={{ fontWeight: 600, color: "var(--text)", fontSize: 14 }}>
+                            {team1}
+                          </div>
+                        </div>
+                        <div style={{
+                          textAlign: "center",
+                          padding: "10px",
+                          background: "var(--bg-secondary)",
+                          borderRadius: 6,
+                          fontWeight: 700,
+                          fontSize: 16,
+                          color: "var(--text)",
+                        }}>
+                          {team1Score} - {team2Score}
+                        </div>
+                        <div style={{ textAlign: "left" }}>
+                          <div style={{ fontWeight: 600, color: "var(--text)", fontSize: 14 }}>
+                            {team2}
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Goal Scorers */}
+                      {(team1Goals?.length > 0 || team2Goals?.length > 0) && (
+                        <div style={{
+                          display: "grid",
+                          gridTemplateColumns: "1fr 1fr",
+                          gap: 12,
+                          fontSize: 12,
+                          color: "var(--text-secondary)",
+                        }}>
+                          <div>
+                            {team1Goals?.length > 0 ? (
+                              <>
+                                <strong>Goals:</strong>
+                                <div style={{ marginTop: 4, paddingLeft: 8 }}>
+                                  {team1Goals.map((goal, gi) => (
+                                    <div key={gi} style={{ fontSize: 11, margin: "2px 0" }}>
+                                      ⚽ {goal}
+                                    </div>
+                                  ))}
+                                </div>
+                              </>
+                            ) : (
+                              <span style={{ color: "var(--text-tertiary)" }}>No goals</span>
+                            )}
+                          </div>
+                          <div>
+                            {team2Goals?.length > 0 ? (
+                              <>
+                                <strong>Goals:</strong>
+                                <div style={{ marginTop: 4, paddingLeft: 8 }}>
+                                  {team2Goals.map((goal, gi) => (
+                                    <div key={gi} style={{ fontSize: 11, margin: "2px 0" }}>
+                                      ⚽ {goal}
+                                    </div>
+                                  ))}
+                                </div>
+                              </>
+                            ) : (
+                              <span style={{ color: "var(--text-tertiary)" }}>No goals</span>
+                            )}
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Match Info */}
+                      <div style={{
+                        display: "grid",
+                        gridTemplateColumns: "1fr 1fr",
+                        gap: 12,
+                        fontSize: 11,
+                        color: "var(--text-tertiary)",
+                        paddingTop: 8,
+                        borderTop: "1px solid var(--border-subtle)",
+                      }}>
+                        <div>
+                          <div><strong>Date:</strong> {new Date(match.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</div>
+                          <div><strong>Tournament:</strong> {match.tournament}</div>
+                        </div>
+                        <div>
+                          <div><strong>Venue:</strong> {match.venue}</div>
+                          <div><strong>Attendance:</strong> {match.attendance ? `${parseInt(match.attendance).toLocaleString()}` : 'N/A'}</div>
+                        </div>
+                      </div>
+
+                      {/* Result Badge */}
+                      <div style={{ textAlign: "center" }}>
+                        <span style={{
+                          fontSize: 11,
+                          fontWeight: 600,
+                          padding: "4px 10px",
+                          borderRadius: 12,
+                          background: match.winner === "Draw"
+                            ? "rgba(255, 193, 7, 0.15)"
+                            : match.winner === team1
+                            ? "rgba(76, 175, 80, 0.15)"
+                            : "rgba(244, 67, 54, 0.15)",
+                          color: match.winner === "Draw"
+                            ? "var(--text-secondary)"
+                            : match.winner === team1
+                            ? "var(--green)"
+                            : "var(--red-bright)",
+                        }}>
+                          {match.winner === "Draw" ? "Draw" : `${match.winner} won`}
+                        </span>
+                      </div>
                     </div>
-                    <div style={{ fontSize: 11, color: "var(--text-tertiary)" }}>
-                      {match.tournament} • {match.year} • {match.venue}
-                    </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           )}
