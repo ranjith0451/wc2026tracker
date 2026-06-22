@@ -41,6 +41,7 @@ const Rankings       = lazy(() => import("./pages/Rankings.jsx"));
 const Stats          = lazy(() => import("./pages/Stats.jsx"));
 const Predictor      = lazy(() => import("./pages/Predictor.jsx"));
 const MatchDetail    = lazy(() => import("./pages/MatchDetail.jsx"));
+const TeamComparison = lazy(() => import("./pages/TeamComparison.jsx"));
 
 function PageLoader() {
   return (
@@ -117,6 +118,11 @@ const PredictorIcon = () => (
     <line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/>
   </svg>
 );
+const CompareIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><line x1="3" y1="10" x2="10" y2="10"/><line x1="10" y1="3" x2="10" y2="10"/><line x1="14" y1="10" x2="21" y2="10"/><line x1="21" y1="3" x2="21" y2="10"/><line x1="3" y1="21" x2="10" y2="21"/><line x1="10" y1="14" x2="10" y2="21"/><line x1="14" y1="21" x2="21" y2="21"/><line x1="21" y1="14" x2="21" y2="21"/>
+  </svg>
+);
 const EditIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
@@ -135,6 +141,7 @@ const NAV_ITEMS = [
   { to: "/schedule",label: "Schedule",    Icon: CalIcon },
   { to: "/groups",  label: "Groups",      Icon: GroupIcon },
   { to: "/bracket", label: "Bracket",     Icon: BracketIcon },
+  { to: "/compare", label: "Compare",     Icon: CompareIcon },
   { to: "/predictor", label: "Predictor", Icon: PredictorIcon },
   { to: "/squads",  label: "Squads",      Icon: SquadIcon },
   { to: "/scorers", label: "Top Scorers", Icon: BootIcon },
@@ -316,6 +323,7 @@ export default function App() {
               <Route path="/schedule" element={<Schedule results={results} statsMatchIdMap={statsIdMap} />} />
               <Route path="/groups"   element={<Groups results={results} />} />
               <Route path="/bracket"  element={<Bracket results={results} />} />
+              <Route path="/compare"  element={<TeamComparison results={results} />} />
               <Route path="/squads"   element={<Squads results={results} />} />
               <Route path="/squads/:team" element={<SquadDetail results={results} />} />
               <Route path="/scorers"  element={<TopScorers results={results} />} />
