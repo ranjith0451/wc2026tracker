@@ -146,3 +146,116 @@ export function calculateAccuracy(preds, results) {
     percentage: total > 0 ? Math.round((correct / total) * 100) : 0,
   };
 }
+
+/**
+ * Check if a match is currently live.
+ */
+export function isMatchLive(matchId, results) {
+  const result = results[matchId];
+  return result?.status === "live" || result?.status === "started";
+}
+
+/**
+ * Check if a match is finished.
+ */
+export function isMatchFinished(matchId, results) {
+  const result = results[matchId];
+  return result?.status === "finished";
+}
+
+/**
+ * Get all scheduled/upcoming matches (not live or finished).
+ */
+export function getUpcomingMatches(allMatches, results) {
+  return allMatches.filter((m) => {
+    const status = results[m.id]?.status;
+    return !status || status === "scheduled";
+  });
+}
+
+/**
+ * Calculate accuracy broken down by tournament stage.
+ */
+export function getAccuracyByStage(preds, results, allMatches) {
+  const stages = {};
+
+  Object.keys(preds).forEach((id) => {
+    const match = allMatches.find((m) => m.id === Number(id));
+    const res = results[id];
+
+    if (!match || !res || res.status !== "finished") return;
+
+    const stage = match.stage;
+    if (!stages[stage]) {
+      stages[stage] = { total: 0, correct: 0, percentage: 0 };
+    }
+    stages[stage].total++;
+
+    const pred = preds[id];
+    let isCorrect = false;
+    if (pred === "draw") {
+      isCorrect = res.homeScore === res.awayScore;
+    } else if (pred === "home") {
+      isCorrect = res.homeScore > res.awayScore;
+    } else if (pred === "away") {
+      isCorrect = res.awayScore > res.homeScore;
+    }
+
+    if (isCorrect) stages[stage].correct++;
+    stages[stage].percentage = Math.round(
+      (stages[stage].correct / stages[stage].total) * 100
+    );
+  });
+
+  return stages;
+}
+
+/**
+ * Load accuracy history from localStorage.
+ */
+export function loadAccuracyHistory() {
+  try {
+    const raw = localStorage.getItem("wc2026_accuracy_history");
+    return raw ? JSON.parse(raw) : {};
+  } catch {
+    return {};
+  }
+}
+
+/**
+ * Save accuracy history to localStorage.
+ */
+export function saveAccuracyHistory(history) {
+  localStorage.setItem("wc2026_accuracy_history", JSON.stringify(history));
+}
+
+/**
+ * Record a match result against predictions for accuracy tracking.
+ */
+export function recordMatchResult(matchId, result, preds, allMatches) {
+  const pred = preds[matchId];
+  if (!pred) return;
+
+  const match = allMatches.find((m) => m.id === Number(matchId));
+  if (!match) return;
+
+  let isCorrect = false;
+  if (pred === "draw") {
+    isCorrect = result.homeScore === result.awayScore;
+  } else if (pred === "home") {
+    isCorrect = result.homeScore > result.awayScore;
+  } else if (pred === "away") {
+    isCorrect = result.awayScore > result.homeScore;
+  }
+
+  const history = loadAccuracyHistory();
+  history[matchId] = {
+    prediction: pred,
+    homeScore: result.homeScore,
+    awayScore: result.awayScore,
+    correct: isCorrect,
+    stage: match.stage,
+    timestamp: new Date().toISOString(),
+  };
+  saveAccuracyHistory(history);
+}
