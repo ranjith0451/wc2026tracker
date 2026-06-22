@@ -27,6 +27,19 @@ const BASE = 'https://api.thestatsapi.com/api/football';
 const WC_COMP = 'comp_6107';
 const API_KEY = process.env.STATS_API_KEY;
 
+// Team name aliases — keep in sync with useStats.js
+const NAME_ALIASES = {
+  'Turkey': 'Türkiye',
+  'Türkei': 'Türkiye',
+  'Czech Republic': 'Czechia',
+  'Bosnia-Herzegovina': 'Bosnia & Herzegovina',
+  'Bosnia and Herzegovina': 'Bosnia & Herzegovina',
+  "Côte d'Ivoire": 'Ivory Coast',
+  'Democratic Republic of Congo': 'DR Congo',
+  'Cabo Verde': 'Cape Verde',
+};
+const normName = (n) => NAME_ALIASES[n] ?? n;
+
 function getRedis() {
   const url = process.env.REDIS_URL;
   if (!url) return null;
