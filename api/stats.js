@@ -267,7 +267,7 @@ export default async function handler(req, res) {
 
         // Step 2: fetch timeline for each finished match (re-use cached events where possible)
         const GOAL_TYPES = new Set(['goal', 'penalty_goal', 'freekick_goal', 'own_goal']);
-        const tally = {};
+        const tally = {}; // "player||team" -> { player, team, goals, penalties, assists, matchIds }
 
         await Promise.allSettled(finished.map(async m => {
           let events;
@@ -293,22 +293,37 @@ export default async function handler(req, res) {
 
           for (const ev of evArray) {
             const type = (ev.type || ev.event_type || '').toLowerCase();
-            if (!GOAL_TYPES.has(type)) continue;
-            if (type === 'own_goal') continue;
-            const player = ev.player_name || ev.player?.name || '';
-            const team   = ev.team_name   || ev.team?.name   || '';
-            if (!player) continue;
-            const key = `${player}||${team}`;
-            if (!tally[key]) tally[key] = { player, team, goals: 0, penalties: 0, matchIds: new Set() };
-            tally[key].goals++;
-            if (type === 'penalty_goal') tally[key].penalties++;
-            tally[key].matchIds.add(m.id);
+
+            // Count goals
+            if (GOAL_TYPES.has(type) && type !== 'own_goal') {
+              const player = ev.player_name || ev.player?.name || '';
+              const team   = ev.team_name   || ev.team?.name   || '';
+              if (player) {
+                const key = `${player}||${team}`;
+                if (!tally[key]) tally[key] = { player, team, goals: 0, penalties: 0, assists: 0, matchIds: new Set() };
+                tally[key].goals++;
+                if (type === 'penalty_goal') tally[key].penalties++;
+                tally[key].matchIds.add(m.id);
+              }
+            }
+
+            // Count assists on goal events
+            if (GOAL_TYPES.has(type) && type !== 'own_goal' && ev.assist) {
+              const assister = ev.assist || '';
+              const team   = ev.team_name   || ev.team?.name   || '';
+              if (assister) {
+                const key = `${assister}||${team}`;
+                if (!tally[key]) tally[key] = { player: assister, team, goals: 0, penalties: 0, assists: 0, matchIds: new Set() };
+                tally[key].assists++;
+                tally[key].matchIds.add(m.id);
+              }
+            }
           }
         }));
 
         return Object.values(tally)
-          .map(t => ({ player: t.player, team: t.team, goals: t.goals, penalties: t.penalties, matches: t.matchIds.size }))
-          .sort((a, b) => b.goals - a.goals || a.player.localeCompare(b.player));
+          .map(t => ({ player: t.player, team: t.team, goals: t.goals, penalties: t.penalties, assists: t.assists, matches: t.matchIds.size }))
+          .sort((a, b) => b.goals - a.goals || b.assists - a.assists || a.player.localeCompare(b.player));
       }, false);
 
       res.setHeader('X-Cache', hit ? 'HIT' : 'MISS');
