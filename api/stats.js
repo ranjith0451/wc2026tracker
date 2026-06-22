@@ -256,14 +256,36 @@ export default async function handler(req, res) {
     // ── Competition top scorers (derived from per-match event timelines) ────────
     if (action === 'top-scorers') {
       const { data: payload, cached: hit } = await cached(redis, 'stats_topscorers', 300, async () => {
-        // Step 1: get all WC matches, pick finished ones
+        // Import MATCHES (only WC2026 group/knockout stage)
+        const { MATCHES } = await import('../src/data/matches.js');
+
+        // Step 1: get all WC matches from API
         const [p1, p2] = await Promise.all([
           statsFetch(`/matches?competition_id=${WC_COMP}&per_page=100&page=1`),
           statsFetch(`/matches?competition_id=${WC_COMP}&per_page=100&page=2`),
         ]);
         const allMatches = [...(p1?.data || []), ...(p2?.data || [])];
+
+        // Build API match lookup by home|away
+        const apiMap = {};
+        for (const m of allMatches) {
+          const h = normName(m.home_team?.name || '');
+          const a = normName(m.away_team?.name || '');
+          if (h && a) apiMap[`${h}|${a}`] = m;
+        }
+
+        // Step 2: filter to only WC2026 matches (from local MATCHES)
         const DONE = new Set(['ft', 'aet', 'pen', 'finished', 'completed', 'full_time', 'awarded', 'walkover']);
-        const finished = allMatches.filter(m => DONE.has((m.status || '').toLowerCase()));
+        const finished = [];
+        for (const m of MATCHES) {
+          if (!m.home?.name || !m.away?.name) continue;
+          const key = `${m.home.name}|${m.away.name}`;
+          const apiM = apiMap[key];
+          if (!apiM) continue;
+          if (DONE.has((apiM.status || '').toLowerCase())) {
+            finished.push(apiM);
+          }
+        }
 
         // Step 2: fetch timeline for each finished match (re-use cached events where possible)
         const GOAL_TYPES = new Set(['goal', 'penalty_goal', 'freekick_goal', 'own_goal']);
