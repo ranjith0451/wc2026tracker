@@ -1,3 +1,28 @@
+// Generate mock data for all team pairs if needed
+function generateMockMatches(team1, team2) {
+  const years = [2024, 2023, 2022, 2021, 2020];
+  return years.map((year, idx) => {
+    const rand = Math.random();
+    const score1 = Math.floor(rand * 3);
+    const score2 = Math.floor((1 - rand) * 3);
+    const winner = score1 > score2 ? team1 : score2 > score1 ? team2 : "Draw";
+    const goals1 = Array.from({ length: score1 }, (_, i) => `Player ${i + 1} ${45 + i * 15}'`);
+    const goals2 = Array.from({ length: score2 }, (_, i) => `Player ${i + 1} ${50 + i * 15}'`);
+
+    return {
+      date: `${year}-${String(idx + 6).padStart(2, '0')}-15`,
+      team1,
+      team2,
+      score: `${score1}-${score2}`,
+      winner,
+      goals: { [team1]: goals1, [team2]: goals2 },
+      tournament: ["WC Qualifier", "Friendly", "Nations League", "Copa/Euro"][idx % 4],
+      venue: ["Home Stadium", "Away Stadium", "Neutral Venue"][idx % 3],
+      attendance: String(Math.floor(30000 + Math.random() * 50000)),
+    };
+  });
+}
+
 // Head-to-head records between teams - Last 5 recent meetings
 export const HEAD_TO_HEAD_RECORDS = {
   "Argentina-Brazil": [

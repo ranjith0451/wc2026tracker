@@ -1,7 +1,7 @@
 {
   ".claude/launch.json": {
-    "mtime": 1782090272.1960862,
-    "ast_hash": "d0ea79d410fa598e1891638903cf67c2",
+    "mtime": 1782092173.8195102,
+    "ast_hash": "d2e8b14882c0f9fb1b18bee726ae2f70",
     "semantic_hash": ""
   },
   ".claude/settings.json": {
@@ -30,8 +30,8 @@
     "semantic_hash": ""
   },
   "api/stats.js": {
-    "mtime": 1782089389.373783,
-    "ast_hash": "36cedc7153387ef0dedb59b12acc5141",
+    "mtime": 1782091577.099919,
+    "ast_hash": "c4fc57398521425dd1d27f7a836e5792",
     "semantic_hash": ""
   },
   "eslint.config.js": {
@@ -95,8 +95,8 @@
     "semantic_hash": ""
   },
   "src/App.jsx": {
-    "mtime": 1782090159.2275267,
-    "ast_hash": "82ca7718cb52750210071acd169c141d",
+    "mtime": 1782092001.6014268,
+    "ast_hash": "b8ac38ab3677af4f5413e52fbb3b07dc",
     "semantic_hash": ""
   },
   "src/components/Ball3D.jsx": {
@@ -3305,13 +3305,13 @@
     "semantic_hash": ""
   },
   "src/components/ThemeSwitcher.jsx": {
-    "mtime": 1782090172.821655,
-    "ast_hash": "86f1b1407c8fb2361994b9ca38bfb1d5",
+    "mtime": 1782090733.4657187,
+    "ast_hash": "110ea035a4b0e9bcc8090f4d8bf44f0f",
     "semantic_hash": ""
   },
   "src/lib/themeContext.jsx": {
-    "mtime": 1782090152.4761815,
-    "ast_hash": "42336cf72b0d3aed0477f5168efc3903",
+    "mtime": 1782090788.829972,
+    "ast_hash": "750c55543a4a721687b3eb21fdb4fed9",
     "semantic_hash": ""
   },
   "src/lib/themes.js": {
@@ -3332,6 +3332,16 @@
   "THEME_COLORS.md": {
     "mtime": 1782090381.296977,
     "ast_hash": "fad57093e621fb57530c1dc90938b0b9",
+    "semantic_hash": ""
+  },
+  "src/data/headToHead.js": {
+    "mtime": 1782092511.9095814,
+    "ast_hash": "b1bb6965c4f98296496eef9dc72b35b3",
+    "semantic_hash": ""
+  },
+  "src/pages/TeamComparison.jsx": {
+    "mtime": 1782092870.0272453,
+    "ast_hash": "f0c81e26991dc709926077461f74a6f1",
     "semantic_hash": ""
   }
 }

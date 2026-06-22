@@ -4,614 +4,104 @@
   "graph": {},
   "nodes": [
     {
-      "label": "QUICK_START_THEMES.md",
-      "file_type": "document",
-      "source_file": "QUICK_START_THEMES.md",
+      "label": "TeamComparison.jsx",
+      "file_type": "code",
+      "source_file": "src/pages/TeamComparison.jsx",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "quick_start_themes",
-      "community": 4,
-      "norm_label": "quick_start_themes.md"
+      "id": "pages_teamcomparison",
+      "community": 13,
+      "norm_label": "teamcomparison.jsx"
     },
     {
-      "label": "\ud83c\udfa8 Quick Start \u2014 Theme System",
-      "file_type": "document",
-      "source_file": "QUICK_START_THEMES.md",
-      "source_location": "L1",
+      "label": "RANKINGS",
+      "file_type": "code",
+      "source_file": "src/pages/TeamComparison.jsx",
+      "source_location": "L9",
       "_origin": "ast",
-      "id": "quick_start_themes_quick_start_theme_system",
-      "community": 4,
-      "norm_label": "\ud83c\udfa8 quick start \u2014 theme system"
+      "id": "pages_teamcomparison_rankings",
+      "community": 13,
+      "norm_label": "rankings"
     },
     {
-      "label": "Where to Find the Theme Switcher",
-      "file_type": "document",
-      "source_file": "QUICK_START_THEMES.md",
-      "source_location": "L3",
-      "_origin": "ast",
-      "id": "quick_start_themes_where_to_find_the_theme_switcher",
-      "community": 4,
-      "norm_label": "where to find the theme switcher"
-    },
-    {
-      "label": "How to Use",
-      "file_type": "document",
-      "source_file": "QUICK_START_THEMES.md",
-      "source_location": "L15",
-      "_origin": "ast",
-      "id": "quick_start_themes_how_to_use",
-      "community": 4,
-      "norm_label": "how to use"
-    },
-    {
-      "label": "1. Toggle Light/Dark Mode",
-      "file_type": "document",
-      "source_file": "QUICK_START_THEMES.md",
-      "source_location": "L17",
-      "_origin": "ast",
-      "id": "quick_start_themes_1_toggle_light_dark_mode",
-      "community": 4,
-      "norm_label": "1. toggle light/dark mode"
-    },
-    {
-      "label": "2. Change Theme Color",
-      "file_type": "document",
-      "source_file": "QUICK_START_THEMES.md",
-      "source_location": "L22",
-      "_origin": "ast",
-      "id": "quick_start_themes_2_change_theme_color",
-      "community": 4,
-      "norm_label": "2. change theme color"
-    },
-    {
-      "label": "3. Your Preference is Saved",
-      "file_type": "document",
-      "source_file": "QUICK_START_THEMES.md",
-      "source_location": "L30",
-      "_origin": "ast",
-      "id": "quick_start_themes_3_your_preference_is_saved",
-      "community": 4,
-      "norm_label": "3. your preference is saved"
-    },
-    {
-      "label": "Available Combinations",
-      "file_type": "document",
-      "source_file": "QUICK_START_THEMES.md",
-      "source_location": "L35",
-      "_origin": "ast",
-      "id": "quick_start_themes_available_combinations",
-      "community": 4,
-      "norm_label": "available combinations"
-    },
-    {
-      "label": "Theme Descriptions",
-      "file_type": "document",
-      "source_file": "QUICK_START_THEMES.md",
-      "source_location": "L44",
-      "_origin": "ast",
-      "id": "quick_start_themes_theme_descriptions",
-      "community": 4,
-      "norm_label": "theme descriptions"
-    },
-    {
-      "label": "\ud83d\udd35 DEFAULT",
-      "file_type": "document",
-      "source_file": "QUICK_START_THEMES.md",
-      "source_location": "L46",
-      "_origin": "ast",
-      "id": "quick_start_themes_default",
-      "community": 4,
-      "norm_label": "\ud83d\udd35 default"
-    },
-    {
-      "label": "\ud83d\udd35 OCEAN",
-      "file_type": "document",
-      "source_file": "QUICK_START_THEMES.md",
-      "source_location": "L50",
-      "_origin": "ast",
-      "id": "quick_start_themes_ocean",
-      "community": 4,
-      "norm_label": "\ud83d\udd35 ocean"
-    },
-    {
-      "label": "\ud83d\udfe0 SUNSET",
-      "file_type": "document",
-      "source_file": "QUICK_START_THEMES.md",
-      "source_location": "L54",
-      "_origin": "ast",
-      "id": "quick_start_themes_sunset",
-      "community": 4,
-      "norm_label": "\ud83d\udfe0 sunset"
-    },
-    {
-      "label": "\ud83d\udfe2 FOREST",
-      "file_type": "document",
-      "source_file": "QUICK_START_THEMES.md",
-      "source_location": "L58",
-      "_origin": "ast",
-      "id": "quick_start_themes_forest",
-      "community": 4,
-      "norm_label": "\ud83d\udfe2 forest"
-    },
-    {
-      "label": "\ud83d\udfe3 CYBER",
-      "file_type": "document",
-      "source_file": "QUICK_START_THEMES.md",
+      "label": "useMediaQuery()",
+      "file_type": "code",
+      "source_file": "src/pages/TeamComparison.jsx",
       "source_location": "L62",
       "_origin": "ast",
-      "id": "quick_start_themes_cyber",
-      "community": 4,
-      "norm_label": "\ud83d\udfe3 cyber"
+      "id": "pages_teamcomparison_usemediaquery",
+      "community": 13,
+      "norm_label": "usemediaquery()"
     },
     {
-      "label": "Mobile Users",
-      "file_type": "document",
-      "source_file": "QUICK_START_THEMES.md",
-      "source_location": "L66",
+      "label": "TeamSelector()",
+      "file_type": "code",
+      "source_file": "src/pages/TeamComparison.jsx",
+      "source_location": "L67",
       "_origin": "ast",
-      "id": "quick_start_themes_mobile_users",
-      "community": 4,
-      "norm_label": "mobile users"
+      "id": "pages_teamcomparison_teamselector",
+      "community": 13,
+      "norm_label": "teamselector()"
     },
     {
-      "label": "Desktop Users",
-      "file_type": "document",
-      "source_file": "QUICK_START_THEMES.md",
-      "source_location": "L74",
+      "label": "StatCard()",
+      "file_type": "code",
+      "source_file": "src/pages/TeamComparison.jsx",
+      "source_location": "L110",
       "_origin": "ast",
-      "id": "quick_start_themes_desktop_users",
-      "community": 4,
-      "norm_label": "desktop users"
+      "id": "pages_teamcomparison_statcard",
+      "community": 13,
+      "norm_label": "statcard()"
     },
     {
-      "label": "Tips & Tricks",
-      "file_type": "document",
-      "source_file": "QUICK_START_THEMES.md",
-      "source_location": "L82",
+      "label": "TeamCard()",
+      "file_type": "code",
+      "source_file": "src/pages/TeamComparison.jsx",
+      "source_location": "L149",
       "_origin": "ast",
-      "id": "quick_start_themes_tips_tricks",
-      "community": 4,
-      "norm_label": "tips & tricks"
+      "id": "pages_teamcomparison_teamcard",
+      "community": 13,
+      "norm_label": "teamcard()"
     },
     {
-      "label": "Troubleshooting",
-      "file_type": "document",
-      "source_file": "QUICK_START_THEMES.md",
-      "source_location": "L94",
+      "label": "TeamComparison()",
+      "file_type": "code",
+      "source_file": "src/pages/TeamComparison.jsx",
+      "source_location": "L290",
       "_origin": "ast",
-      "id": "quick_start_themes_troubleshooting",
-      "community": 4,
-      "norm_label": "troubleshooting"
+      "id": "pages_teamcomparison_teamcomparison",
+      "community": 13,
+      "norm_label": "teamcomparison()"
     },
     {
-      "label": "Accessibility",
-      "file_type": "document",
-      "source_file": "QUICK_START_THEMES.md",
-      "source_location": "L112",
-      "_origin": "ast",
-      "id": "quick_start_themes_accessibility",
-      "community": 4,
-      "norm_label": "accessibility"
-    },
-    {
-      "label": "For Developers",
-      "file_type": "document",
-      "source_file": "QUICK_START_THEMES.md",
-      "source_location": "L120",
-      "_origin": "ast",
-      "id": "quick_start_themes_for_developers",
-      "community": 4,
-      "norm_label": "for developers"
-    },
-    {
-      "label": "Questions?",
-      "file_type": "document",
-      "source_file": "QUICK_START_THEMES.md",
-      "source_location": "L142",
-      "_origin": "ast",
-      "id": "quick_start_themes_questions",
-      "community": 4,
-      "norm_label": "questions?"
-    },
-    {
-      "label": "THEMES_IMPLEMENTATION.md",
-      "file_type": "document",
-      "source_file": "THEMES_IMPLEMENTATION.md",
+      "label": "headToHead.js",
+      "file_type": "code",
+      "source_file": "src/data/headToHead.js",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "themes_implementation",
-      "community": 6,
-      "norm_label": "themes_implementation.md"
+      "community": 13,
+      "norm_label": "headtohead.js",
+      "id": "data_headtohead"
     },
     {
-      "label": "\ud83c\udfa8 Theme System Implementation \u2014 WC2026",
-      "file_type": "document",
-      "source_file": "THEMES_IMPLEMENTATION.md",
-      "source_location": "L1",
+      "label": "HEAD_TO_HEAD_RECORDS",
+      "file_type": "code",
+      "source_file": "src/data/headToHead.js",
+      "source_location": "L2",
       "_origin": "ast",
-      "id": "themes_implementation_theme_system_implementation_wc2026",
-      "community": 6,
-      "norm_label": "\ud83c\udfa8 theme system implementation \u2014 wc2026"
+      "community": 13,
+      "norm_label": "head_to_head_records",
+      "id": "data_headtohead_head_to_head_records"
     },
     {
-      "label": "\u2705 What Was Added",
-      "file_type": "document",
-      "source_file": "THEMES_IMPLEMENTATION.md",
-      "source_location": "L3",
+      "label": "TEAM_STRATEGIES",
+      "file_type": "code",
+      "source_file": "src/data/headToHead.js",
+      "source_location": "L405",
       "_origin": "ast",
-      "id": "themes_implementation_what_was_added",
-      "community": 6,
-      "norm_label": "\u2705 what was added"
-    },
-    {
-      "label": "Files Created",
-      "file_type": "document",
-      "source_file": "THEMES_IMPLEMENTATION.md",
-      "source_location": "L7",
-      "_origin": "ast",
-      "id": "themes_implementation_files_created",
-      "community": 6,
-      "norm_label": "files created"
-    },
-    {
-      "label": "\ud83c\udfaf How It Works",
-      "file_type": "document",
-      "source_file": "THEMES_IMPLEMENTATION.md",
-      "source_location": "L40",
-      "_origin": "ast",
-      "id": "themes_implementation_how_it_works",
-      "community": 6,
-      "norm_label": "\ud83c\udfaf how it works"
-    },
-    {
-      "label": "Mode Toggle (Light/Dark)",
-      "file_type": "document",
-      "source_file": "THEMES_IMPLEMENTATION.md",
-      "source_location": "L42",
-      "_origin": "ast",
-      "id": "themes_implementation_mode_toggle_light_dark",
-      "community": 6,
-      "norm_label": "mode toggle (light/dark)"
-    },
-    {
-      "label": "Theme Selection (5 Colors)",
-      "file_type": "document",
-      "source_file": "THEMES_IMPLEMENTATION.md",
-      "source_location": "L47",
-      "_origin": "ast",
-      "id": "themes_implementation_theme_selection_5_colors",
-      "community": 6,
-      "norm_label": "theme selection (5 colors)"
-    },
-    {
-      "label": "\ud83d\ude80 Features",
-      "file_type": "document",
-      "source_file": "THEMES_IMPLEMENTATION.md",
-      "source_location": "L53",
-      "_origin": "ast",
-      "id": "themes_implementation_features",
-      "community": 6,
-      "norm_label": "\ud83d\ude80 features"
-    },
-    {
-      "label": "\ud83d\udcf1 Using the Theme System",
-      "file_type": "document",
-      "source_file": "THEMES_IMPLEMENTATION.md",
-      "source_location": "L75",
-      "_origin": "ast",
-      "id": "themes_implementation_using_the_theme_system",
-      "community": 6,
-      "norm_label": "\ud83d\udcf1 using the theme system"
-    },
-    {
-      "label": "For Users",
-      "file_type": "document",
-      "source_file": "THEMES_IMPLEMENTATION.md",
-      "source_location": "L77",
-      "_origin": "ast",
-      "id": "themes_implementation_for_users",
-      "community": 6,
-      "norm_label": "for users"
-    },
-    {
-      "label": "For Developers",
-      "file_type": "document",
-      "source_file": "THEMES_IMPLEMENTATION.md",
-      "source_location": "L83",
-      "_origin": "ast",
-      "id": "themes_implementation_for_developers",
-      "community": 6,
-      "norm_label": "for developers"
-    },
-    {
-      "label": "Adding New Themes",
-      "file_type": "document",
-      "source_file": "THEMES_IMPLEMENTATION.md",
-      "source_location": "L101",
-      "_origin": "ast",
-      "id": "themes_implementation_adding_new_themes",
-      "community": 6,
-      "norm_label": "adding new themes"
-    },
-    {
-      "label": "\ud83c\udfa8 CSS Variables Available",
-      "file_type": "document",
-      "source_file": "THEMES_IMPLEMENTATION.md",
-      "source_location": "L117",
-      "_origin": "ast",
-      "id": "themes_implementation_css_variables_available",
-      "community": 6,
-      "norm_label": "\ud83c\udfa8 css variables available"
-    },
-    {
-      "label": "\u2705 Testing",
-      "file_type": "document",
-      "source_file": "THEMES_IMPLEMENTATION.md",
-      "source_location": "L129",
-      "_origin": "ast",
-      "id": "themes_implementation_testing",
-      "community": 6,
-      "norm_label": "\u2705 testing"
-    },
-    {
-      "label": "Build Status",
-      "file_type": "document",
-      "source_file": "THEMES_IMPLEMENTATION.md",
-      "source_location": "L131",
-      "_origin": "ast",
-      "id": "themes_implementation_build_status",
-      "community": 6,
-      "norm_label": "build status"
-    },
-    {
-      "label": "Server Status",
-      "file_type": "document",
-      "source_file": "THEMES_IMPLEMENTATION.md",
-      "source_location": "L134",
-      "_origin": "ast",
-      "id": "themes_implementation_server_status",
-      "community": 6,
-      "norm_label": "server status"
-    },
-    {
-      "label": "Manual Testing Checklist",
-      "file_type": "document",
-      "source_file": "THEMES_IMPLEMENTATION.md",
-      "source_location": "L137",
-      "_origin": "ast",
-      "id": "themes_implementation_manual_testing_checklist",
-      "community": 6,
-      "norm_label": "manual testing checklist"
-    },
-    {
-      "label": "\ud83d\udcca Theme Matrix",
-      "file_type": "document",
-      "source_file": "THEMES_IMPLEMENTATION.md",
-      "source_location": "L145",
-      "_origin": "ast",
-      "id": "themes_implementation_theme_matrix",
-      "community": 6,
-      "norm_label": "\ud83d\udcca theme matrix"
-    },
-    {
-      "label": "\ud83d\udd27 Technical Details",
-      "file_type": "document",
-      "source_file": "THEMES_IMPLEMENTATION.md",
-      "source_location": "L157",
-      "_origin": "ast",
-      "id": "themes_implementation_technical_details",
-      "community": 6,
-      "norm_label": "\ud83d\udd27 technical details"
-    },
-    {
-      "label": "\ud83d\udea2 Deployment Notes",
-      "file_type": "document",
-      "source_file": "THEMES_IMPLEMENTATION.md",
-      "source_location": "L165",
-      "_origin": "ast",
-      "id": "themes_implementation_deployment_notes",
-      "community": 6,
-      "norm_label": "\ud83d\udea2 deployment notes"
-    },
-    {
-      "label": "THEME_COLORS.md",
-      "file_type": "document",
-      "source_file": "THEME_COLORS.md",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "theme_colors",
-      "community": 5,
-      "norm_label": "theme_colors.md"
-    },
-    {
-      "label": "\ud83c\udfa8 WC2026 Theme Color Palettes",
-      "file_type": "document",
-      "source_file": "THEME_COLORS.md",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "theme_colors_wc2026_theme_color_palettes",
-      "community": 5,
-      "norm_label": "\ud83c\udfa8 wc2026 theme color palettes"
-    },
-    {
-      "label": "1\ufe0f\u20e3 DEFAULT THEME (Blue)",
-      "file_type": "document",
-      "source_file": "THEME_COLORS.md",
-      "source_location": "L3",
-      "_origin": "ast",
-      "id": "theme_colors_1_default_theme_blue",
-      "community": 5,
-      "norm_label": "1\ufe0f\u20e3 default theme (blue)"
-    },
-    {
-      "label": "Dark Mode",
-      "file_type": "document",
-      "source_file": "THEME_COLORS.md",
-      "source_location": "L6",
-      "_origin": "ast",
-      "id": "theme_colors_dark_mode",
-      "community": 5,
-      "norm_label": "dark mode"
-    },
-    {
-      "label": "Light Mode",
-      "file_type": "document",
-      "source_file": "THEME_COLORS.md",
-      "source_location": "L24",
-      "_origin": "ast",
-      "id": "theme_colors_light_mode",
-      "community": 5,
-      "norm_label": "light mode"
-    },
-    {
-      "label": "2\ufe0f\u20e3 OCEAN THEME (Cyan/Teal)",
-      "file_type": "document",
-      "source_file": "THEME_COLORS.md",
-      "source_location": "L39",
-      "_origin": "ast",
-      "id": "theme_colors_2_ocean_theme_cyan_teal",
-      "community": 5,
-      "norm_label": "2\ufe0f\u20e3 ocean theme (cyan/teal)"
-    },
-    {
-      "label": "Dark Mode",
-      "file_type": "document",
-      "source_file": "THEME_COLORS.md",
-      "source_location": "L42",
-      "_origin": "ast",
-      "id": "theme_colors_dark_mode_42",
-      "community": 5,
-      "norm_label": "dark mode"
-    },
-    {
-      "label": "Light Mode",
-      "file_type": "document",
-      "source_file": "THEME_COLORS.md",
-      "source_location": "L60",
-      "_origin": "ast",
-      "id": "theme_colors_light_mode_60",
-      "community": 5,
-      "norm_label": "light mode"
-    },
-    {
-      "label": "3\ufe0f\u20e3 SUNSET THEME (Orange/Gold)",
-      "file_type": "document",
-      "source_file": "THEME_COLORS.md",
-      "source_location": "L75",
-      "_origin": "ast",
-      "id": "theme_colors_3_sunset_theme_orange_gold",
-      "community": 5,
-      "norm_label": "3\ufe0f\u20e3 sunset theme (orange/gold)"
-    },
-    {
-      "label": "Dark Mode",
-      "file_type": "document",
-      "source_file": "THEME_COLORS.md",
-      "source_location": "L78",
-      "_origin": "ast",
-      "id": "theme_colors_dark_mode_78",
-      "community": 5,
-      "norm_label": "dark mode"
-    },
-    {
-      "label": "Light Mode",
-      "file_type": "document",
-      "source_file": "THEME_COLORS.md",
-      "source_location": "L96",
-      "_origin": "ast",
-      "id": "theme_colors_light_mode_96",
-      "community": 5,
-      "norm_label": "light mode"
-    },
-    {
-      "label": "4\ufe0f\u20e3 FOREST THEME (Green)",
-      "file_type": "document",
-      "source_file": "THEME_COLORS.md",
-      "source_location": "L111",
-      "_origin": "ast",
-      "id": "theme_colors_4_forest_theme_green",
-      "community": 5,
-      "norm_label": "4\ufe0f\u20e3 forest theme (green)"
-    },
-    {
-      "label": "Dark Mode",
-      "file_type": "document",
-      "source_file": "THEME_COLORS.md",
-      "source_location": "L114",
-      "_origin": "ast",
-      "id": "theme_colors_dark_mode_114",
-      "community": 5,
-      "norm_label": "dark mode"
-    },
-    {
-      "label": "Light Mode",
-      "file_type": "document",
-      "source_file": "THEME_COLORS.md",
-      "source_location": "L132",
-      "_origin": "ast",
-      "id": "theme_colors_light_mode_132",
-      "community": 5,
-      "norm_label": "light mode"
-    },
-    {
-      "label": "5\ufe0f\u20e3 CYBER THEME (Purple/Magenta)",
-      "file_type": "document",
-      "source_file": "THEME_COLORS.md",
-      "source_location": "L147",
-      "_origin": "ast",
-      "id": "theme_colors_5_cyber_theme_purple_magenta",
-      "community": 5,
-      "norm_label": "5\ufe0f\u20e3 cyber theme (purple/magenta)"
-    },
-    {
-      "label": "Dark Mode",
-      "file_type": "document",
-      "source_file": "THEME_COLORS.md",
-      "source_location": "L150",
-      "_origin": "ast",
-      "id": "theme_colors_dark_mode_150",
-      "community": 5,
-      "norm_label": "dark mode"
-    },
-    {
-      "label": "Light Mode",
-      "file_type": "document",
-      "source_file": "THEME_COLORS.md",
-      "source_location": "L168",
-      "_origin": "ast",
-      "id": "theme_colors_light_mode_168",
-      "community": 5,
-      "norm_label": "light mode"
-    },
-    {
-      "label": "\ud83d\udd04 How to Switch",
-      "file_type": "document",
-      "source_file": "THEME_COLORS.md",
-      "source_location": "L183",
-      "_origin": "ast",
-      "id": "theme_colors_how_to_switch",
-      "community": 5,
-      "norm_label": "\ud83d\udd04 how to switch"
-    },
-    {
-      "label": "\ud83d\udcca Color Contrast Reference",
-      "file_type": "document",
-      "source_file": "THEME_COLORS.md",
-      "source_location": "L195",
-      "_origin": "ast",
-      "id": "theme_colors_color_contrast_reference",
-      "community": 5,
-      "norm_label": "\ud83d\udcca color contrast reference"
-    },
-    {
-      "label": "\ud83c\udfa8 Using Theme Colors in Code",
-      "file_type": "document",
-      "source_file": "THEME_COLORS.md",
-      "source_location": "L204",
-      "_origin": "ast",
-      "id": "theme_colors_using_theme_colors_in_code",
-      "community": 5,
-      "norm_label": "\ud83c\udfa8 using theme colors in code"
+      "community": 13,
+      "norm_label": "team_strategies",
+      "id": "data_headtohead_team_strategies"
     },
     {
       "label": "App.jsx",
@@ -619,9 +109,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "src_app",
       "community": 3,
-      "norm_label": "app.jsx"
+      "norm_label": "app.jsx",
+      "id": "src_app"
     },
     {
       "label": "PageErrorBoundary",
@@ -629,9 +119,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L6",
       "_origin": "ast",
-      "id": "src_app_pageerrorboundary",
       "community": 8,
-      "norm_label": "pageerrorboundary"
+      "norm_label": "pageerrorboundary",
+      "id": "src_app_pageerrorboundary"
     },
     {
       "label": ".constructor()",
@@ -639,9 +129,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L7",
       "_origin": "ast",
-      "id": "src_app_pageerrorboundary_constructor",
       "community": 8,
-      "norm_label": ".constructor()"
+      "norm_label": ".constructor()",
+      "id": "src_app_pageerrorboundary_constructor"
     },
     {
       "label": ".getDerivedStateFromError()",
@@ -649,9 +139,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L8",
       "_origin": "ast",
-      "id": "src_app_pageerrorboundary_getderivedstatefromerror",
       "community": 8,
-      "norm_label": ".getderivedstatefromerror()"
+      "norm_label": ".getderivedstatefromerror()",
+      "id": "src_app_pageerrorboundary_getderivedstatefromerror"
     },
     {
       "label": ".render()",
@@ -659,9 +149,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L9",
       "_origin": "ast",
-      "id": "src_app_pageerrorboundary_render",
       "community": 8,
-      "norm_label": ".render()"
+      "norm_label": ".render()",
+      "id": "src_app_pageerrorboundary_render"
     },
     {
       "label": "Schedule",
@@ -669,9 +159,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L30",
       "_origin": "ast",
-      "id": "src_app_schedule",
       "community": 3,
-      "norm_label": "schedule"
+      "norm_label": "schedule",
+      "id": "src_app_schedule"
     },
     {
       "label": "Groups",
@@ -679,9 +169,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L31",
       "_origin": "ast",
-      "id": "src_app_groups",
       "community": 3,
-      "norm_label": "groups"
+      "norm_label": "groups",
+      "id": "src_app_groups"
     },
     {
       "label": "Bracket",
@@ -689,9 +179,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L32",
       "_origin": "ast",
-      "id": "src_app_bracket",
       "community": 3,
-      "norm_label": "bracket"
+      "norm_label": "bracket",
+      "id": "src_app_bracket"
     },
     {
       "label": "Squads",
@@ -699,9 +189,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L33",
       "_origin": "ast",
-      "id": "src_app_squads",
       "community": 3,
-      "norm_label": "squads"
+      "norm_label": "squads",
+      "id": "src_app_squads"
     },
     {
       "label": "SquadDetail",
@@ -709,9 +199,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L34",
       "_origin": "ast",
-      "id": "src_app_squaddetail",
       "community": 3,
-      "norm_label": "squaddetail"
+      "norm_label": "squaddetail",
+      "id": "src_app_squaddetail"
     },
     {
       "label": "TopScorers",
@@ -719,9 +209,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L35",
       "_origin": "ast",
-      "id": "src_app_topscorers",
       "community": 3,
-      "norm_label": "topscorers"
+      "norm_label": "topscorers",
+      "id": "src_app_topscorers"
     },
     {
       "label": "Admin",
@@ -729,9 +219,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L36",
       "_origin": "ast",
-      "id": "src_app_admin",
       "community": 3,
-      "norm_label": "admin"
+      "norm_label": "admin",
+      "id": "src_app_admin"
     },
     {
       "label": "History",
@@ -739,9 +229,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L37",
       "_origin": "ast",
-      "id": "src_app_history",
       "community": 3,
-      "norm_label": "history"
+      "norm_label": "history",
+      "id": "src_app_history"
     },
     {
       "label": "Women",
@@ -749,9 +239,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L38",
       "_origin": "ast",
-      "id": "src_app_women",
       "community": 3,
-      "norm_label": "women"
+      "norm_label": "women",
+      "id": "src_app_women"
     },
     {
       "label": "AllTimePlayers",
@@ -759,9 +249,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L39",
       "_origin": "ast",
-      "id": "src_app_alltimeplayers",
       "community": 3,
-      "norm_label": "alltimeplayers"
+      "norm_label": "alltimeplayers",
+      "id": "src_app_alltimeplayers"
     },
     {
       "label": "Rankings",
@@ -769,9 +259,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L40",
       "_origin": "ast",
-      "id": "src_app_rankings",
       "community": 3,
-      "norm_label": "rankings"
+      "norm_label": "rankings",
+      "id": "src_app_rankings"
     },
     {
       "label": "Stats",
@@ -779,9 +269,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L41",
       "_origin": "ast",
-      "id": "src_app_stats",
       "community": 3,
-      "norm_label": "stats"
+      "norm_label": "stats",
+      "id": "src_app_stats"
     },
     {
       "label": "Predictor",
@@ -789,9 +279,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L42",
       "_origin": "ast",
-      "id": "src_app_predictor",
       "community": 3,
-      "norm_label": "predictor"
+      "norm_label": "predictor",
+      "id": "src_app_predictor"
     },
     {
       "label": "MatchDetail",
@@ -799,309 +289,239 @@
       "source_file": "src/App.jsx",
       "source_location": "L43",
       "_origin": "ast",
-      "id": "src_app_matchdetail",
       "community": 3,
-      "norm_label": "matchdetail"
+      "norm_label": "matchdetail",
+      "id": "src_app_matchdetail"
+    },
+    {
+      "label": "TeamComparison",
+      "file_type": "code",
+      "source_file": "src/App.jsx",
+      "source_location": "L44",
+      "_origin": "ast",
+      "community": 3,
+      "norm_label": "teamcomparison",
+      "id": "src_app_teamcomparison"
     },
     {
       "label": "PageLoader()",
       "file_type": "code",
       "source_file": "src/App.jsx",
-      "source_location": "L45",
+      "source_location": "L46",
       "_origin": "ast",
-      "id": "src_app_pageloader",
       "community": 3,
-      "norm_label": "pageloader()"
+      "norm_label": "pageloader()",
+      "id": "src_app_pageloader"
     },
     {
       "label": "HomeIcon()",
       "file_type": "code",
       "source_file": "src/App.jsx",
-      "source_location": "L55",
+      "source_location": "L56",
       "_origin": "ast",
-      "id": "src_app_homeicon",
       "community": 3,
-      "norm_label": "homeicon()"
+      "norm_label": "homeicon()",
+      "id": "src_app_homeicon"
     },
     {
       "label": "CalIcon()",
       "file_type": "code",
       "source_file": "src/App.jsx",
-      "source_location": "L60",
+      "source_location": "L61",
       "_origin": "ast",
-      "id": "src_app_calicon",
       "community": 3,
-      "norm_label": "calicon()"
+      "norm_label": "calicon()",
+      "id": "src_app_calicon"
     },
     {
       "label": "GroupIcon()",
       "file_type": "code",
       "source_file": "src/App.jsx",
-      "source_location": "L65",
+      "source_location": "L66",
       "_origin": "ast",
-      "id": "src_app_groupicon",
       "community": 3,
-      "norm_label": "groupicon()"
+      "norm_label": "groupicon()",
+      "id": "src_app_groupicon"
     },
     {
       "label": "BracketIcon()",
       "file_type": "code",
       "source_file": "src/App.jsx",
-      "source_location": "L70",
+      "source_location": "L71",
       "_origin": "ast",
-      "id": "src_app_bracketicon",
       "community": 3,
-      "norm_label": "bracketicon()"
+      "norm_label": "bracketicon()",
+      "id": "src_app_bracketicon"
     },
     {
       "label": "SquadIcon()",
       "file_type": "code",
       "source_file": "src/App.jsx",
-      "source_location": "L75",
+      "source_location": "L76",
       "_origin": "ast",
-      "id": "src_app_squadicon",
       "community": 3,
-      "norm_label": "squadicon()"
+      "norm_label": "squadicon()",
+      "id": "src_app_squadicon"
     },
     {
       "label": "BootIcon()",
       "file_type": "code",
       "source_file": "src/App.jsx",
-      "source_location": "L80",
+      "source_location": "L81",
       "_origin": "ast",
-      "id": "src_app_booticon",
       "community": 3,
-      "norm_label": "booticon()"
+      "norm_label": "booticon()",
+      "id": "src_app_booticon"
     },
     {
       "label": "HistoryIcon()",
       "file_type": "code",
       "source_file": "src/App.jsx",
-      "source_location": "L85",
+      "source_location": "L86",
       "_origin": "ast",
-      "id": "src_app_historyicon",
       "community": 3,
-      "norm_label": "historyicon()"
+      "norm_label": "historyicon()",
+      "id": "src_app_historyicon"
     },
     {
       "label": "FemaleIcon()",
       "file_type": "code",
       "source_file": "src/App.jsx",
-      "source_location": "L90",
+      "source_location": "L91",
       "_origin": "ast",
-      "id": "src_app_femaleicon",
       "community": 3,
-      "norm_label": "femaleicon()"
+      "norm_label": "femaleicon()",
+      "id": "src_app_femaleicon"
     },
     {
       "label": "StatIcon()",
       "file_type": "code",
       "source_file": "src/App.jsx",
-      "source_location": "L95",
+      "source_location": "L96",
       "_origin": "ast",
-      "id": "src_app_staticon",
       "community": 3,
-      "norm_label": "staticon()"
+      "norm_label": "staticon()",
+      "id": "src_app_staticon"
     },
     {
       "label": "GlobeIcon()",
       "file_type": "code",
       "source_file": "src/App.jsx",
-      "source_location": "L100",
+      "source_location": "L101",
       "_origin": "ast",
-      "id": "src_app_globeicon",
       "community": 3,
-      "norm_label": "globeicon()"
+      "norm_label": "globeicon()",
+      "id": "src_app_globeicon"
     },
     {
       "label": "ChartIcon()",
       "file_type": "code",
       "source_file": "src/App.jsx",
-      "source_location": "L105",
+      "source_location": "L106",
       "_origin": "ast",
-      "id": "src_app_charticon",
       "community": 3,
-      "norm_label": "charticon()"
+      "norm_label": "charticon()",
+      "id": "src_app_charticon"
     },
     {
       "label": "PredictorIcon()",
       "file_type": "code",
       "source_file": "src/App.jsx",
-      "source_location": "L113",
+      "source_location": "L114",
       "_origin": "ast",
-      "id": "src_app_predictoricon",
       "community": 3,
-      "norm_label": "predictoricon()"
+      "norm_label": "predictoricon()",
+      "id": "src_app_predictoricon"
+    },
+    {
+      "label": "CompareIcon()",
+      "file_type": "code",
+      "source_file": "src/App.jsx",
+      "source_location": "L121",
+      "_origin": "ast",
+      "community": 3,
+      "norm_label": "compareicon()",
+      "id": "src_app_compareicon"
     },
     {
       "label": "EditIcon()",
       "file_type": "code",
       "source_file": "src/App.jsx",
-      "source_location": "L120",
+      "source_location": "L126",
       "_origin": "ast",
-      "id": "src_app_editicon",
       "community": 3,
-      "norm_label": "editicon()"
+      "norm_label": "editicon()",
+      "id": "src_app_editicon"
     },
     {
       "label": "BallIcon()",
       "file_type": "code",
       "source_file": "src/App.jsx",
-      "source_location": "L125",
+      "source_location": "L131",
       "_origin": "ast",
-      "id": "src_app_ballicon",
       "community": 3,
-      "norm_label": "ballicon()"
+      "norm_label": "ballicon()",
+      "id": "src_app_ballicon"
     },
     {
       "label": "NAV_ITEMS",
       "file_type": "code",
       "source_file": "src/App.jsx",
-      "source_location": "L133",
+      "source_location": "L139",
       "_origin": "ast",
-      "id": "src_app_nav_items",
       "community": 3,
-      "norm_label": "nav_items"
+      "norm_label": "nav_items",
+      "id": "src_app_nav_items"
     },
     {
       "label": "ISTClock()",
       "file_type": "code",
       "source_file": "src/App.jsx",
-      "source_location": "L149",
+      "source_location": "L156",
       "_origin": "ast",
-      "id": "src_app_istclock",
       "community": 3,
-      "norm_label": "istclock()"
+      "norm_label": "istclock()",
+      "id": "src_app_istclock"
     },
     {
       "label": "PageWrap()",
       "file_type": "code",
       "source_file": "src/App.jsx",
-      "source_location": "L172",
+      "source_location": "L179",
       "_origin": "ast",
-      "id": "src_app_pagewrap",
       "community": 3,
-      "norm_label": "pagewrap()"
+      "norm_label": "pagewrap()",
+      "id": "src_app_pagewrap"
     },
     {
       "label": "AdminGate()",
       "file_type": "code",
       "source_file": "src/App.jsx",
-      "source_location": "L179",
+      "source_location": "L186",
       "_origin": "ast",
-      "id": "src_app_admingate",
       "community": 3,
-      "norm_label": "admingate()"
+      "norm_label": "admingate()",
+      "id": "src_app_admingate"
     },
     {
       "label": "pushResults()",
       "file_type": "code",
       "source_file": "src/App.jsx",
-      "source_location": "L226",
+      "source_location": "L233",
       "_origin": "ast",
-      "id": "src_app_pushresults",
       "community": 3,
-      "norm_label": "pushresults()"
+      "norm_label": "pushresults()",
+      "id": "src_app_pushresults"
     },
     {
       "label": "App()",
       "file_type": "code",
       "source_file": "src/App.jsx",
-      "source_location": "L234",
+      "source_location": "L241",
       "_origin": "ast",
-      "id": "src_app_app",
       "community": 3,
-      "norm_label": "app()"
-    },
-    {
-      "label": "ThemeSwitcher.jsx",
-      "file_type": "code",
-      "source_file": "src/components/ThemeSwitcher.jsx",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "components_themeswitcher",
-      "community": 7,
-      "norm_label": "themeswitcher.jsx"
-    },
-    {
-      "label": "ThemeSwitcher()",
-      "file_type": "code",
-      "source_file": "src/components/ThemeSwitcher.jsx",
-      "source_location": "L4",
-      "_origin": "ast",
-      "id": "components_themeswitcher_themeswitcher",
-      "community": 7,
-      "norm_label": "themeswitcher()"
-    },
-    {
-      "label": "themeContext.jsx",
-      "file_type": "code",
-      "source_file": "src/lib/themeContext.jsx",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "lib_themecontext",
-      "community": 7,
-      "norm_label": "themecontext.jsx"
-    },
-    {
-      "label": "ThemeContext",
-      "file_type": "code",
-      "source_file": "src/lib/themeContext.jsx",
-      "source_location": "L4",
-      "_origin": "ast",
-      "id": "lib_themecontext_themecontext",
-      "community": 7,
-      "norm_label": "themecontext"
-    },
-    {
-      "label": "ThemeProvider()",
-      "file_type": "code",
-      "source_file": "src/lib/themeContext.jsx",
-      "source_location": "L6",
-      "_origin": "ast",
-      "id": "lib_themecontext_themeprovider",
-      "community": 7,
-      "norm_label": "themeprovider()"
-    },
-    {
-      "label": "useTheme()",
-      "file_type": "code",
-      "source_file": "src/lib/themeContext.jsx",
-      "source_location": "L65",
-      "_origin": "ast",
-      "id": "lib_themecontext_usetheme",
-      "community": 7,
-      "norm_label": "usetheme()"
-    },
-    {
-      "label": "themes.js",
-      "file_type": "code",
-      "source_file": "src/lib/themes.js",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "lib_themes",
-      "community": 7,
-      "norm_label": "themes.js"
-    },
-    {
-      "label": "THEMES",
-      "file_type": "code",
-      "source_file": "src/lib/themes.js",
-      "source_location": "L4",
-      "_origin": "ast",
-      "id": "lib_themes_themes",
-      "community": 7,
-      "norm_label": "themes"
-    },
-    {
-      "label": "THEME_LABELS",
-      "file_type": "code",
-      "source_file": "src/lib/themes.js",
-      "source_location": "L595",
-      "_origin": "ast",
-      "id": "lib_themes_theme_labels",
-      "community": 7,
-      "norm_label": "theme_labels"
+      "norm_label": "app()",
+      "id": "src_app_app"
     },
     {
       "label": "stats.js",
@@ -1114,10 +534,30 @@
       "id": "api_stats"
     },
     {
+      "label": "NAME_ALIASES",
+      "file_type": "code",
+      "source_file": "api/stats.js",
+      "source_location": "L31",
+      "_origin": "ast",
+      "community": 1,
+      "norm_label": "name_aliases",
+      "id": "api_stats_name_aliases"
+    },
+    {
+      "label": "normName()",
+      "file_type": "code",
+      "source_file": "api/stats.js",
+      "source_location": "L41",
+      "_origin": "ast",
+      "community": 1,
+      "norm_label": "normname()",
+      "id": "api_stats_normname"
+    },
+    {
       "label": "getRedis()",
       "file_type": "code",
       "source_file": "api/stats.js",
-      "source_location": "L30",
+      "source_location": "L43",
       "_origin": "ast",
       "community": 1,
       "norm_label": "getredis()",
@@ -1127,7 +567,7 @@
       "label": "statsFetch()",
       "file_type": "code",
       "source_file": "api/stats.js",
-      "source_location": "L39",
+      "source_location": "L52",
       "_origin": "ast",
       "community": 1,
       "norm_label": "statsfetch()",
@@ -1137,7 +577,7 @@
       "label": "cached()",
       "file_type": "code",
       "source_file": "api/stats.js",
-      "source_location": "L54",
+      "source_location": "L67",
       "_origin": "ast",
       "community": 1,
       "norm_label": "cached()",
@@ -1147,7 +587,7 @@
       "label": "matchTTL()",
       "file_type": "code",
       "source_file": "api/stats.js",
-      "source_location": "L77",
+      "source_location": "L90",
       "_origin": "ast",
       "community": 1,
       "norm_label": "matchttl()",
@@ -1157,7 +597,7 @@
       "label": "normalizeLineupSide()",
       "file_type": "code",
       "source_file": "api/stats.js",
-      "source_location": "L85",
+      "source_location": "L98",
       "_origin": "ast",
       "community": 1,
       "norm_label": "normalizelineupside()",
@@ -1167,7 +607,7 @@
       "label": "normalizePlayerStats()",
       "file_type": "code",
       "source_file": "api/stats.js",
-      "source_location": "L105",
+      "source_location": "L118",
       "_origin": "ast",
       "community": 1,
       "norm_label": "normalizeplayerstats()",
@@ -1177,7 +617,7 @@
       "label": "normalizeTeamStats()",
       "file_type": "code",
       "source_file": "api/stats.js",
-      "source_location": "L144",
+      "source_location": "L157",
       "_origin": "ast",
       "community": 1,
       "norm_label": "normalizeteamstats()",
@@ -1187,11 +627,761 @@
       "label": "handler()",
       "file_type": "code",
       "source_file": "api/stats.js",
-      "source_location": "L191",
+      "source_location": "L204",
       "_origin": "ast",
       "community": 1,
       "norm_label": "handler()",
       "id": "api_stats_handler"
+    },
+    {
+      "label": "CLAUDE.md",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 9,
+      "norm_label": "claude.md",
+      "id": "claude"
+    },
+    {
+      "label": "graphify",
+      "file_type": "document",
+      "source_file": "CLAUDE.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 9,
+      "norm_label": "graphify",
+      "id": "claude_graphify"
+    },
+    {
+      "label": "ThemeSwitcher.jsx",
+      "file_type": "code",
+      "source_file": "src/components/ThemeSwitcher.jsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 7,
+      "norm_label": "themeswitcher.jsx",
+      "id": "components_themeswitcher"
+    },
+    {
+      "label": "ThemeSwitcher()",
+      "file_type": "code",
+      "source_file": "src/components/ThemeSwitcher.jsx",
+      "source_location": "L5",
+      "_origin": "ast",
+      "community": 7,
+      "norm_label": "themeswitcher()",
+      "id": "components_themeswitcher_themeswitcher"
+    },
+    {
+      "label": "matches.js.md",
+      "file_type": "document",
+      "source_file": "src/data/matches.js.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 10,
+      "norm_label": "matches.js.md",
+      "id": "data_matches_js"
+    },
+    {
+      "label": "predictor.js.md",
+      "file_type": "document",
+      "source_file": "src/lib/predictor.js.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 11,
+      "norm_label": "predictor.js.md",
+      "id": "lib_predictor_js"
+    },
+    {
+      "label": "themeContext.jsx",
+      "file_type": "code",
+      "source_file": "src/lib/themeContext.jsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 7,
+      "norm_label": "themecontext.jsx",
+      "id": "lib_themecontext"
+    },
+    {
+      "label": "ThemeContext",
+      "file_type": "code",
+      "source_file": "src/lib/themeContext.jsx",
+      "source_location": "L4",
+      "_origin": "ast",
+      "community": 7,
+      "norm_label": "themecontext",
+      "id": "lib_themecontext_themecontext"
+    },
+    {
+      "label": "ThemeProvider()",
+      "file_type": "code",
+      "source_file": "src/lib/themeContext.jsx",
+      "source_location": "L6",
+      "_origin": "ast",
+      "community": 7,
+      "norm_label": "themeprovider()",
+      "id": "lib_themecontext_themeprovider"
+    },
+    {
+      "label": "useTheme()",
+      "file_type": "code",
+      "source_file": "src/lib/themeContext.jsx",
+      "source_location": "L68",
+      "_origin": "ast",
+      "community": 7,
+      "norm_label": "usetheme()",
+      "id": "lib_themecontext_usetheme"
+    },
+    {
+      "label": "Predictor.jsx.md",
+      "file_type": "document",
+      "source_file": "src/pages/Predictor.jsx.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 12,
+      "norm_label": "predictor.jsx.md",
+      "id": "pages_predictor_jsx"
+    },
+    {
+      "label": "QUICK_START_THEMES.md",
+      "file_type": "document",
+      "source_file": "QUICK_START_THEMES.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 4,
+      "norm_label": "quick_start_themes.md",
+      "id": "quick_start_themes"
+    },
+    {
+      "label": "\ud83c\udfa8 Quick Start \u2014 Theme System",
+      "file_type": "document",
+      "source_file": "QUICK_START_THEMES.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 4,
+      "norm_label": "\ud83c\udfa8 quick start \u2014 theme system",
+      "id": "quick_start_themes_quick_start_theme_system"
+    },
+    {
+      "label": "Where to Find the Theme Switcher",
+      "file_type": "document",
+      "source_file": "QUICK_START_THEMES.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "community": 4,
+      "norm_label": "where to find the theme switcher",
+      "id": "quick_start_themes_where_to_find_the_theme_switcher"
+    },
+    {
+      "label": "How to Use",
+      "file_type": "document",
+      "source_file": "QUICK_START_THEMES.md",
+      "source_location": "L15",
+      "_origin": "ast",
+      "community": 4,
+      "norm_label": "how to use",
+      "id": "quick_start_themes_how_to_use"
+    },
+    {
+      "label": "1. Toggle Light/Dark Mode",
+      "file_type": "document",
+      "source_file": "QUICK_START_THEMES.md",
+      "source_location": "L17",
+      "_origin": "ast",
+      "community": 4,
+      "norm_label": "1. toggle light/dark mode",
+      "id": "quick_start_themes_1_toggle_light_dark_mode"
+    },
+    {
+      "label": "2. Change Theme Color",
+      "file_type": "document",
+      "source_file": "QUICK_START_THEMES.md",
+      "source_location": "L22",
+      "_origin": "ast",
+      "community": 4,
+      "norm_label": "2. change theme color",
+      "id": "quick_start_themes_2_change_theme_color"
+    },
+    {
+      "label": "3. Your Preference is Saved",
+      "file_type": "document",
+      "source_file": "QUICK_START_THEMES.md",
+      "source_location": "L30",
+      "_origin": "ast",
+      "community": 4,
+      "norm_label": "3. your preference is saved",
+      "id": "quick_start_themes_3_your_preference_is_saved"
+    },
+    {
+      "label": "Available Combinations",
+      "file_type": "document",
+      "source_file": "QUICK_START_THEMES.md",
+      "source_location": "L35",
+      "_origin": "ast",
+      "community": 4,
+      "norm_label": "available combinations",
+      "id": "quick_start_themes_available_combinations"
+    },
+    {
+      "label": "Theme Descriptions",
+      "file_type": "document",
+      "source_file": "QUICK_START_THEMES.md",
+      "source_location": "L44",
+      "_origin": "ast",
+      "community": 4,
+      "norm_label": "theme descriptions",
+      "id": "quick_start_themes_theme_descriptions"
+    },
+    {
+      "label": "\ud83d\udd35 DEFAULT",
+      "file_type": "document",
+      "source_file": "QUICK_START_THEMES.md",
+      "source_location": "L46",
+      "_origin": "ast",
+      "community": 4,
+      "norm_label": "\ud83d\udd35 default",
+      "id": "quick_start_themes_default"
+    },
+    {
+      "label": "\ud83d\udd35 OCEAN",
+      "file_type": "document",
+      "source_file": "QUICK_START_THEMES.md",
+      "source_location": "L50",
+      "_origin": "ast",
+      "community": 4,
+      "norm_label": "\ud83d\udd35 ocean",
+      "id": "quick_start_themes_ocean"
+    },
+    {
+      "label": "\ud83d\udfe0 SUNSET",
+      "file_type": "document",
+      "source_file": "QUICK_START_THEMES.md",
+      "source_location": "L54",
+      "_origin": "ast",
+      "community": 4,
+      "norm_label": "\ud83d\udfe0 sunset",
+      "id": "quick_start_themes_sunset"
+    },
+    {
+      "label": "\ud83d\udfe2 FOREST",
+      "file_type": "document",
+      "source_file": "QUICK_START_THEMES.md",
+      "source_location": "L58",
+      "_origin": "ast",
+      "community": 4,
+      "norm_label": "\ud83d\udfe2 forest",
+      "id": "quick_start_themes_forest"
+    },
+    {
+      "label": "\ud83d\udfe3 CYBER",
+      "file_type": "document",
+      "source_file": "QUICK_START_THEMES.md",
+      "source_location": "L62",
+      "_origin": "ast",
+      "community": 4,
+      "norm_label": "\ud83d\udfe3 cyber",
+      "id": "quick_start_themes_cyber"
+    },
+    {
+      "label": "Mobile Users",
+      "file_type": "document",
+      "source_file": "QUICK_START_THEMES.md",
+      "source_location": "L66",
+      "_origin": "ast",
+      "community": 4,
+      "norm_label": "mobile users",
+      "id": "quick_start_themes_mobile_users"
+    },
+    {
+      "label": "Desktop Users",
+      "file_type": "document",
+      "source_file": "QUICK_START_THEMES.md",
+      "source_location": "L74",
+      "_origin": "ast",
+      "community": 4,
+      "norm_label": "desktop users",
+      "id": "quick_start_themes_desktop_users"
+    },
+    {
+      "label": "Tips & Tricks",
+      "file_type": "document",
+      "source_file": "QUICK_START_THEMES.md",
+      "source_location": "L82",
+      "_origin": "ast",
+      "community": 4,
+      "norm_label": "tips & tricks",
+      "id": "quick_start_themes_tips_tricks"
+    },
+    {
+      "label": "Troubleshooting",
+      "file_type": "document",
+      "source_file": "QUICK_START_THEMES.md",
+      "source_location": "L94",
+      "_origin": "ast",
+      "community": 4,
+      "norm_label": "troubleshooting",
+      "id": "quick_start_themes_troubleshooting"
+    },
+    {
+      "label": "Accessibility",
+      "file_type": "document",
+      "source_file": "QUICK_START_THEMES.md",
+      "source_location": "L112",
+      "_origin": "ast",
+      "community": 4,
+      "norm_label": "accessibility",
+      "id": "quick_start_themes_accessibility"
+    },
+    {
+      "label": "For Developers",
+      "file_type": "document",
+      "source_file": "QUICK_START_THEMES.md",
+      "source_location": "L120",
+      "_origin": "ast",
+      "community": 4,
+      "norm_label": "for developers",
+      "id": "quick_start_themes_for_developers"
+    },
+    {
+      "label": "Questions?",
+      "file_type": "document",
+      "source_file": "QUICK_START_THEMES.md",
+      "source_location": "L142",
+      "_origin": "ast",
+      "community": 4,
+      "norm_label": "questions?",
+      "id": "quick_start_themes_questions"
+    },
+    {
+      "label": "THEMES_IMPLEMENTATION.md",
+      "file_type": "document",
+      "source_file": "THEMES_IMPLEMENTATION.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": "themes_implementation.md",
+      "id": "themes_implementation"
+    },
+    {
+      "label": "\ud83c\udfa8 Theme System Implementation \u2014 WC2026",
+      "file_type": "document",
+      "source_file": "THEMES_IMPLEMENTATION.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": "\ud83c\udfa8 theme system implementation \u2014 wc2026",
+      "id": "themes_implementation_theme_system_implementation_wc2026"
+    },
+    {
+      "label": "\u2705 What Was Added",
+      "file_type": "document",
+      "source_file": "THEMES_IMPLEMENTATION.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": "\u2705 what was added",
+      "id": "themes_implementation_what_was_added"
+    },
+    {
+      "label": "Files Created",
+      "file_type": "document",
+      "source_file": "THEMES_IMPLEMENTATION.md",
+      "source_location": "L7",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": "files created",
+      "id": "themes_implementation_files_created"
+    },
+    {
+      "label": "\ud83c\udfaf How It Works",
+      "file_type": "document",
+      "source_file": "THEMES_IMPLEMENTATION.md",
+      "source_location": "L40",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": "\ud83c\udfaf how it works",
+      "id": "themes_implementation_how_it_works"
+    },
+    {
+      "label": "Mode Toggle (Light/Dark)",
+      "file_type": "document",
+      "source_file": "THEMES_IMPLEMENTATION.md",
+      "source_location": "L42",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": "mode toggle (light/dark)",
+      "id": "themes_implementation_mode_toggle_light_dark"
+    },
+    {
+      "label": "Theme Selection (5 Colors)",
+      "file_type": "document",
+      "source_file": "THEMES_IMPLEMENTATION.md",
+      "source_location": "L47",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": "theme selection (5 colors)",
+      "id": "themes_implementation_theme_selection_5_colors"
+    },
+    {
+      "label": "\ud83d\ude80 Features",
+      "file_type": "document",
+      "source_file": "THEMES_IMPLEMENTATION.md",
+      "source_location": "L53",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": "\ud83d\ude80 features",
+      "id": "themes_implementation_features"
+    },
+    {
+      "label": "\ud83d\udcf1 Using the Theme System",
+      "file_type": "document",
+      "source_file": "THEMES_IMPLEMENTATION.md",
+      "source_location": "L75",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": "\ud83d\udcf1 using the theme system",
+      "id": "themes_implementation_using_the_theme_system"
+    },
+    {
+      "label": "For Users",
+      "file_type": "document",
+      "source_file": "THEMES_IMPLEMENTATION.md",
+      "source_location": "L77",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": "for users",
+      "id": "themes_implementation_for_users"
+    },
+    {
+      "label": "For Developers",
+      "file_type": "document",
+      "source_file": "THEMES_IMPLEMENTATION.md",
+      "source_location": "L83",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": "for developers",
+      "id": "themes_implementation_for_developers"
+    },
+    {
+      "label": "Adding New Themes",
+      "file_type": "document",
+      "source_file": "THEMES_IMPLEMENTATION.md",
+      "source_location": "L101",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": "adding new themes",
+      "id": "themes_implementation_adding_new_themes"
+    },
+    {
+      "label": "\ud83c\udfa8 CSS Variables Available",
+      "file_type": "document",
+      "source_file": "THEMES_IMPLEMENTATION.md",
+      "source_location": "L117",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": "\ud83c\udfa8 css variables available",
+      "id": "themes_implementation_css_variables_available"
+    },
+    {
+      "label": "\u2705 Testing",
+      "file_type": "document",
+      "source_file": "THEMES_IMPLEMENTATION.md",
+      "source_location": "L129",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": "\u2705 testing",
+      "id": "themes_implementation_testing"
+    },
+    {
+      "label": "Build Status",
+      "file_type": "document",
+      "source_file": "THEMES_IMPLEMENTATION.md",
+      "source_location": "L131",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": "build status",
+      "id": "themes_implementation_build_status"
+    },
+    {
+      "label": "Server Status",
+      "file_type": "document",
+      "source_file": "THEMES_IMPLEMENTATION.md",
+      "source_location": "L134",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": "server status",
+      "id": "themes_implementation_server_status"
+    },
+    {
+      "label": "Manual Testing Checklist",
+      "file_type": "document",
+      "source_file": "THEMES_IMPLEMENTATION.md",
+      "source_location": "L137",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": "manual testing checklist",
+      "id": "themes_implementation_manual_testing_checklist"
+    },
+    {
+      "label": "\ud83d\udcca Theme Matrix",
+      "file_type": "document",
+      "source_file": "THEMES_IMPLEMENTATION.md",
+      "source_location": "L145",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": "\ud83d\udcca theme matrix",
+      "id": "themes_implementation_theme_matrix"
+    },
+    {
+      "label": "\ud83d\udd27 Technical Details",
+      "file_type": "document",
+      "source_file": "THEMES_IMPLEMENTATION.md",
+      "source_location": "L157",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": "\ud83d\udd27 technical details",
+      "id": "themes_implementation_technical_details"
+    },
+    {
+      "label": "\ud83d\udea2 Deployment Notes",
+      "file_type": "document",
+      "source_file": "THEMES_IMPLEMENTATION.md",
+      "source_location": "L165",
+      "_origin": "ast",
+      "community": 6,
+      "norm_label": "\ud83d\udea2 deployment notes",
+      "id": "themes_implementation_deployment_notes"
+    },
+    {
+      "label": "THEME_COLORS.md",
+      "file_type": "document",
+      "source_file": "THEME_COLORS.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 5,
+      "norm_label": "theme_colors.md",
+      "id": "theme_colors"
+    },
+    {
+      "label": "\ud83c\udfa8 WC2026 Theme Color Palettes",
+      "file_type": "document",
+      "source_file": "THEME_COLORS.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 5,
+      "norm_label": "\ud83c\udfa8 wc2026 theme color palettes",
+      "id": "theme_colors_wc2026_theme_color_palettes"
+    },
+    {
+      "label": "1\ufe0f\u20e3 DEFAULT THEME (Blue)",
+      "file_type": "document",
+      "source_file": "THEME_COLORS.md",
+      "source_location": "L3",
+      "_origin": "ast",
+      "community": 5,
+      "norm_label": "1\ufe0f\u20e3 default theme (blue)",
+      "id": "theme_colors_1_default_theme_blue"
+    },
+    {
+      "label": "Dark Mode",
+      "file_type": "document",
+      "source_file": "THEME_COLORS.md",
+      "source_location": "L6",
+      "_origin": "ast",
+      "community": 5,
+      "norm_label": "dark mode",
+      "id": "theme_colors_dark_mode"
+    },
+    {
+      "label": "Light Mode",
+      "file_type": "document",
+      "source_file": "THEME_COLORS.md",
+      "source_location": "L24",
+      "_origin": "ast",
+      "community": 5,
+      "norm_label": "light mode",
+      "id": "theme_colors_light_mode"
+    },
+    {
+      "label": "2\ufe0f\u20e3 OCEAN THEME (Cyan/Teal)",
+      "file_type": "document",
+      "source_file": "THEME_COLORS.md",
+      "source_location": "L39",
+      "_origin": "ast",
+      "community": 5,
+      "norm_label": "2\ufe0f\u20e3 ocean theme (cyan/teal)",
+      "id": "theme_colors_2_ocean_theme_cyan_teal"
+    },
+    {
+      "label": "Dark Mode",
+      "file_type": "document",
+      "source_file": "THEME_COLORS.md",
+      "source_location": "L42",
+      "_origin": "ast",
+      "community": 5,
+      "norm_label": "dark mode",
+      "id": "theme_colors_dark_mode_42"
+    },
+    {
+      "label": "Light Mode",
+      "file_type": "document",
+      "source_file": "THEME_COLORS.md",
+      "source_location": "L60",
+      "_origin": "ast",
+      "community": 5,
+      "norm_label": "light mode",
+      "id": "theme_colors_light_mode_60"
+    },
+    {
+      "label": "3\ufe0f\u20e3 SUNSET THEME (Orange/Gold)",
+      "file_type": "document",
+      "source_file": "THEME_COLORS.md",
+      "source_location": "L75",
+      "_origin": "ast",
+      "community": 5,
+      "norm_label": "3\ufe0f\u20e3 sunset theme (orange/gold)",
+      "id": "theme_colors_3_sunset_theme_orange_gold"
+    },
+    {
+      "label": "Dark Mode",
+      "file_type": "document",
+      "source_file": "THEME_COLORS.md",
+      "source_location": "L78",
+      "_origin": "ast",
+      "community": 5,
+      "norm_label": "dark mode",
+      "id": "theme_colors_dark_mode_78"
+    },
+    {
+      "label": "Light Mode",
+      "file_type": "document",
+      "source_file": "THEME_COLORS.md",
+      "source_location": "L96",
+      "_origin": "ast",
+      "community": 5,
+      "norm_label": "light mode",
+      "id": "theme_colors_light_mode_96"
+    },
+    {
+      "label": "4\ufe0f\u20e3 FOREST THEME (Green)",
+      "file_type": "document",
+      "source_file": "THEME_COLORS.md",
+      "source_location": "L111",
+      "_origin": "ast",
+      "community": 5,
+      "norm_label": "4\ufe0f\u20e3 forest theme (green)",
+      "id": "theme_colors_4_forest_theme_green"
+    },
+    {
+      "label": "Dark Mode",
+      "file_type": "document",
+      "source_file": "THEME_COLORS.md",
+      "source_location": "L114",
+      "_origin": "ast",
+      "community": 5,
+      "norm_label": "dark mode",
+      "id": "theme_colors_dark_mode_114"
+    },
+    {
+      "label": "Light Mode",
+      "file_type": "document",
+      "source_file": "THEME_COLORS.md",
+      "source_location": "L132",
+      "_origin": "ast",
+      "community": 5,
+      "norm_label": "light mode",
+      "id": "theme_colors_light_mode_132"
+    },
+    {
+      "label": "5\ufe0f\u20e3 CYBER THEME (Purple/Magenta)",
+      "file_type": "document",
+      "source_file": "THEME_COLORS.md",
+      "source_location": "L147",
+      "_origin": "ast",
+      "community": 5,
+      "norm_label": "5\ufe0f\u20e3 cyber theme (purple/magenta)",
+      "id": "theme_colors_5_cyber_theme_purple_magenta"
+    },
+    {
+      "label": "Dark Mode",
+      "file_type": "document",
+      "source_file": "THEME_COLORS.md",
+      "source_location": "L150",
+      "_origin": "ast",
+      "community": 5,
+      "norm_label": "dark mode",
+      "id": "theme_colors_dark_mode_150"
+    },
+    {
+      "label": "Light Mode",
+      "file_type": "document",
+      "source_file": "THEME_COLORS.md",
+      "source_location": "L168",
+      "_origin": "ast",
+      "community": 5,
+      "norm_label": "light mode",
+      "id": "theme_colors_light_mode_168"
+    },
+    {
+      "label": "\ud83d\udd04 How to Switch",
+      "file_type": "document",
+      "source_file": "THEME_COLORS.md",
+      "source_location": "L183",
+      "_origin": "ast",
+      "community": 5,
+      "norm_label": "\ud83d\udd04 how to switch",
+      "id": "theme_colors_how_to_switch"
+    },
+    {
+      "label": "\ud83d\udcca Color Contrast Reference",
+      "file_type": "document",
+      "source_file": "THEME_COLORS.md",
+      "source_location": "L195",
+      "_origin": "ast",
+      "community": 5,
+      "norm_label": "\ud83d\udcca color contrast reference",
+      "id": "theme_colors_color_contrast_reference"
+    },
+    {
+      "label": "\ud83c\udfa8 Using Theme Colors in Code",
+      "file_type": "document",
+      "source_file": "THEME_COLORS.md",
+      "source_location": "L204",
+      "_origin": "ast",
+      "community": 5,
+      "norm_label": "\ud83c\udfa8 using theme colors in code",
+      "id": "theme_colors_using_theme_colors_in_code"
+    },
+    {
+      "label": "themes.js",
+      "file_type": "code",
+      "source_file": "src/lib/themes.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 7,
+      "norm_label": "themes.js",
+      "id": "lib_themes"
+    },
+    {
+      "label": "THEMES",
+      "file_type": "code",
+      "source_file": "src/lib/themes.js",
+      "source_location": "L4",
+      "_origin": "ast",
+      "community": 7,
+      "norm_label": "themes",
+      "id": "lib_themes_themes"
+    },
+    {
+      "label": "THEME_LABELS",
+      "file_type": "code",
+      "source_file": "src/lib/themes.js",
+      "source_location": "L595",
+      "_origin": "ast",
+      "community": 7,
+      "norm_label": "theme_labels",
+      "id": "lib_themes_theme_labels"
     },
     {
       "label": "predictor.js",
@@ -1646,584 +1836,117 @@
   ],
   "links": [
     {
-      "relation": "contains",
+      "relation": "imports_from",
+      "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "QUICK_START_THEMES.md",
-      "source_location": "L1",
+      "source_file": "src/pages/TeamComparison.jsx",
+      "source_location": "L4",
       "weight": 1.0,
-      "source": "quick_start_themes",
-      "target": "quick_start_themes_quick_start_theme_system",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "pages_teamcomparison",
+      "target": "data_headtohead"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/TeamComparison.jsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "pages_teamcomparison",
+      "target": "data_headtohead_head_to_head_records"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/TeamComparison.jsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "pages_teamcomparison",
+      "target": "data_headtohead_team_strategies"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "QUICK_START_THEMES.md",
-      "source_location": "L112",
+      "source_file": "src/pages/TeamComparison.jsx",
+      "source_location": "L9",
       "weight": 1.0,
-      "source": "quick_start_themes_quick_start_theme_system",
-      "target": "quick_start_themes_accessibility",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "pages_teamcomparison",
+      "target": "pages_teamcomparison_rankings"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "QUICK_START_THEMES.md",
-      "source_location": "L35",
+      "source_file": "src/pages/TeamComparison.jsx",
+      "source_location": "L91",
       "weight": 1.0,
-      "source": "quick_start_themes_quick_start_theme_system",
-      "target": "quick_start_themes_available_combinations",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "pages_teamcomparison",
+      "target": "pages_teamcomparison_statcard"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "QUICK_START_THEMES.md",
-      "source_location": "L74",
+      "source_file": "src/pages/TeamComparison.jsx",
+      "source_location": "L115",
       "weight": 1.0,
-      "source": "quick_start_themes_quick_start_theme_system",
-      "target": "quick_start_themes_desktop_users",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "pages_teamcomparison",
+      "target": "pages_teamcomparison_teamcard"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "QUICK_START_THEMES.md",
-      "source_location": "L120",
+      "source_file": "src/pages/TeamComparison.jsx",
+      "source_location": "L235",
       "weight": 1.0,
-      "source": "quick_start_themes_quick_start_theme_system",
-      "target": "quick_start_themes_for_developers",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "pages_teamcomparison",
+      "target": "pages_teamcomparison_teamcomparison"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "QUICK_START_THEMES.md",
-      "source_location": "L15",
+      "source_file": "src/pages/TeamComparison.jsx",
+      "source_location": "L61",
       "weight": 1.0,
-      "source": "quick_start_themes_quick_start_theme_system",
-      "target": "quick_start_themes_how_to_use",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "pages_teamcomparison",
+      "target": "pages_teamcomparison_teamselector"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "QUICK_START_THEMES.md",
-      "source_location": "L66",
-      "weight": 1.0,
-      "source": "quick_start_themes_quick_start_theme_system",
-      "target": "quick_start_themes_mobile_users",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "QUICK_START_THEMES.md",
-      "source_location": "L142",
-      "weight": 1.0,
-      "source": "quick_start_themes_quick_start_theme_system",
-      "target": "quick_start_themes_questions",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "QUICK_START_THEMES.md",
-      "source_location": "L44",
-      "weight": 1.0,
-      "source": "quick_start_themes_quick_start_theme_system",
-      "target": "quick_start_themes_theme_descriptions",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "QUICK_START_THEMES.md",
-      "source_location": "L82",
-      "weight": 1.0,
-      "source": "quick_start_themes_quick_start_theme_system",
-      "target": "quick_start_themes_tips_tricks",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "QUICK_START_THEMES.md",
-      "source_location": "L94",
-      "weight": 1.0,
-      "source": "quick_start_themes_quick_start_theme_system",
-      "target": "quick_start_themes_troubleshooting",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "QUICK_START_THEMES.md",
-      "source_location": "L3",
-      "weight": 1.0,
-      "source": "quick_start_themes_quick_start_theme_system",
-      "target": "quick_start_themes_where_to_find_the_theme_switcher",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "QUICK_START_THEMES.md",
-      "source_location": "L17",
-      "weight": 1.0,
-      "source": "quick_start_themes_how_to_use",
-      "target": "quick_start_themes_1_toggle_light_dark_mode",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "QUICK_START_THEMES.md",
-      "source_location": "L22",
-      "weight": 1.0,
-      "source": "quick_start_themes_how_to_use",
-      "target": "quick_start_themes_2_change_theme_color",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "QUICK_START_THEMES.md",
-      "source_location": "L30",
-      "weight": 1.0,
-      "source": "quick_start_themes_how_to_use",
-      "target": "quick_start_themes_3_your_preference_is_saved",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "QUICK_START_THEMES.md",
+      "source_file": "src/pages/TeamComparison.jsx",
       "source_location": "L62",
       "weight": 1.0,
-      "source": "quick_start_themes_theme_descriptions",
-      "target": "quick_start_themes_cyber",
+      "source": "pages_teamcomparison",
+      "target": "pages_teamcomparison_usemediaquery",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "QUICK_START_THEMES.md",
-      "source_location": "L46",
+      "source_file": "src/data/headToHead.js",
+      "source_location": "L2",
       "weight": 1.0,
-      "source": "quick_start_themes_theme_descriptions",
-      "target": "quick_start_themes_default",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "data_headtohead",
+      "target": "data_headtohead_head_to_head_records"
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "QUICK_START_THEMES.md",
-      "source_location": "L58",
+      "source_file": "src/data/headToHead.js",
+      "source_location": "L62",
       "weight": 1.0,
-      "source": "quick_start_themes_theme_descriptions",
-      "target": "quick_start_themes_forest",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "QUICK_START_THEMES.md",
-      "source_location": "L50",
-      "weight": 1.0,
-      "source": "quick_start_themes_theme_descriptions",
-      "target": "quick_start_themes_ocean",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "QUICK_START_THEMES.md",
-      "source_location": "L54",
-      "weight": 1.0,
-      "source": "quick_start_themes_theme_descriptions",
-      "target": "quick_start_themes_sunset",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "THEMES_IMPLEMENTATION.md",
-      "source_location": "L1",
-      "weight": 1.0,
-      "source": "themes_implementation",
-      "target": "themes_implementation_theme_system_implementation_wc2026",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "THEMES_IMPLEMENTATION.md",
-      "source_location": "L117",
-      "weight": 1.0,
-      "source": "themes_implementation_theme_system_implementation_wc2026",
-      "target": "themes_implementation_css_variables_available",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "THEMES_IMPLEMENTATION.md",
-      "source_location": "L165",
-      "weight": 1.0,
-      "source": "themes_implementation_theme_system_implementation_wc2026",
-      "target": "themes_implementation_deployment_notes",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "THEMES_IMPLEMENTATION.md",
-      "source_location": "L53",
-      "weight": 1.0,
-      "source": "themes_implementation_theme_system_implementation_wc2026",
-      "target": "themes_implementation_features",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "THEMES_IMPLEMENTATION.md",
-      "source_location": "L40",
-      "weight": 1.0,
-      "source": "themes_implementation_theme_system_implementation_wc2026",
-      "target": "themes_implementation_how_it_works",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "THEMES_IMPLEMENTATION.md",
-      "source_location": "L157",
-      "weight": 1.0,
-      "source": "themes_implementation_theme_system_implementation_wc2026",
-      "target": "themes_implementation_technical_details",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "THEMES_IMPLEMENTATION.md",
-      "source_location": "L129",
-      "weight": 1.0,
-      "source": "themes_implementation_theme_system_implementation_wc2026",
-      "target": "themes_implementation_testing",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "THEMES_IMPLEMENTATION.md",
-      "source_location": "L145",
-      "weight": 1.0,
-      "source": "themes_implementation_theme_system_implementation_wc2026",
-      "target": "themes_implementation_theme_matrix",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "THEMES_IMPLEMENTATION.md",
-      "source_location": "L75",
-      "weight": 1.0,
-      "source": "themes_implementation_theme_system_implementation_wc2026",
-      "target": "themes_implementation_using_the_theme_system",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "THEMES_IMPLEMENTATION.md",
-      "source_location": "L3",
-      "weight": 1.0,
-      "source": "themes_implementation_theme_system_implementation_wc2026",
-      "target": "themes_implementation_what_was_added",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "THEMES_IMPLEMENTATION.md",
-      "source_location": "L7",
-      "weight": 1.0,
-      "source": "themes_implementation_what_was_added",
-      "target": "themes_implementation_files_created",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "THEMES_IMPLEMENTATION.md",
-      "source_location": "L42",
-      "weight": 1.0,
-      "source": "themes_implementation_how_it_works",
-      "target": "themes_implementation_mode_toggle_light_dark",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "THEMES_IMPLEMENTATION.md",
-      "source_location": "L47",
-      "weight": 1.0,
-      "source": "themes_implementation_how_it_works",
-      "target": "themes_implementation_theme_selection_5_colors",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "THEMES_IMPLEMENTATION.md",
-      "source_location": "L101",
-      "weight": 1.0,
-      "source": "themes_implementation_using_the_theme_system",
-      "target": "themes_implementation_adding_new_themes",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "THEMES_IMPLEMENTATION.md",
-      "source_location": "L83",
-      "weight": 1.0,
-      "source": "themes_implementation_using_the_theme_system",
-      "target": "themes_implementation_for_developers",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "THEMES_IMPLEMENTATION.md",
-      "source_location": "L77",
-      "weight": 1.0,
-      "source": "themes_implementation_using_the_theme_system",
-      "target": "themes_implementation_for_users",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "THEMES_IMPLEMENTATION.md",
-      "source_location": "L131",
-      "weight": 1.0,
-      "source": "themes_implementation_testing",
-      "target": "themes_implementation_build_status",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "THEMES_IMPLEMENTATION.md",
-      "source_location": "L137",
-      "weight": 1.0,
-      "source": "themes_implementation_testing",
-      "target": "themes_implementation_manual_testing_checklist",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "THEMES_IMPLEMENTATION.md",
-      "source_location": "L134",
-      "weight": 1.0,
-      "source": "themes_implementation_testing",
-      "target": "themes_implementation_server_status",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "THEME_COLORS.md",
-      "source_location": "L1",
-      "weight": 1.0,
-      "source": "theme_colors",
-      "target": "theme_colors_wc2026_theme_color_palettes",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "THEME_COLORS.md",
-      "source_location": "L3",
-      "weight": 1.0,
-      "source": "theme_colors_wc2026_theme_color_palettes",
-      "target": "theme_colors_1_default_theme_blue",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "THEME_COLORS.md",
-      "source_location": "L39",
-      "weight": 1.0,
-      "source": "theme_colors_wc2026_theme_color_palettes",
-      "target": "theme_colors_2_ocean_theme_cyan_teal",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "THEME_COLORS.md",
-      "source_location": "L75",
-      "weight": 1.0,
-      "source": "theme_colors_wc2026_theme_color_palettes",
-      "target": "theme_colors_3_sunset_theme_orange_gold",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "THEME_COLORS.md",
-      "source_location": "L111",
-      "weight": 1.0,
-      "source": "theme_colors_wc2026_theme_color_palettes",
-      "target": "theme_colors_4_forest_theme_green",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "THEME_COLORS.md",
-      "source_location": "L147",
-      "weight": 1.0,
-      "source": "theme_colors_wc2026_theme_color_palettes",
-      "target": "theme_colors_5_cyber_theme_purple_magenta",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "THEME_COLORS.md",
-      "source_location": "L195",
-      "weight": 1.0,
-      "source": "theme_colors_wc2026_theme_color_palettes",
-      "target": "theme_colors_color_contrast_reference",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "THEME_COLORS.md",
-      "source_location": "L183",
-      "weight": 1.0,
-      "source": "theme_colors_wc2026_theme_color_palettes",
-      "target": "theme_colors_how_to_switch",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "THEME_COLORS.md",
-      "source_location": "L204",
-      "weight": 1.0,
-      "source": "theme_colors_wc2026_theme_color_palettes",
-      "target": "theme_colors_using_theme_colors_in_code",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "THEME_COLORS.md",
-      "source_location": "L6",
-      "weight": 1.0,
-      "source": "theme_colors_1_default_theme_blue",
-      "target": "theme_colors_dark_mode",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "THEME_COLORS.md",
-      "source_location": "L24",
-      "weight": 1.0,
-      "source": "theme_colors_1_default_theme_blue",
-      "target": "theme_colors_light_mode",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "THEME_COLORS.md",
-      "source_location": "L42",
-      "weight": 1.0,
-      "source": "theme_colors_2_ocean_theme_cyan_teal",
-      "target": "theme_colors_dark_mode_42",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "THEME_COLORS.md",
-      "source_location": "L60",
-      "weight": 1.0,
-      "source": "theme_colors_2_ocean_theme_cyan_teal",
-      "target": "theme_colors_light_mode_60",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "THEME_COLORS.md",
-      "source_location": "L78",
-      "weight": 1.0,
-      "source": "theme_colors_3_sunset_theme_orange_gold",
-      "target": "theme_colors_dark_mode_78",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "THEME_COLORS.md",
-      "source_location": "L96",
-      "weight": 1.0,
-      "source": "theme_colors_3_sunset_theme_orange_gold",
-      "target": "theme_colors_light_mode_96",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "THEME_COLORS.md",
-      "source_location": "L114",
-      "weight": 1.0,
-      "source": "theme_colors_4_forest_theme_green",
-      "target": "theme_colors_dark_mode_114",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "THEME_COLORS.md",
-      "source_location": "L132",
-      "weight": 1.0,
-      "source": "theme_colors_4_forest_theme_green",
-      "target": "theme_colors_light_mode_132",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "THEME_COLORS.md",
-      "source_location": "L150",
-      "weight": 1.0,
-      "source": "theme_colors_5_cyber_theme_purple_magenta",
-      "target": "theme_colors_dark_mode_150",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "THEME_COLORS.md",
-      "source_location": "L168",
-      "weight": 1.0,
-      "source": "theme_colors_5_cyber_theme_purple_magenta",
-      "target": "theme_colors_light_mode_168",
-      "confidence_score": 1.0
+      "confidence_score": 1.0,
+      "source": "data_headtohead",
+      "target": "data_headtohead_team_strategies"
     },
     {
       "relation": "imports_from",
@@ -2232,9 +1955,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "components_themeswitcher",
-      "confidence_score": 1.0
+      "target": "components_themeswitcher"
     },
     {
       "relation": "imports",
@@ -2243,9 +1966,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "components_themeswitcher_themeswitcher",
-      "confidence_score": 1.0
+      "target": "components_themeswitcher_themeswitcher"
     },
     {
       "relation": "imports_from",
@@ -2254,9 +1977,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "lib_themecontext",
-      "confidence_score": 1.0
+      "target": "lib_themecontext"
     },
     {
       "relation": "imports",
@@ -2265,9 +1988,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "lib_themecontext_themeprovider",
-      "confidence_score": 1.0
+      "target": "lib_themecontext_themeprovider"
     },
     {
       "relation": "imports",
@@ -2276,9 +1999,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L26",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "lib_usestats_useschedule",
-      "confidence_score": 1.0
+      "target": "lib_usestats_useschedule"
     },
     {
       "relation": "imports",
@@ -2287,9 +2010,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L26",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "lib_usestats_usestatsmatchidmap",
-      "confidence_score": 1.0
+      "target": "lib_usestats_usestatsmatchidmap"
     },
     {
       "relation": "contains",
@@ -2297,9 +2020,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L36",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_admin",
-      "confidence_score": 1.0
+      "target": "src_app_admin"
     },
     {
       "relation": "contains",
@@ -2307,9 +2030,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L179",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_admingate",
-      "confidence_score": 1.0
+      "target": "src_app_admingate"
     },
     {
       "relation": "contains",
@@ -2317,9 +2040,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L39",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_alltimeplayers",
-      "confidence_score": 1.0
+      "target": "src_app_alltimeplayers"
     },
     {
       "relation": "contains",
@@ -2327,9 +2050,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L234",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_app",
-      "confidence_score": 1.0
+      "target": "src_app_app"
     },
     {
       "relation": "contains",
@@ -2337,9 +2060,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L125",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_ballicon",
-      "confidence_score": 1.0
+      "target": "src_app_ballicon"
     },
     {
       "relation": "contains",
@@ -2347,9 +2070,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L80",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_booticon",
-      "confidence_score": 1.0
+      "target": "src_app_booticon"
     },
     {
       "relation": "contains",
@@ -2357,9 +2080,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L32",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_bracket",
-      "confidence_score": 1.0
+      "target": "src_app_bracket"
     },
     {
       "relation": "contains",
@@ -2367,9 +2090,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L70",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_bracketicon",
-      "confidence_score": 1.0
+      "target": "src_app_bracketicon"
     },
     {
       "relation": "contains",
@@ -2377,9 +2100,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L60",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_calicon",
-      "confidence_score": 1.0
+      "target": "src_app_calicon"
     },
     {
       "relation": "contains",
@@ -2387,9 +2110,19 @@
       "source_file": "src/App.jsx",
       "source_location": "L105",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_charticon",
-      "confidence_score": 1.0
+      "target": "src_app_charticon"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/App.jsx",
+      "source_location": "L121",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_app",
+      "target": "src_app_compareicon"
     },
     {
       "relation": "contains",
@@ -2397,9 +2130,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L120",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_editicon",
-      "confidence_score": 1.0
+      "target": "src_app_editicon"
     },
     {
       "relation": "contains",
@@ -2407,9 +2140,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L90",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_femaleicon",
-      "confidence_score": 1.0
+      "target": "src_app_femaleicon"
     },
     {
       "relation": "contains",
@@ -2417,9 +2150,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L100",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_globeicon",
-      "confidence_score": 1.0
+      "target": "src_app_globeicon"
     },
     {
       "relation": "contains",
@@ -2427,9 +2160,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L65",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_groupicon",
-      "confidence_score": 1.0
+      "target": "src_app_groupicon"
     },
     {
       "relation": "contains",
@@ -2437,9 +2170,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L31",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_groups",
-      "confidence_score": 1.0
+      "target": "src_app_groups"
     },
     {
       "relation": "contains",
@@ -2447,9 +2180,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L37",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_history",
-      "confidence_score": 1.0
+      "target": "src_app_history"
     },
     {
       "relation": "contains",
@@ -2457,9 +2190,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L85",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_historyicon",
-      "confidence_score": 1.0
+      "target": "src_app_historyicon"
     },
     {
       "relation": "contains",
@@ -2467,9 +2200,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L55",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_homeicon",
-      "confidence_score": 1.0
+      "target": "src_app_homeicon"
     },
     {
       "relation": "contains",
@@ -2477,9 +2210,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L149",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_istclock",
-      "confidence_score": 1.0
+      "target": "src_app_istclock"
     },
     {
       "relation": "contains",
@@ -2487,9 +2220,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L43",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_matchdetail",
-      "confidence_score": 1.0
+      "target": "src_app_matchdetail"
     },
     {
       "relation": "contains",
@@ -2497,9 +2230,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L133",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_nav_items",
-      "confidence_score": 1.0
+      "target": "src_app_nav_items"
     },
     {
       "relation": "contains",
@@ -2507,9 +2240,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_pageerrorboundary",
-      "confidence_score": 1.0
+      "target": "src_app_pageerrorboundary"
     },
     {
       "relation": "contains",
@@ -2517,9 +2250,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L45",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_pageloader",
-      "confidence_score": 1.0
+      "target": "src_app_pageloader"
     },
     {
       "relation": "contains",
@@ -2527,9 +2260,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L172",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_pagewrap",
-      "confidence_score": 1.0
+      "target": "src_app_pagewrap"
     },
     {
       "relation": "contains",
@@ -2537,9 +2270,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L42",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_predictor",
-      "confidence_score": 1.0
+      "target": "src_app_predictor"
     },
     {
       "relation": "contains",
@@ -2547,9 +2280,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L113",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_predictoricon",
-      "confidence_score": 1.0
+      "target": "src_app_predictoricon"
     },
     {
       "relation": "contains",
@@ -2557,9 +2290,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L226",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_pushresults",
-      "confidence_score": 1.0
+      "target": "src_app_pushresults"
     },
     {
       "relation": "contains",
@@ -2567,9 +2300,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L40",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_rankings",
-      "confidence_score": 1.0
+      "target": "src_app_rankings"
     },
     {
       "relation": "contains",
@@ -2577,9 +2310,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L30",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_schedule",
-      "confidence_score": 1.0
+      "target": "src_app_schedule"
     },
     {
       "relation": "contains",
@@ -2587,9 +2320,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L34",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_squaddetail",
-      "confidence_score": 1.0
+      "target": "src_app_squaddetail"
     },
     {
       "relation": "contains",
@@ -2597,9 +2330,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L75",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_squadicon",
-      "confidence_score": 1.0
+      "target": "src_app_squadicon"
     },
     {
       "relation": "contains",
@@ -2607,9 +2340,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L33",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_squads",
-      "confidence_score": 1.0
+      "target": "src_app_squads"
     },
     {
       "relation": "contains",
@@ -2617,9 +2350,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L95",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_staticon",
-      "confidence_score": 1.0
+      "target": "src_app_staticon"
     },
     {
       "relation": "contains",
@@ -2627,9 +2360,19 @@
       "source_file": "src/App.jsx",
       "source_location": "L41",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_stats",
-      "confidence_score": 1.0
+      "target": "src_app_stats"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/App.jsx",
+      "source_location": "L44",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_app",
+      "target": "src_app_teamcomparison"
     },
     {
       "relation": "contains",
@@ -2637,9 +2380,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L35",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_topscorers",
-      "confidence_score": 1.0
+      "target": "src_app_topscorers"
     },
     {
       "relation": "contains",
@@ -2647,9 +2390,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L38",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_women",
-      "confidence_score": 1.0
+      "target": "src_app_women"
     },
     {
       "relation": "method",
@@ -2657,9 +2400,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_pageerrorboundary",
-      "target": "src_app_pageerrorboundary_constructor",
-      "confidence_score": 1.0
+      "target": "src_app_pageerrorboundary_constructor"
     },
     {
       "relation": "method",
@@ -2667,9 +2410,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app_pageerrorboundary",
-      "target": "src_app_pageerrorboundary_getderivedstatefromerror",
-      "confidence_score": 1.0
+      "target": "src_app_pageerrorboundary_getderivedstatefromerror"
     },
     {
       "relation": "method",
@@ -2677,146 +2420,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L9",
       "weight": 1.0,
-      "source": "src_app_pageerrorboundary",
-      "target": "src_app_pageerrorboundary_render",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/ThemeSwitcher.jsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "source": "components_themeswitcher",
-      "target": "components_themeswitcher_themeswitcher",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/ThemeSwitcher.jsx",
-      "source_location": "L1",
-      "weight": 1.0,
-      "source": "components_themeswitcher",
-      "target": "lib_themecontext",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/ThemeSwitcher.jsx",
-      "source_location": "L1",
-      "weight": 1.0,
-      "source": "components_themeswitcher",
-      "target": "lib_themecontext_usetheme",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/ThemeSwitcher.jsx",
-      "source_location": "L2",
-      "weight": 1.0,
-      "source": "components_themeswitcher",
-      "target": "lib_themes",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/ThemeSwitcher.jsx",
-      "source_location": "L2",
-      "weight": 1.0,
-      "source": "components_themeswitcher",
-      "target": "lib_themes_theme_labels",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
       "confidence_score": 1.0,
-      "source_file": "src/components/ThemeSwitcher.jsx",
-      "source_location": "L5",
-      "weight": 1.0,
-      "source": "components_themeswitcher_themeswitcher",
-      "target": "lib_themecontext_usetheme"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/lib/themeContext.jsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "source": "lib_themecontext",
-      "target": "lib_themecontext_themecontext",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/lib/themeContext.jsx",
-      "source_location": "L6",
-      "weight": 1.0,
-      "source": "lib_themecontext",
-      "target": "lib_themecontext_themeprovider",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/lib/themeContext.jsx",
-      "source_location": "L65",
-      "weight": 1.0,
-      "source": "lib_themecontext",
-      "target": "lib_themecontext_usetheme",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/lib/themeContext.jsx",
-      "source_location": "L2",
-      "weight": 1.0,
-      "source": "lib_themecontext",
-      "target": "lib_themes",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/lib/themeContext.jsx",
-      "source_location": "L2",
-      "weight": 1.0,
-      "source": "lib_themecontext",
-      "target": "lib_themes_themes",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/lib/themes.js",
-      "source_location": "L595",
-      "weight": 1.0,
-      "source": "lib_themes",
-      "target": "lib_themes_theme_labels",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/lib/themes.js",
-      "source_location": "L4",
-      "weight": 1.0,
-      "source": "lib_themes",
-      "target": "lib_themes_themes",
-      "confidence_score": 1.0
+      "source": "src_app_pageerrorboundary",
+      "target": "src_app_pageerrorboundary_render"
     },
     {
       "relation": "contains",
@@ -2862,6 +2468,16 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "api/stats.js",
+      "source_location": "L31",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_stats",
+      "target": "api_stats_name_aliases"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "api/stats.js",
       "source_location": "L85",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -2887,6 +2503,16 @@
       "confidence_score": 1.0,
       "source": "api_stats",
       "target": "api_stats_normalizeteamstats"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "api/stats.js",
+      "source_location": "L41",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "api_stats",
+      "target": "api_stats_normname"
     },
     {
       "relation": "contains",
@@ -2941,6 +2567,733 @@
       "confidence_score": 1.0,
       "source": "api_stats_handler",
       "target": "api_stats_matchttl"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "claude",
+      "target": "claude_graphify"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ThemeSwitcher.jsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "components_themeswitcher",
+      "target": "components_themeswitcher_themeswitcher"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ThemeSwitcher.jsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "components_themeswitcher",
+      "target": "lib_themecontext"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ThemeSwitcher.jsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "components_themeswitcher",
+      "target": "lib_themecontext_usetheme"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ThemeSwitcher.jsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "components_themeswitcher",
+      "target": "lib_themes"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/ThemeSwitcher.jsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "components_themeswitcher",
+      "target": "lib_themes_theme_labels"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "src/components/ThemeSwitcher.jsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "components_themeswitcher_themeswitcher",
+      "target": "lib_themecontext_usetheme"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/themeContext.jsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_themecontext",
+      "target": "lib_themecontext_themecontext"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/themeContext.jsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_themecontext",
+      "target": "lib_themecontext_themeprovider"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/themeContext.jsx",
+      "source_location": "L65",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_themecontext",
+      "target": "lib_themecontext_usetheme"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/themeContext.jsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_themecontext",
+      "target": "lib_themes"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/themeContext.jsx",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_themecontext",
+      "target": "lib_themes_themes"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "QUICK_START_THEMES.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "quick_start_themes",
+      "target": "quick_start_themes_quick_start_theme_system"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "QUICK_START_THEMES.md",
+      "source_location": "L112",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "quick_start_themes_quick_start_theme_system",
+      "target": "quick_start_themes_accessibility"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "QUICK_START_THEMES.md",
+      "source_location": "L35",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "quick_start_themes_quick_start_theme_system",
+      "target": "quick_start_themes_available_combinations"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "QUICK_START_THEMES.md",
+      "source_location": "L74",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "quick_start_themes_quick_start_theme_system",
+      "target": "quick_start_themes_desktop_users"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "QUICK_START_THEMES.md",
+      "source_location": "L120",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "quick_start_themes_quick_start_theme_system",
+      "target": "quick_start_themes_for_developers"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "QUICK_START_THEMES.md",
+      "source_location": "L15",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "quick_start_themes_quick_start_theme_system",
+      "target": "quick_start_themes_how_to_use"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "QUICK_START_THEMES.md",
+      "source_location": "L66",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "quick_start_themes_quick_start_theme_system",
+      "target": "quick_start_themes_mobile_users"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "QUICK_START_THEMES.md",
+      "source_location": "L142",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "quick_start_themes_quick_start_theme_system",
+      "target": "quick_start_themes_questions"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "QUICK_START_THEMES.md",
+      "source_location": "L44",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "quick_start_themes_quick_start_theme_system",
+      "target": "quick_start_themes_theme_descriptions"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "QUICK_START_THEMES.md",
+      "source_location": "L82",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "quick_start_themes_quick_start_theme_system",
+      "target": "quick_start_themes_tips_tricks"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "QUICK_START_THEMES.md",
+      "source_location": "L94",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "quick_start_themes_quick_start_theme_system",
+      "target": "quick_start_themes_troubleshooting"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "QUICK_START_THEMES.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "quick_start_themes_quick_start_theme_system",
+      "target": "quick_start_themes_where_to_find_the_theme_switcher"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "QUICK_START_THEMES.md",
+      "source_location": "L17",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "quick_start_themes_how_to_use",
+      "target": "quick_start_themes_1_toggle_light_dark_mode"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "QUICK_START_THEMES.md",
+      "source_location": "L22",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "quick_start_themes_how_to_use",
+      "target": "quick_start_themes_2_change_theme_color"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "QUICK_START_THEMES.md",
+      "source_location": "L30",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "quick_start_themes_how_to_use",
+      "target": "quick_start_themes_3_your_preference_is_saved"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "QUICK_START_THEMES.md",
+      "source_location": "L62",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "quick_start_themes_theme_descriptions",
+      "target": "quick_start_themes_cyber"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "QUICK_START_THEMES.md",
+      "source_location": "L46",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "quick_start_themes_theme_descriptions",
+      "target": "quick_start_themes_default"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "QUICK_START_THEMES.md",
+      "source_location": "L58",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "quick_start_themes_theme_descriptions",
+      "target": "quick_start_themes_forest"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "QUICK_START_THEMES.md",
+      "source_location": "L50",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "quick_start_themes_theme_descriptions",
+      "target": "quick_start_themes_ocean"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "QUICK_START_THEMES.md",
+      "source_location": "L54",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "quick_start_themes_theme_descriptions",
+      "target": "quick_start_themes_sunset"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "THEMES_IMPLEMENTATION.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "themes_implementation",
+      "target": "themes_implementation_theme_system_implementation_wc2026"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "THEMES_IMPLEMENTATION.md",
+      "source_location": "L117",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "themes_implementation_theme_system_implementation_wc2026",
+      "target": "themes_implementation_css_variables_available"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "THEMES_IMPLEMENTATION.md",
+      "source_location": "L165",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "themes_implementation_theme_system_implementation_wc2026",
+      "target": "themes_implementation_deployment_notes"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "THEMES_IMPLEMENTATION.md",
+      "source_location": "L53",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "themes_implementation_theme_system_implementation_wc2026",
+      "target": "themes_implementation_features"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "THEMES_IMPLEMENTATION.md",
+      "source_location": "L40",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "themes_implementation_theme_system_implementation_wc2026",
+      "target": "themes_implementation_how_it_works"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "THEMES_IMPLEMENTATION.md",
+      "source_location": "L157",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "themes_implementation_theme_system_implementation_wc2026",
+      "target": "themes_implementation_technical_details"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "THEMES_IMPLEMENTATION.md",
+      "source_location": "L129",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "themes_implementation_theme_system_implementation_wc2026",
+      "target": "themes_implementation_testing"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "THEMES_IMPLEMENTATION.md",
+      "source_location": "L145",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "themes_implementation_theme_system_implementation_wc2026",
+      "target": "themes_implementation_theme_matrix"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "THEMES_IMPLEMENTATION.md",
+      "source_location": "L75",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "themes_implementation_theme_system_implementation_wc2026",
+      "target": "themes_implementation_using_the_theme_system"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "THEMES_IMPLEMENTATION.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "themes_implementation_theme_system_implementation_wc2026",
+      "target": "themes_implementation_what_was_added"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "THEMES_IMPLEMENTATION.md",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "themes_implementation_what_was_added",
+      "target": "themes_implementation_files_created"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "THEMES_IMPLEMENTATION.md",
+      "source_location": "L42",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "themes_implementation_how_it_works",
+      "target": "themes_implementation_mode_toggle_light_dark"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "THEMES_IMPLEMENTATION.md",
+      "source_location": "L47",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "themes_implementation_how_it_works",
+      "target": "themes_implementation_theme_selection_5_colors"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "THEMES_IMPLEMENTATION.md",
+      "source_location": "L101",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "themes_implementation_using_the_theme_system",
+      "target": "themes_implementation_adding_new_themes"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "THEMES_IMPLEMENTATION.md",
+      "source_location": "L83",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "themes_implementation_using_the_theme_system",
+      "target": "themes_implementation_for_developers"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "THEMES_IMPLEMENTATION.md",
+      "source_location": "L77",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "themes_implementation_using_the_theme_system",
+      "target": "themes_implementation_for_users"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "THEMES_IMPLEMENTATION.md",
+      "source_location": "L131",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "themes_implementation_testing",
+      "target": "themes_implementation_build_status"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "THEMES_IMPLEMENTATION.md",
+      "source_location": "L137",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "themes_implementation_testing",
+      "target": "themes_implementation_manual_testing_checklist"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "THEMES_IMPLEMENTATION.md",
+      "source_location": "L134",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "themes_implementation_testing",
+      "target": "themes_implementation_server_status"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "THEME_COLORS.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "theme_colors",
+      "target": "theme_colors_wc2026_theme_color_palettes"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "THEME_COLORS.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "theme_colors_wc2026_theme_color_palettes",
+      "target": "theme_colors_1_default_theme_blue"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "THEME_COLORS.md",
+      "source_location": "L39",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "theme_colors_wc2026_theme_color_palettes",
+      "target": "theme_colors_2_ocean_theme_cyan_teal"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "THEME_COLORS.md",
+      "source_location": "L75",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "theme_colors_wc2026_theme_color_palettes",
+      "target": "theme_colors_3_sunset_theme_orange_gold"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "THEME_COLORS.md",
+      "source_location": "L111",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "theme_colors_wc2026_theme_color_palettes",
+      "target": "theme_colors_4_forest_theme_green"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "THEME_COLORS.md",
+      "source_location": "L147",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "theme_colors_wc2026_theme_color_palettes",
+      "target": "theme_colors_5_cyber_theme_purple_magenta"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "THEME_COLORS.md",
+      "source_location": "L195",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "theme_colors_wc2026_theme_color_palettes",
+      "target": "theme_colors_color_contrast_reference"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "THEME_COLORS.md",
+      "source_location": "L183",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "theme_colors_wc2026_theme_color_palettes",
+      "target": "theme_colors_how_to_switch"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "THEME_COLORS.md",
+      "source_location": "L204",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "theme_colors_wc2026_theme_color_palettes",
+      "target": "theme_colors_using_theme_colors_in_code"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "THEME_COLORS.md",
+      "source_location": "L6",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "theme_colors_1_default_theme_blue",
+      "target": "theme_colors_dark_mode"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "THEME_COLORS.md",
+      "source_location": "L24",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "theme_colors_1_default_theme_blue",
+      "target": "theme_colors_light_mode"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "THEME_COLORS.md",
+      "source_location": "L42",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "theme_colors_2_ocean_theme_cyan_teal",
+      "target": "theme_colors_dark_mode_42"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "THEME_COLORS.md",
+      "source_location": "L60",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "theme_colors_2_ocean_theme_cyan_teal",
+      "target": "theme_colors_light_mode_60"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "THEME_COLORS.md",
+      "source_location": "L78",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "theme_colors_3_sunset_theme_orange_gold",
+      "target": "theme_colors_dark_mode_78"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "THEME_COLORS.md",
+      "source_location": "L96",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "theme_colors_3_sunset_theme_orange_gold",
+      "target": "theme_colors_light_mode_96"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "THEME_COLORS.md",
+      "source_location": "L114",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "theme_colors_4_forest_theme_green",
+      "target": "theme_colors_dark_mode_114"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "THEME_COLORS.md",
+      "source_location": "L132",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "theme_colors_4_forest_theme_green",
+      "target": "theme_colors_light_mode_132"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "THEME_COLORS.md",
+      "source_location": "L150",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "theme_colors_5_cyber_theme_purple_magenta",
+      "target": "theme_colors_dark_mode_150"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "THEME_COLORS.md",
+      "source_location": "L168",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "theme_colors_5_cyber_theme_purple_magenta",
+      "target": "theme_colors_light_mode_168"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/themes.js",
+      "source_location": "L595",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_themes",
+      "target": "lib_themes_theme_labels"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/lib/themes.js",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "lib_themes",
+      "target": "lib_themes_themes"
     },
     {
       "relation": "contains",
@@ -3552,5 +3905,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "dfc209ef9e179036f68c08496b8152fee4e4db18"
+  "built_at_commit": "cb89b88250446f26ae69c4d044b6b8d060ffe6ce"
 }

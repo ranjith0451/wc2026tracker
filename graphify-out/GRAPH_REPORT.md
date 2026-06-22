@@ -1,16 +1,16 @@
 # Graph Report - wc2026  (2026-06-22)
 
 ## Corpus Check
-- 105 files · ~432,994 words
+- 107 files · ~437,248 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 164 nodes · 187 edges · 9 communities (8 shown, 1 thin omitted)
+- 183 nodes · 203 edges · 14 communities (12 shown, 2 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `dfc209ef`
+- Built from commit: `cb89b882`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -24,6 +24,8 @@
 - [[_COMMUNITY_Community 6|Community 6]]
 - [[_COMMUNITY_Community 7|Community 7]]
 - [[_COMMUNITY_Community 8|Community 8]]
+- [[_COMMUNITY_Community 9|Community 9]]
+- [[_COMMUNITY_Community 13|Community 13]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `🎨 Quick Start — Theme System` - 12 edges
@@ -31,10 +33,10 @@
 3. `🎨 WC2026 Theme Color Palettes` - 9 edges
 4. `Theme Descriptions` - 6 edges
 5. `handler()` - 5 edges
-6. `How to Use` - 4 edges
-7. `📱 Using the Theme System` - 4 edges
-8. `✅ Testing` - 4 edges
-9. `PageErrorBoundary` - 4 edges
+6. `PageErrorBoundary` - 4 edges
+7. `How to Use` - 4 edges
+8. `📱 Using the Theme System` - 4 edges
+9. `✅ Testing` - 4 edges
 10. `savePredictions()` - 4 edges
 
 ## Surprising Connections (you probably didn't know these)
@@ -50,23 +52,23 @@
 ## Import Cycles
 - None detected.
 
-## Communities (9 total, 1 thin omitted)
+## Communities (14 total, 2 thin omitted)
 
 ### Community 0 - "Community 0"
 Cohesion: 0.09
 Nodes (8): DONE_STATUSES, LIVE_STATUSES, NAME_ALIASES, useSchedule(), useStatsMatchIdMap(), useWC2026TopScorers(), MEDALS, TopScorers()
 
 ### Community 1 - "Community 1"
-Cohesion: 0.33
-Nodes (5): cached(), getRedis(), handler(), matchTTL(), statsFetch()
+Cohesion: 0.25
+Nodes (6): cached(), getRedis(), handler(), matchTTL(), NAME_ALIASES, statsFetch()
 
 ### Community 2 - "Community 2"
 Cohesion: 0.16
 Nodes (14): calculateAccuracy(), clearPrediction(), getAccuracyByStage(), isMatchLive(), loadAccuracyHistory(), loadPredictions(), recordMatchResult(), resolvePredictedMatchTeams() (+6 more)
 
 ### Community 3 - "Community 3"
-Cohesion: 0.06
-Nodes (15): Admin, AllTimePlayers, Bracket, Groups, History, MatchDetail, NAV_ITEMS, Predictor (+7 more)
+Cohesion: 0.05
+Nodes (16): Admin, AllTimePlayers, Bracket, Groups, History, MatchDetail, NAV_ITEMS, Predictor (+8 more)
 
 ### Community 4 - "Community 4"
 Cohesion: 0.10
@@ -84,25 +86,29 @@ Nodes (19): Adding New Themes, Build Status, 🎨 CSS Variables Available, 🚢 
 Cohesion: 0.36
 Nodes (6): ThemeSwitcher(), ThemeContext, ThemeProvider(), useTheme(), THEME_LABELS, THEMES
 
+### Community 13 - "Community 13"
+Cohesion: 0.24
+Nodes (3): HEAD_TO_HEAD_RECORDS, TEAM_STRATEGIES, RANKINGS
+
 ## Knowledge Gaps
-- **65 isolated node(s):** `Where to Find the Theme Switcher`, `1. Toggle Light/Dark Mode`, `2. Change Theme Color`, `3. Your Preference is Saved`, `Available Combinations` (+60 more)
+- **69 isolated node(s):** `RANKINGS`, `Schedule`, `Groups`, `Bracket`, `Squads` (+64 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **1 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **2 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `useSchedule()` connect `Community 0` to `Community 3`?**
-  _High betweenness centrality (0.041) - this node is a cross-community bridge._
+  _High betweenness centrality (0.034) - this node is a cross-community bridge._
 - **Why does `useStatsMatchIdMap()` connect `Community 0` to `Community 3`?**
-  _High betweenness centrality (0.041) - this node is a cross-community bridge._
+  _High betweenness centrality (0.034) - this node is a cross-community bridge._
 - **Why does `PageErrorBoundary` connect `Community 8` to `Community 3`?**
-  _High betweenness centrality (0.016) - this node is a cross-community bridge._
-- **What connects `Where to Find the Theme Switcher`, `1. Toggle Light/Dark Mode`, `2. Change Theme Color` to the rest of the system?**
-  _65 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _High betweenness centrality (0.013) - this node is a cross-community bridge._
+- **What connects `RANKINGS`, `Schedule`, `Groups` to the rest of the system?**
+  _69 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
   _Cohesion score 0.09057971014492754 - nodes in this community are weakly interconnected._
 - **Should `Community 3` be split into smaller, more focused modules?**
-  _Cohesion score 0.05555555555555555 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.05263157894736842 - nodes in this community are weakly interconnected._
 - **Should `Community 4` be split into smaller, more focused modules?**
   _Cohesion score 0.09523809523809523 - nodes in this community are weakly interconnected._
