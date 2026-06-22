@@ -52,20 +52,16 @@ const RANKINGS = [
 ];
 
 function TeamSelector({ value, onChange, label }) {
-  const available = TEAMS.filter(t => FLAGS[t.name]);
+  const available = TEAMS.filter(t => FLAGS[t.name]).sort((a, b) => a.name.localeCompare(b.name));
 
   return (
-    <div style={{
-      display: "flex",
-      flexDirection: "column",
-      gap: 8,
-      flex: 1,
-      minWidth: 0,
-    }}>
+    <div style={{ display: "flex", flexDirection: "column", gap: 8, flex: 1 }}>
       <label style={{
-        fontSize: "clamp(11px, 2.5vw, 12px)",
-        fontWeight: 600,
-        color: "var(--text-secondary)",
+        fontSize: "clamp(11px, 2.5vw, 13px)",
+        fontWeight: 700,
+        color: "var(--text)",
+        textTransform: "uppercase",
+        letterSpacing: "0.5px",
       }}>
         {label}
       </label>
@@ -73,19 +69,20 @@ function TeamSelector({ value, onChange, label }) {
         value={value}
         onChange={e => onChange(e.target.value)}
         style={{
-          padding: "clamp(10px, 3vw, 12px) clamp(12px, 3vw, 14px)",
+          padding: "clamp(10px, 3vw, 14px)",
           background: "var(--bg-secondary)",
-          border: "1.5px solid var(--border-medium)",
-          borderRadius: 8,
+          border: "2px solid var(--blue)",
+          borderRadius: 10,
           color: "var(--text)",
-          fontSize: "clamp(13px, 3.5vw, 14px)",
-          fontWeight: 500,
+          fontSize: "clamp(13px, 3.5vw, 15px)",
+          fontWeight: 600,
           cursor: "pointer",
           outline: "none",
-          minHeight: "44px",
+          minHeight: "50px",
+          transition: "all 0.2s",
         }}
       >
-        <option value="">Select {label}</option>
+        <option value="">🏴 Choose Team</option>
         {available.map(t => (
           <option key={t.name} value={t.name}>{t.name}</option>
         ))}
@@ -94,177 +91,222 @@ function TeamSelector({ value, onChange, label }) {
   );
 }
 
-// Comparison row - shows both teams side by side
-function ComparisonRow({ label, team1Value, team2Value, subtext1, subtext2 }) {
+function StatBox({ icon, label, value1, value2 }) {
   return (
     <div style={{
       display: "grid",
       gridTemplateColumns: "1fr 1fr",
-      gap: "clamp(8px, 2vw, 12px)",
-      padding: "clamp(10px, 2.5vw, 14px) 0",
-      borderBottom: "1px solid var(--border-subtle)",
+      gap: "clamp(10px, 3vw, 16px)",
+      padding: "clamp(12px, 3vw, 16px)",
+      background: "var(--bg)",
+      borderRadius: 12,
+      border: "1px solid var(--border-subtle)",
       alignItems: "center",
     }}>
-      <div>
-        <div style={{
-          fontSize: "clamp(11px, 2.5vw, 12px)",
-          color: "var(--text-tertiary)",
-          marginBottom: 4,
-          fontWeight: 500,
-        }}>
+      <div style={{ textAlign: "center" }}>
+        <div style={{ fontSize: "clamp(10px, 2.5vw, 11px)", color: "var(--text-tertiary)", marginBottom: 6, fontWeight: 600 }}>
           {label}
         </div>
         <div style={{
-          fontSize: "clamp(13px, 3vw, 14px)",
-          fontWeight: 600,
-          color: "var(--text)",
+          fontSize: "clamp(18px, 5vw, 24px)",
+          fontWeight: 800,
+          color: "var(--blue)",
+          background: "rgba(0, 120, 255, 0.1)",
+          padding: "clamp(6px, 2vw, 10px) clamp(8px, 2vw, 12px)",
+          borderRadius: 8,
+          display: "inline-block",
         }}>
-          {team1Value}
+          {icon} {value1}
         </div>
-        {subtext1 && (
-          <div style={{
-            fontSize: "clamp(10px, 2vw, 11px)",
-            color: "var(--text-tertiary)",
-            marginTop: 2,
-          }}>
-            {subtext1}
-          </div>
-        )}
       </div>
-      <div>
-        <div style={{
-          fontSize: "clamp(11px, 2.5vw, 12px)",
-          color: "var(--text-tertiary)",
-          marginBottom: 4,
-          fontWeight: 500,
-        }}>
+      <div style={{ textAlign: "center" }}>
+        <div style={{ fontSize: "clamp(10px, 2.5vw, 11px)", color: "var(--text-tertiary)", marginBottom: 6, fontWeight: 600 }}>
           {label}
         </div>
         <div style={{
-          fontSize: "clamp(13px, 3vw, 14px)",
-          fontWeight: 600,
-          color: "var(--text)",
-          textAlign: "right",
+          fontSize: "clamp(18px, 5vw, 24px)",
+          fontWeight: 800,
+          color: "var(--blue)",
+          background: "rgba(0, 120, 255, 0.1)",
+          padding: "clamp(6px, 2vw, 10px) clamp(8px, 2vw, 12px)",
+          borderRadius: 8,
+          display: "inline-block",
         }}>
-          {team2Value}
+          {icon} {value2}
         </div>
-        {subtext2 && (
-          <div style={{
-            fontSize: "clamp(10px, 2vw, 11px)",
-            color: "var(--text-tertiary)",
-            marginTop: 2,
-            textAlign: "right",
-          }}>
-            {subtext2}
-          </div>
-        )}
       </div>
     </div>
   );
 }
 
-// Match result card - side by side
-function MatchResultCard({ match, team1, team2 }) {
+function MatchCard({ match, team1, team2 }) {
   const isTeam1 = match.team1 === team1;
   const team1Score = isTeam1 ? match.score.split('-')[0] : match.score.split('-')[1];
   const team2Score = isTeam1 ? match.score.split('-')[1] : match.score.split('-')[0];
   const team1Goals = isTeam1 ? match.goals[team1] : match.goals[team2];
   const team2Goals = isTeam1 ? match.goals[team2] : match.goals[team1];
 
-  const resultColor = match.winner === "Draw"
-    ? "rgba(255, 193, 7, 0.15)"
+  const resultBg = match.winner === "Draw"
+    ? "rgba(255, 193, 7, 0.2)"
     : match.winner === team1
-    ? "rgba(76, 175, 80, 0.15)"
-    : "rgba(244, 67, 54, 0.15)";
+    ? "rgba(34, 197, 94, 0.2)"
+    : "rgba(239, 68, 68, 0.2)";
 
-  const resultText = match.winner === "Draw" ? "Draw" : `${match.winner} won`;
-  const resultTextColor = match.winner === "Draw"
-    ? "var(--text-secondary)"
+  const resultColor = match.winner === "Draw"
+    ? "#f59e0b"
     : match.winner === team1
-    ? "var(--green)"
-    : "var(--red-bright)";
+    ? "#22c55e"
+    : "#ef4444";
 
   return (
     <div style={{
-      padding: "clamp(12px, 3vw, 16px)",
-      background: "var(--bg)",
-      border: "1px solid var(--border-subtle)",
-      borderRadius: 8,
-      display: "grid",
-      gridTemplateColumns: "1fr 100px 1fr",
-      gap: "clamp(8px, 2vw, 12px)",
-      alignItems: "center",
-      marginBottom: "clamp(8px, 2vw, 12px)",
+      padding: "clamp(14px, 3vw, 20px)",
+      background: resultBg,
+      border: `2px solid ${resultColor}`,
+      borderRadius: 14,
+      marginBottom: "clamp(10px, 2.5vw, 16px)",
     }}>
-      {/* Team 1 Goals */}
-      <div>
-        <div style={{
-          fontSize: "clamp(10px, 2.5vw, 11px)",
-          color: "var(--text-secondary)",
-          marginBottom: 4,
-          fontWeight: 500,
-        }}>
-          Goals
-        </div>
-        <div style={{
-          fontSize: "clamp(10px, 2.5vw, 11px)",
-          color: "var(--text)",
-          lineHeight: 1.4,
-        }}>
-          {team1Goals?.length > 0 ? (
-            team1Goals.map((g, i) => <div key={i}>⚽ {g}</div>)
-          ) : (
-            <span style={{ color: "var(--text-tertiary)" }}>—</span>
-          )}
-        </div>
-      </div>
-
-      {/* Score */}
+      {/* Score Section */}
       <div style={{
-        textAlign: "center",
-        padding: "clamp(8px, 2vw, 10px)",
-        background: "var(--bg-secondary)",
-        borderRadius: 6,
+        display: "grid",
+        gridTemplateColumns: "1fr 120px 1fr",
+        gap: "clamp(8px, 2vw, 12px)",
+        alignItems: "center",
+        marginBottom: "clamp(12px, 3vw, 16px)",
+        paddingBottom: "clamp(12px, 3vw, 16px)",
+        borderBottom: `2px solid ${resultColor}`,
       }}>
         <div style={{
-          fontSize: "clamp(16px, 4vw, 18px)",
-          fontWeight: 700,
-          color: "var(--text)",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-start",
+          gap: 6,
         }}>
-          {team1Score}-{team2Score}
+          <div style={{
+            fontSize: "clamp(11px, 2.5vw, 12px)",
+            fontWeight: 600,
+            color: "var(--text-tertiary)",
+            textTransform: "uppercase",
+            letterSpacing: "0.5px",
+          }}>
+            Goals
+          </div>
+          <div style={{
+            fontSize: "clamp(10px, 2.5vw, 11px)",
+            color: "var(--text)",
+            lineHeight: 1.5,
+            fontWeight: 500,
+          }}>
+            {team1Goals?.length > 0 ? (
+              team1Goals.map((g, i) => (
+                <div key={i} style={{ display: "flex", alignItems: "center", gap: 4 }}>
+                  <span style={{ fontSize: "12px" }}>⚽</span>
+                  <span>{g}</span>
+                </div>
+              ))
+            ) : (
+              <span style={{ color: "var(--text-tertiary)", fontStyle: "italic" }}>No goals</span>
+            )}
+          </div>
         </div>
+
         <div style={{
-          fontSize: "clamp(9px, 2vw, 10px)",
-          color: "var(--text-tertiary)",
-          marginTop: 2,
-          fontWeight: 500,
+          textAlign: "center",
+          padding: "clamp(10px, 2vw, 14px)",
+          background: "var(--bg-secondary)",
+          borderRadius: 12,
+          border: `2px solid ${resultColor}`,
         }}>
-          {new Date(match.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+          <div style={{
+            fontSize: "clamp(24px, 6vw, 32px)",
+            fontWeight: 900,
+            color: resultColor,
+            lineHeight: 1,
+          }}>
+            {team1Score}-{team2Score}
+          </div>
+          <div style={{
+            fontSize: "clamp(9px, 2vw, 10px)",
+            color: "var(--text-tertiary)",
+            marginTop: 6,
+            fontWeight: 600,
+          }}>
+            {new Date(match.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: '2-digit' })}
+          </div>
+        </div>
+
+        <div style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-end",
+          gap: 6,
+        }}>
+          <div style={{
+            fontSize: "clamp(11px, 2.5vw, 12px)",
+            fontWeight: 600,
+            color: "var(--text-tertiary)",
+            textTransform: "uppercase",
+            letterSpacing: "0.5px",
+          }}>
+            Goals
+          </div>
+          <div style={{
+            fontSize: "clamp(10px, 2.5vw, 11px)",
+            color: "var(--text)",
+            lineHeight: 1.5,
+            fontWeight: 500,
+            textAlign: "right",
+          }}>
+            {team2Goals?.length > 0 ? (
+              team2Goals.map((g, i) => (
+                <div key={i} style={{ display: "flex", alignItems: "center", gap: 4, justifyContent: "flex-end" }}>
+                  <span>{g}</span>
+                  <span style={{ fontSize: "12px" }}>⚽</span>
+                </div>
+              ))
+            ) : (
+              <span style={{ color: "var(--text-tertiary)", fontStyle: "italic" }}>No goals</span>
+            )}
+          </div>
         </div>
       </div>
 
-      {/* Team 2 Goals */}
-      <div>
-        <div style={{
-          fontSize: "clamp(10px, 2.5vw, 11px)",
-          color: "var(--text-secondary)",
-          marginBottom: 4,
-          fontWeight: 500,
-          textAlign: "right",
-        }}>
-          Goals
+      {/* Match Details */}
+      <div style={{
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
+        gap: "clamp(8px, 2vw, 12px)",
+        fontSize: "clamp(10px, 2.5vw, 11px)",
+        color: "var(--text-secondary)",
+      }}>
+        <div>
+          <div style={{ fontWeight: 600, marginBottom: 4 }}>🏆 Tournament</div>
+          <div>{match.tournament}</div>
         </div>
-        <div style={{
-          fontSize: "clamp(10px, 2.5vw, 11px)",
-          color: "var(--text)",
-          lineHeight: 1.4,
-          textAlign: "right",
-        }}>
-          {team2Goals?.length > 0 ? (
-            team2Goals.map((g, i) => <div key={i}>{g} ⚽</div>)
-          ) : (
-            <span style={{ color: "var(--text-tertiary)" }}>—</span>
-          )}
+        <div style={{ textAlign: "right" }}>
+          <div style={{ fontWeight: 600, marginBottom: 4 }}>📍 Venue</div>
+          <div>{match.venue}</div>
+        </div>
+      </div>
+      <div style={{
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
+        gap: "clamp(8px, 2vw, 12px)",
+        fontSize: "clamp(10px, 2.5vw, 11px)",
+        color: "var(--text-secondary)",
+        marginTop: "clamp(8px, 2vw, 12px)",
+        paddingTop: "clamp(8px, 2vw, 12px)",
+        borderTop: `1px solid ${resultColor}`,
+      }}>
+        <div>
+          <div style={{ fontWeight: 600, marginBottom: 4 }}>👥 Attendance</div>
+          <div>{match.attendance ? `${parseInt(match.attendance).toLocaleString()}` : 'N/A'}</div>
+        </div>
+        <div style={{ textAlign: "right" }}>
+          <div style={{ fontWeight: 600, marginBottom: 4 }}>🎖️ Result</div>
+          <div style={{ fontWeight: 700, color: resultColor }}>
+            {match.winner === "Draw" ? "🤝 Draw" : `${match.winner === team1 ? "✅" : "❌"} ${match.winner} Won`}
+          </div>
         </div>
       </div>
     </div>
@@ -274,34 +316,7 @@ function MatchResultCard({ match, team1, team2 }) {
 export default function TeamComparison({ results = {} }) {
   const [team1, setTeam1] = useState("");
   const [team2, setTeam2] = useState("");
-  const [matchHistory, setMatchHistory] = useState({});
-  const [loading, setLoading] = useState(false);
 
-  // Fetch recent matches from API
-  useEffect(() => {
-    if (!team1 || !team2) return;
-
-    const fetchMatches = async () => {
-      setLoading(true);
-      try {
-        const res = await fetch(`/api/stats?action=team-matches&team1=${encodeURIComponent(team1)}&team2=${encodeURIComponent(team2)}`);
-        if (res.ok) {
-          const data = await res.json();
-          setMatchHistory(data.matches || {});
-        } else {
-          setMatchHistory({});
-        }
-      } catch (e) {
-        console.log("Using fallback match data");
-        setMatchHistory({});
-      }
-      setLoading(false);
-    };
-
-    fetchMatches();
-  }, [team1, team2]);
-
-  // Use head-to-head data
   const headToHead = useMemo(() => {
     if (!team1 || !team2) return null;
     const key1 = `${team1}-${team2}`;
@@ -314,7 +329,6 @@ export default function TeamComparison({ results = {} }) {
     return {
       topScorer: scorers[0],
       topScorerGoals: scorers[0]?.goals || 0,
-      totalGoals: scorers.reduce((sum, s) => sum + s.goals, 0),
     };
   };
 
@@ -334,38 +348,42 @@ export default function TeamComparison({ results = {} }) {
   const wcWins2 = team2 ? getWCWins(team2).length : 0;
 
   return (
-    <div style={{ maxWidth: 1000, margin: "0 auto" }}>
-      {/* Title */}
+    <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+      {/* Hero Section */}
       <div style={{
-        marginBottom: "clamp(20px, 5vw, 32px)",
+        marginBottom: "clamp(24px, 6vw, 40px)",
+        background: "linear-gradient(135deg, rgba(0, 120, 255, 0.1), rgba(34, 197, 94, 0.1))",
+        padding: "clamp(20px, 5vw, 40px)",
+        borderRadius: 16,
+        border: "2px solid var(--blue)",
       }}>
         <h1 style={{
-          fontSize: "clamp(24px, 7vw, 32px)",
-          fontWeight: 800,
+          fontSize: "clamp(28px, 8vw, 40px)",
+          fontWeight: 900,
           marginBottom: 8,
+          color: "var(--text)",
+          textAlign: "center",
         }}>
-          Team Comparison
+          ⚽ Team Comparison
         </h1>
         <p style={{
-          color: "var(--text-tertiary)",
-          fontSize: "clamp(13px, 3.5vw, 14px)",
+          color: "var(--text-secondary)",
+          fontSize: "clamp(14px, 3.5vw, 16px)",
+          textAlign: "center",
           margin: 0,
         }}>
-          Compare two teams side-by-side
+          Compare FIFA data, head-to-head records, strategies & player stats
         </p>
       </div>
 
       {/* Team Selector */}
       <div style={{
         display: "flex",
+        gap: "clamp(12px, 3vw, 20px)",
+        marginBottom: "clamp(24px, 6vw, 40px)",
         flexDirection: "column",
-        gap: "clamp(12px, 3vw, 16px)",
-        marginBottom: "clamp(20px, 5vw, 32px)",
-        padding: "clamp(14px, 4vw, 20px)",
-        background: "var(--bg-secondary)",
-        borderRadius: 12,
       }}>
-        <div style={{ display: "flex", gap: "clamp(12px, 3vw, 16px)" }}>
+        <div style={{ display: "flex", gap: "clamp(12px, 3vw, 20px)" }}>
           <TeamSelector value={team1} onChange={setTeam1} label="Team 1" />
           <TeamSelector value={team2} onChange={setTeam2} label="Team 2" />
         </div>
@@ -373,162 +391,304 @@ export default function TeamComparison({ results = {} }) {
 
       {team1 && team2 && (
         <>
-          {/* Team Headers with Flags */}
+          {/* Team Headers */}
           <div style={{
             display: "grid",
             gridTemplateColumns: "1fr 1fr",
-            gap: "clamp(12px, 3vw, 16px)",
-            marginBottom: "clamp(20px, 5vw, 32px)",
+            gap: "clamp(16px, 4vw, 24px)",
+            marginBottom: "clamp(24px, 6vw, 40px)",
           }}>
             {[
               { name: team1, flag: FLAGS[team1], rank: ranking1 },
               { name: team2, flag: FLAGS[team2], rank: ranking2 },
             ].map((team, idx) => (
               <div key={idx} style={{
-                textAlign: idx === 0 ? "left" : "right",
+                padding: "clamp(16px, 4vw, 24px)",
+                background: "var(--bg-secondary)",
+                borderRadius: 14,
+                border: "2px solid var(--blue)",
+                textAlign: "center",
               }}>
+                {team.flag && (
+                  <img
+                    src={FLAG_URL(team.name)}
+                    alt={team.name}
+                    style={{
+                      width: "100%",
+                      maxWidth: 120,
+                      height: "auto",
+                      borderRadius: 8,
+                      marginBottom: 12,
+                      display: "block",
+                      margin: "0 auto 12px",
+                    }}
+                  />
+                )}
                 <div style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "clamp(8px, 2vw, 12px)",
-                  justifyContent: idx === 0 ? "flex-start" : "flex-end",
+                  fontSize: "clamp(18px, 5vw, 24px)",
+                  fontWeight: 900,
+                  color: "var(--text)",
                   marginBottom: 8,
                 }}>
-                  {team.flag && (
-                    <img
-                      src={FLAG_URL(team.name)}
-                      alt={team.name}
-                      style={{
-                        width: "clamp(40px, 10vw, 50px)",
-                        height: "clamp(27px, 7vw, 33px)",
-                        borderRadius: 4,
-                        objectFit: "cover",
-                      }}
-                    />
-                  )}
-                  <div>
-                    <div style={{
-                      fontSize: "clamp(14px, 4vw, 16px)",
-                      fontWeight: 700,
-                      color: "var(--text)",
-                    }}>
-                      {team.name}
-                    </div>
-                    {team.rank && (
-                      <div style={{
-                        fontSize: "clamp(10px, 2.5vw, 11px)",
-                        color: "var(--text-tertiary)",
-                      }}>
-                        Rank #{team.rank.rank}
-                      </div>
-                    )}
-                  </div>
+                  {team.name}
                 </div>
+                {team.rank && (
+                  <div style={{
+                    fontSize: "clamp(12px, 3vw, 14px)",
+                    color: "var(--blue)",
+                    fontWeight: 700,
+                    background: "rgba(0, 120, 255, 0.15)",
+                    padding: "6px 12px",
+                    borderRadius: 8,
+                    display: "inline-block",
+                  }}>
+                    🏆 FIFA Rank #{team.rank.rank}
+                  </div>
+                )}
               </div>
             ))}
           </div>
 
-          {/* Comparison Table */}
+          {/* FIFA Rankings */}
           <div style={{
-            padding: "clamp(14px, 3vw, 20px)",
+            marginBottom: "clamp(24px, 6vw, 32px)",
+            padding: "clamp(16px, 4vw, 24px)",
             background: "var(--bg-secondary)",
-            borderRadius: 12,
-            marginBottom: "clamp(20px, 5vw, 32px)",
+            borderRadius: 14,
+            border: "2px solid var(--border-subtle)",
           }}>
-            <h3 style={{
-              fontSize: "clamp(14px, 3.5vw, 15px)",
-              fontWeight: 700,
-              marginBottom: "clamp(12px, 3vw, 16px)",
+            <h2 style={{
+              fontSize: "clamp(16px, 4vw, 18px)",
+              fontWeight: 800,
+              marginBottom: 16,
               color: "var(--text)",
             }}>
-              Team Stats
-            </h3>
-            <div style={{ fontSize: "clamp(12px, 3vw, 14px)" }}>
-              <ComparisonRow
-                label="FIFA Ranking"
-                team1Value={ranking1 ? `#${ranking1.rank}` : "—"}
-                team2Value={ranking2 ? `#${ranking2.rank}` : "—"}
-                subtext1={ranking1 ? ranking1.points.toFixed(2) : ""}
-                subtext2={ranking2 ? ranking2.points.toFixed(2) : ""}
-              />
-              <ComparisonRow
-                label="Squad Size"
-                team1Value={teamData1?.players?.length || 0}
-                team2Value={teamData2?.players?.length || 0}
-              />
-              <ComparisonRow
-                label="World Cups Won"
-                team1Value={wcWins1}
-                team2Value={wcWins2}
-              />
-              <ComparisonRow
-                label="Formation"
-                team1Value={strategy1.formation || "—"}
-                team2Value={strategy2.formation || "—"}
-              />
-              <ComparisonRow
-                label="Playing Style"
-                team1Value={strategy1.style || "—"}
-                team2Value={strategy2.style || "—"}
-              />
-              <ComparisonRow
-                label="Top Scorer"
-                team1Value={stats1?.topScorer?.player || "—"}
-                team2Value={stats2?.topScorer?.player || "—"}
-                subtext1={stats1?.topScorer ? `${stats1.topScorer.goals} goals` : ""}
-                subtext2={stats2?.topScorer ? `${stats2.topScorer.goals} goals` : ""}
+              📊 FIFA Rankings Comparison
+            </h2>
+            <StatBox
+              icon="🏅"
+              label="FIFA Rank"
+              value1={ranking1 ? `#${ranking1.rank}` : "—"}
+              value2={ranking2 ? `#${ranking2.rank}` : "—"}
+            />
+            <div style={{ marginTop: 12 }}>
+              <StatBox
+                icon="📈"
+                label="Rating Points"
+                value1={ranking1 ? ranking1.points.toFixed(0) : "—"}
+                value2={ranking2 ? ranking2.points.toFixed(0) : "—"}
               />
             </div>
           </div>
 
-          {/* Last 5 Matches */}
-          {headToHead && headToHead.length > 0 && (
-            <div style={{
-              padding: "clamp(14px, 3vw, 20px)",
-              background: "var(--bg-secondary)",
-              borderRadius: 12,
+          {/* Squad & Stats */}
+          <div style={{
+            marginBottom: "clamp(24px, 6vw, 32px)",
+            padding: "clamp(16px, 4vw, 24px)",
+            background: "var(--bg-secondary)",
+            borderRadius: 14,
+            border: "2px solid var(--border-subtle)",
+          }}>
+            <h2 style={{
+              fontSize: "clamp(16px, 4vw, 18px)",
+              fontWeight: 800,
+              marginBottom: 16,
+              color: "var(--text)",
             }}>
-              <h3 style={{
-                fontSize: "clamp(14px, 3.5vw, 15px)",
-                fontWeight: 700,
-                marginBottom: "clamp(12px, 3vw, 16px)",
-                color: "var(--text)",
-              }}>
-                Last 5 Meetings
-              </h3>
-              <div>
-                {headToHead.map((match, i) => (
-                  <MatchResultCard key={i} match={match} team1={team1} team2={team2} />
-                ))}
-              </div>
+              👥 Squad & Achievements
+            </h2>
+            <StatBox
+              icon="👥"
+              label="Squad Size"
+              value1={teamData1?.players?.length || 0}
+              value2={teamData2?.players?.length || 0}
+            />
+            <div style={{ marginTop: 12 }}>
+              <StatBox
+                icon="🏆"
+                label="World Cups Won"
+                value1={wcWins1}
+                value2={wcWins2}
+              />
+            </div>
+            <div style={{ marginTop: 12 }}>
+              <StatBox
+                icon="⚽"
+                label="Top Scorer"
+                value1={stats1?.topScorerGoals || 0}
+                value2={stats2?.topScorerGoals || 0}
+              />
+            </div>
+          </div>
 
-              {/* Match Details Table */}
-              <div style={{
-                marginTop: "clamp(16px, 3vw, 20px)",
-                paddingTop: "clamp(16px, 3vw, 20px)",
-                borderTop: "1px solid var(--border-subtle)",
-              }}>
-                {headToHead.map((match, i) => (
-                  <div key={i} style={{
-                    display: "grid",
-                    gridTemplateColumns: "1fr 1fr",
-                    gap: "clamp(8px, 2vw, 12px)",
-                    padding: "clamp(10px, 2.5vw, 12px) 0",
-                    borderBottom: i < headToHead.length - 1 ? "1px solid var(--border-subtle)" : "none",
-                    fontSize: "clamp(10px, 2.5vw, 11px)",
-                    color: "var(--text-tertiary)",
+          {/* Tactics & Formation */}
+          <div style={{
+            marginBottom: "clamp(24px, 6vw, 32px)",
+            padding: "clamp(16px, 4vw, 24px)",
+            background: "var(--bg-secondary)",
+            borderRadius: 14,
+            border: "2px solid var(--border-subtle)",
+          }}>
+            <h2 style={{
+              fontSize: "clamp(16px, 4vw, 18px)",
+              fontWeight: 800,
+              marginBottom: 16,
+              color: "var(--text)",
+            }}>
+              ⚔️ Tactics & Playing Style
+            </h2>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "clamp(12px, 3vw, 16px)" }}>
+              {[
+                { name: team1, strategy: strategy1 },
+                { name: team2, strategy: strategy2 },
+              ].map((item, idx) => (
+                <div key={idx} style={{
+                  padding: "clamp(12px, 3vw, 16px)",
+                  background: "var(--bg)",
+                  borderRadius: 12,
+                  border: "1px solid var(--border-subtle)",
+                }}>
+                  <div style={{
+                    fontSize: "clamp(12px, 2.5vw, 13px)",
+                    fontWeight: 700,
+                    color: "var(--text)",
+                    marginBottom: 12,
                   }}>
+                    {item.name}
+                  </div>
+                  <div style={{ display: "flex", flexDirection: "column", gap: 8, fontSize: "clamp(11px, 2.5vw, 12px)" }}>
                     <div>
-                      <strong>Tournament:</strong> {match.tournament}
-                      <br />
-                      <strong>Venue:</strong> {match.venue}
+                      <div style={{ fontWeight: 600, color: "var(--text)", marginBottom: 4 }}>🎯 Formation</div>
+                      <div style={{ color: "var(--text-secondary)" }}>{item.strategy.formation || "—"}</div>
                     </div>
-                    <div style={{ textAlign: "right" }}>
-                      <strong>Date:</strong> {new Date(match.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: '2-digit' })}
-                      <br />
-                      <strong>Attendance:</strong> {match.attendance ? `${parseInt(match.attendance).toLocaleString()}` : 'N/A'}
+                    <div>
+                      <div style={{ fontWeight: 600, color: "var(--text)", marginBottom: 4 }}>🎨 Style</div>
+                      <div style={{ color: "var(--text-secondary)", fontSize: "clamp(10px, 2.5vw, 11px)" }}>{item.strategy.style || "—"}</div>
+                    </div>
+                    <div>
+                      <div style={{ fontWeight: 600, color: "var(--green)", marginBottom: 4 }}>💪 Strength</div>
+                      <div style={{ color: "var(--text-secondary)", fontSize: "clamp(10px, 2.5vw, 11px)" }}>{item.strategy.strength || "—"}</div>
+                    </div>
+                    <div>
+                      <div style={{ fontWeight: 600, color: "var(--red-bright)", marginBottom: 4 }}>⚠️ Weakness</div>
+                      <div style={{ color: "var(--text-secondary)", fontSize: "clamp(10px, 2.5vw, 11px)" }}>{item.strategy.weakness || "—"}</div>
                     </div>
                   </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Key Players */}
+          <div style={{
+            marginBottom: "clamp(24px, 6vw, 32px)",
+            padding: "clamp(16px, 4vw, 24px)",
+            background: "var(--bg-secondary)",
+            borderRadius: 14,
+            border: "2px solid var(--border-subtle)",
+          }}>
+            <h2 style={{
+              fontSize: "clamp(16px, 4vw, 18px)",
+              fontWeight: 800,
+              marginBottom: 16,
+              color: "var(--text)",
+            }}>
+              ⭐ Key Players & Scorers
+            </h2>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "clamp(12px, 3vw, 16px)" }}>
+              {[
+                { name: team1, data: teamData1, scorer: stats1?.topScorer },
+                { name: team2, data: teamData2, scorer: stats2?.topScorer },
+              ].map((item, idx) => (
+                <div key={idx} style={{
+                  padding: "clamp(12px, 3vw, 16px)",
+                  background: "var(--bg)",
+                  borderRadius: 12,
+                  border: "1px solid var(--border-subtle)",
+                }}>
+                  <div style={{
+                    fontSize: "clamp(12px, 2.5vw, 13px)",
+                    fontWeight: 700,
+                    color: "var(--text)",
+                    marginBottom: 12,
+                  }}>
+                    {item.name}
+                  </div>
+                  {item.scorer && (
+                    <div style={{
+                      padding: 10,
+                      background: "rgba(34, 197, 94, 0.1)",
+                      borderRadius: 8,
+                      marginBottom: 12,
+                      borderLeft: "3px solid var(--green)",
+                    }}>
+                      <div style={{ fontSize: "clamp(10px, 2.5vw, 11px)", color: "var(--text-tertiary)", fontWeight: 600 }}>
+                        🔥 Top Scorer
+                      </div>
+                      <div style={{
+                        fontSize: "clamp(12px, 3vw, 13px)",
+                        fontWeight: 700,
+                        color: "var(--text)",
+                        marginTop: 4,
+                      }}>
+                        {item.scorer.player}
+                      </div>
+                      <div style={{
+                        fontSize: "clamp(11px, 2.5vw, 12px)",
+                        color: "var(--green)",
+                        fontWeight: 600,
+                        marginTop: 2,
+                      }}>
+                        ⚽ {item.scorer.goals} Goals
+                      </div>
+                    </div>
+                  )}
+                  <div style={{
+                    fontSize: "clamp(10px, 2.5vw, 11px)",
+                    color: "var(--text-secondary)",
+                    lineHeight: 1.6,
+                  }}>
+                    <div style={{ fontWeight: 600, color: "var(--text)", marginBottom: 8 }}>Squad Composition:</div>
+                    {item.data?.players?.slice(0, 5).map((p, i) => (
+                      <div key={i} style={{ display: "flex", justifyContent: "space-between", marginBottom: 4 }}>
+                        <span>{p.name}</span>
+                        <span style={{
+                          background: "rgba(0, 120, 255, 0.2)",
+                          padding: "2px 8px",
+                          borderRadius: 4,
+                          fontSize: "clamp(9px, 2vw, 10px)",
+                          fontWeight: 600,
+                          color: "var(--blue)",
+                        }}>
+                          {p.position}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Head-to-Head Matches */}
+          {headToHead && headToHead.length > 0 && (
+            <div style={{
+              padding: "clamp(16px, 4vw, 24px)",
+              background: "var(--bg-secondary)",
+              borderRadius: 14,
+              border: "2px solid var(--blue)",
+            }}>
+              <h2 style={{
+                fontSize: "clamp(16px, 4vw, 18px)",
+                fontWeight: 800,
+                marginBottom: 16,
+                color: "var(--text)",
+              }}>
+                🔥 Last 5 Head-to-Head Meetings
+              </h2>
+              <div>
+                {headToHead.map((match, i) => (
+                  <MatchCard key={i} match={match} team1={team1} team2={team2} />
                 ))}
               </div>
             </div>
@@ -538,24 +698,28 @@ export default function TeamComparison({ results = {} }) {
 
       {(!team1 || !team2) && (
         <div style={{
-          padding: "clamp(24px, 6vw, 40px)",
+          padding: "clamp(40px, 8vw, 60px)",
           textAlign: "center",
-          color: "var(--text-tertiary)",
-          background: "var(--bg-secondary)",
-          borderRadius: 12,
+          background: "linear-gradient(135deg, rgba(0, 120, 255, 0.05), rgba(34, 197, 94, 0.05))",
+          borderRadius: 16,
+          border: "2px dashed var(--blue)",
         }}>
-          <div style={{ fontSize: "clamp(24px, 8vw, 32px)", marginBottom: "clamp(8px, 2vw, 12px)" }}>
+          <div style={{ fontSize: "clamp(48px, 12vw, 64px)", marginBottom: 16 }}>
             ⚽
           </div>
           <div style={{
-            fontWeight: 600,
-            marginBottom: 4,
-            fontSize: "clamp(14px, 3.5vw, 16px)",
+            fontWeight: 800,
+            fontSize: "clamp(18px, 5vw, 24px)",
+            marginBottom: 8,
+            color: "var(--text)",
           }}>
-            Select two teams to compare
+            Ready to Compare?
           </div>
-          <div style={{ fontSize: "clamp(12px, 3vw, 13px)" }}>
-            Choose teams from the dropdowns above
+          <div style={{
+            fontSize: "clamp(13px, 3.5vw, 15px)",
+            color: "var(--text-secondary)",
+          }}>
+            Select two teams above to see FIFA rankings, tactics, last 5 matches, and player comparison
           </div>
         </div>
       )}
