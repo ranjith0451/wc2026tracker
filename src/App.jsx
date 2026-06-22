@@ -1,5 +1,7 @@
 import { lazy, Suspense, useEffect, useState, Component } from "react";
 import { Routes, Route, NavLink, useLocation } from "react-router-dom";
+import { ThemeProvider } from "./lib/themeContext.jsx";
+import ThemeSwitcher from "./components/ThemeSwitcher.jsx";
 
 class PageErrorBoundary extends Component {
   constructor(props) { super(props); this.state = { error: null }; }
@@ -267,23 +269,25 @@ export default function App() {
   }
 
   return (
-    <div className="app">
+    <ThemeProvider>
+      <div className="app">
 
-      {/* Header */}
-      <header className="app-header">
-        <div className="header-inner">
-          <div className="header-brand">
-            <div className="header-badge">
-              <BallIcon />
+        {/* Header */}
+        <header className="app-header">
+          <div className="header-inner">
+            <div className="header-brand">
+              <div className="header-badge">
+                <BallIcon />
+              </div>
+              <div className="header-text">
+                <div className="header-title">FIFA World Cup 2026</div>
+                <div className="header-sub">Canada · Mexico · USA</div>
+              </div>
             </div>
-            <div className="header-text">
-              <div className="header-title">FIFA World Cup 2026</div>
-              <div className="header-sub">Canada · Mexico · USA</div>
-            </div>
+            <ISTClock />
+            <ThemeSwitcher />
           </div>
-          <ISTClock />
-        </div>
-      </header>
+        </header>
 
       {/* Nav */}
       <nav className="nav-bar">
@@ -335,14 +339,15 @@ export default function App() {
         </PageWrap>
       </main>
 
-      {/* Footer */}
-      <footer className="footer">
-        <div className="footer-inner">
-          FIFA World Cup 2026&nbsp;·&nbsp;All times in IST (UTC+5:30)
-          {lastUpdated && <> · Synced {lastUpdated.toLocaleTimeString("en-IN", { timeZone: "Asia/Kolkata" })} IST</>}
-          {error && <> · <span style={{ color: "var(--red-bright)" }}>Offline — cached data</span></>}
-        </div>
-      </footer>
-    </div>
+        {/* Footer */}
+        <footer className="footer">
+          <div className="footer-inner">
+            FIFA World Cup 2026&nbsp;·&nbsp;All times in IST (UTC+5:30)
+            {lastUpdated && <> · Synced {lastUpdated.toLocaleTimeString("en-IN", { timeZone: "Asia/Kolkata" })} IST</>}
+            {error && <> · <span style={{ color: "var(--red-bright)" }}>Offline — cached data</span></>}
+          </div>
+        </footer>
+      </div>
+    </ThemeProvider>
   );
 }
