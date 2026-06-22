@@ -1,4 +1,15 @@
 import { useState, useEffect } from "react";
+import { useGraph } from "../lib/useGraph";
+import { topScorers } from "../lib/graph";
+
+function usePlayersFromGraph(legacy) {
+  const { graph } = useGraph();
+  if (!graph) return legacy;
+  return {
+    men: { topScorers: topScorers(graph, "men") },
+    women: { topScorers: topScorers(graph, "women") },
+  };
+}
 
 function usePlayers() {
   const [data, setData] = useState(null);
@@ -92,7 +103,7 @@ function StatsBar({ players }) {
 export default function AllTimePlayers() {
   const [gender, setGender] = useState("men");
   const [search, setSearch] = useState("");
-  const data = usePlayers();
+  const legacy = usePlayers();   const data = usePlayersFromGraph(legacy);
 
   if (!data) {
     return (

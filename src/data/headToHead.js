@@ -1,24 +1,32 @@
-// Generate mock data for all team pairs if needed
-function generateMockMatches(team1, team2) {
+// Generate realistic head-to-head data for any team pair
+function generateHeadToHeadData(team1, team2) {
+  const scenarios = [
+    { score: "2-1", goals1: [`${team1} Goal 23'`, `${team1} Goal 67'`], goals2: [`${team2} Goal 45'`] },
+    { score: "1-1", goals1: [`${team1} Striker 34'`], goals2: [`${team2} Forward 58'`] },
+    { score: "3-0", goals1: [`${team1} Goal 12'`, `${team1} Goal 45'`, `${team1} Goal 89'`], goals2: [] },
+    { score: "0-2", goals1: [], goals2: [`${team2} Scorer 28'`, `${team2} Scorer 76'`] },
+    { score: "1-0", goals1: [`${team1} Winner 31'`], goals2: [] },
+    { score: "2-2", goals1: [`${team1} Goal 15'`, `${team1} Goal 70'`], goals2: [`${team2} Goal 38'`, `${team2} Goal 85'`] },
+    { score: "3-1", goals1: [`${team1} Goal 10'`, `${team1} Goal 45'`, `${team1} Goal 80'`], goals2: [`${team2} Goal 60'`] },
+    { score: "0-1", goals1: [], goals2: [`${team2} Goal 42'`] },
+  ];
+
   const years = [2024, 2023, 2022, 2021, 2020];
   return years.map((year, idx) => {
-    const rand = Math.random();
-    const score1 = Math.floor(rand * 3);
-    const score2 = Math.floor((1 - rand) * 3);
-    const winner = score1 > score2 ? team1 : score2 > score1 ? team2 : "Draw";
-    const goals1 = Array.from({ length: score1 }, (_, i) => `Player ${i + 1} ${45 + i * 15}'`);
-    const goals2 = Array.from({ length: score2 }, (_, i) => `Player ${i + 1} ${50 + i * 15}'`);
+    const scenario = scenarios[(team1.charCodeAt(0) + team2.charCodeAt(0) + idx) % scenarios.length];
+    const score1 = parseInt(scenario.score.split('-')[0]);
+    const score2 = parseInt(scenario.score.split('-')[1]);
 
     return {
-      date: `${year}-${String(idx + 6).padStart(2, '0')}-15`,
+      date: `${year}-${String((idx + 1) * 2).padStart(2, '0')}-15`,
       team1,
       team2,
-      score: `${score1}-${score2}`,
-      winner,
-      goals: { [team1]: goals1, [team2]: goals2 },
-      tournament: ["WC Qualifier", "Friendly", "Nations League", "Copa/Euro"][idx % 4],
-      venue: ["Home Stadium", "Away Stadium", "Neutral Venue"][idx % 3],
-      attendance: String(Math.floor(30000 + Math.random() * 50000)),
+      score: scenario.score,
+      winner: score1 > score2 ? team1 : score2 > score1 ? team2 : "Draw",
+      goals: { [team1]: scenario.goals1, [team2]: scenario.goals2 },
+      tournament: ["WC Qualifier", "Friendly", "Nations League", "Copa América"][idx % 4],
+      venue: `${idx % 2 === 0 ? team1 : team2} Stadium`,
+      attendance: String(Math.floor(35000 + idx * 8000)),
     };
   });
 }
@@ -527,3 +535,5 @@ export const TEAM_STRATEGIES = {
     weakness: "Possession retention",
   },
 };
+
+export { generateHeadToHeadData };

@@ -4,6 +4,56 @@
   "graph": {},
   "nodes": [
     {
+      "label": "headToHead.js",
+      "file_type": "code",
+      "source_file": "src/data/headToHead.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "data_headtohead",
+      "community": 13,
+      "norm_label": "headtohead.js"
+    },
+    {
+      "label": "generateMockMatches()",
+      "file_type": "code",
+      "source_file": "src/data/headToHead.js",
+      "source_location": "L2",
+      "_origin": "ast",
+      "id": "data_headtohead_generatemockmatches",
+      "community": 13,
+      "norm_label": "generatemockmatches()"
+    },
+    {
+      "label": "HEAD_TO_HEAD_RECORDS",
+      "file_type": "code",
+      "source_file": "src/data/headToHead.js",
+      "source_location": "L27",
+      "_origin": "ast",
+      "id": "data_headtohead_head_to_head_records",
+      "community": 13,
+      "norm_label": "head_to_head_records"
+    },
+    {
+      "label": "TEAM_STRATEGIES",
+      "file_type": "code",
+      "source_file": "src/data/headToHead.js",
+      "source_location": "L430",
+      "_origin": "ast",
+      "id": "data_headtohead_team_strategies",
+      "community": 13,
+      "norm_label": "team_strategies"
+    },
+    {
+      "label": "useStats.js.md",
+      "file_type": "document",
+      "source_file": "src/lib/useStats.js.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "lib_usestats_js",
+      "community": 14,
+      "norm_label": "usestats.js.md"
+    },
+    {
       "label": "TeamComparison.jsx",
       "file_type": "code",
       "source_file": "src/pages/TeamComparison.jsx",
@@ -17,91 +67,61 @@
       "label": "RANKINGS",
       "file_type": "code",
       "source_file": "src/pages/TeamComparison.jsx",
-      "source_location": "L9",
+      "source_location": "L8",
       "_origin": "ast",
       "id": "pages_teamcomparison_rankings",
       "community": 13,
       "norm_label": "rankings"
     },
     {
-      "label": "useMediaQuery()",
-      "file_type": "code",
-      "source_file": "src/pages/TeamComparison.jsx",
-      "source_location": "L62",
-      "_origin": "ast",
-      "id": "pages_teamcomparison_usemediaquery",
-      "community": 13,
-      "norm_label": "usemediaquery()"
-    },
-    {
       "label": "TeamSelector()",
       "file_type": "code",
       "source_file": "src/pages/TeamComparison.jsx",
-      "source_location": "L67",
+      "source_location": "L54",
       "_origin": "ast",
       "id": "pages_teamcomparison_teamselector",
       "community": 13,
       "norm_label": "teamselector()"
     },
     {
-      "label": "StatCard()",
+      "label": "StatBox()",
       "file_type": "code",
       "source_file": "src/pages/TeamComparison.jsx",
-      "source_location": "L110",
+      "source_location": "L94",
       "_origin": "ast",
-      "id": "pages_teamcomparison_statcard",
+      "id": "pages_teamcomparison_statbox",
       "community": 13,
-      "norm_label": "statcard()"
+      "norm_label": "statbox()"
     },
     {
-      "label": "TeamCard()",
+      "label": "MatchCard()",
       "file_type": "code",
       "source_file": "src/pages/TeamComparison.jsx",
-      "source_location": "L149",
+      "source_location": "L142",
       "_origin": "ast",
-      "id": "pages_teamcomparison_teamcard",
+      "id": "pages_teamcomparison_matchcard",
       "community": 13,
-      "norm_label": "teamcard()"
+      "norm_label": "matchcard()"
     },
     {
       "label": "TeamComparison()",
       "file_type": "code",
       "source_file": "src/pages/TeamComparison.jsx",
-      "source_location": "L290",
+      "source_location": "L316",
       "_origin": "ast",
       "id": "pages_teamcomparison_teamcomparison",
       "community": 13,
       "norm_label": "teamcomparison()"
     },
     {
-      "label": "headToHead.js",
-      "file_type": "code",
-      "source_file": "src/data/headToHead.js",
+      "label": "TeamComparison.jsx.md",
+      "file_type": "document",
+      "source_file": "src/pages/TeamComparison.jsx.md",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 13,
-      "norm_label": "headtohead.js",
-      "id": "data_headtohead"
-    },
-    {
-      "label": "HEAD_TO_HEAD_RECORDS",
-      "file_type": "code",
-      "source_file": "src/data/headToHead.js",
-      "source_location": "L2",
-      "_origin": "ast",
-      "community": 13,
-      "norm_label": "head_to_head_records",
-      "id": "data_headtohead_head_to_head_records"
-    },
-    {
-      "label": "TEAM_STRATEGIES",
-      "file_type": "code",
-      "source_file": "src/data/headToHead.js",
-      "source_location": "L405",
-      "_origin": "ast",
-      "community": 13,
-      "norm_label": "team_strategies",
-      "id": "data_headtohead_team_strategies"
+      "id": "pages_teamcomparison_jsx",
+      "community": 15,
+      "norm_label": "teamcomparison.jsx.md"
     },
     {
       "label": "App.jsx",
@@ -1836,6 +1856,36 @@
   ],
   "links": [
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/data/headToHead.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "data_headtohead",
+      "target": "data_headtohead_generatemockmatches",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/data/headToHead.js",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "data_headtohead",
+      "target": "data_headtohead_head_to_head_records"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/data/headToHead.js",
+      "source_location": "L62",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "data_headtohead",
+      "target": "data_headtohead_team_strategies"
+    },
+    {
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
@@ -1872,6 +1922,16 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/TeamComparison.jsx",
+      "source_location": "L142",
+      "weight": 1.0,
+      "source": "pages_teamcomparison",
+      "target": "pages_teamcomparison_matchcard",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/pages/TeamComparison.jsx",
       "source_location": "L9",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -1882,21 +1942,11 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "src/pages/TeamComparison.jsx",
-      "source_location": "L91",
+      "source_location": "L94",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "pages_teamcomparison",
-      "target": "pages_teamcomparison_statcard"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/TeamComparison.jsx",
-      "source_location": "L115",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "pages_teamcomparison",
-      "target": "pages_teamcomparison_teamcard"
+      "target": "pages_teamcomparison_statbox",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -1917,36 +1967,6 @@
       "confidence_score": 1.0,
       "source": "pages_teamcomparison",
       "target": "pages_teamcomparison_teamselector"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/pages/TeamComparison.jsx",
-      "source_location": "L62",
-      "weight": 1.0,
-      "source": "pages_teamcomparison",
-      "target": "pages_teamcomparison_usemediaquery",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/data/headToHead.js",
-      "source_location": "L2",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "data_headtohead",
-      "target": "data_headtohead_head_to_head_records"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/data/headToHead.js",
-      "source_location": "L62",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "data_headtohead",
-      "target": "data_headtohead_team_strategies"
     },
     {
       "relation": "imports_from",
@@ -3905,5 +3925,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "cb89b88250446f26ae69c4d044b6b8d060ffe6ce"
+  "built_at_commit": "f6e114e842fc56774319972a328ec83e505e894b"
 }

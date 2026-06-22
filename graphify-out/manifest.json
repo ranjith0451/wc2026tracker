@@ -3335,13 +3335,23 @@
     "semantic_hash": ""
   },
   "src/data/headToHead.js": {
-    "mtime": 1782092511.9095814,
-    "ast_hash": "b1bb6965c4f98296496eef9dc72b35b3",
+    "mtime": 1782093866.2640853,
+    "ast_hash": "4eeebe941f33d470f3d6a8c2c1b9fa2f",
     "semantic_hash": ""
   },
   "src/pages/TeamComparison.jsx": {
-    "mtime": 1782092870.0272453,
-    "ast_hash": "f0c81e26991dc709926077461f74a6f1",
+    "mtime": 1782093879.9864225,
+    "ast_hash": "52ea265dd9f08bb7bb48ae6ea5221b6a",
+    "semantic_hash": ""
+  },
+  "src/lib/useStats.js.md": {
+    "mtime": 1782093082.6801317,
+    "ast_hash": "a2377ad126beb8abde3e2c905f2d4495",
+    "semantic_hash": ""
+  },
+  "src/pages/TeamComparison.jsx.md": {
+    "mtime": 1782093846.1144338,
+    "ast_hash": "1daaa6c27885b7dfb3c6cb90f4c50243",
     "semantic_hash": ""
   }
 }

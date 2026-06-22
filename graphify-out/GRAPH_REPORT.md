@@ -1,16 +1,16 @@
 # Graph Report - wc2026  (2026-06-22)
 
 ## Corpus Check
-- 107 files · ~437,248 words
+- 109 files · ~441,013 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 183 nodes · 203 edges · 14 communities (12 shown, 2 thin omitted)
+- 185 nodes · 203 edges · 16 communities (14 shown, 2 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `cb89b882`
+- Built from commit: `f6e114e8`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -52,7 +52,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (14 total, 2 thin omitted)
+## Communities (16 total, 2 thin omitted)
 
 ### Community 0 - "Community 0"
 Cohesion: 0.09
@@ -99,9 +99,9 @@ Nodes (3): HEAD_TO_HEAD_RECORDS, TEAM_STRATEGIES, RANKINGS
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `useSchedule()` connect `Community 0` to `Community 3`?**
-  _High betweenness centrality (0.034) - this node is a cross-community bridge._
+  _High betweenness centrality (0.033) - this node is a cross-community bridge._
 - **Why does `useStatsMatchIdMap()` connect `Community 0` to `Community 3`?**
-  _High betweenness centrality (0.034) - this node is a cross-community bridge._
+  _High betweenness centrality (0.033) - this node is a cross-community bridge._
 - **Why does `PageErrorBoundary` connect `Community 8` to `Community 3`?**
   _High betweenness centrality (0.013) - this node is a cross-community bridge._
 - **What connects `RANKINGS`, `Schedule`, `Groups` to the rest of the system?**
