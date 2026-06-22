@@ -1,0 +1,265 @@
+{
+  "nodes": [
+    {
+      "id": "results",
+      "label": "results.js",
+      "file_type": "code",
+      "source_file": "results.js",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "results_getredis",
+      "label": "getRedis()",
+      "file_type": "code",
+      "source_file": "results.js",
+      "source_location": "L8",
+      "_origin": "ast"
+    },
+    {
+      "id": "results_handler",
+      "label": "handler()",
+      "file_type": "code",
+      "source_file": "results.js",
+      "source_location": "L19",
+      "_origin": "ast"
+    },
+    {
+      "id": "stats",
+      "label": "stats.js",
+      "file_type": "code",
+      "source_file": "stats.js",
+      "source_location": "L1",
+      "_origin": "ast"
+    },
+    {
+      "id": "stats_getredis",
+      "label": "getRedis()",
+      "file_type": "code",
+      "source_file": "stats.js",
+      "source_location": "L30",
+      "_origin": "ast"
+    },
+    {
+      "id": "stats_statsfetch",
+      "label": "statsFetch()",
+      "file_type": "code",
+      "source_file": "stats.js",
+      "source_location": "L39",
+      "_origin": "ast"
+    },
+    {
+      "id": "stats_cached",
+      "label": "cached()",
+      "file_type": "code",
+      "source_file": "stats.js",
+      "source_location": "L54",
+      "_origin": "ast"
+    },
+    {
+      "id": "stats_matchttl",
+      "label": "matchTTL()",
+      "file_type": "code",
+      "source_file": "stats.js",
+      "source_location": "L77",
+      "_origin": "ast"
+    },
+    {
+      "id": "stats_normalizelineupside",
+      "label": "normalizeLineupSide()",
+      "file_type": "code",
+      "source_file": "stats.js",
+      "source_location": "L85",
+      "_origin": "ast"
+    },
+    {
+      "id": "stats_normalizeplayerstats",
+      "label": "normalizePlayerStats()",
+      "file_type": "code",
+      "source_file": "stats.js",
+      "source_location": "L105",
+      "_origin": "ast"
+    },
+    {
+      "id": "stats_normalizeteamstats",
+      "label": "normalizeTeamStats()",
+      "file_type": "code",
+      "source_file": "stats.js",
+      "source_location": "L144",
+      "_origin": "ast"
+    },
+    {
+      "id": "stats_handler",
+      "label": "handler()",
+      "file_type": "code",
+      "source_file": "stats.js",
+      "source_location": "L191",
+      "_origin": "ast"
+    }
+  ],
+  "edges": [
+    {
+      "source": "results",
+      "target": "ioredis",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "results.js",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "results",
+      "target": "results_getredis",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "results.js",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "results",
+      "target": "results_handler",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "results.js",
+      "source_location": "L19",
+      "weight": 1.0
+    },
+    {
+      "source": "results_handler",
+      "target": "results_getredis",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "results.js",
+      "source_location": "L25",
+      "weight": 1.0
+    },
+    {
+      "source": "stats",
+      "target": "ioredis",
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "stats.js",
+      "source_location": "L24",
+      "weight": 1.0
+    },
+    {
+      "source": "stats",
+      "target": "stats_getredis",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "stats.js",
+      "source_location": "L30",
+      "weight": 1.0
+    },
+    {
+      "source": "stats",
+      "target": "stats_statsfetch",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "stats.js",
+      "source_location": "L39",
+      "weight": 1.0
+    },
+    {
+      "source": "stats",
+      "target": "stats_cached",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "stats.js",
+      "source_location": "L54",
+      "weight": 1.0
+    },
+    {
+      "source": "stats",
+      "target": "stats_matchttl",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "stats.js",
+      "source_location": "L77",
+      "weight": 1.0
+    },
+    {
+      "source": "stats",
+      "target": "stats_normalizelineupside",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "stats.js",
+      "source_location": "L85",
+      "weight": 1.0
+    },
+    {
+      "source": "stats",
+      "target": "stats_normalizeplayerstats",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "stats.js",
+      "source_location": "L105",
+      "weight": 1.0
+    },
+    {
+      "source": "stats",
+      "target": "stats_normalizeteamstats",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "stats.js",
+      "source_location": "L144",
+      "weight": 1.0
+    },
+    {
+      "source": "stats",
+      "target": "stats_handler",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "stats.js",
+      "source_location": "L191",
+      "weight": 1.0
+    },
+    {
+      "source": "stats_handler",
+      "target": "stats_getredis",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "stats.js",
+      "source_location": "L198",
+      "weight": 1.0
+    },
+    {
+      "source": "stats_handler",
+      "target": "stats_cached",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "stats.js",
+      "source_location": "L223",
+      "weight": 1.0
+    },
+    {
+      "source": "stats_handler",
+      "target": "stats_statsfetch",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "stats.js",
+      "source_location": "L334",
+      "weight": 1.0
+    },
+    {
+      "source": "stats_handler",
+      "target": "stats_matchttl",
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "stats.js",
+      "source_location": "L362",
+      "weight": 1.0
+    }
+  ],
+  "hyperedges": [],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

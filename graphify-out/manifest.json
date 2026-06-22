@@ -1,0 +1,3337 @@
+{
+  ".claude/launch.json": {
+    "mtime": 1782090272.1960862,
+    "ast_hash": "d0ea79d410fa598e1891638903cf67c2",
+    "semantic_hash": ""
+  },
+  ".claude/settings.json": {
+    "mtime": 1782029058.4529748,
+    "ast_hash": "7bf81dca0376bde3a32244b82bc7cbc0",
+    "semantic_hash": ""
+  },
+  ".claude/settings.local.json": {
+    "mtime": 1781771180.4337752,
+    "ast_hash": "8c91843108d4acc0c0f219514aca8bcc",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/.github/workflows/Flowfile.rb": {
+    "mtime": 1781457106.237916,
+    "ast_hash": "72e7c9493d4f4b077993a6ffb8002013",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/.github/workflows/genjson.rb": {
+    "mtime": 1781457106.237916,
+    "ast_hash": "96e86eaeb518842e0bf3b8fc0235d16b",
+    "semantic_hash": ""
+  },
+  "api/results.js": {
+    "mtime": 1781413707.847016,
+    "ast_hash": "4a721d2fef0650fe3a31ec4c68ffb3c6",
+    "semantic_hash": ""
+  },
+  "api/stats.js": {
+    "mtime": 1782089389.373783,
+    "ast_hash": "36cedc7153387ef0dedb59b12acc5141",
+    "semantic_hash": ""
+  },
+  "eslint.config.js": {
+    "mtime": 1781429498.14036,
+    "ast_hash": "314dddb10283eeb54e9dff4ce267a1df",
+    "semantic_hash": ""
+  },
+  "package.json": {
+    "mtime": 1781429773.3244078,
+    "ast_hash": "9c31effe273b54b04873a72b690afd6d",
+    "semantic_hash": ""
+  },
+  "public/data/history-v2.json": {
+    "mtime": 1781458796.4796517,
+    "ast_hash": "e1064f9d51908bc6f00202e938eff5a6",
+    "semantic_hash": ""
+  },
+  "public/data/history.json": {
+    "mtime": 1781458212.7251897,
+    "ast_hash": "789833aa2a0c42df02d45876c667422e",
+    "semantic_hash": ""
+  },
+  "public/data/matches-enriched.json": {
+    "mtime": 1781458796.4864037,
+    "ast_hash": "575e4d8f3b1590dacdcf710a322e9aed",
+    "semantic_hash": ""
+  },
+  "public/data/players.json": {
+    "mtime": 1781458796.4814065,
+    "ast_hash": "dccfedbb02dcae29d393750b5e2ef80f",
+    "semantic_hash": ""
+  },
+  "public/data/rankings.json": {
+    "mtime": 1781458796.4796517,
+    "ast_hash": "3d414bac6d3faf693fb59588da92716b",
+    "semantic_hash": ""
+  },
+  "public/data/results.json": {
+    "mtime": 1781431185.0578003,
+    "ast_hash": "1940759f55de44280c1792cecd4ae05c",
+    "semantic_hash": ""
+  },
+  "public/manifest.json": {
+    "mtime": 1781430773.4750657,
+    "ast_hash": "aee3948602543f7cd2c4a4075a34d1e5",
+    "semantic_hash": ""
+  },
+  "public/sw.js": {
+    "mtime": 1781569708.6364944,
+    "ast_hash": "5bd099484dd4e5dca19d09d185229f7c",
+    "semantic_hash": ""
+  },
+  "scripts/build-datasets.mjs": {
+    "mtime": 1781458793.26252,
+    "ast_hash": "1eba957fc7b8b714ca603b009a9f0541",
+    "semantic_hash": ""
+  },
+  "scripts/parse-history.mjs": {
+    "mtime": 1781458144.6645236,
+    "ast_hash": "2ced6c0712256eb3648f856df0a25c10",
+    "semantic_hash": ""
+  },
+  "src/App.jsx": {
+    "mtime": 1782090159.2275267,
+    "ast_hash": "82ca7718cb52750210071acd169c141d",
+    "semantic_hash": ""
+  },
+  "src/components/Ball3D.jsx": {
+    "mtime": 1781415552.5466397,
+    "ast_hash": "4fc11a49351ba6e063eef34a2dfebafe",
+    "semantic_hash": ""
+  },
+  "src/components/HeatmapWidget.jsx": {
+    "mtime": 1781604928.1632993,
+    "ast_hash": "ab74420543bcb07609ccfde2987cee55",
+    "semantic_hash": ""
+  },
+  "src/components/LiveMatchPanel.jsx": {
+    "mtime": 1781656288.7312777,
+    "ast_hash": "fb3a760379f6db7aa5bc3ff1fc6bd58d",
+    "semantic_hash": ""
+  },
+  "src/components/MatchCard.jsx": {
+    "mtime": 1781605361.7094388,
+    "ast_hash": "9daf74072c9a58133aec8e84fa5fbb47",
+    "semantic_hash": ""
+  },
+  "src/components/MatchResultForm.jsx": {
+    "mtime": 1781419107.06014,
+    "ast_hash": "a8bd00fe8a769c360c98abbbc9ddd44a",
+    "semantic_hash": ""
+  },
+  "src/components/MatchStats.jsx": {
+    "mtime": 1781416318.3299026,
+    "ast_hash": "00e93e7ce5a5c86b5714d121e69d7652",
+    "semantic_hash": ""
+  },
+  "src/components/PlayerModal.jsx": {
+    "mtime": 1781401653.220063,
+    "ast_hash": "91c07259d4311349616f7c9541f97022",
+    "semantic_hash": ""
+  },
+  "src/components/PlayerRatingChip.jsx": {
+    "mtime": 1781574241.3383644,
+    "ast_hash": "f0717faf920ef6a14477b6f20df38261",
+    "semantic_hash": ""
+  },
+  "src/components/ShotmapWidget.jsx": {
+    "mtime": 1781574267.7814462,
+    "ast_hash": "305f77ad5398e88d2bba5125b73285e9",
+    "semantic_hash": ""
+  },
+  "src/components/TeamFlag.jsx": {
+    "mtime": 1781352922.0,
+    "ast_hash": "4973741ef9640cfda6bae74f0663449d",
+    "semantic_hash": ""
+  },
+  "src/data/matches.js": {
+    "mtime": 1781398812.807275,
+    "ast_hash": "8c81a804c818aa5d5f75fa30a5a8534d",
+    "semantic_hash": ""
+  },
+  "src/data/squads.js": {
+    "mtime": 1781358240.0,
+    "ast_hash": "43aa110fd457614565fb4a9a23ecde5b",
+    "semantic_hash": ""
+  },
+  "src/data/teams.js": {
+    "mtime": 1781352704.0,
+    "ast_hash": "e979dfc7615b032cee95070a5c7d39d2",
+    "semantic_hash": ""
+  },
+  "src/data/venues.js": {
+    "mtime": 1781766990.2572613,
+    "ast_hash": "0a640554900627af249479f4111eed91",
+    "semantic_hash": ""
+  },
+  "src/data/wcHistory.js": {
+    "mtime": 1781401893.955498,
+    "ast_hash": "d96a132f5a9df36f85795ef46e402006",
+    "semantic_hash": ""
+  },
+  "src/lib/bracket.js": {
+    "mtime": 1781352802.0,
+    "ast_hash": "5fd6c8ad21071ce4d2b8b15ffb22d064",
+    "semantic_hash": ""
+  },
+  "src/lib/overrides.js": {
+    "mtime": 1781354576.0,
+    "ast_hash": "cec6a857cd429ec62b4c316212d7ae39",
+    "semantic_hash": ""
+  },
+  "src/lib/playerRating.js": {
+    "mtime": 1781574213.088358,
+    "ast_hash": "d62d6d6d76255eb2faede15f8cac1735",
+    "semantic_hash": ""
+  },
+  "src/lib/predictor.js": {
+    "mtime": 1782089434.4463506,
+    "ast_hash": "9217aacee4839b21924ce31fc3ecd349",
+    "semantic_hash": ""
+  },
+  "src/lib/standings.js": {
+    "mtime": 1781414272.2286518,
+    "ast_hash": "8ced7199396cc56d1a77d689c5830f8b",
+    "semantic_hash": ""
+  },
+  "src/lib/time.js": {
+    "mtime": 1781376154.0,
+    "ast_hash": "8f4b3c6623fc9ff1318ec1463dd5a506",
+    "semantic_hash": ""
+  },
+  "src/lib/topscorers.js": {
+    "mtime": 1781352812.0,
+    "ast_hash": "936ca7d3ecfb61c26c09ab772ce00283",
+    "semantic_hash": ""
+  },
+  "src/lib/transform.ts": {
+    "mtime": 1781429832.9753828,
+    "ast_hash": "da701cf76da5d7506497e29bb6244685",
+    "semantic_hash": ""
+  },
+  "src/lib/useResults.js": {
+    "mtime": 1781410521.0148072,
+    "ast_hash": "b12c8c98bf20f5e632ada840679ae85a",
+    "semantic_hash": ""
+  },
+  "src/lib/useStats.js": {
+    "mtime": 1782089389.388965,
+    "ast_hash": "581868295665ff1c29dada299b153411",
+    "semantic_hash": ""
+  },
+  "src/main.jsx": {
+    "mtime": 1781429517.2899525,
+    "ast_hash": "892ae631d0e772f7bf489b84bad42d0d",
+    "semantic_hash": ""
+  },
+  "src/pages/Admin.jsx": {
+    "mtime": 1781577064.2259488,
+    "ast_hash": "ffdcfa1122ba616c8c7a813fc234ecd9",
+    "semantic_hash": ""
+  },
+  "src/pages/AllTimePlayers.jsx": {
+    "mtime": 1781568546.0680943,
+    "ast_hash": "4f42a92abda74d0250e36a4391edfc5d",
+    "semantic_hash": ""
+  },
+  "src/pages/Bracket.jsx": {
+    "mtime": 1781397899.7461975,
+    "ast_hash": "6723162721c84f012dd8009ffeeb9e44",
+    "semantic_hash": ""
+  },
+  "src/pages/Groups.jsx": {
+    "mtime": 1781414292.846197,
+    "ast_hash": "fcba4541c3d97b7da93bd9985b16c474",
+    "semantic_hash": ""
+  },
+  "src/pages/History.jsx": {
+    "mtime": 1781458367.3332403,
+    "ast_hash": "b5e41c43615e1230ad033eacb309b436",
+    "semantic_hash": ""
+  },
+  "src/pages/Home.jsx": {
+    "mtime": 1782089389.392772,
+    "ast_hash": "cb71d47648cd358594900b35c0760373",
+    "semantic_hash": ""
+  },
+  "src/pages/MatchDetail.jsx": {
+    "mtime": 1781767295.3596013,
+    "ast_hash": "807039934b8a4413d28452940b634b5d",
+    "semantic_hash": ""
+  },
+  "src/pages/Predictor.jsx": {
+    "mtime": 1782089389.392772,
+    "ast_hash": "f5b9e5ab0934eb6b5c84dff2bc91cb56",
+    "semantic_hash": ""
+  },
+  "src/pages/Rankings.jsx": {
+    "mtime": 1781458999.2299757,
+    "ast_hash": "3ce86761ab5de278eb47363e0fd0dad1",
+    "semantic_hash": ""
+  },
+  "src/pages/Schedule.jsx": {
+    "mtime": 1781604265.248825,
+    "ast_hash": "394a2f11a7070d7bba748eb8ac9e5298",
+    "semantic_hash": ""
+  },
+  "src/pages/SquadDetail.jsx": {
+    "mtime": 1781401942.2321115,
+    "ast_hash": "1b325188a138783134c84d3c658b6940",
+    "semantic_hash": ""
+  },
+  "src/pages/Squads.jsx": {
+    "mtime": 1781402464.8660703,
+    "ast_hash": "2bfdd12e88e2dd56696fc5f6ccb89d49",
+    "semantic_hash": ""
+  },
+  "src/pages/Stats.jsx": {
+    "mtime": 1781569516.1844347,
+    "ast_hash": "9bdbd89ecb5a1f2262287d8c8f13648c",
+    "semantic_hash": ""
+  },
+  "src/pages/TopScorers.jsx": {
+    "mtime": 1782089389.392772,
+    "ast_hash": "0c4dbc2fb282edec117c3f962dc8a658",
+    "semantic_hash": ""
+  },
+  "src/pages/Women.jsx": {
+    "mtime": 1781458771.016059,
+    "ast_hash": "08cd487f198444b7f4b976d0b7203883",
+    "semantic_hash": ""
+  },
+  "tsconfig.json": {
+    "mtime": 1781429777.9488397,
+    "ast_hash": "bccfeaabf08efef9f34800d0a62cd155",
+    "semantic_hash": ""
+  },
+  "vercel.json": {
+    "mtime": 1781410594.1405246,
+    "ast_hash": "411faa589b528d53eef226ddf4d6bbca",
+    "semantic_hash": ""
+  },
+  "vite.config.js": {
+    "mtime": 1781352644.0,
+    "ast_hash": "f05376040df5f195dfc94a1e5d1fb753",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/.github/workflows/update.yml": {
+    "mtime": 1781457106.253472,
+    "ast_hash": "f82da03bb00164c651f65503f5267cc8",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1930--uruguay/NOTES.md": {
+    "mtime": 1781457106.2565768,
+    "ast_hash": "09cadd17728f95fe879cb6b2db4b4a7e",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1930--uruguay/cup.txt": {
+    "mtime": 1781457106.2565768,
+    "ast_hash": "8310100bcfa191c1c7c079f6d32c34bb",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1930--uruguay/squads/ar-argentina.txt": {
+    "mtime": 1781457106.2565768,
+    "ast_hash": "5e4c48d5d7e3431c7cd9bb4be8ba44f4",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1930--uruguay/squads/be-belgium.txt": {
+    "mtime": 1781457106.2565768,
+    "ast_hash": "8c05f2555a62dbdc9befe8c74748e949",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1930--uruguay/squads/bo-bolivia.txt": {
+    "mtime": 1781457106.2565768,
+    "ast_hash": "71557fb0d1dcca7e0bfe79a2c9d7715e",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1930--uruguay/squads/br-brazil.txt": {
+    "mtime": 1781457106.2565768,
+    "ast_hash": "06579ae65b9e3db32fdb07c7562298cc",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1930--uruguay/squads/cl-chile.txt": {
+    "mtime": 1781457106.2565768,
+    "ast_hash": "964cdbd6e9de350e5a26ccccc180d30d",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1930--uruguay/squads/fr-france.txt": {
+    "mtime": 1781457106.2565768,
+    "ast_hash": "b104a89bcd3583b0561c05216bd6f18b",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1930--uruguay/squads/mx-mexico.txt": {
+    "mtime": 1781457106.2565768,
+    "ast_hash": "52f0474fb24c19f86b3059e406c68eec",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1930--uruguay/squads/pe-peru.txt": {
+    "mtime": 1781457106.2565768,
+    "ast_hash": "7242367344aa5632bf081e94ff4288fd",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1930--uruguay/squads/py-paraguay.txt": {
+    "mtime": 1781457106.2565768,
+    "ast_hash": "b11521a65d608266b7dd2985419d7425",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1930--uruguay/squads/ro-romania.txt": {
+    "mtime": 1781457106.2565768,
+    "ast_hash": "6cc92ab4a66de28e281873dd4fbdf43c",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1930--uruguay/squads/us-united-states.txt": {
+    "mtime": 1781457106.2565768,
+    "ast_hash": "acc6b62dde1ae362314da2109740688a",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1930--uruguay/squads/uy-uruguay.txt": {
+    "mtime": 1781457106.2565768,
+    "ast_hash": "fab7a7be06c1e0468ee7bab6ec50dbe8",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1930--uruguay/squads/yug-yugoslavia.txt": {
+    "mtime": 1781457106.2565768,
+    "ast_hash": "d5ae02a9900168fb880f1480b26b061f",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1934--italy/NOTES.md": {
+    "mtime": 1781457106.2565768,
+    "ast_hash": "7e47b08282848f291708f9f4ddaa4bfc",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1934--italy/cup.txt": {
+    "mtime": 1781457106.2565768,
+    "ast_hash": "b8a90c353a9ca06bff50b43a6b5a4ef6",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1934--italy/squads/ar-argentina.txt": {
+    "mtime": 1781457106.2565768,
+    "ast_hash": "6f175ffa080940981f8479a31b8d4719",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1934--italy/squads/at-austria.txt": {
+    "mtime": 1781457106.2565768,
+    "ast_hash": "b61e53eca7f934b95317a98893ef2d42",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1934--italy/squads/be-belgium.txt": {
+    "mtime": 1781457106.2565768,
+    "ast_hash": "58ac7bf3f2f7bded008f7bbbe0deb340",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1934--italy/squads/br-brazil.txt": {
+    "mtime": 1781457106.2565768,
+    "ast_hash": "71047f46c294c58cb1c896a8956981f6",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1934--italy/squads/ch-switzerland.txt": {
+    "mtime": 1781457106.2565768,
+    "ast_hash": "2c5eabe38fc04dbd8fea0925ed118f3a",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1934--italy/squads/de-deutschland.txt": {
+    "mtime": 1781457106.2565768,
+    "ast_hash": "9175596ea3b7f74170ab1dd990b350a8",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1934--italy/squads/eg-egypt.txt": {
+    "mtime": 1781457106.2565768,
+    "ast_hash": "689b298aef7e4d677bcaabbee4bf6056",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1934--italy/squads/es-espana.txt": {
+    "mtime": 1781457106.2711277,
+    "ast_hash": "3878159769317eb85a207556baebee95",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1934--italy/squads/fr-france.txt": {
+    "mtime": 1781457106.2711277,
+    "ast_hash": "6c15d8d7fb2c9351ad188ee540fb2da7",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1934--italy/squads/hu-hungary.txt": {
+    "mtime": 1781457106.2711277,
+    "ast_hash": "5a64b19287a4e5a36995b6aac688ab68",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1934--italy/squads/it-italy.txt": {
+    "mtime": 1781457106.2711277,
+    "ast_hash": "9b93a9dc6199336d5474ae4321e9f544",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1934--italy/squads/nl-netherlands.txt": {
+    "mtime": 1781457106.2711277,
+    "ast_hash": "f2f1eda0f35b1e0a9a8f7f6b1039a769",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1934--italy/squads/ro-romania.txt": {
+    "mtime": 1781457106.2711277,
+    "ast_hash": "1ba62413487efd949602bbe2ce276f0d",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1934--italy/squads/se-sweden.txt": {
+    "mtime": 1781457106.2711277,
+    "ast_hash": "ececf81170298cf8d57bd3407a60b368",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1934--italy/squads/tch-czechoslovakia.txt": {
+    "mtime": 1781457106.2711277,
+    "ast_hash": "09984b0a84bc173db48b1851d6960f8e",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1934--italy/squads/us-united-states.txt": {
+    "mtime": 1781457106.2711277,
+    "ast_hash": "17587c881913bd9e2cfd787230e15455",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1938--france/NOTES.md": {
+    "mtime": 1781457106.2711277,
+    "ast_hash": "6883619e0bb063a57a0ad6e648ebbf48",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1938--france/cup.txt": {
+    "mtime": 1781457106.2711277,
+    "ast_hash": "c96211fd95e5842ac4a38f7682417a4f",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1938--france/squads/be-belgium.txt": {
+    "mtime": 1781457106.2711277,
+    "ast_hash": "43f51c85683e7c371caa7a8d0361ff3e",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1938--france/squads/br-brazil.txt": {
+    "mtime": 1781457106.2711277,
+    "ast_hash": "027f331bf4371f24ac367ff3b594638d",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1938--france/squads/ch-switzerland.txt": {
+    "mtime": 1781457106.2711277,
+    "ast_hash": "f1a63c9b2794b664a8ffa9baba70bda4",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1938--france/squads/cu-cuba.txt": {
+    "mtime": 1781457106.2711277,
+    "ast_hash": "89ce08f06e6477aad31b3d68d1b24e51",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1938--france/squads/de-deutschland.txt": {
+    "mtime": 1781457106.2711277,
+    "ast_hash": "9d1b4b7b28bd5f2d214aea97040cc0ff",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1938--france/squads/dei-dutch-east-indies.txt": {
+    "mtime": 1781457106.2711277,
+    "ast_hash": "b25ae033ac0ca73a3c590f6223421c06",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1938--france/squads/fr-france.txt": {
+    "mtime": 1781457106.2711277,
+    "ast_hash": "4514be7f4a7a9df1bb22dd6dfb6d28af",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1938--france/squads/hu-hungary.txt": {
+    "mtime": 1781457106.2711277,
+    "ast_hash": "3987aa9c3fd45db6d1fbfe3fa8a39f4f",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1938--france/squads/it-italy.txt": {
+    "mtime": 1781457106.2711277,
+    "ast_hash": "80191d4ae9b40690dc04fe77802a66fe",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1938--france/squads/nl-netherlands.txt": {
+    "mtime": 1781457106.2711277,
+    "ast_hash": "88fc2f0c5f5747f789bba1438245b37f",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1938--france/squads/no-norway.txt": {
+    "mtime": 1781457106.2711277,
+    "ast_hash": "f5aabf551f1a5c96fcf70e1bf71ce330",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1938--france/squads/pl-poland.txt": {
+    "mtime": 1781457106.2711277,
+    "ast_hash": "2ef202ccd00629d5a44e074693576427",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1938--france/squads/ro-romania.txt": {
+    "mtime": 1781457106.2711277,
+    "ast_hash": "8f7d623fc39dad8a1cab099adf24afb1",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1938--france/squads/se-sweden.txt": {
+    "mtime": 1781457106.2711277,
+    "ast_hash": "909cbe3891e65fbafc8a271625ae535f",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1938--france/squads/tch-czechoslovakia.txt": {
+    "mtime": 1781457106.2711277,
+    "ast_hash": "603bb3579eb848689540b37c0d52be8e",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1950--brazil/NOTES.md": {
+    "mtime": 1781457106.2877798,
+    "ast_hash": "ac1fe9b6f774c1c351601307ab2a3dbf",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1950--brazil/cup.txt": {
+    "mtime": 1781457106.2877798,
+    "ast_hash": "1ea41da1ffda3ff54fec95374b074bb0",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1950--brazil/squads/bo-bolivia.txt": {
+    "mtime": 1781457106.2877798,
+    "ast_hash": "744d94f8762be3ff2dc57ee843a31131",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1950--brazil/squads/br-brazil.txt": {
+    "mtime": 1781457106.2877798,
+    "ast_hash": "45dc1d71ca5a0795f911addff6d74dc0",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1950--brazil/squads/ch-switzerland.txt": {
+    "mtime": 1781457106.2877798,
+    "ast_hash": "702e7d888efed25577d569ae66e1519e",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1950--brazil/squads/cl-chile.txt": {
+    "mtime": 1781457106.2877798,
+    "ast_hash": "77635edb169bb40ba6f54998a1affe66",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1950--brazil/squads/en-england.txt": {
+    "mtime": 1781457106.2877798,
+    "ast_hash": "7998ca02bc5a48d30dfa983184914285",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1950--brazil/squads/es-espana.txt": {
+    "mtime": 1781457106.2877798,
+    "ast_hash": "13068cbf37f44f1ee551207b7f124fd4",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1950--brazil/squads/it-italy.txt": {
+    "mtime": 1781457106.2877798,
+    "ast_hash": "68f3b2a203b1cf6c3019112e2bd6b76d",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1950--brazil/squads/mx-mexico.txt": {
+    "mtime": 1781457106.2877798,
+    "ast_hash": "f28e9526388a4a223142ce784ddcc2d6",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1950--brazil/squads/py-paraguay.txt": {
+    "mtime": 1781457106.2877798,
+    "ast_hash": "fc9883d520f036c9adff6c7b79669606",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1950--brazil/squads/se-sweden.txt": {
+    "mtime": 1781457106.2877798,
+    "ast_hash": "e5d073109cf6ad5b38e29a820a062ecd",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1950--brazil/squads/us-united-states.txt": {
+    "mtime": 1781457106.2877798,
+    "ast_hash": "bc1705e6bc2f779009bd98d382843fed",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1950--brazil/squads/uy-uruguay.txt": {
+    "mtime": 1781457106.2877798,
+    "ast_hash": "a6b8e6664d82d30b97b6ca4f10eb3db7",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1950--brazil/squads/yug-yugoslavia.txt": {
+    "mtime": 1781457106.2877798,
+    "ast_hash": "13232d68bd09e798ba48b19d934a79b9",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1954--switzerland/NOTES.md": {
+    "mtime": 1781457106.2877798,
+    "ast_hash": "b5782999989d81099aee352cb7ce1562",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1954--switzerland/cup.txt": {
+    "mtime": 1781457106.2877798,
+    "ast_hash": "16b8967997b667c9eb176c71028a005f",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1954--switzerland/squads/at-austria.txt": {
+    "mtime": 1781457106.2877798,
+    "ast_hash": "d107d522b7ff57f0c6ce6d303787d3a1",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1954--switzerland/squads/be-belgium.txt": {
+    "mtime": 1781457106.2877798,
+    "ast_hash": "5c6ed8ca4c25824e2cc0fe79068731f5",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1954--switzerland/squads/br-brazil.txt": {
+    "mtime": 1781457106.2877798,
+    "ast_hash": "272b2cb944d6877d7409d6e190f83c45",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1954--switzerland/squads/ch-switzerland.txt": {
+    "mtime": 1781457106.2877798,
+    "ast_hash": "0b8e06f1840019b8727f086eaddbdb52",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1954--switzerland/squads/en-england.txt": {
+    "mtime": 1781457106.2877798,
+    "ast_hash": "686a8efccd32117ce6f963667aa89337",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1954--switzerland/squads/fr-france.txt": {
+    "mtime": 1781457106.2877798,
+    "ast_hash": "09a8443c624b2b9f123e046fcf8f3957",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1954--switzerland/squads/frg-west-germany.txt": {
+    "mtime": 1781457106.2877798,
+    "ast_hash": "9f12ee03a2791ab0fbb50335560505ba",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1954--switzerland/squads/hu-hungary.txt": {
+    "mtime": 1781457106.2877798,
+    "ast_hash": "ec862a9a1667f03f3a93132815f35910",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1954--switzerland/squads/it-italy.txt": {
+    "mtime": 1781457106.304474,
+    "ast_hash": "bf6ce06862ed60f0247d77567e6c52be",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1954--switzerland/squads/kr-south-korea.txt": {
+    "mtime": 1781457106.304474,
+    "ast_hash": "5d72f421a3226e697e7753b16ff9a1a2",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1954--switzerland/squads/mx-mexico.txt": {
+    "mtime": 1781457106.304474,
+    "ast_hash": "051b5958aa0bd46d012848bf92210d32",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1954--switzerland/squads/sco-scotland.txt": {
+    "mtime": 1781457106.304474,
+    "ast_hash": "bf6623121af5781b1915442b334a2cdc",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1954--switzerland/squads/tch-czechoslovakia.txt": {
+    "mtime": 1781457106.304474,
+    "ast_hash": "2e8ab7e00976d61e492cfc87a6eb45b8",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1954--switzerland/squads/tr-turkey.txt": {
+    "mtime": 1781457106.304474,
+    "ast_hash": "2b798a0bb2f5cb520c06bab16f34d2bb",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1954--switzerland/squads/uy-uruguay.txt": {
+    "mtime": 1781457106.304474,
+    "ast_hash": "904b704cb1f1df03f8102f6ada2a69da",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1954--switzerland/squads/yug-yugoslavia.txt": {
+    "mtime": 1781457106.311053,
+    "ast_hash": "c3b8aca08a594610c16863f22e0d561d",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1958--sweden/NOTES.md": {
+    "mtime": 1781457106.311053,
+    "ast_hash": "64f164c15b0a27ba32465c52588f5f31",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1958--sweden/cup.txt": {
+    "mtime": 1781457106.311053,
+    "ast_hash": "3c7f8533ba4bc1c10cfb121071fe36a9",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1958--sweden/squads/ar-argentina.txt": {
+    "mtime": 1781457106.311053,
+    "ast_hash": "81acbcb7964ea9effce5679a481006bf",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1958--sweden/squads/at-austria.txt": {
+    "mtime": 1781457106.311053,
+    "ast_hash": "20ce86404508c4026e93172aaab3d5d0",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1958--sweden/squads/br-brazil.txt": {
+    "mtime": 1781457106.311053,
+    "ast_hash": "3c45cf0746da629c098a91b94a797459",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1958--sweden/squads/en-england.txt": {
+    "mtime": 1781457106.311053,
+    "ast_hash": "5df973bd3deed591055286bf662f3c6d",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1958--sweden/squads/fr-france.txt": {
+    "mtime": 1781457106.311053,
+    "ast_hash": "6cdbfc7a85c438816fa1805d71dc90e7",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1958--sweden/squads/frg-west-germany.txt": {
+    "mtime": 1781457106.311053,
+    "ast_hash": "25fb31ad302a7e7ec420806bb3369a3b",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1958--sweden/squads/hu-hungary.txt": {
+    "mtime": 1781457106.311053,
+    "ast_hash": "9bfd80e5910756a636b87c0e8e8da41c",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1958--sweden/squads/mx-mexico.txt": {
+    "mtime": 1781457106.311053,
+    "ast_hash": "fd49517b50ec7437cb15b0e90c73e276",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1958--sweden/squads/nir-northern-ireland.txt": {
+    "mtime": 1781457106.311053,
+    "ast_hash": "54bb0bf9b89b30450e85080d4174db21",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1958--sweden/squads/py-paraguay.txt": {
+    "mtime": 1781457106.311053,
+    "ast_hash": "1da02260afe30663c2580194b879c053",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1958--sweden/squads/sco-scotland.txt": {
+    "mtime": 1781457106.311053,
+    "ast_hash": "d67edbed41bfaf5d83c8f993931127dc",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1958--sweden/squads/se-sweden.txt": {
+    "mtime": 1781457106.311053,
+    "ast_hash": "c5c493100ca3382217b0ba5aec09b1f1",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1958--sweden/squads/tch-czechoslovakia.txt": {
+    "mtime": 1781457106.311053,
+    "ast_hash": "ff5c78ef08e1cefb620c3e0b881430dd",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1958--sweden/squads/urs-soviet-union.txt": {
+    "mtime": 1781457106.311053,
+    "ast_hash": "7529383cef050b1b126a3d9153392d7e",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1958--sweden/squads/wal-wales.txt": {
+    "mtime": 1781457106.311053,
+    "ast_hash": "ac802fe348fcc0550d5ad51dd34625ef",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1958--sweden/squads/yug-yugoslavia.txt": {
+    "mtime": 1781457106.321118,
+    "ast_hash": "dd0867b4b9cdec1116e93f6d94a437e3",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1962--chile/NOTES.md": {
+    "mtime": 1781457106.3232348,
+    "ast_hash": "dc8b7e4195fa0468dbffbae34cfe37d8",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1962--chile/cup.txt": {
+    "mtime": 1781457106.3232348,
+    "ast_hash": "50ac28a22965ed60000b627fd081095c",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1962--chile/squads/ar-argentina.txt": {
+    "mtime": 1781457106.3252425,
+    "ast_hash": "eec30a9f5efb2b04eda66e928385c5d7",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1962--chile/squads/bg-bulgaria.txt": {
+    "mtime": 1781457106.3252425,
+    "ast_hash": "7f83bbad4001767f408f0e694aefa7a3",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1962--chile/squads/br-brazil.txt": {
+    "mtime": 1781457106.3252425,
+    "ast_hash": "7f637b2e2a990d94ef769d8d2231b47f",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1962--chile/squads/ch-switzerland.txt": {
+    "mtime": 1781457106.3252425,
+    "ast_hash": "7c7b8af2b939e261a41efb7a92f9246f",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1962--chile/squads/cl-chile.txt": {
+    "mtime": 1781457106.3252425,
+    "ast_hash": "4d14813ae7a8c63b9fc876cb63084e97",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1962--chile/squads/co-colombia.txt": {
+    "mtime": 1781457106.3252425,
+    "ast_hash": "32340a5d4c597837db353cb1c81f21e7",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1962--chile/squads/en-england.txt": {
+    "mtime": 1781457106.3252425,
+    "ast_hash": "e43494dcc0ec83a8fcdcc5b54df73de5",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1962--chile/squads/es-espana.txt": {
+    "mtime": 1781457106.3252425,
+    "ast_hash": "8292564e9d1ca25847c0dbf672f82c81",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1962--chile/squads/frg-west-germany.txt": {
+    "mtime": 1781457106.3252425,
+    "ast_hash": "4aaef329bb7c42231ec3be3ece228e36",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1962--chile/squads/hu-hungary.txt": {
+    "mtime": 1781457106.3252425,
+    "ast_hash": "9efb9af9a5ddcb22ae02a5445e2cf3b9",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1962--chile/squads/it-italy.txt": {
+    "mtime": 1781457106.3252425,
+    "ast_hash": "2edc7455a779a7c6722f91c2d03f26cc",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1962--chile/squads/mx-mexico.txt": {
+    "mtime": 1781457106.3252425,
+    "ast_hash": "fd5e069e871d3e2093857cdad78f80df",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1962--chile/squads/tch-czechoslovakia.txt": {
+    "mtime": 1781457106.3252425,
+    "ast_hash": "a15dff90ec8c44a2174e7fed7a072d46",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1962--chile/squads/urs-soviet-union.txt": {
+    "mtime": 1781457106.3252425,
+    "ast_hash": "381e48dd2dbc9ef0f632d3bb608e9a1d",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1962--chile/squads/uy-uruguay.txt": {
+    "mtime": 1781457106.3252425,
+    "ast_hash": "38e5d23fb03f7119b64aa90ce3d3f69e",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1962--chile/squads/yug-yugoslavia.txt": {
+    "mtime": 1781457106.3252425,
+    "ast_hash": "dd245e468b7403ffc5de365884bf1986",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1966--england/NOTES.md": {
+    "mtime": 1781457106.3252425,
+    "ast_hash": "6188f22a72b9b07e4b2d4b910d82ee8f",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1966--england/cup.txt": {
+    "mtime": 1781457106.3252425,
+    "ast_hash": "8737598392ed96ca698a7c2ee212c26d",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1966--england/squads/ar-argentina.txt": {
+    "mtime": 1781457106.3252425,
+    "ast_hash": "ef52252a07ddb096aaf0dff23ac91a41",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1966--england/squads/bg-bulgaria.txt": {
+    "mtime": 1781457106.3252425,
+    "ast_hash": "7ca32fc98d5a0e86e3300c17866709a0",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1966--england/squads/br-brazil.txt": {
+    "mtime": 1781457106.3252425,
+    "ast_hash": "fa2c9198a37f15db9bdad848e9e13788",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1966--england/squads/ch-switzerland.txt": {
+    "mtime": 1781457106.336797,
+    "ast_hash": "d78c1ab0858c9df960c4515c704e21ac",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1966--england/squads/cl-chile.txt": {
+    "mtime": 1781457106.337811,
+    "ast_hash": "72a47af56523899f6d48d38651671545",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1966--england/squads/en-england.txt": {
+    "mtime": 1781457106.337811,
+    "ast_hash": "5b4a75bac01019b881f407c8f559b836",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1966--england/squads/es-espana.txt": {
+    "mtime": 1781457106.337811,
+    "ast_hash": "6fa0f7225ec2365ee35cac0b1230c2ec",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1966--england/squads/fr-france.txt": {
+    "mtime": 1781457106.337811,
+    "ast_hash": "73a912016a511ee2b4362de920802ef2",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1966--england/squads/frg-west-germany.txt": {
+    "mtime": 1781457106.337811,
+    "ast_hash": "1c4df84cad0dc7d91b0ac6b451ec9411",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1966--england/squads/hu-hungary.txt": {
+    "mtime": 1781457106.337811,
+    "ast_hash": "6ec4985b601ee70b0cf254697a2206a2",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1966--england/squads/it-italy.txt": {
+    "mtime": 1781457106.337811,
+    "ast_hash": "bd3fb7af55a5c0e9cb9ecbb9d3efd8a9",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1966--england/squads/kp-north-korea.txt": {
+    "mtime": 1781457106.337811,
+    "ast_hash": "1fe6e5b6b68f9b0e7c80bbcdc20a4437",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1966--england/squads/mx-mexico.txt": {
+    "mtime": 1781457106.337811,
+    "ast_hash": "b5f742c20077c187f1f80e75a8235af1",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1966--england/squads/pt-portugal.txt": {
+    "mtime": 1781457106.337811,
+    "ast_hash": "2dcb8d552e4cdeee1e5f0c3bc0a3357c",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1966--england/squads/urs-soviet-union.txt": {
+    "mtime": 1781457106.337811,
+    "ast_hash": "48cd633495ae3c4e8cedbd17b982f041",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1966--england/squads/uy-uruguay.txt": {
+    "mtime": 1781457106.337811,
+    "ast_hash": "51cc9e4082ad7adadbe5521c9e72d92c",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1970--mexico/NOTES.md": {
+    "mtime": 1781457106.337811,
+    "ast_hash": "9bcc34af58135f4b3fbbf41c47892090",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1970--mexico/cup.txt": {
+    "mtime": 1781457106.337811,
+    "ast_hash": "adc2c278e258e8f972b8ee78934a7cc1",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1970--mexico/squads/be-belgium.txt": {
+    "mtime": 1781457106.337811,
+    "ast_hash": "20a79da6ee43eb440d67869af0fd876d",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1970--mexico/squads/bg-bulgaria.txt": {
+    "mtime": 1781457106.337811,
+    "ast_hash": "9d3ba3d37526cb613c40e73eacff8e7a",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1970--mexico/squads/br-brazil.txt": {
+    "mtime": 1781457106.337811,
+    "ast_hash": "a712db8f3117e1a5e544d9591c7196a6",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1970--mexico/squads/en-england.txt": {
+    "mtime": 1781457106.337811,
+    "ast_hash": "38535d3aa46682ed96869256a8172d19",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1970--mexico/squads/frg-west-germany.txt": {
+    "mtime": 1781457106.337811,
+    "ast_hash": "67fd32044665f873c7d413a3da5174d2",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1970--mexico/squads/il-israel.txt": {
+    "mtime": 1781457106.337811,
+    "ast_hash": "98b9b112a1842bb03a95a9415910e947",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1970--mexico/squads/it-italy.txt": {
+    "mtime": 1781457106.337811,
+    "ast_hash": "22bc732529fb53bfab50d4cd05907d49",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1970--mexico/squads/ma-morocco.txt": {
+    "mtime": 1781457106.337811,
+    "ast_hash": "941b296df89782092509aeac75d4b404",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1970--mexico/squads/mx-mexico.txt": {
+    "mtime": 1781457106.337811,
+    "ast_hash": "a54d0084a85244055915ac748bd1a7a8",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1970--mexico/squads/pe-peru.txt": {
+    "mtime": 1781457106.337811,
+    "ast_hash": "6098fd944f8bd466187c00930e9f6d98",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1970--mexico/squads/ro-romania.txt": {
+    "mtime": 1781457106.3534267,
+    "ast_hash": "baeb7b6ed8ecd20d12d142f784e2c55a",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1970--mexico/squads/se-sweden.txt": {
+    "mtime": 1781457106.3544378,
+    "ast_hash": "106730e159c275c08cfa8f5d42d0b8d6",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1970--mexico/squads/sv-el-salvador.txt": {
+    "mtime": 1781457106.3544378,
+    "ast_hash": "c61d64cf0c2bc1c84b44988dcdf64e11",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1970--mexico/squads/tch-czechoslovakia.txt": {
+    "mtime": 1781457106.3565426,
+    "ast_hash": "ad78b8dc51a188a1fa8e09ae86854e2c",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1970--mexico/squads/urs-soviet-union.txt": {
+    "mtime": 1781457106.3565426,
+    "ast_hash": "c7b406c0abe03f4b2f1fbc7859e85d11",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1970--mexico/squads/uy-uruguay.txt": {
+    "mtime": 1781457106.358551,
+    "ast_hash": "1fb40889172ba3c291ac601c42846509",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1974--west-germany/NOTES.md": {
+    "mtime": 1781457106.358551,
+    "ast_hash": "c54c0430023c0ed428a62dcc9090d15a",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1974--west-germany/cup.txt": {
+    "mtime": 1781457106.358551,
+    "ast_hash": "5c2feb126a711876c5286b979489689e",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1974--west-germany/squads/ar-argentina.txt": {
+    "mtime": 1781457106.360557,
+    "ast_hash": "c59b8f6f3c05de201a601e53ab4a40d9",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1974--west-germany/squads/au-australia.txt": {
+    "mtime": 1781457106.360557,
+    "ast_hash": "33d140b9454ab918e7011ecefd3de544",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1974--west-germany/squads/bg-bulgaria.txt": {
+    "mtime": 1781457106.360557,
+    "ast_hash": "9d131f2b0346c662a0e92b03ddf63f99",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1974--west-germany/squads/br-brazil.txt": {
+    "mtime": 1781457106.360557,
+    "ast_hash": "5e7c38ac0a7c809a67a5d30060f90fc4",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1974--west-germany/squads/cl-chile.txt": {
+    "mtime": 1781457106.360557,
+    "ast_hash": "f98623adbafd856d52c94f2a4f851ae8",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1974--west-germany/squads/frg-west-germany.txt": {
+    "mtime": 1781457106.360557,
+    "ast_hash": "26103fc9f1193a2fbd40edc1e18ee17c",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1974--west-germany/squads/gdr-east-germany.txt": {
+    "mtime": 1781457106.360557,
+    "ast_hash": "44fb7e02ce61e1044c37e98427aa4905",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1974--west-germany/squads/ht-haiti.txt": {
+    "mtime": 1781457106.360557,
+    "ast_hash": "0a2f7624b4e9c2eadfe56bc92f9bad73",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1974--west-germany/squads/it-italy.txt": {
+    "mtime": 1781457106.360557,
+    "ast_hash": "0c09c803303b9dfafff6959ca8528943",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1974--west-germany/squads/nl-netherlands.txt": {
+    "mtime": 1781457106.360557,
+    "ast_hash": "fc707b52f90cc9afc6fa35d4a9182c33",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1974--west-germany/squads/pl-poland.txt": {
+    "mtime": 1781457106.360557,
+    "ast_hash": "778048782b6befb78c0a5d9838ec2695",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1974--west-germany/squads/sco-scotland.txt": {
+    "mtime": 1781457106.360557,
+    "ast_hash": "e4c65cd42fdc34b9d9a926172219fe8e",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1974--west-germany/squads/se-sweden.txt": {
+    "mtime": 1781457106.360557,
+    "ast_hash": "bc5223100ed51f648ccd4df99da87539",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1974--west-germany/squads/uy-uruguay.txt": {
+    "mtime": 1781457106.360557,
+    "ast_hash": "0f6300650e2e56d681cd4f7369c2826e",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1974--west-germany/squads/yug-yugoslavia.txt": {
+    "mtime": 1781457106.360557,
+    "ast_hash": "be6d18a3512a4bd0b72197ec38e7ff09",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1974--west-germany/squads/zai-zaire.txt": {
+    "mtime": 1781457106.360557,
+    "ast_hash": "9b57484356386709ecb54e1bb92de6af",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1978--argentina/NOTES.md": {
+    "mtime": 1781457106.360557,
+    "ast_hash": "52698417c5d00044b6e71c7cf74f4a4a",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1978--argentina/cup.txt": {
+    "mtime": 1781457106.360557,
+    "ast_hash": "62c2ef17a0ab8c263696767c63f9ed41",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1978--argentina/squads/ar-argentina.txt": {
+    "mtime": 1781457106.370109,
+    "ast_hash": "46302cf0715a6c763aa65fb2ee68835e",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1978--argentina/squads/at-austria.txt": {
+    "mtime": 1781457106.3711236,
+    "ast_hash": "a3e3910d4a5c8fa70f178e3a6f043e7d",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1978--argentina/squads/br-brazil.txt": {
+    "mtime": 1781457106.3711236,
+    "ast_hash": "c70a11f0ecac6b348c0b3a490bb2a4a7",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1978--argentina/squads/es-espana.txt": {
+    "mtime": 1781457106.3733408,
+    "ast_hash": "93b214dc690fb96791e10141b2ce4fc2",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1978--argentina/squads/fr-france.txt": {
+    "mtime": 1781457106.3733408,
+    "ast_hash": "3d8b12181fcd242e427cfaacaeb75c13",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1978--argentina/squads/frg-west-germany.txt": {
+    "mtime": 1781457106.3733408,
+    "ast_hash": "4e33e7156e79034ec9c286b7730b1d8c",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1978--argentina/squads/hu-hungary.txt": {
+    "mtime": 1781457106.3733408,
+    "ast_hash": "860de65bec32851f1238c247bd2e9d02",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1978--argentina/squads/ir-iran.txt": {
+    "mtime": 1781457106.3733408,
+    "ast_hash": "dcd0125915026afb7b66b1057d718b32",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1978--argentina/squads/it-italy.txt": {
+    "mtime": 1781457106.3733408,
+    "ast_hash": "7792bcd07e404893b09e2a8e15404ecb",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1978--argentina/squads/mx-mexico.txt": {
+    "mtime": 1781457106.3733408,
+    "ast_hash": "9a73accf2431ce2710aaaec0fbf2aaa2",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1978--argentina/squads/nl-netherlands.txt": {
+    "mtime": 1781457106.3733408,
+    "ast_hash": "1b224a8db8ae30b67f52ef2d6de25734",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1978--argentina/squads/pe-peru.txt": {
+    "mtime": 1781457106.3733408,
+    "ast_hash": "49c2cfd333b014c519ff8b70dc87ca70",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1978--argentina/squads/pl-poland.txt": {
+    "mtime": 1781457106.3733408,
+    "ast_hash": "bdd24dc69869ff78a488500ee8c5415b",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1978--argentina/squads/sco-scotland.txt": {
+    "mtime": 1781457106.3733408,
+    "ast_hash": "2dd57aa8a48389faf6bf0d769fb2f85d",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1978--argentina/squads/se-sweden.txt": {
+    "mtime": 1781457106.3733408,
+    "ast_hash": "c150aa64997fbccf328dd852c2dba571",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1978--argentina/squads/tn-tunisia.txt": {
+    "mtime": 1781457106.3733408,
+    "ast_hash": "f6e2d749aead4ee5c18e4a83381ad547",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1982--spain/NOTES.md": {
+    "mtime": 1781457106.3733408,
+    "ast_hash": "fdc55080b5615a9629a20c41767e3c2b",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1982--spain/cup.txt": {
+    "mtime": 1781457106.3733408,
+    "ast_hash": "8c74c2045d7aa374528c38ab01a8c618",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1982--spain/squads/ar-argentina.txt": {
+    "mtime": 1781457106.3733408,
+    "ast_hash": "af572ee954552bbafa824796d6eb5ddc",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1982--spain/squads/at-austria.txt": {
+    "mtime": 1781457106.3733408,
+    "ast_hash": "3b252d9f62f3655a85cf67fab3304dce",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1982--spain/squads/be-belgium.txt": {
+    "mtime": 1781457106.3733408,
+    "ast_hash": "237af3e262ca9bb199d1686cc90e864b",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1982--spain/squads/br-brazil.txt": {
+    "mtime": 1781457106.3733408,
+    "ast_hash": "1db13151d931aea0d2bc7c9785abe8aa",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1982--spain/squads/cl-chile.txt": {
+    "mtime": 1781457106.3733408,
+    "ast_hash": "5b501ed74b5087cecb594549a2e7f293",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1982--spain/squads/cm-cameroon.txt": {
+    "mtime": 1781457106.3733408,
+    "ast_hash": "782cc30f20f41b853c3e8e4d68b47602",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1982--spain/squads/dz-algeria.txt": {
+    "mtime": 1781457106.3733408,
+    "ast_hash": "918391fcc629366e6131da18e1d54cca",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1982--spain/squads/en-england.txt": {
+    "mtime": 1781457106.3733408,
+    "ast_hash": "38a21041b50e9d730b834d0d9d8b6750",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1982--spain/squads/es-espana.txt": {
+    "mtime": 1781457106.3733408,
+    "ast_hash": "6fe9d22139724a46da42759823a211f0",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1982--spain/squads/fr-france.txt": {
+    "mtime": 1781457106.3877103,
+    "ast_hash": "2907a8f150bc8b3693f8f40ffe971071",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1982--spain/squads/frg-west-germany.txt": {
+    "mtime": 1781457106.3877103,
+    "ast_hash": "5d8a77fb53c1dcd22a023b8a59b7c984",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1982--spain/squads/hn-honduras.txt": {
+    "mtime": 1781457106.3898313,
+    "ast_hash": "efd9de78e834e3bc17dfa60842074d6a",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1982--spain/squads/hu-hungary.txt": {
+    "mtime": 1781457106.3898313,
+    "ast_hash": "9f3e754f99e7d0ed1bb64bdb4b9e9c13",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1982--spain/squads/it-italy.txt": {
+    "mtime": 1781457106.3898313,
+    "ast_hash": "f25c20ad1d688a40c540786fd358496a",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1982--spain/squads/kw-kuwait.txt": {
+    "mtime": 1781457106.3898313,
+    "ast_hash": "87793e76bf6332a69267dc60302c717d",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1982--spain/squads/nir-northern-ireland.txt": {
+    "mtime": 1781457106.3898313,
+    "ast_hash": "83f81e0f00b81ccc1845f79d328b3c36",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1982--spain/squads/nz-new-zealand.txt": {
+    "mtime": 1781457106.3898313,
+    "ast_hash": "dc345ca674421ff6b406f85d823ded77",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1982--spain/squads/pe-peru.txt": {
+    "mtime": 1781457106.3898313,
+    "ast_hash": "f9bade4d499bcac8a6559a4fe2499135",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1982--spain/squads/pl-poland.txt": {
+    "mtime": 1781457106.3898313,
+    "ast_hash": "098ebdd8b1751a65ff1ab35b0a161794",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1982--spain/squads/sco-scotland.txt": {
+    "mtime": 1781457106.3898313,
+    "ast_hash": "a11553e159c73dcf5d73a38ddd3f6f53",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1982--spain/squads/sv-el-salvador.txt": {
+    "mtime": 1781457106.3898313,
+    "ast_hash": "479aa729e34d582caba7f242a5fc9bec",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1982--spain/squads/tch-czechoslovakia.txt": {
+    "mtime": 1781457106.3898313,
+    "ast_hash": "63c292387522b0b8febaa86f008d859f",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1982--spain/squads/urs-soviet-union.txt": {
+    "mtime": 1781457106.3898313,
+    "ast_hash": "cc8cdb8a851bbd802539e31ea6417f62",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1982--spain/squads/yug-yugoslavia.txt": {
+    "mtime": 1781457106.3898313,
+    "ast_hash": "9708d378fbad42353053c5f68d2acf33",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1986--mexico/NOTES.md": {
+    "mtime": 1781457106.3898313,
+    "ast_hash": "c0eccf9ee9056086f4550af4671240c8",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1986--mexico/cup.txt": {
+    "mtime": 1781457106.3898313,
+    "ast_hash": "0d489da2b1d771dfc391bb1765a23f35",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1986--mexico/cup_finals.txt": {
+    "mtime": 1781457106.3898313,
+    "ast_hash": "aa30637c0990bdad9b0b60f573b8f561",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1986--mexico/squads/ar-argentina.txt": {
+    "mtime": 1781457106.3898313,
+    "ast_hash": "7731570143f8cd4db7855b5f47e807ca",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1986--mexico/squads/be-belgium.txt": {
+    "mtime": 1781457106.3898313,
+    "ast_hash": "23cfb70de81e8fff1fab5f4ee08db328",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1986--mexico/squads/bg-bulgaria.txt": {
+    "mtime": 1781457106.3898313,
+    "ast_hash": "d5fd9f8a4ba17e422c08b4e3eb0c1ef4",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1986--mexico/squads/br-brazil.txt": {
+    "mtime": 1781457106.3898313,
+    "ast_hash": "2b06c9db51a594a326e9b730efee61bc",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1986--mexico/squads/ca-canada.txt": {
+    "mtime": 1781457106.3898313,
+    "ast_hash": "1417e048965befa17da6dd04b45bb6b7",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1986--mexico/squads/dk-denmark.txt": {
+    "mtime": 1781457106.403342,
+    "ast_hash": "91fbb5b0b1d25c72d3e98cb31a0fbb4f",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1986--mexico/squads/dz-algeria.txt": {
+    "mtime": 1781457106.4043536,
+    "ast_hash": "d80e950aa0f40dd82d9538b1c1851652",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1986--mexico/squads/en-england.txt": {
+    "mtime": 1781457106.4043536,
+    "ast_hash": "2872aeef5b76f45fd4892e92fd911f70",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1986--mexico/squads/es-espana.txt": {
+    "mtime": 1781457106.4043536,
+    "ast_hash": "3d2f3d0c4c6f79afe577f143fb0b91ea",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1986--mexico/squads/fr-france.txt": {
+    "mtime": 1781457106.4043536,
+    "ast_hash": "0a0587e005ea0ea74de55f2b6bdfe39a",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1986--mexico/squads/frg-west-germany.txt": {
+    "mtime": 1781457106.4043536,
+    "ast_hash": "c525c631aa8014c38e1fae1708000a01",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1986--mexico/squads/hu-hungary.txt": {
+    "mtime": 1781457106.4043536,
+    "ast_hash": "22a6c7a9fdfdef4fee928c3014ea4c4c",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1986--mexico/squads/iq-iraq.txt": {
+    "mtime": 1781457106.4043536,
+    "ast_hash": "6514ac359b1ee7187eaa6b4824293e51",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1986--mexico/squads/it-italy.txt": {
+    "mtime": 1781457106.4043536,
+    "ast_hash": "881030b401c22a19095101bab1999b89",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1986--mexico/squads/kr-south-korea.txt": {
+    "mtime": 1781457106.4043536,
+    "ast_hash": "5ee33bd97e1d18e79abb9bb15fca836e",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1986--mexico/squads/ma-morocco.txt": {
+    "mtime": 1781457106.4043536,
+    "ast_hash": "a7f921ca0ee3704cd1731c1beab55b10",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1986--mexico/squads/mx-mexico.txt": {
+    "mtime": 1781457106.4043536,
+    "ast_hash": "2b4a8feb5dae83adf134eee23778cee5",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1986--mexico/squads/nir-northern-ireland.txt": {
+    "mtime": 1781457106.4043536,
+    "ast_hash": "dae38c5a20ce62e8e8ada6b249c0e4d1",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1986--mexico/squads/pl-poland.txt": {
+    "mtime": 1781457106.4043536,
+    "ast_hash": "7a4cbbd9869012617a1fa9495f860a2f",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1986--mexico/squads/pt-portugal.txt": {
+    "mtime": 1781457106.4043536,
+    "ast_hash": "4d57ba9f69ecfedead1d2f6806b8dff5",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1986--mexico/squads/py-paraguay.txt": {
+    "mtime": 1781457106.4043536,
+    "ast_hash": "bfe56e7060ed755f5d96df74b1d89bd0",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1986--mexico/squads/sco-scotland.txt": {
+    "mtime": 1781457106.4043536,
+    "ast_hash": "b27b8992a3b72c9d3e438fa60fd2bf3c",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1986--mexico/squads/urs-soviet-union.txt": {
+    "mtime": 1781457106.4043536,
+    "ast_hash": "e56b57b350da475933980e8017a13fd4",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1986--mexico/squads/uy-uruguay.txt": {
+    "mtime": 1781457106.4043536,
+    "ast_hash": "25f1ce62c0fd9ebe882793e166b900af",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1990--italy/NOTES.md": {
+    "mtime": 1781457106.4043536,
+    "ast_hash": "b3b37a8044a83201fa68f989ac76fab5",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1990--italy/cup.txt": {
+    "mtime": 1781457106.4043536,
+    "ast_hash": "8aa8ebdeb5ad0a7416c74a8752e6b073",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1990--italy/cup_finals.txt": {
+    "mtime": 1781457106.4043536,
+    "ast_hash": "b12840c484ae0d0a98201c88b4e8ba5e",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1990--italy/squads/ae-united-arab-emirates.txt": {
+    "mtime": 1781457106.4043536,
+    "ast_hash": "54b6fa6ac28165e7959722a1e8f3d4c2",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1990--italy/squads/ar-argentina.txt": {
+    "mtime": 1781457106.4043536,
+    "ast_hash": "5f959c32871c6bf7ca899215dbaeb901",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1990--italy/squads/at-austria.txt": {
+    "mtime": 1781457106.4200034,
+    "ast_hash": "f39806d42861701c55577ce159e0a54f",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1990--italy/squads/be-belgium.txt": {
+    "mtime": 1781457106.4210174,
+    "ast_hash": "6f20f07332aa4c2ec006602e87fab60a",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1990--italy/squads/br-brazil.txt": {
+    "mtime": 1781457106.4232075,
+    "ast_hash": "0d81619c2a6a43e50a5251e284e77991",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1990--italy/squads/cm-cameroon.txt": {
+    "mtime": 1781457106.4232075,
+    "ast_hash": "454fd3f8afbc30b333311dfd0a32737e",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1990--italy/squads/co-colombia.txt": {
+    "mtime": 1781457106.4232075,
+    "ast_hash": "ef39daafe48c05a13296f8868f38af6e",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1990--italy/squads/cr-costa-rica.txt": {
+    "mtime": 1781457106.4232075,
+    "ast_hash": "967122688cc4493f2cb4b6246a9e14e0",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1990--italy/squads/eg-egypt.txt": {
+    "mtime": 1781457106.4232075,
+    "ast_hash": "11a7302ecbac03e8289c2fcd51869a1f",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1990--italy/squads/en-england.txt": {
+    "mtime": 1781457106.4232075,
+    "ast_hash": "10b5878194fbc251e7ce7228c6abea4e",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1990--italy/squads/es-espana.txt": {
+    "mtime": 1781457106.4232075,
+    "ast_hash": "0a1d47c40243d52fcffbd3a1af360578",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1990--italy/squads/frg-west-germany.txt": {
+    "mtime": 1781457106.4232075,
+    "ast_hash": "bdf55eec6bab2efee9af3e4586f8b109",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1990--italy/squads/ie-ireland.txt": {
+    "mtime": 1781457106.4232075,
+    "ast_hash": "8754aa31a6cbba85319f0e28b4e33456",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1990--italy/squads/it-italy.txt": {
+    "mtime": 1781457106.4232075,
+    "ast_hash": "a43c82823e4c4754b163df26f093312d",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1990--italy/squads/kr-south-korea.txt": {
+    "mtime": 1781457106.4232075,
+    "ast_hash": "a904a4697b82f8d31c21cac80af9d153",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1990--italy/squads/nl-netherlands.txt": {
+    "mtime": 1781457106.4232075,
+    "ast_hash": "de52133532da309e3de60702fe7a2a29",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1990--italy/squads/ro-romania.txt": {
+    "mtime": 1781457106.4232075,
+    "ast_hash": "d03bb8dbf9200e2c73ff3485ba55b075",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1990--italy/squads/sco-scotland.txt": {
+    "mtime": 1781457106.4232075,
+    "ast_hash": "91db59a2dab4a995c532863e85fb8426",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1990--italy/squads/se-sweden.txt": {
+    "mtime": 1781457106.4232075,
+    "ast_hash": "08a740e968cbce110b8b0ba9386f06d7",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1990--italy/squads/tch-czechoslovakia.txt": {
+    "mtime": 1781457106.4232075,
+    "ast_hash": "d51ff769472aef1f3d3840dda0643725",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1990--italy/squads/urs-soviet-union.txt": {
+    "mtime": 1781457106.4232075,
+    "ast_hash": "d1f3bf9af7e01a2dbddbed9f7cd62c32",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1990--italy/squads/us-united-states.txt": {
+    "mtime": 1781457106.4232075,
+    "ast_hash": "0d286a5021fb56548b3333d53c76c6ca",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1990--italy/squads/uy-uruguay.txt": {
+    "mtime": 1781457106.4323215,
+    "ast_hash": "eb405c6266e6a1559d424b3f6d7b0995",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1990--italy/squads/yug-yugoslavia.txt": {
+    "mtime": 1781457106.4323215,
+    "ast_hash": "ec1bdabecc99d7f34f57a3ae93d0c1ba",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1994--usa/NOTES.md": {
+    "mtime": 1781457106.4323215,
+    "ast_hash": "91e3d219ea793a99659b289d7508ed5b",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1994--usa/cup.txt": {
+    "mtime": 1781457106.4323215,
+    "ast_hash": "7a4e94c7bbe791615e9ff9d5e78217f3",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1994--usa/cup_finals.txt": {
+    "mtime": 1781457106.434329,
+    "ast_hash": "7c6e052737c3d298ee01d0724c93ec26",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1994--usa/squads/ar-argentina.txt": {
+    "mtime": 1781457106.434329,
+    "ast_hash": "f29710071e77f2feb741ff7789f11cbf",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1994--usa/squads/be-belgium.txt": {
+    "mtime": 1781457106.434329,
+    "ast_hash": "61e4453a0a7e7b62140b8b2b06f3c242",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1994--usa/squads/bg-bulgaria.txt": {
+    "mtime": 1781457106.434329,
+    "ast_hash": "50795e181db8b18fd55538b4519f6c9a",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1994--usa/squads/bo-bolivia.txt": {
+    "mtime": 1781457106.4366448,
+    "ast_hash": "14d2dd08f69b9411a9cd030ced236120",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1994--usa/squads/br-brazil.txt": {
+    "mtime": 1781457106.4376454,
+    "ast_hash": "3faa1d57797fb64da35fbc424b64f167",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1994--usa/squads/ch-switzerland.txt": {
+    "mtime": 1781457106.4376454,
+    "ast_hash": "71cf2f53e4bbb013678dba14cc5632c6",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1994--usa/squads/cm-cameroon.txt": {
+    "mtime": 1781457106.4376454,
+    "ast_hash": "fe00da2e668ea1755514102fd5fc1a82",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1994--usa/squads/co-colombia.txt": {
+    "mtime": 1781457106.4376454,
+    "ast_hash": "98c3869426e1e3f9458d7071df2f2d72",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1994--usa/squads/de-deutschland.txt": {
+    "mtime": 1781457106.4376454,
+    "ast_hash": "ce37a00c25ccf8c9e0693095c85c0734",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1994--usa/squads/es-espana.txt": {
+    "mtime": 1781457106.4376454,
+    "ast_hash": "5f808402291681134f29863dbb4c1ab8",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1994--usa/squads/gr-greece.txt": {
+    "mtime": 1781457106.4376454,
+    "ast_hash": "8b7748759a1ce7dd05318d6b8f8584a3",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1994--usa/squads/ie-ireland.txt": {
+    "mtime": 1781457106.4376454,
+    "ast_hash": "dffd6ea2b1263805a7616ca75ef4c12c",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1994--usa/squads/it-italy.txt": {
+    "mtime": 1781457106.4376454,
+    "ast_hash": "39e2f1061164dc0e32e163a78f4257d8",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1994--usa/squads/kr-south-korea.txt": {
+    "mtime": 1781457106.4376454,
+    "ast_hash": "479e33c40029bc41053ad9bf7135f2d1",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1994--usa/squads/ma-morocco.txt": {
+    "mtime": 1781457106.4376454,
+    "ast_hash": "415dd353ea183dfc27ded9fc307a29e5",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1994--usa/squads/mx-mexico.txt": {
+    "mtime": 1781457106.4376454,
+    "ast_hash": "8ea3386dcc66b7454e9ad942b3e9bc56",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1994--usa/squads/ng-nigeria.txt": {
+    "mtime": 1781457106.4376454,
+    "ast_hash": "28ec8064f40944f13c91abd54ec7086d",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1994--usa/squads/nl-netherlands.txt": {
+    "mtime": 1781457106.4376454,
+    "ast_hash": "7595403c2e13c67722c375cef4f597f6",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1994--usa/squads/no-norway.txt": {
+    "mtime": 1781457106.4461565,
+    "ast_hash": "39e6f00467520d42b0478e63d7a2c570",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1994--usa/squads/ro-romania.txt": {
+    "mtime": 1781457106.4461565,
+    "ast_hash": "e149c1dd656c360361af9dbbb7ce56fd",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1994--usa/squads/ru-russia.txt": {
+    "mtime": 1781457106.4461565,
+    "ast_hash": "e0168f0608b8a4ee02e9e06d7cf5581d",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1994--usa/squads/sa-saudi-arabia.txt": {
+    "mtime": 1781457106.4461565,
+    "ast_hash": "4291eb7264b292f223268856988f8875",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1994--usa/squads/se-sweden.txt": {
+    "mtime": 1781457106.4480467,
+    "ast_hash": "a431e52c8aa38a1ae19d618cd64f53f2",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1994--usa/squads/us-united-states.txt": {
+    "mtime": 1781457106.4480467,
+    "ast_hash": "0acfe5ccdefd3a9645cd9e7dfd2a1670",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1998--france/NOTES.md": {
+    "mtime": 1781457106.4480467,
+    "ast_hash": "18d86d1139dce323c4517ec71bd7dd8e",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1998--france/cup.txt": {
+    "mtime": 1781457106.4480467,
+    "ast_hash": "6dab86402bbc828298640f843de42761",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1998--france/cup_finals.txt": {
+    "mtime": 1781457106.4480467,
+    "ast_hash": "2a53af67916c9122bf1b80fe7855bc89",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1998--france/squads/ar-argentina.txt": {
+    "mtime": 1781457106.4480467,
+    "ast_hash": "2ae7ec043feea7a731cee3c85cb5c340",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1998--france/squads/at-austria.txt": {
+    "mtime": 1781457106.4480467,
+    "ast_hash": "857c8dc7c6c41d4c17e619f29832205f",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1998--france/squads/be-belgium.txt": {
+    "mtime": 1781457106.4480467,
+    "ast_hash": "a3f791613d407aae38467a14db901123",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1998--france/squads/bg-bulgaria.txt": {
+    "mtime": 1781457106.4480467,
+    "ast_hash": "5b89c94b76ca5a163a5735b8bd32c2eb",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1998--france/squads/br-brazil.txt": {
+    "mtime": 1781457106.4480467,
+    "ast_hash": "b5bb405526bd56a33678c7936cbfd2bc",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1998--france/squads/cl-chile.txt": {
+    "mtime": 1781457106.4533,
+    "ast_hash": "e5a8247f769026f7f6e67778637d69f9",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1998--france/squads/cm-cameroon.txt": {
+    "mtime": 1781457106.4543102,
+    "ast_hash": "db6999132de5b01b150e61c40e48127a",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1998--france/squads/co-colombia.txt": {
+    "mtime": 1781457106.4570217,
+    "ast_hash": "2d89d8fb283e48a618921939f5ab04de",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1998--france/squads/de-deutschland.txt": {
+    "mtime": 1781457106.4570217,
+    "ast_hash": "1b38e63aa25f773c3c2595bdbd5720e2",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1998--france/squads/dk-denmark.txt": {
+    "mtime": 1781457106.4570217,
+    "ast_hash": "716e8e626e009ccf0e78e699b0870d6a",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1998--france/squads/en-england.txt": {
+    "mtime": 1781457106.4570217,
+    "ast_hash": "9d076a54c1b79b5b8069b2e5d6fed8e6",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1998--france/squads/es-espana.txt": {
+    "mtime": 1781457106.4570217,
+    "ast_hash": "a62a12e8b80315fd6c9bae788001c191",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1998--france/squads/fr-france.txt": {
+    "mtime": 1781457106.4570217,
+    "ast_hash": "6a0aa7c1213aec00649c5314446a644f",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1998--france/squads/hr-croatia.txt": {
+    "mtime": 1781457106.4570217,
+    "ast_hash": "2cd88222e6cc3dc9a6feb9c22269523e",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1998--france/squads/ir-iran.txt": {
+    "mtime": 1781457106.4570217,
+    "ast_hash": "367f7cf0b4ee245bc43708ba15b13734",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1998--france/squads/it-italy.txt": {
+    "mtime": 1781457106.4570217,
+    "ast_hash": "33d23420004bc8569f2d6e4b1d53c21b",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1998--france/squads/jm-jamaica.txt": {
+    "mtime": 1781457106.4570217,
+    "ast_hash": "11364e6d33bd4c420f1d2acd78ebd54e",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1998--france/squads/jp-japan.txt": {
+    "mtime": 1781457106.4570217,
+    "ast_hash": "4aeca703f77872c46d1da8b8e25ab1ec",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1998--france/squads/kr-south-korea.txt": {
+    "mtime": 1781457106.4570217,
+    "ast_hash": "2a89b7de5dfb231eff2627b41d9ee9e7",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1998--france/squads/ma-morocco.txt": {
+    "mtime": 1781457106.4570217,
+    "ast_hash": "056cb7ab71a4c85f325abf98de79f33e",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1998--france/squads/mx-mexico.txt": {
+    "mtime": 1781457106.4570217,
+    "ast_hash": "d12c411208a41c7d640f745264e6a3b7",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1998--france/squads/ng-nigeria.txt": {
+    "mtime": 1781457106.4570217,
+    "ast_hash": "a9e806acfa13aef091b41fa71731764c",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1998--france/squads/nl-netherlands.txt": {
+    "mtime": 1781457106.4570217,
+    "ast_hash": "a2ce9105532981ab6f72ff032d73e3bf",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1998--france/squads/no-norway.txt": {
+    "mtime": 1781457106.4570217,
+    "ast_hash": "b2196745c083616eb5ef9a190820350c",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1998--france/squads/py-paraguay.txt": {
+    "mtime": 1781457106.4570217,
+    "ast_hash": "2dbb67aa2375c79e6da76ebf1f794075",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1998--france/squads/ro-romania.txt": {
+    "mtime": 1781457106.4570217,
+    "ast_hash": "b90d5ddea2c077b3c5792158b8c8e19e",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1998--france/squads/sa-saudi-arabia.txt": {
+    "mtime": 1781457106.4570217,
+    "ast_hash": "b3b9bd9f10e73a1c5980062a94445354",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1998--france/squads/sco-scotland.txt": {
+    "mtime": 1781457106.4570217,
+    "ast_hash": "7318ad19badcd6fd97536e843669d624",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1998--france/squads/tn-tunisia.txt": {
+    "mtime": 1781457106.4570217,
+    "ast_hash": "1884e6f2b5713894c57df36264e3ec0e",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1998--france/squads/us-united-states.txt": {
+    "mtime": 1781457106.4570217,
+    "ast_hash": "4014865f5651aafb0423e1c7766ebeed",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1998--france/squads/yug-yugoslavia.txt": {
+    "mtime": 1781457106.4570217,
+    "ast_hash": "ebebf4c35afb87e14f29b081e1a3bbb5",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/1998--france/squads/za-south-africa.txt": {
+    "mtime": 1781457106.4570217,
+    "ast_hash": "36dc49495dcf8b648abc6953b29ab056",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2002--south-korea-n-japan/NOTES.md": {
+    "mtime": 1781457106.4570217,
+    "ast_hash": "a4fce69231bc12f1976c0664bebaf69a",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2002--south-korea-n-japan/cup.txt": {
+    "mtime": 1781457106.4710145,
+    "ast_hash": "094123870ee3df1f16355268491d5d4c",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2002--south-korea-n-japan/cup_finals.txt": {
+    "mtime": 1781457106.4710145,
+    "ast_hash": "6ce29a1deb1500d47d33acc4700c6be1",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2002--south-korea-n-japan/squads/ar-argentina.txt": {
+    "mtime": 1781457106.4733205,
+    "ast_hash": "1534e74c6eaa9c8fb79fc2cff0bd6def",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2002--south-korea-n-japan/squads/be-belgium.txt": {
+    "mtime": 1781457106.4733205,
+    "ast_hash": "b3fe395d0b4a0248776bf0a81c1e7246",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2002--south-korea-n-japan/squads/br-brazil.txt": {
+    "mtime": 1781457106.4733205,
+    "ast_hash": "ee8485ef48e848a969d76872c1981f02",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2002--south-korea-n-japan/squads/cm-cameroon.txt": {
+    "mtime": 1781457106.4733205,
+    "ast_hash": "7e009bdca1a502423489c3580825d31f",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2002--south-korea-n-japan/squads/cn-china.txt": {
+    "mtime": 1781457106.4733205,
+    "ast_hash": "8101141f407e983058e39385005c5341",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2002--south-korea-n-japan/squads/cr-costa-rica.txt": {
+    "mtime": 1781457106.4733205,
+    "ast_hash": "e2f15718dd8649aaa9e4ab522edd29b5",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2002--south-korea-n-japan/squads/de-deutschland.txt": {
+    "mtime": 1781457106.4733205,
+    "ast_hash": "94b1a4dc45548299c637aa2420da3841",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2002--south-korea-n-japan/squads/dk-denmark.txt": {
+    "mtime": 1781457106.4733205,
+    "ast_hash": "8a865db2a2a6f8ba7bded48e86ae50d6",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2002--south-korea-n-japan/squads/ec-ecuador.txt": {
+    "mtime": 1781457106.4733205,
+    "ast_hash": "76ce664aea28b0a3575d59008508c6e1",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2002--south-korea-n-japan/squads/en-england.txt": {
+    "mtime": 1781457106.4733205,
+    "ast_hash": "2c8655ee65cae1a55d7479131f3e3951",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2002--south-korea-n-japan/squads/es-espana.txt": {
+    "mtime": 1781457106.4733205,
+    "ast_hash": "8acbcc76f021cf086819a4f0994e384e",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2002--south-korea-n-japan/squads/fr-france.txt": {
+    "mtime": 1781457106.4733205,
+    "ast_hash": "429d495ffa8630b634b9a2182dd0118a",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2002--south-korea-n-japan/squads/hr-croatia.txt": {
+    "mtime": 1781457106.4733205,
+    "ast_hash": "e2f3d5c86d1d0df542805ec9c607c1fe",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2002--south-korea-n-japan/squads/ie-ireland.txt": {
+    "mtime": 1781457106.4733205,
+    "ast_hash": "b8e7298f65bdaf00369db1146c9938fe",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2002--south-korea-n-japan/squads/it-italy.txt": {
+    "mtime": 1781457106.4733205,
+    "ast_hash": "4f11f1a2289cf2f3fac6bc1184325336",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2002--south-korea-n-japan/squads/jp-japan.txt": {
+    "mtime": 1781457106.4733205,
+    "ast_hash": "8bc33328290b82e2535238823b0315b8",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2002--south-korea-n-japan/squads/kr-south-korea.txt": {
+    "mtime": 1781457106.4733205,
+    "ast_hash": "c5915ae88074ac3a0cc0aaa81e84193b",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2002--south-korea-n-japan/squads/mx-mexico.txt": {
+    "mtime": 1781457106.4733205,
+    "ast_hash": "c4dec578409bf7c201c574a055380c75",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2002--south-korea-n-japan/squads/ng-nigeria.txt": {
+    "mtime": 1781457106.4733205,
+    "ast_hash": "edf48357d4fc22743fcecf9db4b27113",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2002--south-korea-n-japan/squads/pl-poland.txt": {
+    "mtime": 1781457106.4733205,
+    "ast_hash": "492cdca6eccd6d94ae3ec9173d34eacf",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2002--south-korea-n-japan/squads/pt-portugal.txt": {
+    "mtime": 1781457106.4733205,
+    "ast_hash": "4ddc55cd6210416ce504c5cc6a39fdbd",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2002--south-korea-n-japan/squads/py-paraguay.txt": {
+    "mtime": 1781457106.4733205,
+    "ast_hash": "74be8fc875c7f6c24aa69bff9608e541",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2002--south-korea-n-japan/squads/ru-russia.txt": {
+    "mtime": 1781457106.4733205,
+    "ast_hash": "4eabbef4841de1d0035c914056c09283",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2002--south-korea-n-japan/squads/sa-saudi-arabia.txt": {
+    "mtime": 1781457106.4733205,
+    "ast_hash": "28d9b15634df3b37da4aa9c9f9975cee",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2002--south-korea-n-japan/squads/se-sweden.txt": {
+    "mtime": 1781457106.4733205,
+    "ast_hash": "0a2a292cf57486ff9d4dbf8a48d033a9",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2002--south-korea-n-japan/squads/si-slovenia.txt": {
+    "mtime": 1781457106.4733205,
+    "ast_hash": "9f001fb64002503c72d6164757cade4c",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2002--south-korea-n-japan/squads/sn-senegal.txt": {
+    "mtime": 1781457106.487631,
+    "ast_hash": "c5dbd272bbf40c0b6b95d97b088ad5dd",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2002--south-korea-n-japan/squads/tn-tunisia.txt": {
+    "mtime": 1781457106.487631,
+    "ast_hash": "1393cf0f99a81dbfcbf610c9a5080e4b",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2002--south-korea-n-japan/squads/tr-turkey.txt": {
+    "mtime": 1781457106.487631,
+    "ast_hash": "ffc1cae9e0971b320819ef31d6297e98",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2002--south-korea-n-japan/squads/us-united-states.txt": {
+    "mtime": 1781457106.487631,
+    "ast_hash": "a65459a53885f0478bf13220d15d41c9",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2002--south-korea-n-japan/squads/uy-uruguay.txt": {
+    "mtime": 1781457106.487631,
+    "ast_hash": "a7ba8c76bce7855343f5f1c310cb1550",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2002--south-korea-n-japan/squads/za-south-africa.txt": {
+    "mtime": 1781457106.487631,
+    "ast_hash": "5c71ec828c437c4992a460a73d3db2e0",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2006--germany/NOTES.md": {
+    "mtime": 1781457106.487631,
+    "ast_hash": "2dfb86349025f0602918f95a1331ae6e",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2006--germany/cup.txt": {
+    "mtime": 1781457106.487631,
+    "ast_hash": "56d5aa8cb0cfbc842585bf9864220ebd",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2006--germany/cup_finals.txt": {
+    "mtime": 1781457106.487631,
+    "ast_hash": "b4abc1fba016c1174e14347f1f381688",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2006--germany/squads/ao-angola.txt": {
+    "mtime": 1781457106.487631,
+    "ast_hash": "838aeaaae8bedd9807f866dd62941929",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2006--germany/squads/ar-argentina.txt": {
+    "mtime": 1781457106.487631,
+    "ast_hash": "ea4e3dc4de63b9782f964e4a6899355d",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2006--germany/squads/au-australia.txt": {
+    "mtime": 1781457106.487631,
+    "ast_hash": "fd5a664684461aa814368a2a69057692",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2006--germany/squads/br-brazil.txt": {
+    "mtime": 1781457106.487631,
+    "ast_hash": "d7dc008996829738d0d7a04f6be5c882",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2006--germany/squads/ch-switzerland.txt": {
+    "mtime": 1781457106.487631,
+    "ast_hash": "f305029ccc96f2d75ca5a929a8b8d91d",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2006--germany/squads/ci-cote-d-ivoire.txt": {
+    "mtime": 1781457106.487631,
+    "ast_hash": "af8c2208fc415707fb613e828015cfc8",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2006--germany/squads/cr-costa-rica.txt": {
+    "mtime": 1781457106.487631,
+    "ast_hash": "aa5cf9aa979d064acb65bb6065c93f16",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2006--germany/squads/cz-czech-republic.txt": {
+    "mtime": 1781457106.487631,
+    "ast_hash": "f7e1c0230384ae09fdb92cbec90a3ed4",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2006--germany/squads/de-deutschland.txt": {
+    "mtime": 1781457106.487631,
+    "ast_hash": "10dbf0193096cc76d6e89f50a03546dd",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2006--germany/squads/ec-ecuador.txt": {
+    "mtime": 1781457106.487631,
+    "ast_hash": "3532fe2623b043f72e30019c1ed19058",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2006--germany/squads/en-england.txt": {
+    "mtime": 1781457106.487631,
+    "ast_hash": "b8d4ae750b8e334419f68b92ff22db5a",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2006--germany/squads/es-espana.txt": {
+    "mtime": 1781457106.487631,
+    "ast_hash": "5d390914d1ecf3aba0d809f95916f8aa",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2006--germany/squads/fr-france.txt": {
+    "mtime": 1781457106.487631,
+    "ast_hash": "7f961ffb4f768ca64439679a212e0833",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2006--germany/squads/gh-ghana.txt": {
+    "mtime": 1781457106.487631,
+    "ast_hash": "d59edf6ee86cd7fe935e21141fd1eb22",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2006--germany/squads/hr-croatia.txt": {
+    "mtime": 1781457106.487631,
+    "ast_hash": "a49df16ab530b072d671fe815199ccb9",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2006--germany/squads/ir-iran.txt": {
+    "mtime": 1781457106.487631,
+    "ast_hash": "d02ae36e0ba3a2b2c74cc8477f03c71d",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2006--germany/squads/it-italy.txt": {
+    "mtime": 1781457106.487631,
+    "ast_hash": "1bec62da72a1a3d3cc800719c882afbe",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2006--germany/squads/jp-japan.txt": {
+    "mtime": 1781457106.487631,
+    "ast_hash": "d55dd3cf960f658ee9e61ddb24b3d6db",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2006--germany/squads/kr-south-korea.txt": {
+    "mtime": 1781457106.487631,
+    "ast_hash": "bc883f3cc3e6afdeb8dcf690d36a1ed6",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2006--germany/squads/mx-mexico.txt": {
+    "mtime": 1781457106.503322,
+    "ast_hash": "353d2d4bfb45558c46070bc8f36ca082",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2006--germany/squads/nl-netherlands.txt": {
+    "mtime": 1781457106.504679,
+    "ast_hash": "2096717da1c7eea4371e4b5b1aca2ee9",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2006--germany/squads/pl-poland.txt": {
+    "mtime": 1781457106.504679,
+    "ast_hash": "f43c75e828c77325317142e2622ecf76",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2006--germany/squads/pt-portugal.txt": {
+    "mtime": 1781457106.504679,
+    "ast_hash": "91fb140a831e8b34ce8baec46c1bb933",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2006--germany/squads/py-paraguay.txt": {
+    "mtime": 1781457106.504679,
+    "ast_hash": "30bc6edccb6b39b4a5669d22db2abd36",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2006--germany/squads/rs-serbia.txt": {
+    "mtime": 1781457106.504679,
+    "ast_hash": "8bd66bd2609a8a78f102e273ec4c9839",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2006--germany/squads/sa-saudi-arabia.txt": {
+    "mtime": 1781457106.504679,
+    "ast_hash": "d1894c4f69c481f5228915ce732b7ed2",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2006--germany/squads/se-sweden.txt": {
+    "mtime": 1781457106.504679,
+    "ast_hash": "e0bc699fe557102af22e0df32c53e096",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2006--germany/squads/tg-togo.txt": {
+    "mtime": 1781457106.504679,
+    "ast_hash": "647f730f012cc4cdabdfa72fda2bbffe",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2006--germany/squads/tn-tunisia.txt": {
+    "mtime": 1781457106.504679,
+    "ast_hash": "9574c3d2c52ad6efb81e5aaa03709433",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2006--germany/squads/tt-trinidad-tobago.txt": {
+    "mtime": 1781457106.504679,
+    "ast_hash": "5cd8e6f4217b6a0593ca926c2e8af8d1",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2006--germany/squads/ua-ukraine.txt": {
+    "mtime": 1781457106.504679,
+    "ast_hash": "d50b3a5cb3a2d3bddc603135487c92e2",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2006--germany/squads/us-united-states.txt": {
+    "mtime": 1781457106.504679,
+    "ast_hash": "559e03efb89ee87e4ec6cd571c78a6c7",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2010--south-africa/NOTES.md": {
+    "mtime": 1781457106.504679,
+    "ast_hash": "2296d32b0f209d091393ace35b166e2c",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2010--south-africa/cup.txt": {
+    "mtime": 1781457106.504679,
+    "ast_hash": "3994613fc7895e2c27f7424b8fbd2a1e",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2010--south-africa/cup_finals.txt": {
+    "mtime": 1781457106.504679,
+    "ast_hash": "263ec30aaf07caef59f2590e3f2e060f",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2010--south-africa/squads/ar-argentina.txt": {
+    "mtime": 1781457106.504679,
+    "ast_hash": "4c50271eafeffae29250191ef8c20946",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2010--south-africa/squads/au-australia.txt": {
+    "mtime": 1781457106.504679,
+    "ast_hash": "ec2ea9e2899add4f6d1e39f2acd0a937",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2010--south-africa/squads/br-brazil.txt": {
+    "mtime": 1781457106.504679,
+    "ast_hash": "dd38aeebee37542864f9e79e74a4fc75",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2010--south-africa/squads/ch-switzerland.txt": {
+    "mtime": 1781457106.504679,
+    "ast_hash": "0175e67e724e311711c43c96ec8bf060",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2010--south-africa/squads/ci-cote-d-ivoire.txt": {
+    "mtime": 1781457106.504679,
+    "ast_hash": "e9670b7b2e8bd9cc0b7f614c10b5dd0b",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2010--south-africa/squads/cl-chile.txt": {
+    "mtime": 1781457106.504679,
+    "ast_hash": "45581dfe27336dbba772cdb96fdf53cf",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2010--south-africa/squads/cm-cameroon.txt": {
+    "mtime": 1781457106.504679,
+    "ast_hash": "eef3a13375f02f804d633e65ee40b92c",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2010--south-africa/squads/de-deutschland.txt": {
+    "mtime": 1781457106.504679,
+    "ast_hash": "0324cb9d77734af86cb4235b21883f0f",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2010--south-africa/squads/dk-denmark.txt": {
+    "mtime": 1781457106.504679,
+    "ast_hash": "3742c30d361bf3efccbdfd7e4e5c9836",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2010--south-africa/squads/dz-algeria.txt": {
+    "mtime": 1781457106.504679,
+    "ast_hash": "572d022f9783b27ff3c2768d409d106b",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2010--south-africa/squads/en-england.txt": {
+    "mtime": 1781457106.504679,
+    "ast_hash": "b0c4e6be5a27eed4f745220fcb5cba3a",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2010--south-africa/squads/es-espana.txt": {
+    "mtime": 1781457106.504679,
+    "ast_hash": "c7ef1a179ca324d62f200087edae7993",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2010--south-africa/squads/fr-france.txt": {
+    "mtime": 1781457106.504679,
+    "ast_hash": "b90d41cc3b2d1a125a3a4094128ba1fa",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2010--south-africa/squads/gh-ghana.txt": {
+    "mtime": 1781457106.519938,
+    "ast_hash": "9c0f4ff477d35550f9b6ed9524d2ab09",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2010--south-africa/squads/gr-greece.txt": {
+    "mtime": 1781457106.5209556,
+    "ast_hash": "76f467fa229ab6830e3eca28c010c437",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2010--south-africa/squads/hn-honduras.txt": {
+    "mtime": 1781457106.5209556,
+    "ast_hash": "3375de1ddf7029e606f1bb7589ca56d6",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2010--south-africa/squads/it-italy.txt": {
+    "mtime": 1781457106.523129,
+    "ast_hash": "28c94e5554ae2ce987c5ce15a7a899d6",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2010--south-africa/squads/jp-japan.txt": {
+    "mtime": 1781457106.523129,
+    "ast_hash": "6627e12001e64f5e9829e7f20a6aa34d",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2010--south-africa/squads/kp-north-korea.txt": {
+    "mtime": 1781457106.525138,
+    "ast_hash": "74e63b96ba02a76a6e9a62b840376c07",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2010--south-africa/squads/kr-south-korea.txt": {
+    "mtime": 1781457106.525138,
+    "ast_hash": "a0224a0d2173898b83f0130cd78f40b6",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2010--south-africa/squads/mx-mexico.txt": {
+    "mtime": 1781457106.525138,
+    "ast_hash": "5248f6fca438c224cd6ab0b19ba1f840",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2010--south-africa/squads/ng-nigeria.txt": {
+    "mtime": 1781457106.525138,
+    "ast_hash": "b1bc2a836e418da26f06ea8ef2789a74",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2010--south-africa/squads/nl-netherlands.txt": {
+    "mtime": 1781457106.525138,
+    "ast_hash": "321a551647040e1ea441435f36d4a597",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2010--south-africa/squads/nz-new-zealand.txt": {
+    "mtime": 1781457106.527527,
+    "ast_hash": "44c43682280f117d220d229aca20c190",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2010--south-africa/squads/pt-portugal.txt": {
+    "mtime": 1781457106.527527,
+    "ast_hash": "c7a8c4f8849618781f24ef1b1ab03308",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2010--south-africa/squads/py-paraguay.txt": {
+    "mtime": 1781457106.527527,
+    "ast_hash": "82a9c05166c01a1239d92f627c338161",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2010--south-africa/squads/rs-serbia.txt": {
+    "mtime": 1781457106.527527,
+    "ast_hash": "300bdf5520a732e6e536e938bc07d40f",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2010--south-africa/squads/si-slovenia.txt": {
+    "mtime": 1781457106.527527,
+    "ast_hash": "e5c76ddf29dfc78810ade6bd1a33984d",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2010--south-africa/squads/sk-slovakia.txt": {
+    "mtime": 1781457106.5295334,
+    "ast_hash": "60058781e919fdd137d46f6c5e0fb533",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2010--south-africa/squads/us-united-states.txt": {
+    "mtime": 1781457106.5295334,
+    "ast_hash": "0fc288d84e7c6fca379877abdb5fca26",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2010--south-africa/squads/uy-uruguay.txt": {
+    "mtime": 1781457106.5295334,
+    "ast_hash": "9efbb0184af481efe76a11f721912168",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2010--south-africa/squads/za-south-africa.txt": {
+    "mtime": 1781457106.5295334,
+    "ast_hash": "aa930e9f3dc5b9dcd66454dc49c733c9",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2014--brazil/NOTES.md": {
+    "mtime": 1781457106.5295334,
+    "ast_hash": "993ad5a46ea15127a6081538525c4b96",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2014--brazil/cup.txt": {
+    "mtime": 1781457106.5295334,
+    "ast_hash": "8c294904b824aef8faf4d0f4ac6d2b4b",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2014--brazil/cup_finals.txt": {
+    "mtime": 1781457106.5295334,
+    "ast_hash": "7aa72f0aef74e12eeaaae5f29589915e",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2014--brazil/squads/ar-argentina.txt": {
+    "mtime": 1781457106.5295334,
+    "ast_hash": "eae9381907b197acb916773c2b8fe0c3",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2014--brazil/squads/au-australia.txt": {
+    "mtime": 1781457106.5295334,
+    "ast_hash": "a4dc56c10e136a1daef0c127903b2d4c",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2014--brazil/squads/ba-bosnia-herzegovina.txt": {
+    "mtime": 1781457106.5295334,
+    "ast_hash": "ee88c0b765be73cc244e8675d4d5bf3e",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2014--brazil/squads/be-belgium.txt": {
+    "mtime": 1781457106.5295334,
+    "ast_hash": "24af2bcdeb216a35f269f68b4fbda53e",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2014--brazil/squads/br-brazil.txt": {
+    "mtime": 1781457106.5295334,
+    "ast_hash": "caa7542d76e04abd0e3188b4fcee03e7",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2014--brazil/squads/ch-switzerland.txt": {
+    "mtime": 1781457106.53658,
+    "ast_hash": "897ddd79c7f979dd1675bc9a9fea2c58",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2014--brazil/squads/ci-cote-d-ivoire.txt": {
+    "mtime": 1781457106.5375903,
+    "ast_hash": "cba3e6a233be6217e20263c45188d759",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2014--brazil/squads/cl-chile.txt": {
+    "mtime": 1781457106.5375903,
+    "ast_hash": "93322ba930036004f4b860f8cd7c62ed",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2014--brazil/squads/cm-cameroon.txt": {
+    "mtime": 1781457106.5375903,
+    "ast_hash": "0581591d13e6bbcb37266f46715d833b",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2014--brazil/squads/co-colombia.txt": {
+    "mtime": 1781457106.5375903,
+    "ast_hash": "f1558dcba4af1c6d6ebc5f9d966e7c72",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2014--brazil/squads/cr-costa-rica.txt": {
+    "mtime": 1781457106.5375903,
+    "ast_hash": "b1ab92e5bead7801b26ca289a3183519",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2014--brazil/squads/de-deutschland.txt": {
+    "mtime": 1781457106.5375903,
+    "ast_hash": "868826ed9d7970a34d449a1320305707",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2014--brazil/squads/dz-algeria.txt": {
+    "mtime": 1781457106.5375903,
+    "ast_hash": "a19ce5bb40399967fb8dafb2d2516f14",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2014--brazil/squads/ec-ecuador.txt": {
+    "mtime": 1781457106.5375903,
+    "ast_hash": "e1a89213d2a74a1be1b897b40edbcacf",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2014--brazil/squads/en-england.txt": {
+    "mtime": 1781457106.5375903,
+    "ast_hash": "01a811d07e982274c293594c2568001d",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2014--brazil/squads/es-espana.txt": {
+    "mtime": 1781457106.5375903,
+    "ast_hash": "c0424688aefdf81a8ba80b3bc42efc38",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2014--brazil/squads/fr-france.txt": {
+    "mtime": 1781457106.5375903,
+    "ast_hash": "f397828ef954267991d4a2621dd81d77",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2014--brazil/squads/gh-ghana.txt": {
+    "mtime": 1781457106.5375903,
+    "ast_hash": "d399e82e0b519982690e0af79c8c51b3",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2014--brazil/squads/gr-greece.txt": {
+    "mtime": 1781457106.5375903,
+    "ast_hash": "38b402018c91c72a1adc648ad15a2662",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2014--brazil/squads/hn-honduras.txt": {
+    "mtime": 1781457106.5375903,
+    "ast_hash": "34845ad363633f080e791694500bd65e",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2014--brazil/squads/hr-croatia.txt": {
+    "mtime": 1781457106.5375903,
+    "ast_hash": "846872c3de1e80e7765a5581652bfd4b",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2014--brazil/squads/ir-iran.txt": {
+    "mtime": 1781457106.5375903,
+    "ast_hash": "150e6651ffbb98e4afdcc15a6cb6e51e",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2014--brazil/squads/it-italy.txt": {
+    "mtime": 1781457106.5375903,
+    "ast_hash": "f86e29292e65ccf35a9f8be86979c597",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2014--brazil/squads/jp-japan.txt": {
+    "mtime": 1781457106.5375903,
+    "ast_hash": "1e2880e701c49c859eb0ee86322d64f4",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2014--brazil/squads/kr-south-korea.txt": {
+    "mtime": 1781457106.5375903,
+    "ast_hash": "cfb31148c3e7214479019ebf43d7dcb3",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2014--brazil/squads/mx-mexico.txt": {
+    "mtime": 1781457106.5375903,
+    "ast_hash": "a6ae2a35d30d9129a2904e4c692b9421",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2014--brazil/squads/ng-nigeria.txt": {
+    "mtime": 1781457106.5375903,
+    "ast_hash": "abebed105b8c2f03694a7a633e3d8099",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2014--brazil/squads/nl-netherlands.txt": {
+    "mtime": 1781457106.5504258,
+    "ast_hash": "9e2a4e1d1557b8deee483d9698fb4df0",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2014--brazil/squads/pt-portugal.txt": {
+    "mtime": 1781457106.5504258,
+    "ast_hash": "fed44a1eae3be3a5f486c2d3307f4728",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2014--brazil/squads/ru-russia.txt": {
+    "mtime": 1781457106.5504258,
+    "ast_hash": "157d16253ddf200d82bb6dad005987ea",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2014--brazil/squads/us-united-states.txt": {
+    "mtime": 1781457106.5504258,
+    "ast_hash": "6348e179c0a830e9ae41bfb5ed732c37",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2014--brazil/squads/uy-uruguay.txt": {
+    "mtime": 1781457106.5504258,
+    "ast_hash": "32424ae4dfda7885c5a7ad78dd9e81eb",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2018--russia/NOTES.md": {
+    "mtime": 1781457106.5532942,
+    "ast_hash": "f609fe5fae0ca7aed324ebb9277a16d9",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2018--russia/cup.txt": {
+    "mtime": 1781457106.5543096,
+    "ast_hash": "510e57969138d6cb5e19836c9c5ae879",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2018--russia/cup_finals.txt": {
+    "mtime": 1781457106.5570319,
+    "ast_hash": "f39b058b874708894569c8b2e462cafe",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2022--qatar/NOTES.md": {
+    "mtime": 1781457106.5570319,
+    "ast_hash": "f059bcfd0fa35317a757ad52148faea2",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2022--qatar/cup.txt": {
+    "mtime": 1781457106.5570319,
+    "ast_hash": "c8f91d95c20cb91b21fb6bed7052ee90",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2022--qatar/cup_finals.txt": {
+    "mtime": 1781457106.5570319,
+    "ast_hash": "234c58cd743be5d022c5b7fa3268b63b",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2026--usa/cup.txt": {
+    "mtime": 1781457106.5570319,
+    "ast_hash": "66ddaf09acace235bc5e7b82311cf36d",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2026--usa/cup_finals.txt": {
+    "mtime": 1781457106.5570319,
+    "ast_hash": "594e805112ab1cd297e8a95d2d8364c4",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/2026--usa/quali_playoffs.txt": {
+    "mtime": 1781457106.5570319,
+    "ast_hash": "bd88ab700868c6107dfb1d33401cf77d",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/LICENSE.md": {
+    "mtime": 1781457106.5570319,
+    "ast_hash": "f2b7417e4e84de8d729f1a205103181d",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/NOTES.md": {
+    "mtime": 1781457106.5570319,
+    "ast_hash": "17c8ed4c489cff4b58da9e0885c6ee89",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/README.md": {
+    "mtime": 1781457106.5570319,
+    "ast_hash": "721c1b93cae0deb853f41c4b5f90472b",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/min/1930.txt": {
+    "mtime": 1781457106.5570319,
+    "ast_hash": "9116a5937ae8419d07e8a4fe2f47fbe3",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/min/1934.txt": {
+    "mtime": 1781457106.5570319,
+    "ast_hash": "17109c183b15d8df6bdbe7bbcb4463c2",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/min/1938.txt": {
+    "mtime": 1781457106.5570319,
+    "ast_hash": "7a2f0abee0dd2d7d90bbbb7932c19c10",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/min/1950.txt": {
+    "mtime": 1781457106.5570319,
+    "ast_hash": "d4e0b684e6ea8d1be0b526dd5fdf4765",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/min/1954.txt": {
+    "mtime": 1781457106.5570319,
+    "ast_hash": "49cb912de42d197f506f00373ef48ed8",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/min/1958.txt": {
+    "mtime": 1781457106.5570319,
+    "ast_hash": "e72ed95d291eb76391b34435e15c4aab",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/min/1962.txt": {
+    "mtime": 1781457106.5570319,
+    "ast_hash": "9787d348f245e9d983104183e90176e0",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/min/1966.txt": {
+    "mtime": 1781457106.5570319,
+    "ast_hash": "59904af025c159f89a3dcf703989f6da",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/min/1970.txt": {
+    "mtime": 1781457106.5570319,
+    "ast_hash": "88592f6c7d5cbc73b1e9fe31c67d0d60",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/min/1974.txt": {
+    "mtime": 1781457106.569872,
+    "ast_hash": "f427e40883d4f9139f09a2bc6fbe05cb",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/min/1978.txt": {
+    "mtime": 1781457106.5708866,
+    "ast_hash": "ebc632dae2450f3ed72366ca736b61b8",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/min/1982.txt": {
+    "mtime": 1781457106.5708866,
+    "ast_hash": "d4872cfaaca1eac1cf005b25ba131028",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/min/1986.txt": {
+    "mtime": 1781457106.5708866,
+    "ast_hash": "4b3cc3af82dc9ad3efb9198a1f1dc317",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/min/1990.txt": {
+    "mtime": 1781457106.5708866,
+    "ast_hash": "e04d328b2c89915e070ac8055caf3a65",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/min/1994.txt": {
+    "mtime": 1781457106.5708866,
+    "ast_hash": "1c950c7af763b985be9e045e97db47cf",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/min/1998.txt": {
+    "mtime": 1781457106.5708866,
+    "ast_hash": "efce8c25002adc0d73e5dd357c5494d7",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/min/2002.txt": {
+    "mtime": 1781457106.5708866,
+    "ast_hash": "0aaea0fb5dd963ed766143bc72a0855f",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/min/2006.txt": {
+    "mtime": 1781457106.5708866,
+    "ast_hash": "c65170841892d7d0c098374146fae938",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/min/2010.txt": {
+    "mtime": 1781457106.5708866,
+    "ast_hash": "5c7e8c56aba86a5800d6c6e24b5de1df",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/min/2014.txt": {
+    "mtime": 1781457106.5708866,
+    "ast_hash": "6b519cd96dd880c79e5972ae8895f24d",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/min/2018.txt": {
+    "mtime": 1781457106.5708866,
+    "ast_hash": "01a700b02ce8fb1ca2e6e98976d6440e",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/min/2022.txt": {
+    "mtime": 1781457106.5708866,
+    "ast_hash": "477bfb0467f23b836ceaab9e71744027",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/min/README.md": {
+    "mtime": 1781457106.5708866,
+    "ast_hash": "efb851e02fc04c6d0401b226496bf956",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/1930.txt": {
+    "mtime": 1781457106.5708866,
+    "ast_hash": "20c99b1a92506f718c76ea3c2e418778",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/1930_full.txt": {
+    "mtime": 1781457106.5708866,
+    "ast_hash": "a48b55512265b07a210eec89f98b1aaf",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/1930_squads.txt": {
+    "mtime": 1781457106.5708866,
+    "ast_hash": "a52970d1813efc7b6a14e1e4658079ba",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/1934.txt": {
+    "mtime": 1781457106.5708866,
+    "ast_hash": "e140f5306594ba8fcc2a67ce69f55a56",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/1934_full.txt": {
+    "mtime": 1781457106.5708866,
+    "ast_hash": "b2a053886be9c048e82fbe1896565392",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/1934_squads.txt": {
+    "mtime": 1781457106.5708866,
+    "ast_hash": "e92b8c495f076b5e75fe80a0e9177976",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/1938.txt": {
+    "mtime": 1781457106.5708866,
+    "ast_hash": "4a7e9789a457a42fbdf3119553066812",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/1938_full.txt": {
+    "mtime": 1781457106.5708866,
+    "ast_hash": "58548350e40d163bb33629d4b9d80a53",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/1938_squads.txt": {
+    "mtime": 1781457106.5708866,
+    "ast_hash": "112ba08d0c92f1d5fcdcb04f2cf0a80a",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/1950.txt": {
+    "mtime": 1781457106.5708866,
+    "ast_hash": "f5a6b3d0896d92129ae0c4c7753167e7",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/1950_full.txt": {
+    "mtime": 1781457106.5708866,
+    "ast_hash": "edac67db7fa56efdc762f5457993e107",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/1950_squads.txt": {
+    "mtime": 1781457106.5865352,
+    "ast_hash": "73c00a02706cc42b90696a1b3b3f8b9f",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/1954.txt": {
+    "mtime": 1781457106.5875473,
+    "ast_hash": "469419bfd94b745e29d07e5f82040fdd",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/1954_full.txt": {
+    "mtime": 1781457106.5875473,
+    "ast_hash": "4491b0fb73a033a12a9376e7302ea60d",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/1954_squads.txt": {
+    "mtime": 1781457106.5875473,
+    "ast_hash": "948246a056d5f5b3f09497130922d98f",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/1958.txt": {
+    "mtime": 1781457106.5875473,
+    "ast_hash": "1e155231472289af8380d4433ca0e109",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/1958_full.txt": {
+    "mtime": 1781457106.5875473,
+    "ast_hash": "edf3cb4f1b7aa3adde764bfe4675fdd9",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/1958_squads.txt": {
+    "mtime": 1781457106.5875473,
+    "ast_hash": "2ebb8db424c17b3ccab289af79dd22b0",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/1962.txt": {
+    "mtime": 1781457106.5875473,
+    "ast_hash": "33a45906b05236c3448893c69e7d4694",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/1962_full.txt": {
+    "mtime": 1781457106.5875473,
+    "ast_hash": "b118dd533b9863dfdafde455338ea6a4",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/1962_squads.txt": {
+    "mtime": 1781457106.5875473,
+    "ast_hash": "1e444897b2e2765d64e92eed9181dc4b",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/1966.txt": {
+    "mtime": 1781457106.5875473,
+    "ast_hash": "d18ae5c4c42fc74186f60aff5a9f8274",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/1966_full.txt": {
+    "mtime": 1781457106.5875473,
+    "ast_hash": "d92ca845ed70968fbc5499c6052f9445",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/1966_squads.txt": {
+    "mtime": 1781457106.5875473,
+    "ast_hash": "302ed7d6217f0311d23f453367f305e4",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/1970.txt": {
+    "mtime": 1781457106.5875473,
+    "ast_hash": "847886ba621db7e698aa914e40cb3c75",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/1970_full.txt": {
+    "mtime": 1781457106.5875473,
+    "ast_hash": "d16182d6491bceb396c000b82479a459",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/1970_squads.txt": {
+    "mtime": 1781457106.5875473,
+    "ast_hash": "3956fd6dbb16ba14711f24f5a56851bc",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/1974.txt": {
+    "mtime": 1781457106.5875473,
+    "ast_hash": "1e376742bfef07485acc70a3c25f20bf",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/1974_full.txt": {
+    "mtime": 1781457106.5875473,
+    "ast_hash": "70f47e43aaf6f394131f9deab93ef128",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/1974_squads.txt": {
+    "mtime": 1781457106.5875473,
+    "ast_hash": "06113efc0ca574b8991f6c8d527d7108",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/1978.txt": {
+    "mtime": 1781457106.5875473,
+    "ast_hash": "2fc4d7e9d3f6d996bc403e782e230b69",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/1978_full.txt": {
+    "mtime": 1781457106.5875473,
+    "ast_hash": "d2a2971a294d2d591ec4b753d4bd6bda",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/1978_squads.txt": {
+    "mtime": 1781457106.5875473,
+    "ast_hash": "37fd95c86fec1755afba6d196848281c",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/1982.txt": {
+    "mtime": 1781457106.5875473,
+    "ast_hash": "13e6c63bab1b24ac8a114082b7d5f68d",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/1982_full.txt": {
+    "mtime": 1781457106.5875473,
+    "ast_hash": "c492085d1fb513ab07213902c7caa5a7",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/1982_squads.txt": {
+    "mtime": 1781457106.6042404,
+    "ast_hash": "d30eea42462db20fc6c45fb56dccaf9a",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/1986.txt": {
+    "mtime": 1781457106.6042404,
+    "ast_hash": "4f4cded7c31fa69984a684e348bfb7c4",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/1986_full.txt": {
+    "mtime": 1781457106.6042404,
+    "ast_hash": "64c4b29c8fdcc5e511e7b6d8af143246",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/1986_squads.txt": {
+    "mtime": 1781457106.6042404,
+    "ast_hash": "732e71c7d079c902f0307c697fe89e0a",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/1990.txt": {
+    "mtime": 1781457106.6042404,
+    "ast_hash": "81644b2304031bd10427e7951dd56c83",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/1990_full.txt": {
+    "mtime": 1781457106.6042404,
+    "ast_hash": "f74add608f062ba8528a57494d1adf12",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/1990_squads.txt": {
+    "mtime": 1781457106.6042404,
+    "ast_hash": "f8e4d9ae0aaa7e8c299eb43a6eddc608",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/1994.txt": {
+    "mtime": 1781457106.6042404,
+    "ast_hash": "75c1c418378d39ff0f6b9455826d6279",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/1994_full.txt": {
+    "mtime": 1781457106.6042404,
+    "ast_hash": "b88684af5e15fa366275e5d2b9ea6eee",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/1994_squads.txt": {
+    "mtime": 1781457106.6042404,
+    "ast_hash": "fdda98738a34764d954592cfe94b2fcd",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/1998.txt": {
+    "mtime": 1781457106.6042404,
+    "ast_hash": "b558596dcd0964c466c44bae4c9173d3",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/1998_full.txt": {
+    "mtime": 1781457106.6042404,
+    "ast_hash": "574cd3989e5276c2ef78b9303c652c76",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/1998_squads.txt": {
+    "mtime": 1781457106.6042404,
+    "ast_hash": "01faeb31ed91d9891cecf1d0fbbc6e77",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/2002.txt": {
+    "mtime": 1781457106.6042404,
+    "ast_hash": "169bc91a5d0f9eaadd97495212de9f19",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/2002_full.txt": {
+    "mtime": 1781457106.6042404,
+    "ast_hash": "2f4f5635867fa4b2df3d77e8fb0a8051",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/2002_squads.txt": {
+    "mtime": 1781457106.6042404,
+    "ast_hash": "d8215fa29b3ea5cacec67e9c12183133",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/2006.txt": {
+    "mtime": 1781457106.6042404,
+    "ast_hash": "5ff1b35ceef8bd4fb19a7bf382b29889",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/2006_full.txt": {
+    "mtime": 1781457106.6042404,
+    "ast_hash": "8d23219e6e55654994b01d3f95145824",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/2006_squads.txt": {
+    "mtime": 1781457106.6042404,
+    "ast_hash": "b0f7cc856115e2c17078a16906df1156",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/2010.txt": {
+    "mtime": 1781457106.6042404,
+    "ast_hash": "ab7181ee7f35699ae9e0201fc73cf4bc",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/2010_full.txt": {
+    "mtime": 1781457106.6042404,
+    "ast_hash": "60d1d35a5f029334a79f0754ac5d8716",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/2010_squads.txt": {
+    "mtime": 1781457106.6199267,
+    "ast_hash": "8e0dd37bd0f8755c1d72aa7c39e176bd",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/2014.txt": {
+    "mtime": 1781457106.62099,
+    "ast_hash": "ed7e21fcf8538ab5c9e623c62f385eda",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/2014_full.txt": {
+    "mtime": 1781457106.62099,
+    "ast_hash": "e63aef1d6ae2e338eb2f90167c9d74b1",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/2014_squads.txt": {
+    "mtime": 1781457106.62099,
+    "ast_hash": "0b2991c7a24af36a6eec58c69585a14f",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/2018.txt": {
+    "mtime": 1781457106.62099,
+    "ast_hash": "5157edb1182c2a353e31b96a7589573e",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/2018_full.txt": {
+    "mtime": 1781457106.62099,
+    "ast_hash": "1f7b02f1b77e7d44b7c0aa637309e557",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/2018_squads.txt": {
+    "mtime": 1781457106.62099,
+    "ast_hash": "fe776a2caefb6de0b4725f9e13195316",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/2022.txt": {
+    "mtime": 1781457106.62099,
+    "ast_hash": "b7c8886de961bfd1dd52d11e9c29561d",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/2022_full.txt": {
+    "mtime": 1781457106.62099,
+    "ast_hash": "6d918760141aab7ed4bfacc878d792d0",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/2022_squads.txt": {
+    "mtime": 1781457106.62099,
+    "ast_hash": "452a9c89b560bb7a4cb0d3ae739e6a09",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/more/2026_squads.txt": {
+    "mtime": 1781457106.62099,
+    "ast_hash": "52d0a84cc7bdc9c4343efab06f7b6e8e",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/planetworldcup/README.md": {
+    "mtime": 1781457106.62099,
+    "ast_hash": "508b8401dba74d7c79b76eb247701b95",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/planetworldcup/wc10.txt": {
+    "mtime": 1781457106.62099,
+    "ast_hash": "287bdcac23b124ca0ed545606c7f1d5d",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/planetworldcup/wc14.txt": {
+    "mtime": 1781457106.62099,
+    "ast_hash": "700f0b83b1c043ecfca5e86b5a0f691a",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/planetworldcup/wc30.txt": {
+    "mtime": 1781457106.62099,
+    "ast_hash": "be5e676f318ed91f3c686e42df6b3a31",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/planetworldcup/wc94qualification.txt": {
+    "mtime": 1781457106.62099,
+    "ast_hash": "0e9a668a2aa48d6e8400ab841e97ea85",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/rsssf/2014f.txt": {
+    "mtime": 1781457106.62099,
+    "ast_hash": "3135f24d88e8944f4085dec992713c06",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/rsssf/2022f.txt": {
+    "mtime": 1781457106.62099,
+    "ast_hash": "a9163736797d1d0bfeeb5c4b8e60906c",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/rsssf/2022q.txt": {
+    "mtime": 1781457106.62099,
+    "ast_hash": "174016ec0a6d4f39955d10e8f651a3fb",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/rsssf/30full.txt": {
+    "mtime": 1781457106.62099,
+    "ast_hash": "b60f9fa1e251a6f66817da9b6199481c",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/rsssf/34f.txt": {
+    "mtime": 1781457106.62099,
+    "ast_hash": "8beb7f34167b4ab7f82daa163bdcf9c0",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/rsssf/38f.txt": {
+    "mtime": 1781457106.62099,
+    "ast_hash": "2f5d7b2be7bb3a5c887fac50abc798ea",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/rsssf/README.md": {
+    "mtime": 1781457106.6365352,
+    "ast_hash": "f132c5a1f43bd74fae38806386604b0f",
+    "semantic_hash": ""
+  },
+  ".dataset-worldcup/rsssf/worldcup.txt": {
+    "mtime": 1781457106.6375513,
+    "ast_hash": "1d0435c085c6099c46489f7d822e158f",
+    "semantic_hash": ""
+  },
+  "CLAUDE.md": {
+    "mtime": 1782029058.4507158,
+    "ast_hash": "8a6643a420fdad6bfb583523bc6cef16",
+    "semantic_hash": ""
+  },
+  "index.html": {
+    "mtime": 1781430785.7662246,
+    "ast_hash": "6e1f17f9c6bdf4ec76623cdb879adca3",
+    "semantic_hash": ""
+  },
+  "public/data/README.md": {
+    "mtime": 1781355466.0,
+    "ast_hash": "eef583244c3c6360849575d8efebecde",
+    "semantic_hash": ""
+  },
+  "src/data/matches.js.md": {
+    "mtime": 1782088505.617253,
+    "ast_hash": "268a542972b02c201b15d47c8350dac8",
+    "semantic_hash": ""
+  },
+  "src/lib/predictor.js.md": {
+    "mtime": 1782088493.8602436,
+    "ast_hash": "4c9feb8c0da0759ed9aa11e698ebb114",
+    "semantic_hash": ""
+  },
+  "src/pages/Predictor.jsx.md": {
+    "mtime": 1782088488.5464122,
+    "ast_hash": "7dee00b632818dd6ea61486afb781c76",
+    "semantic_hash": ""
+  },
+  "src/components/ScorePredictorCard.jsx": {
+    "mtime": 1782089389.38695,
+    "ast_hash": "c323e0352707a63026852fc865109b0c",
+    "semantic_hash": ""
+  },
+  "src/lib/scorePredictor.js": {
+    "mtime": 1782089389.388965,
+    "ast_hash": "321d741939e03e9496795033977bafe7",
+    "semantic_hash": ""
+  },
+  "src/components/ThemeSwitcher.jsx": {
+    "mtime": 1782090172.821655,
+    "ast_hash": "86f1b1407c8fb2361994b9ca38bfb1d5",
+    "semantic_hash": ""
+  },
+  "src/lib/themeContext.jsx": {
+    "mtime": 1782090152.4761815,
+    "ast_hash": "42336cf72b0d3aed0477f5168efc3903",
+    "semantic_hash": ""
+  },
+  "src/lib/themes.js": {
+    "mtime": 1782090060.1343887,
+    "ast_hash": "bb9b7d53bad0f91d67816d8ece4a540b",
+    "semantic_hash": ""
+  },
+  "QUICK_START_THEMES.md": {
+    "mtime": 1782090435.228523,
+    "ast_hash": "b2a3cec302a75920c7bf82e4572e5047",
+    "semantic_hash": ""
+  },
+  "THEMES_IMPLEMENTATION.md": {
+    "mtime": 1782090342.8585885,
+    "ast_hash": "9f62867c30cd95e57505815eebb67eb7",
+    "semantic_hash": ""
+  },
+  "THEME_COLORS.md": {
+    "mtime": 1782090381.296977,
+    "ast_hash": "fad57093e621fb57530c1dc90938b0b9",
+    "semantic_hash": ""
+  }
+}

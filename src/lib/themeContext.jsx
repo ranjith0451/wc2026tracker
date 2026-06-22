@@ -35,6 +35,9 @@ export function ThemeProvider({ children }) {
       document.documentElement.setAttribute("data-theme", theme);
       document.documentElement.setAttribute("data-mode", mode);
     }
+
+    // Trigger re-render of dependent components
+    window.dispatchEvent(new CustomEvent("theme-changed", { detail: { theme, mode } }));
   }, [theme, mode]);
 
   const toggleMode = () => {
