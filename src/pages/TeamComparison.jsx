@@ -1,7 +1,7 @@
 import { useState, useMemo, useEffect } from "react";
 import { TEAMS } from "../data/squads.js";
 import { FLAGS, FLAG_URL } from "../data/teams.js";
-import { TEAM_STRATEGIES } from "../data/headToHead.js";
+import { HEAD_TO_HEAD_RECORDS, TEAM_STRATEGIES } from "../data/headToHead.js";
 import { getTopScorers } from "../lib/topscorers.js";
 import { getWCWins } from "../data/wcHistory.js";
 
@@ -301,8 +301,7 @@ export default function TeamComparison({ results = {} }) {
     fetchMatches();
   }, [team1, team2]);
 
-  // Use fallback data if API fails
-  const { HEAD_TO_HEAD_RECORDS } = require("../data/headToHead.js");
+  // Use head-to-head data
   const headToHead = useMemo(() => {
     if (!team1 || !team2) return null;
     const key1 = `${team1}-${team2}`;
