@@ -2,6 +2,7 @@ import { lazy, Suspense, useEffect, useState, Component } from "react";
 import { Routes, Route, NavLink, useLocation } from "react-router-dom";
 import { ThemeProvider } from "./lib/themeContext.jsx";
 import ThemeSwitcher from "./components/ThemeSwitcher.jsx";
+import { usePlatform } from "./lib/usePlatform";
 
 class PageErrorBoundary extends Component {
   constructor(props) { super(props); this.state = { error: null }; }
@@ -42,6 +43,7 @@ const Stats          = lazy(() => import("./pages/Stats.jsx"));
 const Predictor      = lazy(() => import("./pages/Predictor.jsx"));
 const MatchDetail    = lazy(() => import("./pages/MatchDetail.jsx"));
 const TeamComparison = lazy(() => import("./pages/TeamComparison.jsx"));
+const Launch = lazy(() => import("./pages/Launch.jsx"));
 
 function PageLoader() {
   return (
@@ -239,6 +241,7 @@ function pushResults(data) {
 }
 
 export default function App() {
+  usePlatform();
   const { results: fetched, lastUpdated: fetchedAt, error } = useResults();
   const { data: scheduleData } = useSchedule();
   const { data: statsMatchIdMap = {} } = useStatsMatchIdMap();
@@ -334,7 +337,7 @@ export default function App() {
               <Route path="/stats"    element={<Stats />} />
               <Route path="/predictor" element={<Predictor results={results} />} />
               <Route path="/match/:id" element={<MatchDetail results={results} statsMatchIdMap={statsIdMap} />} />
-              <Route path="/admin"    element={
+              <Route path="/launch" element={<Launch />} /> <Route path="/admin"    element={
                 <AdminGate>
                   <Admin results={results} overrides={overrides}
                     setOverride={setOverride} clearOverride={clearOverride}

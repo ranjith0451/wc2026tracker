@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useGraph } from "../lib/useGraph";
 import { topScorers } from "../lib/graph";
+import { MotionPage } from "../components/MotionPage";
 
 function usePlayersFromGraph(legacy) {
   const { graph } = useGraph();
@@ -124,7 +125,7 @@ export default function AllTimePlayers() {
     : pool;
 
   return (
-    <div className="atp-page">
+    <MotionPage className="atp-page">
       <div className="atp-header">
         <h1 className="atp-title">All-Time Players</h1>
         <p className="atp-subtitle">World Cup All-Time Goal Scorers</p>
@@ -223,6 +224,6 @@ export default function AllTimePlayers() {
       <div className="atp-footer-note">
         {filtered.length} of {pool.length} scorers · {gender === "men" ? "Men's" : "Women's"} FIFA World Cup
       </div>
-    </div>
+    </MotionPage>
   );
 }
