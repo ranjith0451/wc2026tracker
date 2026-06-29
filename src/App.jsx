@@ -43,6 +43,7 @@ const Stats          = lazy(() => import("./pages/Stats.jsx"));
 const Predictor      = lazy(() => import("./pages/Predictor.jsx"));
 const MatchDetail    = lazy(() => import("./pages/MatchDetail.jsx"));
 const TeamComparison = lazy(() => import("./pages/TeamComparison.jsx"));
+const Explore        = lazy(() => import("./pages/Explore.jsx"));
 const Launch = lazy(() => import("./pages/Launch.jsx"));
 
 function PageLoader() {
@@ -152,6 +153,7 @@ const NAV_ITEMS = [
   { to: "/all-time",label: "All-Time",    Icon: StatIcon },
   { to: "/rankings", label: "Rankings",   Icon: GlobeIcon },
   { to: "/stats",     label: "Records",   Icon: ChartIcon },
+  { to: "/explore",   label: "Explore",   Icon: GlobeIcon },
   // Admin hidden from nav — accessible only via /admin URL with PIN
 ];
 
@@ -335,6 +337,7 @@ export default function App() {
               <Route path="/all-time"  element={<AllTimePlayers />} />
               <Route path="/rankings" element={<Rankings />} />
               <Route path="/stats"    element={<Stats />} />
+              <Route path="/explore" element={<Explore />} />
               <Route path="/predictor" element={<Predictor results={results} />} />
               <Route path="/match/:id" element={<MatchDetail results={results} statsMatchIdMap={statsIdMap} />} />
               <Route path="/launch" element={<Launch />} /> <Route path="/admin"    element={
