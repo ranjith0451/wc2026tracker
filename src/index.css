@@ -5474,3 +5474,19 @@ body[data-platform="android"] .glass-surface { border-radius: var(--m3-shape-lar
 @media (prefers-reduced-motion: reduce) {
   .glass-surface.specular::before { transition: none; }
 }
+
+
+/* FIFA 26 logo in header badge */
+.header-badge.header-badge--logo {
+  background: transparent;
+  box-shadow: none;
+  overflow: visible;
+  width: 44px;
+  height: 44px;
+}
+.header-badge.header-badge--logo img {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.35));
+}

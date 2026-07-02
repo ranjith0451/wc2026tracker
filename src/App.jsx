@@ -288,8 +288,9 @@ export default function App() {
         <header className="app-header">
           <div className="header-inner">
             <div className="header-brand">
-              <div className="header-badge">
-                <BallIcon />
+              <div className="header-badge header-badge--logo">
+                <img src="/fifa26-logo.png" alt="FIFA World Cup 26" onError={(e) => { e.currentTarget.style.display = "none"; e.currentTarget.nextSibling.style.display = "block"; }} />
+                <span style={{ display: "none" }}><BallIcon /></span>
               </div>
               <div className="header-text">
                 <div className="header-title">FIFA World Cup 2026</div>
