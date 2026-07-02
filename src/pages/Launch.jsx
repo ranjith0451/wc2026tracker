@@ -1,5 +1,14 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import { motion, useMotionValue, useSpring, useTransform, useScroll, AnimatePresence } from "framer-motion";
+import { MATCHES } from "../data/matches.js";
+import { GROUPS } from "../data/teams.js";
+
+const MotionLink = motion(Link);
+
+function scrollToId(id) {
+  document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+}
 
 /* ---------- 3D tilt ---------- */
 function useTilt(strength = 12) {
@@ -65,7 +74,7 @@ function Particles({ count = 50 }) {
   );
 }
 
-/* ---------- 3D Dashboard preview card ---------- */
+/* ---------- 3D dashboard preview card (illustrative mockup) ---------- */
 function DashboardMock() {
   const { rotateX, rotateY, onMove, onLeave } = useTilt(10);
   return (
@@ -96,7 +105,7 @@ function DashboardMock() {
           <span key={c} style={{ width: 12, height: 12, borderRadius: "50%", background: c }} />
         ))}
         <div style={{ marginLeft: 14, fontSize: 11, color: "rgba(255,255,255,.5)", letterSpacing: ".15em", textTransform: "uppercase" }}>
-          wc2026.app / dashboard
+          wc2026 / rankings
         </div>
       </div>
 
@@ -116,10 +125,10 @@ function DashboardMock() {
         <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 10 }}>
             {[
-              { l: "Live Matches", v: "3", c: "#7df9ff" },
-              { l: "Top Scorer", v: "Mbappé", c: "#fff" },
-              { l: "Goals", v: "172", c: "#5e48ff" },
-              { l: "xG Accuracy", v: "94%", c: "#28c840" },
+              { l: "Teams", v: "48", c: "#7df9ff" },
+              { l: "Matches", v: "104", c: "#fff" },
+              { l: "Groups", v: "12", c: "#5e48ff" },
+              { l: "Since", v: "1930", c: "#28c840" },
             ].map(k => (
               <div key={k.l} style={{ background: "rgba(255,255,255,.04)", border: "1px solid rgba(125,249,255,.15)", borderRadius: 10, padding: 12, transform: "translateZ(30px)" }}>
                 <div style={{ fontSize: 10, color: "rgba(255,255,255,.5)", letterSpacing: ".2em", textTransform: "uppercase", marginBottom: 4 }}>{k.l}</div>
@@ -157,11 +166,14 @@ function DashboardMock() {
   );
 }
 
-/* ---------- Feature card with 3D tilt ---------- */
-function FeatureCard({ icon, title, desc, delay = 0 }) {
+/* ---------- Feature card with 3D tilt, optionally a link into the app ---------- */
+function FeatureCard({ icon, title, desc, to, delay = 0 }) {
   const { rotateX, rotateY, onMove, onLeave } = useTilt(10);
+  const Tag = to ? MotionLink : motion.div;
+  const tagProps = to ? { to } : {};
   return (
-    <motion.div
+    <Tag
+      {...tagProps}
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
@@ -180,6 +192,9 @@ function FeatureCard({ icon, title, desc, delay = 0 }) {
         backdropFilter: "blur(12px)",
         WebkitBackdropFilter: "blur(12px)",
         position: "relative",
+        textDecoration: "none",
+        display: "block",
+        cursor: to ? "pointer" : "default",
       }}
     >
       <motion.div
@@ -189,60 +204,7 @@ function FeatureCard({ icon, title, desc, delay = 0 }) {
       <h3 style={{ transform: "translateZ(24px)", margin: "0 0 6px", color: "#fff",
         fontFamily: "Barlow Condensed, sans-serif", fontSize: 20, fontWeight: 800, letterSpacing: ".02em" }}>{title}</h3>
       <p style={{ transform: "translateZ(16px)", margin: 0, color: "rgba(255,255,255,.65)", fontSize: 13.5, lineHeight: 1.6 }}>{desc}</p>
-    </motion.div>
-  );
-}
-
-/* ---------- Pricing card ---------- */
-function PricingCard({ name, price, period, features, highlight, cta }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.7 }}
-      whileHover={{ y: -6 }}
-      style={{
-        padding: 32, borderRadius: 20, position: "relative",
-        background: highlight
-          ? "linear-gradient(135deg, rgba(125,249,255,.16), rgba(94,72,255,.18))"
-          : "linear-gradient(135deg, rgba(255,255,255,.05), rgba(255,255,255,.02))",
-        border: highlight ? "1px solid rgba(125,249,255,.5)" : "1px solid rgba(255,255,255,.1)",
-        boxShadow: highlight ? "0 30px 80px rgba(94,72,255,.35)" : "0 20px 50px rgba(0,0,0,.3)",
-        backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)",
-      }}
-    >
-      {highlight && (
-        <div style={{
-          position: "absolute", top: -12, left: "50%", transform: "translateX(-50%)",
-          padding: "4px 14px", borderRadius: 99, background: "linear-gradient(135deg,#7df9ff,#5e48ff)",
-          color: "#02020a", fontSize: 11, fontWeight: 800, letterSpacing: ".15em", textTransform: "uppercase",
-        }}>Most Popular</div>
-      )}
-      <h3 style={{ margin: 0, fontFamily: "Barlow Condensed, sans-serif", fontSize: 24, fontWeight: 800, letterSpacing: ".05em", textTransform: "uppercase", color: "#fff" }}>{name}</h3>
-      <div style={{ margin: "18px 0 6px", display: "flex", alignItems: "baseline", gap: 6 }}>
-        <span style={{ fontFamily: "Barlow Condensed, sans-serif", fontSize: 56, fontWeight: 900, color: "#fff", lineHeight: 1 }}>${price}</span>
-        <span style={{ color: "rgba(255,255,255,.55)", fontSize: 14 }}>/{period}</span>
-      </div>
-      <ul style={{ listStyle: "none", padding: 0, margin: "24px 0", display: "flex", flexDirection: "column", gap: 10 }}>
-        {features.map(f => (
-          <li key={f} style={{ display: "flex", gap: 10, color: "rgba(255,255,255,.78)", fontSize: 14 }}>
-            <span style={{ color: "#7df9ff", flexShrink: 0 }}>✓</span>{f}
-          </li>
-        ))}
-      </ul>
-      <motion.button
-        whileHover={{ scale: 1.03 }}
-        whileTap={{ scale: 0.97 }}
-        style={{
-          width: "100%", padding: "14px 18px", borderRadius: 12,
-          background: highlight ? "linear-gradient(135deg,#7df9ff,#5e48ff)" : "rgba(255,255,255,.08)",
-          color: highlight ? "#02020a" : "#fff", fontWeight: 800, fontSize: 14,
-          letterSpacing: ".08em", textTransform: "uppercase", cursor: "pointer",
-          border: highlight ? "none" : "1px solid rgba(255,255,255,.15)",
-        }}
-      >{cta}</motion.button>
-    </motion.div>
+    </Tag>
   );
 }
 
@@ -287,8 +249,9 @@ export default function Launch() {
   const heroY = useTransform(scrollYProgress, [0, 0.4], [0, -120]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0.4]);
 
-  const [email, setEmail] = useState("");
-  const [subbed, setSubbed] = useState(false);
+  const teamCount = Object.values(GROUPS).flat().length;
+  const matchCount = MATCHES.length;
+  const groupCount = Object.keys(GROUPS).length;
 
   return (
     <div
@@ -317,18 +280,22 @@ export default function Launch() {
           <span style={{ fontFamily: "Barlow Condensed, sans-serif", fontSize: 20, textTransform: "uppercase" }}>WC2026</span>
         </div>
         <div style={{ display: "flex", gap: 28, fontSize: 13, color: "rgba(255,255,255,.7)" }}>
-          {["Features","Pricing","FAQ","Docs"].map(l => (
-            <a key={l} href={`#${l.toLowerCase()}`} style={{ color: "inherit", textDecoration: "none" }}>{l}</a>
+          {[["Features", "features"], ["How it works", "how"], ["FAQ", "faq"]].map(([label, id]) => (
+            <button key={id} onClick={() => scrollToId(id)}
+              style={{ color: "inherit", background: "none", border: "none", cursor: "pointer", font: "inherit", padding: 0 }}>
+              {label}
+            </button>
           ))}
         </div>
-        <motion.button
+        <MotionLink
+          to="/"
           whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}
           style={{
             padding: "10px 20px", borderRadius: 10, border: "none", cursor: "pointer",
             background: "linear-gradient(135deg,#7df9ff,#5e48ff)", color: "#02020a",
-            fontWeight: 800, fontSize: 13, letterSpacing: ".05em",
+            fontWeight: 800, fontSize: 13, letterSpacing: ".05em", textDecoration: "none",
           }}
-        >Start Free</motion.button>
+        >Open the Hub</MotionLink>
       </motion.nav>
 
       {/* HERO */}
@@ -347,7 +314,7 @@ export default function Launch() {
         >
           <motion.span animate={{ scale: [1, 1.4, 1] }} transition={{ duration: 1.6, repeat: Infinity }}
             style={{ width: 8, height: 8, borderRadius: 999, background: "#28c840", boxShadow: "0 0 12px #28c840" }} />
-          v1.0 · Live for WC2026
+          Free · Live for WC2026
         </motion.div>
 
         <motion.h1
@@ -362,30 +329,32 @@ export default function Launch() {
             WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text",
           }}
         >
-          The Operating System<br/>for World Cup data.
+          World Cup 2026.<br/>Every stat. One hub.
         </motion.h1>
 
         <motion.p
           initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.3 }}
           style={{ maxWidth: 640, margin: "0 auto", color: "rgba(255,255,255,.7)", fontSize: 18, lineHeight: 1.6 }}
         >
-          Live scores, golden-boot tracking, AI-powered brackets, and a century of history —
-          unified in one developer-friendly platform. Built for fans, broadcasters, and teams.
+          Live scores, the Golden Boot race, an AI-assisted bracket predictor, and a century of
+          World Cup history — free, no account required.
         </motion.p>
 
         {/* CTAs */}
         <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginTop: 32 }}>
-          <motion.button
+          <MotionLink
+            to="/"
             whileHover={{ scale: 1.05, boxShadow: "0 20px 50px rgba(94,72,255,.5)" }}
             whileTap={{ scale: 0.96 }}
             style={{
               padding: "14px 28px", borderRadius: 12, border: "none",
               background: "linear-gradient(135deg,#7df9ff,#5e48ff)", color: "#02020a",
               fontWeight: 800, fontSize: 14, letterSpacing: ".08em", textTransform: "uppercase",
-              cursor: "pointer",
+              cursor: "pointer", textDecoration: "none", display: "inline-block",
             }}
-          >Start Free →</motion.button>
-          <motion.button
+          >Open the Hub →</MotionLink>
+          <MotionLink
+            to="/schedule"
             whileHover={{ scale: 1.05, background: "rgba(255,255,255,.1)" }}
             whileTap={{ scale: 0.96 }}
             style={{
@@ -393,25 +362,25 @@ export default function Launch() {
               background: "rgba(255,255,255,.05)", color: "#fff",
               border: "1px solid rgba(255,255,255,.15)",
               fontWeight: 700, fontSize: 14, letterSpacing: ".08em", textTransform: "uppercase",
-              cursor: "pointer",
+              cursor: "pointer", textDecoration: "none", display: "inline-block",
             }}
-          >▶ Watch Demo</motion.button>
+          >View Schedule</MotionLink>
         </div>
 
         <div style={{ marginTop: 18, fontSize: 12, color: "rgba(255,255,255,.45)" }}>
-          No credit card · 14-day Pro trial · SOC 2 ready
+          Free forever · No login required · Live during matches
         </div>
 
         <DashboardMock />
       </motion.section>
 
-      {/* Trusted-by logos */}
+      {/* Powered by (real stack, no fabricated endorsements) */}
       <section style={{ position: "relative", padding: "70px 24px 20px", maxWidth: 1100, margin: "0 auto", zIndex: 2 }}>
         <div style={{ textAlign: "center", color: "rgba(255,255,255,.4)", fontSize: 11, letterSpacing: ".3em", textTransform: "uppercase", marginBottom: 24 }}>
-          Trusted by 50,000+ fans across 120 countries
+          Powered by
         </div>
         <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", alignItems: "center", gap: 48, opacity: 0.55 }}>
-          {["ESPN", "FOX SPORTS", "BLEACHER", "TheStatsAPI", "VERCEL", "BBC"].map(l => (
+          {["React", "Vite", "TheStatsAPI", "Vercel"].map(l => (
             <motion.div key={l}
               whileHover={{ opacity: 1, scale: 1.05 }}
               style={{ fontFamily: "Barlow Condensed, sans-serif", fontSize: 18, fontWeight: 800, letterSpacing: ".15em", color: "rgba(255,255,255,.8)" }}
@@ -424,10 +393,10 @@ export default function Launch() {
       <section style={{ position: "relative", padding: "60px 24px", maxWidth: 1100, margin: "0 auto", zIndex: 2 }}>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px,1fr))", gap: 24, textAlign: "center" }}>
           {[
-            { n: 48, s: "", l: "National Teams" },
-            { n: 104, s: "", l: "Matches Tracked" },
-            { n: 50000, s: "+", l: "Active Users" },
-            { n: 99, s: "%", l: "Uptime" },
+            { n: teamCount, s: "", l: "National Teams" },
+            { n: matchCount, s: "", l: "Matches Tracked" },
+            { n: groupCount, s: "", l: "Groups" },
+            { n: 1930, s: "", l: "Tracking History Since" },
           ].map(stat => (
             <div key={stat.l}>
               <div style={{
@@ -452,45 +421,45 @@ export default function Launch() {
           <h2 style={{
             fontFamily: "Barlow Condensed, sans-serif",
             fontSize: "clamp(36px,5vw,64px)", fontWeight: 900, letterSpacing: "-.01em", margin: 0,
-          }}>14 modules. One subscription.</h2>
+          }}>Every page, one nav bar.</h2>
           <p style={{ color: "rgba(255,255,255,.55)", maxWidth: 540, margin: "14px auto 0", fontSize: 16 }}>
-            Everything you need to follow, analyze, and broadcast the World Cup — engineered for scale.
+            Everything you need to follow, analyze, and relive the World Cup — click any card to jump straight in.
           </p>
         </motion.div>
 
         <div style={{ display: "grid", gap: 18, gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))" }}>
           {[
-            { i: "⚽", t: "Live Schedule", d: "All 104 matches with IST kickoffs, synced to TheStatsAPI in real time." },
-            { i: "🥇", t: "Golden Boot", d: "Live goal + assist leaderboard refreshing every 5 minutes during play." },
-            { i: "🧠", t: "AI Predictor", d: "Build your bracket. Confidence scoring against historical xG models." },
-            { i: "📊", t: "Records Engine", d: "Every record from 1930: goals, attendance, hosts, winners, golden boots." },
-            { i: "⚖️", t: "Team Comparison", d: "Head-to-head xG, FIFA ranking deltas, historical matchups side by side." },
-            { i: "👥", t: "Squad Profiles", d: "Full 26-man rosters with caps, clubs, market values, and tournament history." },
-            { i: "👩", t: "Women's Edition", d: "All-time leaders, tournament archives from 1991, top scorers by era." },
-            { i: "🌍", t: "Live Rankings", d: "FIFA ranking deltas by confederation with weekly change indicators." },
-            { i: "🔮", t: "Match Detail", d: "Event timelines, lineups, formations, xG shot maps per fixture." },
-            { i: "📡", t: "Webhooks API", d: "Push goals, cards, and final scores into Slack, Discord, or your own stack." },
-            { i: "🎨", t: "Theme Engine", d: "12 visual themes including dark, neon, classic broadcast, and arena LED." },
-            { i: "📱", t: "PWA Native", d: "Install on iOS + Android. Offline-first with service-worker cached data." },
+            { i: "⚽", t: "Live Schedule", d: "All 104 matches with IST kickoffs, synced live from TheStatsAPI.", to: "/schedule" },
+            { i: "🏆", t: "Group Standings", d: "All 12 groups, updated automatically as results come in.", to: "/groups" },
+            { i: "🥊", t: "Knockout Bracket", d: "Round of 32 through the final, filled in as the tournament plays out.", to: "/bracket" },
+            { i: "🥇", t: "Golden Boot", d: "Live goal and assist leaderboard, refreshed every few minutes during play.", to: "/scorers" },
+            { i: "🔮", t: "AI Predictor", d: "Build your own bracket and compare it against a simple historical model.", to: "/predictor" },
+            { i: "📊", t: "All-Time Records", d: "Every World Cup since 1930 — top scorers, goals, and tournament totals.", to: "/all-time" },
+            { i: "⚖️", t: "Team Comparison", d: "Head-to-head history and FIFA ranking deltas, side by side.", to: "/compare" },
+            { i: "👥", t: "Squads & Players", d: "Rosters for all 48 nations, with caps, clubs, and tournament history.", to: "/squads" },
+            { i: "👩", t: "Women's World Cup", d: "All-time leaders and the tournament archive going back to 1991.", to: "/women" },
+            { i: "🌍", t: "FIFA Rankings", d: "Confederation-by-confederation ranking changes.", to: "/rankings" },
+            { i: "📈", t: "Tournament Stats", d: "Goals, attendance, and records for every World Cup edition.", to: "/stats" },
+            { i: "📖", t: "History Archive", d: "Finals, winners, and runner-ups from every World Cup since 1930.", to: "/history" },
           ].map((f, idx) => (
-            <FeatureCard key={f.t} icon={f.i} title={f.t} desc={f.d} delay={idx * 0.04} />
+            <FeatureCard key={f.t} icon={f.i} title={f.t} desc={f.d} to={f.to} delay={idx * 0.04} />
           ))}
         </div>
       </section>
 
       {/* HOW IT WORKS */}
-      <section style={{ position: "relative", padding: "80px 24px", maxWidth: 1100, margin: "0 auto", zIndex: 2 }}>
+      <section id="how" style={{ position: "relative", padding: "80px 24px", maxWidth: 1100, margin: "0 auto", zIndex: 2 }}>
         <div style={{ textAlign: "center", marginBottom: 56 }}>
           <div style={{ color: "#7df9ff", fontSize: 11, letterSpacing: ".3em", textTransform: "uppercase", fontWeight: 700, marginBottom: 12 }}>Workflow</div>
           <h2 style={{ fontFamily: "Barlow Condensed, sans-serif", fontSize: "clamp(34px,4.5vw,56px)", fontWeight: 900, margin: 0 }}>
-            From kickoff to insight in 3 steps.
+            No sign-up. Just open it.
           </h2>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 28 }}>
           {[
-            { n: "01", t: "Connect", d: "Sign in with email or SSO. Pick your teams, your league, your timezone." },
-            { n: "02", t: "Configure", d: "Enable modules: schedule, predictor, scorers. Set IST or any TZ." },
-            { n: "03", t: "Compete", d: "Get push notifications on goals, build brackets, climb the leaderboard." },
+            { n: "01", t: "Pick a page", d: "Schedule, Bracket, Predictor, Stats, and more — all in one nav bar, no account needed." },
+            { n: "02", t: "Track it live", d: "Scores and the Golden Boot table update automatically while matches are in progress." },
+            { n: "03", t: "Go deeper", d: "Compare teams, browse full squads, or explore every World Cup back to 1930." },
           ].map((s, i) => (
             <motion.div key={s.n}
               initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
@@ -511,87 +480,44 @@ export default function Launch() {
         </div>
       </section>
 
-      {/* TESTIMONIALS */}
-      <section style={{ position: "relative", padding: "80px 24px", maxWidth: 1280, margin: "0 auto", zIndex: 2 }}>
-        <div style={{ textAlign: "center", marginBottom: 56 }}>
-          <h2 style={{ fontFamily: "Barlow Condensed, sans-serif", fontSize: "clamp(34px,4.5vw,56px)", fontWeight: 900, margin: 0 }}>
-            Loved by football obsessives.
-          </h2>
-        </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px,1fr))", gap: 22 }}>
-          {[
-            { q: "The predictor brackets crushed every other app I tried. The xG scoring is borderline psychic.", n: "Aisha P.", r: "Sports Editor, BBC" },
-            { q: "Golden boot tracking refreshes faster than the FIFA official site. Crazy good for matchday.", n: "Marco D.", r: "Football Analyst" },
-            { q: "We pipe the webhook into our newsroom Slack. Instant goal alerts. Saved us an intern.", n: "Liam K.", r: "Producer, ESPN" },
-          ].map((t, i) => (
-            <motion.div key={t.n}
-              initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }} transition={{ duration: 0.6, delay: i * 0.08 }}
-              style={{
-                padding: 28, borderRadius: 18,
-                background: "linear-gradient(135deg, rgba(255,255,255,.05), rgba(255,255,255,.02))",
-                border: "1px solid rgba(125,249,255,.15)",
-              }}
-            >
-              <div style={{ color: "#7df9ff", fontSize: 22, marginBottom: 8 }}>★★★★★</div>
-              <p style={{ color: "rgba(255,255,255,.85)", fontSize: 15, lineHeight: 1.65, margin: "0 0 18px" }}>"{t.q}"</p>
-              <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                <div style={{ width: 38, height: 38, borderRadius: "50%", background: "linear-gradient(135deg,#7df9ff,#5e48ff)", display: "grid", placeItems: "center", color: "#02020a", fontWeight: 800 }}>{t.n[0]}</div>
-                <div>
-                  <div style={{ color: "#fff", fontSize: 14, fontWeight: 700 }}>{t.n}</div>
-                  <div style={{ color: "rgba(255,255,255,.5)", fontSize: 12 }}>{t.r}</div>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* PRICING */}
-      <section id="pricing" style={{ position: "relative", padding: "80px 24px", maxWidth: 1200, margin: "0 auto", zIndex: 2 }}>
-        <div style={{ textAlign: "center", marginBottom: 56 }}>
-          <div style={{ color: "#7df9ff", fontSize: 11, letterSpacing: ".3em", textTransform: "uppercase", fontWeight: 700, marginBottom: 12 }}>Pricing</div>
-          <h2 style={{ fontFamily: "Barlow Condensed, sans-serif", fontSize: "clamp(36px,5vw,64px)", fontWeight: 900, margin: 0 }}>
-            Simple. Honest. Tournament-grade.
-          </h2>
-        </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 24, alignItems: "stretch" }}>
-          <PricingCard
-            name="Fan" price="0" period="forever"
-            features={["Live schedule + results", "Groups & bracket viewer", "All-time records", "Mobile PWA", "Community support"]}
-            cta="Get Started"
-          />
-          <PricingCard
-            name="Pro" price="9" period="month" highlight
-            features={["Everything in Fan", "AI Predictor + xG model", "Golden boot live tracker", "12 visual themes", "Push notifications", "Priority support"]}
-            cta="Start 14-Day Trial"
-          />
-          <PricingCard
-            name="Broadcast" price="99" period="month"
-            features={["Everything in Pro", "Webhooks API + SDK", "Slack/Discord integrations", "Custom branding", "SLA + SOC 2 report", "Dedicated CSM"]}
-            cta="Contact Sales"
-          />
-        </div>
+      {/* FREE STRIP */}
+      <section style={{ position: "relative", padding: "20px 24px 80px", maxWidth: 1100, margin: "0 auto", zIndex: 2, textAlign: "center" }}>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          style={{
+            padding: "32px 24px", borderRadius: 20,
+            background: "linear-gradient(135deg, rgba(125,249,255,.1), rgba(94,72,255,.14))",
+            border: "1px solid rgba(125,249,255,.25)",
+          }}
+        >
+          <div style={{ fontFamily: "Barlow Condensed, sans-serif", fontSize: "clamp(24px,3vw,32px)", fontWeight: 800, marginBottom: 6 }}>
+            Free forever. No tiers, no paywall.
+          </div>
+          <p style={{ margin: 0, color: "rgba(255,255,255,.6)", fontSize: 14 }}>
+            Every page on WC2026 is open to everyone — this is a fan project, not a subscription product.
+          </p>
+        </motion.div>
       </section>
 
       {/* FAQ */}
-      <section id="faq" style={{ position: "relative", padding: "80px 24px", maxWidth: 820, margin: "0 auto", zIndex: 2 }}>
+      <section id="faq" style={{ position: "relative", padding: "40px 24px 80px", maxWidth: 820, margin: "0 auto", zIndex: 2 }}>
         <div style={{ textAlign: "center", marginBottom: 48 }}>
           <h2 style={{ fontFamily: "Barlow Condensed, sans-serif", fontSize: "clamp(34px,4.5vw,56px)", fontWeight: 900, margin: 0 }}>
             Questions, answered.
           </h2>
         </div>
         {[
-          { q: "Where does the live match data come from?", a: "We ingest TheStatsAPI for live results, lineups, and event timelines. Data refreshes every 5 minutes during play, with manual override support for admins." },
-          { q: "Can I use this if I'm not in India? It says IST.", a: "Yes — IST is the default for the home dashboard, but every page respects your browser timezone. Pro plans add custom-TZ scheduling." },
-          { q: "Is the predictor actually accurate?", a: "Our xG-weighted model historically beats coin-flip baselines by 18 percentage points on group stage outcomes. Knockouts are inherently noisier — we publish confidence scores so you know when to trust it." },
-          { q: "Do you have a free tier?", a: "Yes — Fan is free forever. You get schedule, results, groups, brackets, records, and the PWA. Pro adds the predictor, golden boot tracker, and themes." },
-          { q: "How is uptime?", a: "Hosted on Vercel + Redis with Service Worker offline fallback. 99.97% over the last 90 days. SLA available on Broadcast." },
+          { q: "Where does the live match data come from?", a: "Live results, lineups, and event timelines come from TheStatsAPI. Scores refresh automatically every 30 seconds while matches are live, and the Golden Boot table refreshes every few minutes." },
+          { q: "Is this free?", a: "Yes — the entire hub is free, with no account or sign-up required." },
+          { q: "What timezone are kickoffs shown in?", a: "IST (UTC+5:30) is the default across the hub, matching the live clock in the header." },
+          { q: "How accurate is the Predictor?", a: "It's a simple model built on historical results — good for building your own bracket for fun, not a guarantee of outcomes." },
+          { q: "Is there a mobile app?", a: "Not a native app yet — WC2026 is a responsive web app with offline-friendly caching, so it works well from any phone browser." },
         ].map(f => <FAQItem key={f.q} q={f.q} a={f.a} />)}
       </section>
 
       {/* FINAL CTA */}
-      <section style={{ position: "relative", padding: "100px 24px", textAlign: "center", zIndex: 2 }}>
+      <section style={{ position: "relative", padding: "60px 24px 100px", textAlign: "center", zIndex: 2 }}>
         <motion.div
           onMouseMove={onMove} onMouseLeave={onLeave}
           style={{
@@ -615,29 +541,21 @@ export default function Launch() {
             The cup is on. Are you?
           </h2>
           <p style={{ transform: "translateZ(20px)", color: "rgba(255,255,255,.7)", margin: "16px auto 28px", maxWidth: 520, fontSize: 16, lineHeight: 1.6 }}>
-            Get notified on every goal, manage your bracket, follow your team. Free forever, or upgrade in a click.
+            Every match, every stat, every record — free, live, and one click away.
           </p>
-          <form
-            onSubmit={(e) => { e.preventDefault(); if (email) setSubbed(true); }}
-            style={{ transform: "translateZ(40px)", display: "flex", gap: 10, justifyContent: "center", flexWrap: "wrap", maxWidth: 480, margin: "0 auto" }}
-          >
-            <input type="email" required value={email} onChange={e => setEmail(e.target.value)} placeholder="your@email.com"
-              style={{
-                flex: 1, minWidth: 240, padding: "14px 20px", borderRadius: 12,
-                background: "rgba(0,0,0,.3)", border: "1px solid rgba(125,249,255,.3)",
-                color: "#fff", fontSize: 15, outline: "none",
-              }}
-            />
-            <motion.button
-              whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
-              type="submit"
-              style={{
-                padding: "14px 28px", borderRadius: 12, border: "none",
-                background: "linear-gradient(135deg,#7df9ff,#5e48ff)", color: "#02020a",
-                fontWeight: 800, fontSize: 14, letterSpacing: ".08em", textTransform: "uppercase", cursor: "pointer",
-              }}
-            >{subbed ? "✓ Welcome aboard" : "Start Free"}</motion.button>
-          </form>
+          <MotionLink
+            to="/"
+            whileHover={{ scale: 1.05, boxShadow: "0 20px 50px rgba(94,72,255,.5)" }}
+            whileTap={{ scale: 0.96 }}
+            style={{
+              transform: "translateZ(40px)",
+              display: "inline-block",
+              padding: "16px 36px", borderRadius: 12, border: "none",
+              background: "linear-gradient(135deg,#7df9ff,#5e48ff)", color: "#02020a",
+              fontWeight: 800, fontSize: 14, letterSpacing: ".08em", textTransform: "uppercase",
+              cursor: "pointer", textDecoration: "none",
+            }}
+          >Open the Hub →</MotionLink>
         </motion.div>
       </section>
 
@@ -649,23 +567,22 @@ export default function Launch() {
               <div style={{ width: 26, height: 26, borderRadius: 6, background: "linear-gradient(135deg,#7df9ff,#5e48ff)", display: "grid", placeItems: "center", color: "#02020a" }}>⚽</div>
               <span style={{ fontFamily: "Barlow Condensed, sans-serif", fontSize: 18, fontWeight: 800, letterSpacing: ".05em" }}>WC2026</span>
             </div>
-            <p style={{ color: "rgba(255,255,255,.45)", fontSize: 12, lineHeight: 1.7 }}>The operating system for World Cup data.<br/>Built on React + Vercel.</p>
+            <p style={{ color: "rgba(255,255,255,.45)", fontSize: 12, lineHeight: 1.7 }}>A free fan-built data hub for the<br/>2026 World Cup. Built on React + Vercel.</p>
           </div>
           {[
-            { h: "Product", items: ["Features", "Pricing", "API", "Changelog"] },
-            { h: "Company", items: ["About", "Blog", "Careers", "Contact"] },
-            { h: "Legal", items: ["Privacy", "Terms", "Security", "SOC 2"] },
+            { h: "Explore", items: [["Schedule", "/schedule"], ["Rankings", "/rankings"], ["Predictor", "/predictor"], ["History", "/history"]] },
+            { h: "More", items: [["All-Time Records", "/all-time"], ["Women's World Cup", "/women"], ["Squads", "/squads"], ["Stats", "/stats"]] },
           ].map(col => (
             <div key={col.h}>
               <div style={{ color: "#fff", fontSize: 12, fontWeight: 700, letterSpacing: ".2em", textTransform: "uppercase", marginBottom: 14 }}>{col.h}</div>
-              {col.items.map(i => (
-                <a key={i} href="#" style={{ display: "block", color: "rgba(255,255,255,.55)", fontSize: 13, textDecoration: "none", padding: "5px 0" }}>{i}</a>
+              {col.items.map(([label, to]) => (
+                <Link key={label} to={to} style={{ display: "block", color: "rgba(255,255,255,.55)", fontSize: 13, textDecoration: "none", padding: "5px 0" }}>{label}</Link>
               ))}
             </div>
           ))}
         </div>
         <div style={{ marginTop: 40, paddingTop: 24, borderTop: "1px solid rgba(255,255,255,.06)", color: "rgba(255,255,255,.4)", fontSize: 12, display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 8 }}>
-          <span>© 2026 WC2026 Tracker · All rights reserved</span>
+          <span>© 2026 WC2026 · Fan project, not affiliated with FIFA</span>
           <span>Canada · Mexico · USA</span>
         </div>
       </footer>
