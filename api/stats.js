@@ -396,9 +396,14 @@ export default async function handler(req, res) {
 
     // -- Competitions list (club-football discovery) ------------------------
     if (action === 'competitions') {
-      const { data: payload, cached: hit } = await cached(redis, 'stats_competitions', 86400, async () => {
-        const d = await statsFetch('/competitions?per_page=100');
-        const list = (d?.data || []).map(c => ({ id: c.id, name: c.name, country: c.country || c.region || null }));
+      // v2: the list is alphabetical and paginated - UEFA comps are on page 2.
+      const { data: payload, cached: hit } = await cached(redis, 'stats_competitions_v2', 86400, async () => {
+        const [p1, p2] = await Promise.all([
+          statsFetch('/competitions?per_page=100&page=1'),
+          statsFetch('/competitions?per_page=100&page=2').catch(() => null),
+        ]);
+        const raw = [...(p1?.data || []), ...(p2?.data || [])];
+        const list = raw.map(c => ({ id: c.id, name: c.name, country: c.country || c.region || null }));
         return { competitions: list };
       });
       res.setHeader('X-Cache', hit ? 'HIT' : 'MISS');
