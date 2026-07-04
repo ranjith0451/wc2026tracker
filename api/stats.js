@@ -25,6 +25,11 @@ import Redis from 'ioredis';
 
 const BASE = 'https://api.thestatsapi.com/api/football';
 const WC_COMP = 'comp_6107';
+// Competition whitelist - clients pass ?comp=wc|ucl; raw competition IDs are
+// never accepted from the client. Fill 'ucl' after ?action=competitions discovery.
+const COMPETITIONS = {
+  wc: WC_COMP,
+};
 const API_KEY = process.env.STATS_API_KEY;
 
 // Team name aliases — keep in sync with useStats.js
@@ -207,7 +212,9 @@ export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   if (req.method === 'OPTIONS') return res.status(200).end();
 
-  const { action, id, date, pid } = req.query;
+  const { action, id, date, pid, comp } = req.query;
+  const compKey = COMPETITIONS[comp] ? comp : 'wc';
+  const COMP_ID = COMPETITIONS[compKey];
   const redis = getRedis();
 
   try {
@@ -233,10 +240,10 @@ export default async function handler(req, res) {
     if (action === 'all-matches') {
       // Fetch all matches with balanced cache
       // 60s cache balances freshness vs server load
-      const { data: allData, cached: hit } = await cached(redis, 'stats_all_wc', 60, async () => {
+      const { data: allData, cached: hit } = await cached(redis, `stats_all_${compKey}`, 60, async () => {
         const [page1, page2] = await Promise.all([
-          statsFetch(`/matches?competition_id=${WC_COMP}&per_page=100&page=1`),
-          statsFetch(`/matches?competition_id=${WC_COMP}&per_page=100&page=2`),
+          statsFetch(`/matches?competition_id=${COMP_ID}&per_page=100&page=1`),
+          statsFetch(`/matches?competition_id=${COMP_ID}&per_page=100&page=2`),
         ]);
         const matches = [...(page1?.data || []), ...(page2?.data || [])];
 
@@ -253,10 +260,10 @@ export default async function handler(req, res) {
     // ── Matches by date ───────────────────────────────────────────────────────
     if (action === 'matches') {
       const d = date || new Date().toISOString().slice(0, 10);
-      const { data: payload, cached: hit } = await cached(redis, `stats_matches_${d}`, 300, async () => {
+      const { data: payload, cached: hit } = await cached(redis, `stats_matches_${compKey}_${d}`, 300, async () => {
         const [page1, page2] = await Promise.all([
-          statsFetch(`/matches?competition_id=${WC_COMP}&per_page=100&page=1`),
-          statsFetch(`/matches?competition_id=${WC_COMP}&per_page=100&page=2`),
+          statsFetch(`/matches?competition_id=${COMP_ID}&per_page=100&page=1`),
+          statsFetch(`/matches?competition_id=${COMP_ID}&per_page=100&page=2`),
         ]);
         const all_matches = [...(page1?.data || []), ...(page2?.data || [])];
         const filtered = all_matches.filter(m => (m.utc_date || '').startsWith(d));
@@ -274,8 +281,8 @@ export default async function handler(req, res) {
 
         // Step 1: get all WC matches from API
         const [p1, p2] = await Promise.all([
-          statsFetch(`/matches?competition_id=${WC_COMP}&per_page=100&page=1`),
-          statsFetch(`/matches?competition_id=${WC_COMP}&per_page=100&page=2`),
+          statsFetch(`/matches?competition_id=${COMP_ID}&per_page=100&page=1`),
+          statsFetch(`/matches?competition_id=${COMP_ID}&per_page=100&page=2`),
         ]);
         const allMatches = [...(p1?.data || []), ...(p2?.data || [])];
 
@@ -368,7 +375,7 @@ export default async function handler(req, res) {
     // ── Debug: inspect raw timeline for one finished match ───────────────────
     if (action === 'debug-scorers') {
       const [p1] = await Promise.all([
-        statsFetch(`/matches?competition_id=${WC_COMP}&per_page=100&page=1`),
+        statsFetch(`/matches?competition_id=${COMP_ID}&per_page=100&page=1`),
       ]);
       const allMatches = p1?.data || [];
       const DONE = new Set(['ft', 'aet', 'pen', 'finished', 'completed', 'full_time', 'awarded', 'walkover']);
@@ -385,6 +392,32 @@ export default async function handler(req, res) {
         rawTimelineSample: rawTimeline,
         finishedCount: finished.length,
       });
+    }
+
+    // -- Competitions list (club-football discovery) ------------------------
+    if (action === 'competitions') {
+      const { data: payload, cached: hit } = await cached(redis, 'stats_competitions', 86400, async () => {
+        const d = await statsFetch('/competitions?per_page=100');
+        const list = (d?.data || []).map(c => ({ id: c.id, name: c.name, country: c.country || c.region || null }));
+        return { competitions: list };
+      });
+      res.setHeader('X-Cache', hit ? 'HIT' : 'MISS');
+      return res.status(200).json(payload);
+    }
+
+    // -- Standings (league table) for whitelisted competitions --------------
+    if (action === 'standings') {
+      const { data: payload, cached: hit } = await cached(redis, `stats_standings_${compKey}`, 3600, async () => {
+        try {
+          const d = await statsFetch(`/standings?competition_id=${COMP_ID}`);
+          return { standings: d?.data || d || [], comp: compKey };
+        } catch (e) {
+          if (e.message.includes('404')) return { standings: [], unavailable: true, comp: compKey };
+          throw e;
+        }
+      });
+      res.setHeader('X-Cache', hit ? 'HIT' : 'MISS');
+      return res.status(200).json(payload);
     }
 
     if (!id) return res.status(400).json({ error: 'id required' });
