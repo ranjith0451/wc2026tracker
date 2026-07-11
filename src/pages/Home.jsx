@@ -8,8 +8,6 @@ import { getMatchStatus } from "../lib/time.js";
 import { getTeamGoalCounts } from "../lib/topscorers.js";
 import { getGroupStandings } from "../lib/standings.js";
 import { useTopScorers, useMatchEvents, useMatchStats } from "../lib/useStats.js";
-import GlobeHero from "../components/GlobeHero";
-
 const MEDALS = ["🥇","🥈","🥉"];
 
 function SvgIcon({ d, size=13 }) {
@@ -235,10 +233,6 @@ export default function Home({ results, statsMatchIdMap = {} }) {
 
   return (
     <div>
-      {/* ══════════ HERO ══════════ */}
-      <div style={{ marginBottom: 16, borderRadius: 18, overflow: "hidden" }} className="glass-surface specular">
-        <GlobeHero height={340} />
-      </div>
       <div className="hero">
         <div className="hero-bg" />
         <div className="hero-ring hero-ring-1">
