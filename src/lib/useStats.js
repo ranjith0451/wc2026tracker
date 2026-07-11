@@ -45,13 +45,25 @@ export function useSchedule() {
         if (h && a) apiMap[`${h}|${a}`] = m;
       }
 
+      // Kickoff-instant index — attaches live scores to knockout fixtures whose
+      // team names aren't in the static schedule yet (times synced from football-data)
+      const apiByTime = {};
+      for (const m of apiMatches) {
+        const t = Date.parse(m.utc_date || '');
+        if (t) (apiByTime[t] ||= []).push(m);
+      }
+
       const results = {};
       let liveCount = 0;
 
       for (const m of MATCHES) {
-        if (!m.home?.name || !m.away?.name) continue;
-        const key = `${m.home.name}|${m.away.name}`;
-        const apiM = apiMap[key];
+        let apiM = null;
+        if (m.home?.name && m.away?.name) apiM = apiMap[`${m.home.name}|${m.away.name}`] ?? null;
+        if (!apiM) {
+          const t = Date.parse(m.isoIST || '');
+          const tc = t ? apiByTime[t] : null;
+          if (tc && tc.length === 1) apiM = tc[0];
+        }
         if (!apiM) continue;
 
         const rawStatus = apiM.status || apiM.match_status || '';
@@ -91,11 +103,10 @@ export function useSchedule() {
 
       // Also export idMap keyed by "home|away" (bypasses KV/override merge)
       const idMap = {};
-      for (const m of MATCHES) {
-        if (!m.home?.name || !m.away?.name) continue;
-        const key = `${m.home.name}|${m.away.name}`;
-        const apiM = apiMap[key];
-        if (apiM?.id) idMap[key] = apiM.id;
+      for (const m of apiMatches) {
+        const h = normName(m.home_team?.name || '');
+        const a = normName(m.away_team?.name || '');
+        if (h && a && m.id) idMap[`${h}|${a}`] = m.id;
       }
 
       return { results, liveCount, idMap };
