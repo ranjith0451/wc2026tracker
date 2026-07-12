@@ -1,12 +1,6 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
-import {
-  NAME_ALIASES,
-  normName,
-  mapStatus,
-  mapMatch,
-  cached,
-  __resetStatsCache,
-} from "./stats.js";
+import { NAME_ALIASES, normName, mapStatus, mapMatch } from "./stats.js";
+import { cached, __resetCache } from "./_lib/cache.js";
 import { GROUPS } from "../src/data/teams.js";
 
 describe("normName", () => {
@@ -130,7 +124,7 @@ describe("cached (resilient caching)", () => {
   });
 
   beforeEach(() => {
-    __resetStatsCache();
+    __resetCache();
     vi.useFakeTimers();
     vi.setSystemTime(new Date("2026-07-12T12:00:00Z"));
   });
@@ -158,12 +152,18 @@ describe("cached (resilient caching)", () => {
   it("writes fresh and long-TTL stale copies to Redis and tracks usage", async () => {
     const redis = makeRedis();
     const fn = vi.fn().mockResolvedValue({ v: 1 });
-    await cached(redis, "k", 60, fn);
+    await cached(redis, "k", 60, fn, { usageKey: "fd_usage" });
 
     const json = JSON.stringify({ v: 1 });
     expect(redis.setex).toHaveBeenCalledWith("k", 60, json);
     expect(redis.setex).toHaveBeenCalledWith("k:stale", 6 * 60 * 60, json);
     expect(redis.incr).toHaveBeenCalledWith("fd_usage_2026-07-12");
+  });
+
+  it("does not track usage when no usageKey is given", async () => {
+    const redis = makeRedis();
+    await cached(redis, "k", 60, vi.fn().mockResolvedValue({ v: 1 }));
+    expect(redis.incr).not.toHaveBeenCalled();
   });
 
   it("returns a Redis hit without calling the fetcher", async () => {

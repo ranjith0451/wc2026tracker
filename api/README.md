@@ -1,30 +1,43 @@
 # API surface (Vercel serverless functions)
 
-All keys live in Vercel env vars; nothing client-side. All responses are
-Redis-cached (`REDIS_URL`) with `X-Cache: HIT|MISS` headers. Consumed by both
-the web app and the `wc2026-mobile` app.
+All keys live in Vercel env vars; nothing client-side. Responses are cached
+through a shared resilient layer (`_lib/cache.js`): warm-instance memory +
+Redis (`REDIS_URL`) with `X-Cache: HIT|MISS` headers, 6h stale copies served
+whenever the upstream fails, and a 30s cooldown after an upstream failure so
+rate-limited windows are never hammered. Consumed by both the web app and the
+`wc2026-mobile` app.
 
-## /api/stats — TheStatsAPI proxy (`STATS_API_KEY`)
+## /api/stats — football-data.org v4 proxy (`FD_API_KEY`)
 
-Competition-scoped actions accept `&comp=wc` (default). Add new competitions
-to the `COMPETITIONS` whitelist in `stats.js` — raw competition IDs from
-clients are never accepted.
+World Cup 2026 live data (competition code `WC`). Free tier is ~10 req/min —
+shared with `/api/club` — and every real upstream call increments the daily
+`fd_usage` counter reported by `?action=usage`.
 
 | Action | Params | Returns |
 | --- | --- | --- |
-| `all-matches` | `comp?` | all matches for the competition |
-| `matches` | `date`, `comp?` | fixtures for a date |
-| `competitions` | — | competition list (club-football discovery) |
-| `standings` | `comp?` | league table (`unavailable: true` if endpoint missing) |
-| `top-scorers` | — | WC golden-boot tallies from event timelines |
-| `match` / `events` / `stats` / `live-stats` | `id` | per-match data |
-| `player-stats` / `shotmap` / `heatmap` / `lineups` / `referee` | `id` (+`pid`) | per-match data |
-| `usage` | — | daily request counter |
+| `all-matches` | — | all WC matches (60s cache) |
+| `matches` | `date?` | WC fixtures for a date (default today) |
+| `match` | `id` | match details incl. venue, referee, attendance |
+| `standings` | — | WC group tables |
+| `top-scorers` | — | competition top scorers (limit 25) |
+| `referee` | `id` | referee name + nationality |
+| `usage` | — | daily request counter vs. theoretical ceiling |
+
+The football-data free tier has **no** event timelines, lineups, per-player
+stats, shotmaps or heatmaps. Those actions return empty payloads so the UI
+degrades gracefully instead of erroring: `events`, `stats`, `live-stats`,
+`player-stats`, `shotmap`, `heatmap`, `lineups`.
+
+To re-sync the static schedule (`src/data/matches.js`) after matches finish:
+`node scripts/sync-matches.mjs` (reads `FD_API_KEY` from env or `.env.local`).
 
 ## /api/club — football-data.org v4 proxy (`FD_API_KEY`)
 
-Baseline Champions League provider (free tier, 10 req/min). Returns
-`{ configured: false }` with empty arrays until the key is set.
+Champions League provider for the mobile app. **Shares the same 10 req/min
+FD_API_KEY budget as `/api/stats`** (its calls count against the same
+`fd_usage` counter). Returns `{ configured: false }` with empty arrays until
+the key is set. Competition whitelist: clients pass `?comp=ucl`; raw codes
+are never accepted.
 
 | Action | Returns |
 | --- | --- |
@@ -34,9 +47,10 @@ Baseline Champions League provider (free tier, 10 req/min). Returns
 
 ## /api/players — API-Football v3 proxy (`APIFOOTBALL_KEY`)
 
-Player bio + photos. Free tier is 100 req/day — search results cache 7 days,
-profiles 30 days. `marketValue` is always `null` (no free source); clients
-hide the row. Returns `{ configured: false }` until the key is set.
+Player bio + photos. Free tier is 100 req/day (tracked under `af_usage`) —
+search results cache 7 days, profiles 30 days. `marketValue` is always `null`
+(no free source); clients hide the row. Returns `{ configured: false }` until
+the key is set.
 
 | Action | Params | Returns |
 | --- | --- | --- |
@@ -44,3 +58,7 @@ hide the row. Returns `{ configured: false }` until the key is set.
 | `player` | `id` | single profile |
 
 ## /api/results — KV-backed manual result overrides (pre-existing)
+
+GET returns the admin-entered results blob from Redis; POST replaces it.
+Used by the admin panel (`/admin`) and merged client-side with priority:
+manual overrides > cloud results > live API results.
