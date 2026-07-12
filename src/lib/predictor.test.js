@@ -117,16 +117,16 @@ describe("resolvePredictedSide", () => {
     ).toBe("Sweden");
   });
 
-  it("KNOWN ISSUE: loser_match resolves to the predicted winner instead of the loser", () => {
-    // The loser of M3 (predicted "away") should be its home side — the winner
-    // of M1, Brazil — but resolvePredictedSide picks `pred === "home" ? home
-    // : away` for BOTH winner_match and loser_match, so it returns the
-    // predicted winner (Sweden). This affects the third-place playoff
-    // (match 103), whose sides are loser_match sources.
-    // Characterization test — update this expectation when fixed.
+  it("loser_match resolves to the losing side of the predicted match", () => {
+    // M3 predicted "away": winner is Sweden (via M2), so the loser is M3's
+    // home side — the winner of M1, Brazil. This feeds the third-place
+    // playoff (match 103), whose sides are loser_match sources.
     const preds = { 1: "home", 2: "away", 3: "away" };
     expect(
       resolvePredictedSide({ type: "loser_match", matchId: 3 }, preds, MINI_BRACKET).name
+    ).toBe("Brazil");
+    expect(
+      resolvePredictedSide({ type: "loser_match", matchId: 3 }, { ...preds, 3: "home" }, MINI_BRACKET).name
     ).toBe("Sweden");
   });
 

@@ -117,8 +117,17 @@ export function resolveSide(source, results, thirdAssignments) {
       if (!res || res.status !== "finished") {
         return { name: placeholderLabel(source), resolved: false };
       }
-      const homeWon = res.homeScore > res.awayScore ||
-        (res.homeScore === res.awayScore && res.penalties && res.penalties.home > res.penalties.away);
+      let homeWon;
+      if (res.homeScore > res.awayScore) {
+        homeWon = true;
+      } else if (res.homeScore < res.awayScore) {
+        homeWon = false;
+      } else if (res.penalties && res.penalties.home !== res.penalties.away) {
+        homeWon = res.penalties.home > res.penalties.away;
+      } else {
+        // Finished draw with no decisive shootout recorded — no winner yet
+        return { name: placeholderLabel(source), resolved: false };
+      }
       const winnerSide = homeWon ? m.home : m.away;
       const loserSide = homeWon ? m.away : m.home;
       const target = source.type === "winner_match" ? winnerSide : loserSide;

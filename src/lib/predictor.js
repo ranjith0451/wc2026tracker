@@ -96,8 +96,11 @@ export function resolvePredictedSide(side, preds, matches) {
       return { name: label, resolved: false, isPlaceholder: true };
     }
 
-    // Recursively resolve the winning/losing side
-    const targetSide = pred === "home" ? prev.home : prev.away;
+    // Recursively resolve the winning/losing side: winner_match follows the
+    // predicted pick, loser_match takes the opposite side.
+    const winnerIsHome = pred === "home";
+    const takeHome = side.type === "winner_match" ? winnerIsHome : !winnerIsHome;
+    const targetSide = takeHome ? prev.home : prev.away;
     return resolvePredictedSide(targetSide, preds, matches);
   }
 
