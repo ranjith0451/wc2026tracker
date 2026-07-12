@@ -32,7 +32,7 @@ const WC_COMP = 'WC';
 const API_KEY = process.env.FD_API_KEY;
 
 // Team name aliases — football-data names → local names (keep in sync with useStats.js)
-const NAME_ALIASES = {
+export const NAME_ALIASES = {
   'Turkey': 'Türkiye',
   'Türkei': 'Türkiye',
   'Czech Republic': 'Czechia',
@@ -45,7 +45,7 @@ const NAME_ALIASES = {
   'Korea Republic': 'South Korea',
   'IR Iran': 'Iran',
 };
-const normName = (n) => NAME_ALIASES[n] ?? n;
+export const normName = (n) => NAME_ALIASES[n] ?? n;
 
 function getRedis() {
   const url = process.env.REDIS_URL;
@@ -93,7 +93,7 @@ async function cached(redis, key, ttl, fn, trackUsage = true) {
 
 // Map football-data status → the lowercase statuses useStats.js understands.
 // AET/PEN are derived from score.duration so the UI can badge them correctly.
-function mapStatus(m) {
+export function mapStatus(m) {
   switch (m.status) {
     case 'FINISHED':
     case 'AWARDED':
@@ -110,7 +110,7 @@ function mapStatus(m) {
 }
 
 // football-data match → legacy shape consumed by useStats.js
-function mapMatch(m) {
+export function mapMatch(m) {
   return {
     id: String(m.id),
     utc_date: m.utcDate,
