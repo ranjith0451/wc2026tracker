@@ -83,15 +83,19 @@ describe("computePlayerRatings", () => {
     expect(byId.mfWorst).toBe(1.0);
   });
 
-  it("KNOWN ISSUE: a lone player in a position group is always rated 1.0", () => {
-    // With min === max, (raw - min) is 0, so a solo player lands on the
-    // 1.0 floor no matter how well they played. In practice every match has
-    // exactly two GKs, so one keeper is always 10.0 and the other 1.0.
-    // Characterization test — update if the normalization is fixed.
-    const out = computePlayerRatings([
+  it("gives the neutral base score when a position group has no spread", () => {
+    // A lone player (or identical raw scores) can't be min-max normalized;
+    // they get BASE_SCORE (6.0) instead of being pinned to the 1.0 floor.
+    const solo = computePlayerRatings([
       { id: "soloGK", position: "GK", teamName: "Alpha", saves: 9 },
     ]);
-    expect(out[0].rating).toBe(1.0);
+    expect(solo[0].rating).toBe(6.0);
+
+    const identical = computePlayerRatings([
+      fw("twinA", { goals: 1 }),
+      fw("twinB", { goals: 1 }),
+    ]);
+    expect(identical.map((p) => p.rating)).toEqual([6.0, 6.0]);
   });
 
   it("applies card and own-goal deductions from the events array", () => {

@@ -164,17 +164,25 @@ describe("resolveSide", () => {
     ).toEqual({ name: "Paraguay", resolved: true });
   });
 
-  it("KNOWN ISSUE: a drawn knockout match with no penalty data silently declares the away team the winner", () => {
-    // A finished knockout draw without penalties should arguably stay
-    // unresolved, but the current homeWon logic falls through to "away won".
-    // This characterization test documents the behavior; if you fix
-    // resolveSide, update this expectation.
+  it("keeps a drawn knockout match unresolved without a decisive shootout", () => {
     const drawNoPens = {
       74: { homeScore: 1, awayScore: 1, status: "finished" },
     };
     expect(
       resolveSide({ type: "winner_match", matchId: 74 }, drawNoPens, null)
-    ).toEqual({ name: "Paraguay", resolved: true });
+    ).toEqual({ name: "Winner M74", resolved: false });
+
+    const drawLevelPens = {
+      74: {
+        homeScore: 1,
+        awayScore: 1,
+        status: "finished",
+        penalties: { home: 3, away: 3 },
+      },
+    };
+    expect(
+      resolveSide({ type: "loser_match", matchId: 74 }, drawLevelPens, null)
+    ).toEqual({ name: "Loser M74", resolved: false });
   });
 
   it("resolves a chain of knockout references recursively", () => {

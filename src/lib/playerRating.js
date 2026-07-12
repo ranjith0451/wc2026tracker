@@ -124,8 +124,15 @@ function normalize(rawScores) {
   const values = rawScores.map((p) => p.raw);
   const min = Math.min(...values);
   const max = Math.max(...values);
-  const range = max - min || 1;
 
+  // No spread to normalize against (lone player in the group, or identical
+  // raw scores): min-max would pin everyone to the 1.0 floor, so give the
+  // neutral base score instead.
+  if (max === min) {
+    return rawScores.map((p) => ({ ...p, normalized: BASE_SCORE }));
+  }
+
+  const range = max - min;
   return rawScores.map((p) => ({
     ...p,
     normalized: 1.0 + ((p.raw - min) / range) * 9.0,
