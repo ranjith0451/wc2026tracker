@@ -13,19 +13,10 @@
  *   ?action=player&id=<id>   → single player profile
  */
 
-import Redis from 'ioredis';
+import { getRedis, cached as baseCached } from './_lib/cache.js';
 
 const BASE = 'https://v3.football.api-sports.io';
 const API_KEY = process.env.APIFOOTBALL_KEY;
-
-function getRedis() {
-  const url = process.env.REDIS_URL;
-  if (!url) return null;
-  return new Redis(url, {
-    tls: url.startsWith('rediss://') ? {} : undefined,
-    lazyConnect: false, connectTimeout: 5000, maxRetriesPerRequest: 1,
-  });
-}
 
 async function afFetch(path) {
   const res = await fetch(`${BASE}${path}`, {
@@ -38,19 +29,10 @@ async function afFetch(path) {
   return res.json();
 }
 
-async function cached(redis, key, ttl, fn) {
-  if (redis) {
-    try {
-      const hit = await redis.get(key);
-      if (hit) return { data: JSON.parse(hit), cached: true };
-    } catch {}
-  }
-  const data = await fn();
-  if (redis && data) {
-    try { await redis.setex(key, ttl, JSON.stringify(data)); } catch {}
-  }
-  return { data, cached: false };
-}
+// Resilient shared cache (memory + Redis + stale fallback, see _lib/cache.js);
+// tracks the 100 req/day API-Football budget under af_usage.
+const cached = (redis, key, ttl, fn) =>
+  baseCached(redis, key, ttl, fn, { usageKey: 'af_usage' });
 
 function normalizePlayer(entry) {
   const p = entry?.player ?? entry ?? {};

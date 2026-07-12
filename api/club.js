@@ -15,7 +15,7 @@
  *   ?action=scorers     → UCL top scorers
  */
 
-import Redis from 'ioredis';
+import { getRedis, cached as baseCached } from './_lib/cache.js';
 
 const BASE = 'https://api.football-data.org/v4';
 const API_KEY = process.env.FD_API_KEY;
@@ -24,15 +24,6 @@ const API_KEY = process.env.FD_API_KEY;
 const COMPETITIONS = {
   ucl: 'CL',
 };
-
-function getRedis() {
-  const url = process.env.REDIS_URL;
-  if (!url) return null;
-  return new Redis(url, {
-    tls: url.startsWith('rediss://') ? {} : undefined,
-    lazyConnect: false, connectTimeout: 5000, maxRetriesPerRequest: 1,
-  });
-}
 
 async function fdFetch(path) {
   const res = await fetch(`${BASE}${path}`, {
@@ -45,19 +36,11 @@ async function fdFetch(path) {
   return res.json();
 }
 
-async function cached(redis, key, ttl, fn) {
-  if (redis) {
-    try {
-      const hit = await redis.get(key);
-      if (hit) return { data: JSON.parse(hit), cached: true };
-    } catch {}
-  }
-  const data = await fn();
-  if (redis && data) {
-    try { await redis.setex(key, ttl, JSON.stringify(data)); } catch {}
-  }
-  return { data, cached: false };
-}
+// Resilient shared cache (memory + Redis + stale fallback, see _lib/cache.js).
+// This proxy shares the FD_API_KEY 10 req/min budget with /api/stats, so its
+// upstream calls count against the same daily fd_usage counter.
+const cached = (redis, key, ttl, fn) =>
+  baseCached(redis, key, ttl, fn, { usageKey: 'fd_usage' });
 
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');

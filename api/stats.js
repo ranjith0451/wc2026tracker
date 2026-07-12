@@ -25,7 +25,7 @@
  *   lineups → {lineups:[],confirmed:false}
  */
 
-import Redis from 'ioredis';
+import { getRedis, cached as baseCached } from './_lib/cache.js';
 
 const BASE = 'https://api.football-data.org/v4';
 const WC_COMP = 'WC';
@@ -47,15 +47,6 @@ export const NAME_ALIASES = {
 };
 export const normName = (n) => NAME_ALIASES[n] ?? n;
 
-function getRedis() {
-  const url = process.env.REDIS_URL;
-  if (!url) return null;
-  return new Redis(url, {
-    tls: url.startsWith('rediss://') ? {} : undefined,
-    lazyConnect: false, connectTimeout: 5000, maxRetriesPerRequest: 1,
-  });
-}
-
 async function fdFetch(path) {
   if (!API_KEY) throw new Error('FD_API_KEY not configured');
   const res = await fetch(`${BASE}${path}`, {
@@ -68,28 +59,10 @@ async function fdFetch(path) {
   return res.json();
 }
 
-async function cached(redis, key, ttl, fn, trackUsage = true) {
-  if (redis) {
-    try {
-      const hit = await redis.get(key);
-      if (hit) return { data: JSON.parse(hit), cached: true };
-    } catch {}
-  }
-  const data = await fn();
-  // Increment daily usage counter on cache miss (= real API call)
-  if (redis && trackUsage) {
-    const today = new Date().toISOString().slice(0, 10);
-    const uk = `fd_usage_${today}`;
-    try {
-      await redis.incr(uk);
-      await redis.expire(uk, 86400 * 8);
-    } catch {}
-  }
-  if (redis && data) {
-    try { await redis.setex(key, ttl, JSON.stringify(data)); } catch {}
-  }
-  return { data, cached: false };
-}
+// Resilient shared cache (memory + Redis + stale fallback, see _lib/cache.js);
+// every real football-data call counts against the daily fd_usage budget.
+const cached = (redis, key, ttl, fn) =>
+  baseCached(redis, key, ttl, fn, { usageKey: 'fd_usage' });
 
 // Map football-data status → the lowercase statuses useStats.js understands.
 // AET/PEN are derived from score.duration so the UI can badge them correctly.

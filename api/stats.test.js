@@ -1,5 +1,6 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { NAME_ALIASES, normName, mapStatus, mapMatch } from "./stats.js";
+import { cached, __resetCache } from "./_lib/cache.js";
 import { GROUPS } from "../src/data/teams.js";
 
 describe("normName", () => {
@@ -111,5 +112,112 @@ describe("mapMatch", () => {
       penalties: null,
       venue: null,
     });
+  });
+});
+
+describe("cached (resilient caching)", () => {
+  const makeRedis = () => ({
+    get: vi.fn().mockResolvedValue(null),
+    setex: vi.fn().mockResolvedValue("OK"),
+    incr: vi.fn().mockResolvedValue(1),
+    expire: vi.fn().mockResolvedValue(1),
+  });
+
+  beforeEach(() => {
+    __resetCache();
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date("2026-07-12T12:00:00Z"));
+  });
+
+  afterEach(() => vi.useRealTimers());
+
+  it("calls the fetcher on a miss and serves memory-cached data afterwards, even without Redis", async () => {
+    const fn = vi.fn().mockResolvedValue({ v: 1 });
+    const first = await cached(null, "k", 60, fn);
+    expect(first).toEqual({ data: { v: 1 }, cached: false });
+
+    const second = await cached(null, "k", 60, fn);
+    expect(second).toEqual({ data: { v: 1 }, cached: true });
+    expect(fn).toHaveBeenCalledTimes(1);
+  });
+
+  it("refetches after the memory TTL expires", async () => {
+    const fn = vi.fn().mockResolvedValue({ v: 1 });
+    await cached(null, "k", 60, fn);
+    vi.advanceTimersByTime(61_000);
+    await cached(null, "k", 60, fn);
+    expect(fn).toHaveBeenCalledTimes(2);
+  });
+
+  it("writes fresh and long-TTL stale copies to Redis and tracks usage", async () => {
+    const redis = makeRedis();
+    const fn = vi.fn().mockResolvedValue({ v: 1 });
+    await cached(redis, "k", 60, fn, { usageKey: "fd_usage" });
+
+    const json = JSON.stringify({ v: 1 });
+    expect(redis.setex).toHaveBeenCalledWith("k", 60, json);
+    expect(redis.setex).toHaveBeenCalledWith("k:stale", 6 * 60 * 60, json);
+    expect(redis.incr).toHaveBeenCalledWith("fd_usage_2026-07-12");
+  });
+
+  it("does not track usage when no usageKey is given", async () => {
+    const redis = makeRedis();
+    await cached(redis, "k", 60, vi.fn().mockResolvedValue({ v: 1 }));
+    expect(redis.incr).not.toHaveBeenCalled();
+  });
+
+  it("returns a Redis hit without calling the fetcher", async () => {
+    const redis = makeRedis();
+    redis.get.mockResolvedValue(JSON.stringify({ v: "redis" }));
+    const fn = vi.fn();
+    const out = await cached(redis, "k", 60, fn);
+    expect(out).toEqual({ data: { v: "redis" }, cached: true });
+    expect(fn).not.toHaveBeenCalled();
+  });
+
+  it("serves stale memory data when the upstream fails after a prior success", async () => {
+    const ok = vi.fn().mockResolvedValue({ v: 1 });
+    await cached(null, "k", 60, ok);
+
+    vi.advanceTimersByTime(120_000); // fresh copy expired
+    const fail = vi.fn().mockRejectedValue(new Error("HTTP 429"));
+    const out = await cached(null, "k", 60, fail);
+    expect(fail).toHaveBeenCalledTimes(1);
+    expect(out).toEqual({ data: { v: 1 }, cached: true, stale: true });
+  });
+
+  it("serves the Redis :stale copy when memory has nothing", async () => {
+    const redis = makeRedis();
+    redis.get.mockImplementation(async (key) =>
+      key === "k:stale" ? JSON.stringify({ v: "old" }) : null
+    );
+    const fail = vi.fn().mockRejectedValue(new Error("HTTP 429"));
+    const out = await cached(redis, "k", 60, fail);
+    expect(out).toEqual({ data: { v: "old" }, cached: true, stale: true });
+  });
+
+  it("backs off after an upstream failure instead of hammering it", async () => {
+    const ok = vi.fn().mockResolvedValue({ v: 1 });
+    await cached(null, "k", 60, ok);
+
+    vi.advanceTimersByTime(120_000);
+    const fail = vi.fn().mockRejectedValue(new Error("HTTP 429"));
+    await cached(null, "k", 60, fail); // trips the cooldown
+
+    vi.advanceTimersByTime(10_000); // still within the 30s cooldown
+    const retry = vi.fn().mockResolvedValue({ v: 2 });
+    const during = await cached(null, "k", 60, retry);
+    expect(retry).not.toHaveBeenCalled();
+    expect(during).toEqual({ data: { v: 1 }, cached: true, stale: true });
+
+    vi.advanceTimersByTime(30_000); // cooldown over
+    const after = await cached(null, "k", 60, retry);
+    expect(retry).toHaveBeenCalledTimes(1);
+    expect(after).toEqual({ data: { v: 2 }, cached: false });
+  });
+
+  it("rethrows when the upstream fails and no stale copy exists", async () => {
+    const fail = vi.fn().mockRejectedValue(new Error("HTTP 429"));
+    await expect(cached(null, "nothing", 60, fail)).rejects.toThrow("HTTP 429");
   });
 });
