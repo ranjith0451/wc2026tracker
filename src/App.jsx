@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useState, Component } from "react";
+import { lazy, Suspense, useEffect, useRef, useState, Component } from "react";
 import { Routes, Route, NavLink, useLocation } from "react-router-dom";
 import { ThemeProvider } from "./lib/themeContext.jsx";
 import ThemeSwitcher from "./components/ThemeSwitcher.jsx";
@@ -183,6 +183,11 @@ function PageWrap({ children }) {
 
 const ADMIN_PIN = "2026";
 
+// AdminGate is a soft gate to keep casual edits out of the admin UI.
+// The real authorisation happens at the API: /api/results requires
+// an `X-Admin-Token` header that matches the server's `ADMIN_TOKEN`
+// env var. The PIN here is honest about what it is — a UI guard, not
+// a security boundary. The PIN only stops accidental navigation.
 function AdminGate({ children }) {
   const [unlocked, setUnlocked] = useState(() => sessionStorage.getItem("admin_auth") === "ok");
   const [pin, setPin] = useState("");
@@ -230,10 +235,18 @@ function AdminGate({ children }) {
 }
 
 // Fire-and-forget POST to server — syncs results to Vercel KV so all visitors see them.
+// VITE_ADMIN_TOKEN is set at build time on Vercel; if it's missing, writes are no-ops
+// (the server rejects them anyway, but skipping the network call saves a roundtrip).
+const ADMIN_TOKEN = import.meta.env.VITE_ADMIN_TOKEN || "";
+
 function pushResults(data) {
-  fetch('/api/results', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+  if (!ADMIN_TOKEN) return; // server is in read-only mode
+  fetch("/api/results", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-Admin-Token": ADMIN_TOKEN,
+    },
     body: JSON.stringify(data),
   }).catch(() => {});
 }
@@ -259,11 +272,18 @@ export default function App() {
   const results = mergeResults(baseResults, overrides);
   const lastUpdated = fetchedAt;
 
+  // Mirror fetched into a ref so the setState updater (which may be called
+  // multiple times before the next render) can always read the freshest
+  // cloud snapshot. Without this, pushResults(mergeResults(fetched, ...))
+  // would clobber any cloud entries that arrived between renders.
+  const fetchedRef = useRef(fetched);
+  fetchedRef.current = fetched;
+
   function setOverride(id, v) {
     setOverrides(prev => {
       const next = { ...prev, [id]: v };
       saveOverrides(next);
-      pushResults(mergeResults(fetched, next));
+      pushResults(mergeResults(fetchedRef.current, next));
       return next;
     });
   }

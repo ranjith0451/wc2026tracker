@@ -116,6 +116,20 @@ export default function Admin({ results, overrides, setOverride, clearOverride, 
       {/* ── API usage ── */}
       <ApiUsageBar />
 
+      {/* ── Cloud-sync banner ── */}
+      {import.meta.env.VITE_ADMIN_TOKEN ? null : (
+        <div className="api-usage-box" style={{ borderColor: "var(--border-medium)" }}>
+          <div className="api-usage-head">
+            <span>☁️ Cloud sync disabled</span>
+            <span style={{ color: "var(--text-tertiary)" }}>local only</span>
+          </div>
+          <div className="api-usage-foot">
+            Set <code>VITE_ADMIN_TOKEN</code> at build time and <code>ADMIN_TOKEN</code> on Vercel
+            to enable cross-device result syncing. Changes here still save to your browser.
+          </div>
+        </div>
+      )}
+
       {/* ── Page header ── */}
       <div className="admin-header">
         <div className="admin-header-text">

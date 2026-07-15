@@ -44,3 +44,11 @@ hide the row. Returns `{ configured: false }` until the key is set.
 | `player` | `id` | single profile |
 
 ## /api/results — KV-backed manual result overrides (pre-existing)
+
+- `GET` — public, returns the current overrides map.
+- `POST` — **gated by `X-Admin-Token` header**. The token must match the
+  `ADMIN_TOKEN` env var (Vercel) — set the same value on the client as
+  `VITE_ADMIN_TOKEN` so the build inlines it.
+- If `ADMIN_TOKEN` is not set on the server, **all POSTs return 503** (fail closed).
+- Comparison is constant-time (`crypto.timingSafeEqual`).
+- Payload capped at 1 MB; returns 413 if exceeded.
